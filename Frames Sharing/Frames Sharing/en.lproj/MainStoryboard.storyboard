@@ -93,7 +93,13 @@
                             <constraint firstItem="R0b-0m-8aa" firstAttribute="top" secondItem="fO5-Vz-T03" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="sHo-8q-OV6"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Frames" id="HJJ-70-7cw"/>
+                    <navigationItem key="navigationItem" title="Frames" id="HJJ-70-7cw">
+                        <barButtonItem key="rightBarButtonItem" title="Login" id="Sas-vF-x40">
+                            <connections>
+                                <action selector="loginOrSignUp:" destination="2" id="9Vf-Fb-UEU"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <segue destination="YbU-DI-4Iv" kind="push" identifier="create" id="i9B-KP-zGa"/>
                         <segue destination="t7h-fv-AuS" kind="push" identifier="explore" id="8Ok-MF-urK"/>
