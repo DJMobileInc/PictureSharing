@@ -77,6 +77,7 @@
         if (finished) {
             self.loginView = nil;
     [self.navigationItem.rightBarButtonItems[0] setEnabled:YES];
+            [self.loginView removeFromSuperview];
         }
         
     }];
