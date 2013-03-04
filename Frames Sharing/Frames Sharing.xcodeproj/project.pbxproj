@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DB21A8FE16E51B4100EFDCBE /* PFExploreCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DB21A8FD16E51B4100EFDCBE /* PFExploreCell.m */; };
 		DBA2CE5C16E4FC6100479C8A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBA2CE5B16E4FC6100479C8A /* UIKit.framework */; };
 		DBA2CE5E16E4FC6100479C8A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBA2CE5D16E4FC6100479C8A /* Foundation.framework */; };
 		DBA2CE6016E4FC6100479C8A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBA2CE5F16E4FC6100479C8A /* CoreGraphics.framework */; };
@@ -18,9 +19,13 @@
 		DBA2CE7216E4FC6100479C8A /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DBA2CE7116E4FC6100479C8A /* Default-568h@2x.png */; };
 		DBA2CE7516E4FC6100479C8A /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DBA2CE7316E4FC6100479C8A /* MainStoryboard.storyboard */; };
 		DBA2CE7816E4FC6100479C8A /* PFSharingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DBA2CE7716E4FC6100479C8A /* PFSharingViewController.m */; };
+		DBA2CE8316E519CA00479C8A /* PFAlbumsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DBA2CE8216E519CA00479C8A /* PFAlbumsViewController.m */; };
+		DBA2CE8616E519E700479C8A /* PFExploreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DBA2CE8516E519E700479C8A /* PFExploreViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		DB21A8FC16E51B4100EFDCBE /* PFExploreCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFExploreCell.h; sourceTree = "<group>"; };
+		DB21A8FD16E51B4100EFDCBE /* PFExploreCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFExploreCell.m; sourceTree = "<group>"; };
 		DBA2CE5816E4FC6100479C8A /* Frames Sharing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Frames Sharing.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBA2CE5B16E4FC6100479C8A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		DBA2CE5D16E4FC6100479C8A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -37,6 +42,10 @@
 		DBA2CE7416E4FC6100479C8A /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		DBA2CE7616E4FC6100479C8A /* PFSharingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PFSharingViewController.h; sourceTree = "<group>"; };
 		DBA2CE7716E4FC6100479C8A /* PFSharingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PFSharingViewController.m; sourceTree = "<group>"; };
+		DBA2CE8116E519CA00479C8A /* PFAlbumsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFAlbumsViewController.h; sourceTree = "<group>"; };
+		DBA2CE8216E519CA00479C8A /* PFAlbumsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFAlbumsViewController.m; sourceTree = "<group>"; };
+		DBA2CE8416E519E700479C8A /* PFExploreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFExploreViewController.h; sourceTree = "<group>"; };
+		DBA2CE8516E519E700479C8A /* PFExploreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFExploreViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +95,12 @@
 				DBA2CE6A16E4FC6100479C8A /* PFSharingAppDelegate.h */,
 				DBA2CE6B16E4FC6100479C8A /* PFSharingAppDelegate.m */,
 				DBA2CE7316E4FC6100479C8A /* MainStoryboard.storyboard */,
+				DB21A8FC16E51B4100EFDCBE /* PFExploreCell.h */,
+				DB21A8FD16E51B4100EFDCBE /* PFExploreCell.m */,
+				DBA2CE8416E519E700479C8A /* PFExploreViewController.h */,
+				DBA2CE8516E519E700479C8A /* PFExploreViewController.m */,
+				DBA2CE8116E519CA00479C8A /* PFAlbumsViewController.h */,
+				DBA2CE8216E519CA00479C8A /* PFAlbumsViewController.m */,
 				DBA2CE7616E4FC6100479C8A /* PFSharingViewController.h */,
 				DBA2CE7716E4FC6100479C8A /* PFSharingViewController.m */,
 				DBA2CE6216E4FC6100479C8A /* Supporting Files */,
@@ -177,6 +192,9 @@
 				DBA2CE6816E4FC6100479C8A /* main.m in Sources */,
 				DBA2CE6C16E4FC6100479C8A /* PFSharingAppDelegate.m in Sources */,
 				DBA2CE7816E4FC6100479C8A /* PFSharingViewController.m in Sources */,
+				DBA2CE8316E519CA00479C8A /* PFAlbumsViewController.m in Sources */,
+				DBA2CE8616E519E700479C8A /* PFExploreViewController.m in Sources */,
+				DB21A8FE16E51B4100EFDCBE /* PFExploreCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -299,6 +317,7 @@
 				DBA2CE7D16E4FC6100479C8A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
