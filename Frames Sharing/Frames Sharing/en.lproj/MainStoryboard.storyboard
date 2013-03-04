@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12C3006" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="aLu-ca-R3F">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
+    </dependencies>
+    <scenes>
+        <!--Sharing View Controller - Frames-->
+        <scene sceneID="5">
+            <objects>
+                <viewController id="2" customClass="PFSharingViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="3">
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7u7-ev-gl6">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="92" id="fGf-XN-6dc"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Create">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="createVCSegue:" destination="2" eventType="touchUpInside" id="YjL-Bj-eeN"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aRI-hM-ZaF">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="92" id="n0o-TC-gt7"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Explore">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="exploreVCSegue:" destination="2" eventType="touchUpInside" id="WaY-30-KLI"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fO5-Vz-T03">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="92" id="B1B-Za-RJY"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Share">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="shareVCSegue:" destination="2" eventType="touchUpInside" id="JnM-pB-iv1"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R0b-0m-8aa">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="92" id="zJm-hv-cKd"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Albums">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="albumsVCSegue:" destination="2" eventType="touchUpInside" id="AIz-Rv-ERY"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="R0b-0m-8aa" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="6oi-bF-jIK"/>
+                            <constraint firstAttribute="trailing" secondItem="7u7-ev-gl6" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="EXm-Aj-mFO"/>
+                            <constraint firstAttribute="trailing" secondItem="R0b-0m-8aa" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="EfX-Go-VpS"/>
+                            <constraint firstItem="aRI-hM-ZaF" firstAttribute="top" secondItem="7u7-ev-gl6" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="HSs-Rf-KoR"/>
+                            <constraint firstItem="fO5-Vz-T03" firstAttribute="top" secondItem="aRI-hM-ZaF" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="SMA-Zc-X44"/>
+                            <constraint firstItem="fO5-Vz-T03" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="UMt-se-jIX"/>
+                            <constraint firstItem="aRI-hM-ZaF" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="Ug5-kx-U5r"/>
+                            <constraint firstItem="7u7-ev-gl6" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="Xtr-lB-t3R"/>
+                            <constraint firstItem="7u7-ev-gl6" firstAttribute="top" secondItem="3" secondAttribute="top" constant="56" id="gSZ-5k-kvD"/>
+                            <constraint firstAttribute="trailing" secondItem="fO5-Vz-T03" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="jpp-9W-6gX"/>
+                            <constraint firstAttribute="trailing" secondItem="aRI-hM-ZaF" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="klN-0g-suO"/>
+                            <constraint firstItem="R0b-0m-8aa" firstAttribute="top" secondItem="fO5-Vz-T03" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="sHo-8q-OV6"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Frames" id="HJJ-70-7cw"/>
+                    <connections>
+                        <segue destination="YbU-DI-4Iv" kind="push" identifier="create" id="i9B-KP-zGa"/>
+                        <segue destination="t7h-fv-AuS" kind="push" identifier="explore" id="8Ok-MF-urK"/>
+                        <segue destination="mkE-nO-uVc" kind="push" identifier="share" id="Fms-bH-Ul3"/>
+                        <segue destination="8dy-Pg-uGD" kind="push" identifier="albums" id="aOw-oQ-Iri"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-731" y="116"/>
+        </scene>
+        <!--View Controller - Albums-->
+        <scene sceneID="WVW-bS-D5b">
+            <objects>
+                <viewController id="8dy-Pg-uGD" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="V5H-vy-yXg">
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Albums" id="Yia-uU-Cgk"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OXg-ns-s7E" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="213" y="892"/>
+        </scene>
+        <!--View Controller - Explore-->
+        <scene sceneID="Vdy-QI-dXN">
+            <objects>
+                <viewController id="t7h-fv-AuS" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ILd-v4-aXq">
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Explore" id="D8Z-z6-7RP"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lWN-BM-aH3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-165" y="887"/>
+        </scene>
+        <!--View Controller - Create-->
+        <scene sceneID="mCw-Qy-kvq">
+            <objects>
+                <viewController id="YbU-DI-4Iv" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Y6u-w3-7xi">
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Create" id="MyD-ZB-4Ar"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aEv-Mk-L9k" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-117" y="-656"/>
+        </scene>
+        <!--View Controller - Share-->
+        <scene sceneID="7ql-Sw-kiZ">
+            <objects>
+                <viewController id="mkE-nO-uVc" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="kHh-vR-umR">
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Share" id="iov-Ld-VLM"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5sP-2C-OKc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="393" y="-656"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="294-RN-FQg">
+            <objects>
+                <navigationController id="aLu-ca-R3F" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Clw-gi-zrC">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="2" kind="relationship" relationship="rootViewController" id="h5F-3P-ldR"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4LL-kK-TOH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1152" y="116"/>
+        </scene>
+    </scenes>
+    <classes>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="PFSharingViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PFSharingViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="createVCSegue:" candidateClass="UIButton"/>
+                <relationship kind="action" name="exploreVCSegue:" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+    </classes>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>
