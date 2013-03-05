@@ -1,0 +1,22 @@
+//
+// Prefix header for all source files of the 'iPictureFrames Lite' target in the 'iPictureFrames Lite' project
+//
+
+#import <Availability.h>
+
+#ifndef __IPHONE_5_0
+#warning "This project uses features only available in iOS SDK 5.0 and later."
+#endif
+
+#ifdef __OBJC__
+    #import <UIKit/UIKit.h>
+    #import <Foundation/Foundation.h>
+    #import <iAd/iAd.h>
+    #import <MobileCoreServices/MobileCoreServices.h>
+    #import <MessageUI/MessageUI.h>
+    #import "MKStoreManager.h"
+    #import <CoreImage/CoreImage.h>
+    #import <QuartzCore/QuartzCore.h>
+
+
+#endif
