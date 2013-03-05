@@ -27,7 +27,11 @@
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"AlbumCell"];
-    cell.textLabel.text = self.albumName;
+    if(cell == nil) {
+        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"AlbumCell"];
+    }
+
+    cell.textLabel.text = self.objects[indexPath.row];
     return cell;
     
 }
@@ -42,7 +46,7 @@
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     if(buttonIndex == 1) {
         self.albumName = [alertView textFieldAtIndex:0].text;
-        [_objects insertObject:[NSDate date] atIndex:0];
+        [self.objects addObject:self.albumName];
         //inserts a new object at the end of the tableView, this the objects.count - 1
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:self.objects.count - 1 inSection:0];
         [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
