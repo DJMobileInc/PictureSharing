@@ -1,4 +1,5 @@
 
+*.DS_Store
 *.xcuserstate
 
 Frames Sharing/Frames Sharing.xcodeproj/project.xcworkspace/contents.xcworkspacedata
