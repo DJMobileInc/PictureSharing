@@ -103,14 +103,18 @@
     [adefaultContent addObject:@"reptile2"];
     [adefaultContent addObject:@"zebra2"];
     
+    [apremiumContent addObject:@"fur2"];
     [apremiumContent  addObject:@"lampard3"];
     [apremiumContent  addObject:@"lampard4"];
+    [apremiumContent  addObject:@"pack5_2"];
+    
+    
     [apremiumContent addObject:@"reptile4"];
     [apremiumContent addObject:@"reptile3"];
     [apremiumContent addObject:@"tiger"];
     [apremiumContent addObject:@"zebra1"];
 
-    [apremiumContent addObject:@"fur2"];
+    
     
     ContentPack *animals = [self createContentPackWithDefaultContent:adefaultContent andPremiumContent:apremiumContent forKey:kAnimalPack];
     animals.commonName = kAnimalPackName;
@@ -135,6 +139,10 @@
     [apremiumContent addObject:@"simpleBlue"];
     [apremiumContent addObject:@"zebra"];
     [apremiumContent addObject:@"yellow"];    
+    [apremiumContent addObject:@"pack5_2"];
+    [apremiumContent addObject:@"pack6_4"];
+
+    
     
     [adefaultContent addObject:@"pack4_2"];
     [adefaultContent addObject:@"pack4_5"];
