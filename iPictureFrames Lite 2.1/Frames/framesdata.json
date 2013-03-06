@@ -1,0 +1,30 @@
+#define kChristmasPack @"com.djmobile.christmasFrames1"
+#define kWoodPack @"com.djmobile.woodPack1"
+#define kStonePack @"com.djmobile.stonelPack1"
+#define kLovePack @"com.djmobile.lovePack1"
+#define kAnimalPack @"com.djmobile.download.animal1"
+#define kAssortedPack @"com.djmobile.assortedPack1"
+
+
+{ "com.djmobile.download.animal1 ":
+    {
+        "free":["fur","lampard", "lampard2","reptile1","reptile2","zebra2"],
+        "premium":["fur2","lampard3","lampard4","pack5_2","pack5_10","pack5_11","pack5_14","pack5_17","pack5_19","pack5_19","pack5_21","reptile3","reptile4","tiger","zebra","zebra1"
+            ]
+    },
+   "com.djmobile.assortedPack1":
+        {
+         "free":["artisticgreen", "bluesilver", "metal", "pack4_2", "pack4_5", "pack4_7","pack5_4","pack5_5"],
+        "premium":["artistic","artisticRed","artisticStripes","hell","hell2", "metalPins", "metalPlate2","orange","pack5_1", "pack5_6","pack5_8","pack5_9","pack5_12","pack5_13","pack5_15","pack6_2","pack6_3","pack7_1","redYellow","simpleBlue","yellow"]
+        },
+    "com.djmobile.christmasFrames1":{
+        "free":["christmas_me_1","christmas_me_2","christmas_me_3","christmas_me_4","christmas_me_5","christmas_me_6","christmas_me_7","christmas_me_8","christmas_me_9"],
+        "premium":
+        ["christmas frame 1 ipad","christmas frame 2 ipad","christmas frame 3 ipad","christmas frame 4 ipad","christmas frame 5 ipad","christmas frame 6 ipad","christmas frame 7 ipad","christmas frame 8 ipad","christmas frame 9 ipad","christmas frame 10 ipad","christmas frame 11 ipad","christmas frame 12 ipad","christmas frame 13 ipad","christmas frame 14 ipad","christmas frame 15 ipad"]
+    }
+    
+   
+
+}
+
+
