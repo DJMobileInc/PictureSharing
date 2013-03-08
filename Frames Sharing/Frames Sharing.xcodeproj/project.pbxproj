@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F96217216EA7E2E0034E26A /* albums.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F96216B16EA7E2E0034E26A /* albums.png */; };
+		4F96217316EA7E2E0034E26A /* facebook.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F96216C16EA7E2E0034E26A /* facebook.png */; };
+		4F96217416EA7E2E0034E26A /* ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F96216D16EA7E2E0034E26A /* ipad.png */; };
+		4F96217516EA7E2E0034E26A /* mail.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F96216E16EA7E2E0034E26A /* mail.png */; };
+		4F96217616EA7E2E0034E26A /* sinaweibo.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F96216F16EA7E2E0034E26A /* sinaweibo.png */; };
+		4F96217816EA7E2E0034E26A /* twitter.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F96217116EA7E2E0034E26A /* twitter.png */; };
 		DB21A8FE16E51B4100EFDCBE /* PFExploreCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DB21A8FD16E51B4100EFDCBE /* PFExploreCell.m */; };
 		DB21A90116E521F500EFDCBE /* PFLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = DB21A90016E521F500EFDCBE /* PFLogin.m */; };
 		DBA2CE5C16E4FC6100479C8A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBA2CE5B16E4FC6100479C8A /* UIKit.framework */; };
@@ -25,6 +31,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4F96216B16EA7E2E0034E26A /* albums.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = albums.png; sourceTree = "<group>"; };
+		4F96216C16EA7E2E0034E26A /* facebook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = facebook.png; sourceTree = "<group>"; };
+		4F96216D16EA7E2E0034E26A /* ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ipad.png; sourceTree = "<group>"; };
+		4F96216E16EA7E2E0034E26A /* mail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mail.png; sourceTree = "<group>"; };
+		4F96216F16EA7E2E0034E26A /* sinaweibo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sinaweibo.png; sourceTree = "<group>"; };
+		4F96217116EA7E2E0034E26A /* twitter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = twitter.png; sourceTree = "<group>"; };
 		DB21A8FC16E51B4100EFDCBE /* PFExploreCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFExploreCell.h; sourceTree = "<group>"; };
 		DB21A8FD16E51B4100EFDCBE /* PFExploreCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFExploreCell.m; sourceTree = "<group>"; };
 		DB21A8FF16E521F500EFDCBE /* PFLogin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFLogin.h; sourceTree = "<group>"; };
@@ -65,9 +77,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4F96216A16EA7E1D0034E26A /* Artwork */ = {
+			isa = PBXGroup;
+			children = (
+				4F96216B16EA7E2E0034E26A /* albums.png */,
+				4F96216C16EA7E2E0034E26A /* facebook.png */,
+				4F96216D16EA7E2E0034E26A /* ipad.png */,
+				4F96216E16EA7E2E0034E26A /* mail.png */,
+				4F96216F16EA7E2E0034E26A /* sinaweibo.png */,
+				4F96217116EA7E2E0034E26A /* twitter.png */,
+			);
+			name = Artwork;
+			sourceTree = "<group>";
+		};
 		DBA2CE4F16E4FC6100479C8A = {
 			isa = PBXGroup;
 			children = (
+				4F96216A16EA7E1D0034E26A /* Artwork */,
 				DBA2CE6116E4FC6100479C8A /* Frames Sharing */,
 				DBA2CE5A16E4FC6100479C8A /* Frameworks */,
 				DBA2CE5916E4FC6100479C8A /* Products */,
@@ -184,6 +210,12 @@
 				DBA2CE7016E4FC6100479C8A /* Default@2x.png in Resources */,
 				DBA2CE7216E4FC6100479C8A /* Default-568h@2x.png in Resources */,
 				DBA2CE7516E4FC6100479C8A /* MainStoryboard.storyboard in Resources */,
+				4F96217216EA7E2E0034E26A /* albums.png in Resources */,
+				4F96217316EA7E2E0034E26A /* facebook.png in Resources */,
+				4F96217416EA7E2E0034E26A /* ipad.png in Resources */,
+				4F96217516EA7E2E0034E26A /* mail.png in Resources */,
+				4F96217616EA7E2E0034E26A /* sinaweibo.png in Resources */,
+				4F96217816EA7E2E0034E26A /* twitter.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
