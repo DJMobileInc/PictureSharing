@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Manager.h"
 
-@interface PFSharingViewController : UIViewController
+@interface PFSharingViewController : UIViewController<ManagerDelegate>
+@property (strong, nonatomic) IBOutlet UIImageView *imgView;
 
 @end

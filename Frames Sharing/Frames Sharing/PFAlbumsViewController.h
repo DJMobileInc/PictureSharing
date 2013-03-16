@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface PFAlbumsViewController : UIViewController
+#import "Manager.h"
+@interface PFAlbumsViewController : UIViewController <ManagerDelegate>
 
 @end

@@ -33,14 +33,15 @@
         passwordLabel.textAlignment = NSTextAlignmentCenter;
         passwordLabel.textColor = [UIColor blackColor];
         passwordLabel.text = @"Password";
-        self.loginButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 120, frame.size.width, 44)];
+        self.loginButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        self.loginButton.frame = CGRectMake(0, 120, frame.size.width, 44);
         [self.loginButton setTitle:@"Log In" forState:UIControlStateNormal];
         [self addSubview:self.loginButton];
         [self addSubview:userLabel];
         [self addSubview:passwordLabel];
         [self addSubview:self.userName];
         [self addSubview:self.password];
-        self.backgroundColor = [UIColor brownColor];
+        self.backgroundColor = [UIColor lightTextColor];
     }
     return self;
 }

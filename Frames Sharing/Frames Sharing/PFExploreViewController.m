@@ -8,8 +8,9 @@
 
 #import "PFExploreViewController.h"
 #import "PFExploreCell.h"
-@interface PFExploreViewController ()
+@interface PFExploreViewController ()<UISearchBarDelegate>
 
+@property (strong, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @end
 
