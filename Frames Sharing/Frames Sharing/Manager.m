@@ -322,8 +322,45 @@ NSString *baseUrl = @"http://djmobileinc.fatfractal.com/pictureframes";
 
 #pragma mark photo
 
--(void)ratePhotoByUserWithId:(NSString *)userId{
+-(void)getOwnerOfPhoto:(Photo *) photo{
+    //find album
+    NSString * queryString  = [NSString stringWithFormat:@"/ff/resources/Album/(guid eq '%@')",photo.albumId];
+    
+    [[FatFractal main]getObjFromUri:queryString onComplete:
+     ^(NSError * theErr, id theObj, NSHTTPURLResponse * theResponse)
+     {
+         if(theErr){
+             //[self displayMessage:[theErr localizedDescription]];
+         }
+         else{
+             //retrieved array of albums.
+             Album * album = theObj;
+             NSString * userGuid = album.userId;
+             NSString * queryString  = [NSString stringWithFormat:@"/ff/resources/FFUser/%@",userGuid];
+            //getting user
+             [[FatFractal main]getObjFromUri:queryString onComplete:
+              ^(NSError * theErr, id theObj, NSHTTPURLResponse * theResponse)
+              {
+                 [NSNotificationCenter ]
+              
+              }];
+         }
+     }];
+}
 
+-(void)updateObject:(id)object{
+    [self.ff updateObj:object onComplete:^(NSError *err, id obj, NSHTTPURLResponse *httpResponse) {
+        if(!err)
+        {
+            NSLog(@" Object Updated");
+        }
+
+    }];
+}
+
+
+-(void)ratePhoto:(Photo *)photo{
+    [self updateObject:photo];
 }
 
 
@@ -383,11 +420,9 @@ NSString *baseUrl = @"http://djmobileinc.fatfractal.com/pictureframes";
 
 -(void)getPhotosWithSearchQuery:(NSString *)searchText{
 //    NSString * searchQuery = [NSString stringWithFormat:@"/ff/resources/Photo/(title matches '\b%@\b' or description matches '\b%@\b')",searchText,searchText];
-    
-    NSString * searchQuery = [NSString stringWithFormat:@"/ff/resources/Photo/(description matches \b%@\b)",@"Description"];
-    
-     NSLog(@"Search Query  %@",searchQuery);
-    
+#warning TO DO fix the query
+    NSString * searchQuery = [NSString stringWithFormat:@"/ff/resources/Photo/"];
+        
     
     [[FatFractal main]getArrayFromUri:searchQuery onComplete:
      ^(NSError * theErr, id theObj, NSHTTPURLResponse * theResponse)

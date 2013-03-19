@@ -18,6 +18,7 @@
     if(self)
     {
        // self.uniqueId = [self uuid];
+        self.ratings = [[NSMutableArray alloc]initWithCapacity:0];
     }
     return self;
 }

@@ -16,9 +16,11 @@
 		4F96217516EA7E2E0034E26A /* mail.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F96216E16EA7E2E0034E26A /* mail.png */; };
 		4F96217616EA7E2E0034E26A /* sinaweibo.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F96216F16EA7E2E0034E26A /* sinaweibo.png */; };
 		4F96217816EA7E2E0034E26A /* twitter.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F96217116EA7E2E0034E26A /* twitter.png */; };
+		4FAB7E9116F8B72500920E34 /* PFDisplayPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FAB7E9016F8B72500920E34 /* PFDisplayPhotoViewController.m */; };
+		4FAB7E9316F8C8D500920E34 /* nonstar.png in Resources */ = {isa = PBXBuildFile; fileRef = 4FAB7E9216F8C8D500920E34 /* nonstar.png */; };
+		4FAB7E9516F8DDDD00920E34 /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = 4FAB7E9416F8DDDD00920E34 /* star.png */; };
 		8239752416F0210B008E1605 /* Manager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7EF07316EFA94500A364D7 /* Manager.m */; };
 		8239752516F0210E008E1605 /* PFLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = DB21A90016E521F500EFDCBE /* PFLogin.m */; };
-		8239752E16F22649008E1605 /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = 8239752D16F22649008E1605 /* star.png */; };
 		8239753716F28D3B008E1605 /* lampard1.png in Resources */ = {isa = PBXBuildFile; fileRef = 8239753316F28D3B008E1605 /* lampard1.png */; };
 		8239753816F28D3B008E1605 /* lampard2.png in Resources */ = {isa = PBXBuildFile; fileRef = 8239753416F28D3B008E1605 /* lampard2.png */; };
 		8239753916F28D3B008E1605 /* lampard3.png in Resources */ = {isa = PBXBuildFile; fileRef = 8239753516F28D3B008E1605 /* lampard3.png */; };
@@ -61,7 +63,10 @@
 		4F96216E16EA7E2E0034E26A /* mail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mail.png; sourceTree = "<group>"; };
 		4F96216F16EA7E2E0034E26A /* sinaweibo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sinaweibo.png; sourceTree = "<group>"; };
 		4F96217116EA7E2E0034E26A /* twitter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = twitter.png; sourceTree = "<group>"; };
-		8239752D16F22649008E1605 /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star.png; sourceTree = "<group>"; };
+		4FAB7E8F16F8B72500920E34 /* PFDisplayPhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFDisplayPhotoViewController.h; sourceTree = "<group>"; };
+		4FAB7E9016F8B72500920E34 /* PFDisplayPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFDisplayPhotoViewController.m; sourceTree = "<group>"; };
+		4FAB7E9216F8C8D500920E34 /* nonstar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nonstar.png; sourceTree = "<group>"; };
+		4FAB7E9416F8DDDD00920E34 /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star.png; sourceTree = "<group>"; };
 		8239753316F28D3B008E1605 /* lampard1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lampard1.png; sourceTree = "<group>"; };
 		8239753416F28D3B008E1605 /* lampard2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lampard2.png; sourceTree = "<group>"; };
 		8239753516F28D3B008E1605 /* lampard3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lampard3.png; sourceTree = "<group>"; };
@@ -153,11 +158,12 @@
 				4F96216E16EA7E2E0034E26A /* mail.png */,
 				4F96216F16EA7E2E0034E26A /* sinaweibo.png */,
 				4F96217116EA7E2E0034E26A /* twitter.png */,
-				8239752D16F22649008E1605 /* star.png */,
 				8239753316F28D3B008E1605 /* lampard1.png */,
 				8239753416F28D3B008E1605 /* lampard2.png */,
 				8239753516F28D3B008E1605 /* lampard3.png */,
+				4FAB7E9216F8C8D500920E34 /* nonstar.png */,
 				8239753616F28D3B008E1605 /* lampard4.png */,
+				4FAB7E9416F8DDDD00920E34 /* star.png */,
 			);
 			name = Artwork;
 			sourceTree = "<group>";
@@ -238,6 +244,8 @@
 				4F7EF06916EFA27600A364D7 /* CustomObjects */,
 				8239753E16F33B3C008E1605 /* PFDisplayMyPhotoViewController.h */,
 				8239753F16F33B3C008E1605 /* PFDisplayMyPhotoViewController.m */,
+				4FAB7E8F16F8B72500920E34 /* PFDisplayPhotoViewController.h */,
+				4FAB7E9016F8B72500920E34 /* PFDisplayPhotoViewController.m */,
 			);
 			path = "Frames Sharing";
 			sourceTree = "<group>";
@@ -347,11 +355,12 @@
 				4F96217616EA7E2E0034E26A /* sinaweibo.png in Resources */,
 				4F96217816EA7E2E0034E26A /* twitter.png in Resources */,
 				4F7EF07116EFA78800A364D7 /* Plan in Resources */,
-				8239752E16F22649008E1605 /* star.png in Resources */,
 				8239753716F28D3B008E1605 /* lampard1.png in Resources */,
 				8239753816F28D3B008E1605 /* lampard2.png in Resources */,
 				8239753916F28D3B008E1605 /* lampard3.png in Resources */,
 				8239753A16F28D3B008E1605 /* lampard4.png in Resources */,
+				4FAB7E9316F8C8D500920E34 /* nonstar.png in Resources */,
+				4FAB7E9516F8DDDD00920E34 /* star.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -401,6 +410,7 @@
 				4F7EF07416EFA94500A364D7 /* Manager.m in Sources */,
 				8239753D16F291E6008E1605 /* PFAlbumDetailsViewController.m in Sources */,
 				8239754016F33B3D008E1605 /* PFDisplayMyPhotoViewController.m in Sources */,
+				4FAB7E9116F8B72500920E34 /* PFDisplayPhotoViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

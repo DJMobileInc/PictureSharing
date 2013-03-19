@@ -40,15 +40,18 @@
 -(void)deleteAlbumOfName:(NSString *)name forUser:(NSString *)userId;
 -(void)getPhotosForAlbum:(NSString *)albumId;
 
--(void)ratePhotoByUserWithId:(NSString *)userId;
+-(void)ratePhoto:(Photo *)photo;
 -(void)createNewPhotoWithDescription:(NSString *)name forUser:(NSString *)userId forAlbum:(NSString *)albumId withData:(NSData *)imageData;
 -(void)deletePhotoWithId:(NSString *)photoId forUser:(NSString *)userId forAlbum:(NSString *)album;
 -(void)downloadPhotoWithId:(NSString *)photoId forUser:(NSString *)userId andIndex:(NSIndexPath * )indexPath;
 -(void)getAlbumsForUser:(NSString *)userId;
 -(void)displayMessage:(NSString *)message;
-
 -(void)getNewestPhotos;
 -(void)getPhotosWithSearchQuery:(NSString *)searchQuery;
+-(void)updateObject:(id)object;
+
+-(void)getOwnerOfPhoto:(NSString *) photo;
+
 
 @property (strong, nonatomic) FatFractal *ff;
 @property(strong,nonatomic) FFUser *  user;

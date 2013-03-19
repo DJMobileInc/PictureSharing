@@ -45,7 +45,6 @@ NSMutableArray * photoArray;
     else{
         [photoArray removeAllObjects];
     }
-     NSLog(@"Get all photos request ");
     [manager getPhotosForAlbum:self.albumGuid];
 }
 
@@ -61,8 +60,6 @@ NSMutableArray * photoArray;
          [photoArray replaceObjectAtIndex:indexPath.row withObject:photo];
 
         cell.imageView.image = [UIImage imageWithData:photo.thumbnailImageData];
-     
-           NSLog(@"Cell Updated ");
          
          }
     }];
@@ -108,7 +105,7 @@ NSMutableArray * photoArray;
     
     [self.navigationController pushViewController:pdp animated:YES];
     [pdp changeDescription:p.description];
-    [pdp changeImage:pdp.imageData = [UIImage imageWithData:p.imageData]];
+    [pdp changeImage:[UIImage imageWithData:p.imageData]];
     [pdp changeRatings:p.ratings.count];
 }
 #pragma mark – UICollectionViewDelegateFlowLayout
