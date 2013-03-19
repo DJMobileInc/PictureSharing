@@ -8,6 +8,7 @@
 
 #import "PFExploreViewController.h"
 #import "PFExploreCell.h"
+
 @interface PFExploreViewController ()<UISearchBarDelegate>
 
 @property (strong, nonatomic) IBOutlet UISearchBar *searchBar;
@@ -15,11 +16,14 @@
 @end
 
 @implementation PFExploreViewController
+Manager * manager;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    manager = [Manager sharedInstance];
+    manager.exploreDelegate = self;
 }
 
 #pragma mark - UICollectionViewDelegate
@@ -36,8 +40,6 @@
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     
     CGSize retVal = CGSizeMake(75, 75);
-   // retVal.height += 35;
-   // retVal.width += 35;
     return  retVal;
 }
 - (UIEdgeInsets)collectionView:
@@ -68,4 +70,15 @@
 //    [headerView setSearchText:searchTerm];
 //    return headerView;
 //}
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
+    [manager getPhotosWithSearchQuery:searchBar.text];
+}
+
+-(void)searchCompletedWithResults:(NSArray *)array{
+    NSLog(@"Search completed with Array %@",array);
+}
+
+
+
 @end

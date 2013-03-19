@@ -19,9 +19,8 @@ Manager * manager;
     // Override point for customization after application launch.
     
     NSString *baseUrl = @"http://djmobileinc.fatfractal.com/pictureframes";
-    
     self.ff = [[FatFractal alloc] initWithBaseUrl:baseUrl];
-    self.ff.debug = YES;
+    self.ff.debug = NO;
     manager.ff = self.ff;
     
     return YES;

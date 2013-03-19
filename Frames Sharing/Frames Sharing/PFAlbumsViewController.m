@@ -27,6 +27,8 @@ Manager * manager;
     [super viewDidLoad];
     manager = [Manager sharedInstance];
     manager.delegate = self;
+    [manager.ff setAutoLoadBlobs:NO];
+    
     if(manager.user){
         [manager getAlbumsForUser:[manager.ff metaDataForObj:manager.user].guid];
     }
@@ -79,6 +81,7 @@ Manager * manager;
    PFAlbumDetailsViewController * vc =  [self.storyboard instantiateViewControllerWithIdentifier:@"PFAlbumDetailsViewController"];
     Album * album = (Album *)self.objects[indexPath.row];
     vc.albumGuid = [manager getGUID:album];
+  
     
     [self.navigationController pushViewController:vc animated:YES];
     

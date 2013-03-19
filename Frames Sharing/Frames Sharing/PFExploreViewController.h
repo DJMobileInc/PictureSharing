@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Manager.h"
 
-@interface PFExploreViewController : UIViewController
+@interface PFExploreViewController : UIViewController <ManagerExploreDelegate>
 
 @end

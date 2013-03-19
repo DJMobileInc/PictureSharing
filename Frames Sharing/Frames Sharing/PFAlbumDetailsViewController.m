@@ -10,8 +10,8 @@
 #import "PFExploreCell.h"
 #import "Manager.h"
 #import "Photo.h"
-#import "PhotoFile.h"
 #import "PFDisplayMyPhotoViewController.h"
+#import "Photo.h"
 
 @interface PFAlbumDetailsViewController ()
 @property (strong, nonatomic) IBOutlet UICollectionView *collectionView;
@@ -35,38 +35,60 @@ NSMutableArray * photoArray;
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     manager = [Manager sharedInstance];
+    manager.delegate = nil;
     manager.delegate = self;
     
+    [manager.ff setAutoLoadBlobs:NO];
+    if(!photoArray){
+        photoArray = [[NSMutableArray alloc]initWithCapacity:0];
+    }
+    else{
+        [photoArray removeAllObjects];
+    }
+     NSLog(@"Get all photos request ");
     [manager getPhotosForAlbum:self.albumGuid];
 }
 
--(void)receivedPhotos:(NSArray *)photos{
-    photoArray =[NSMutableArray arrayWithArray:photos];
-    //start downloading photos...
-    //since we have one section it shouldn't be that hard...
+-(void)updateCell:(PFExploreCell *)cell withObject:(id)object andIndexPath:(NSIndexPath*)indexPath{
     
+      NSLog(@"Update Cell");
     
-    for(int i = 0; i<photos.count; i++){
-        NSString * guid =  [(Photo *)[photoArray objectAtIndex:i]uniqueId];
+    [manager.ff loadBlobsForObj:object onComplete:^
+     
+     (NSError *theErr, id theObj, NSHTTPURLResponse *theResponse){
+        Photo * photo = theObj;
+         if(photoArray){
+         [photoArray replaceObjectAtIndex:indexPath.row withObject:photo];
 
-        NSIndexPath *ip = [NSIndexPath indexPathForItem:i inSection:0];
-        
-        [manager downloadPhotoWithId:guid forUser:[manager getGUID:manager.user] andIndex:ip];
-    }
+        cell.imageView.image = [UIImage imageWithData:photo.thumbnailImageData];
+     
+           NSLog(@"Cell Updated ");
+         
+         }
+    }];
     
-    [self.collectionView reloadData];
 }
 
--(void)downloadedPhotoFile:(PhotoFile *)file forIndex:(NSIndexPath *)indexPath{
+-(void)receivedPhotos:(NSArray *)photos{
+    NSLog(@"Received Photos");
+    photoArray =[NSMutableArray arrayWithArray:photos];
+    [self.collectionView reloadData];
+    
+}
+
+-(void)downloadedPhotoFile:(Photo *)file forIndex:(NSIndexPath *)indexPath{
+    
     PFExploreCell * cell =(PFExploreCell *) [self.collectionView cellForItemAtIndexPath:indexPath];
+   
     UIImage * thumbnail = [UIImage imageWithData:file.thumbnailImageData];
-   // NSLog(@"img  %@  thumbnail %@ ",file.imageData, file.thumbnailImageData);
+
     cell.imageView.image = thumbnail;
     Photo * pf = [photoArray objectAtIndex:indexPath.row];
-    pf.photoFile = file;
-    [photoArray replaceObjectAtIndex:indexPath.row withObject:pf];
+    if(photoArray){
+        [photoArray replaceObjectAtIndex:indexPath.row withObject:pf];
+            
+    }
 }
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -83,15 +105,10 @@ NSMutableArray * photoArray;
 
     PFDisplayMyPhotoViewController * pdp = [self.storyboard instantiateViewControllerWithIdentifier:@"PFDisplayMyPhotoViewController"];
     Photo * p = [photoArray objectAtIndex:indexPath.row];
-   /*
-    pdp.descriptionText = p.description;
-    pdp.imageData = [UIImage imageWithData:p.photoFile.imageData];
-    pdp.starsCount.text =[NSString stringWithFormat:@"%d",p.ratings.count];
- 
-*/
+    
     [self.navigationController pushViewController:pdp animated:YES];
     [pdp changeDescription:p.description];
-    [pdp changeImage:pdp.imageData = [UIImage imageWithData:p.photoFile.imageData]];
+    [pdp changeImage:pdp.imageData = [UIImage imageWithData:p.imageData]];
     [pdp changeRatings:p.ratings.count];
 }
 #pragma mark – UICollectionViewDelegateFlowLayout
@@ -122,8 +139,9 @@ NSMutableArray * photoArray;
     PFExploreCell *cell = [cv dequeueReusableCellWithReuseIdentifier:@"ExploreCell" forIndexPath:indexPath];
     cell.backgroundColor = [UIColor greenColor];
     Photo * photo = [photoArray objectAtIndex:indexPath.row];
-    cell.imageView.image = [UIImage imageWithData:photo.photoFile.thumbnailImageData];
-
+    [self updateCell:cell withObject:photo andIndexPath:indexPath];
+    
+    
     return cell;
 }
 

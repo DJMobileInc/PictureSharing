@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4F7EF06C16EFA2A700A364D7 /* PhotoFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7EF06B16EFA2A700A364D7 /* PhotoFile.m */; };
 		4F7EF06F16EFA6C600A364D7 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7EF06E16EFA6C600A364D7 /* User.m */; };
 		4F7EF07116EFA78800A364D7 /* Plan in Resources */ = {isa = PBXBuildFile; fileRef = 4F7EF07016EFA78800A364D7 /* Plan */; };
 		4F7EF07416EFA94500A364D7 /* Manager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7EF07316EFA94500A364D7 /* Manager.m */; };
@@ -51,8 +50,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		4F7EF06A16EFA2A700A364D7 /* PhotoFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoFile.h; sourceTree = "<group>"; };
-		4F7EF06B16EFA2A700A364D7 /* PhotoFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoFile.m; sourceTree = "<group>"; };
 		4F7EF06D16EFA6C600A364D7 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		4F7EF06E16EFA6C600A364D7 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		4F7EF07016EFA78800A364D7 /* Plan */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Plan; sourceTree = "<group>"; };
@@ -141,8 +138,6 @@
 				82DAC3F616ED74E00071B485 /* Album.m */,
 				82DAC3F816ED75290071B485 /* Photo.h */,
 				82DAC3F916ED75290071B485 /* Photo.m */,
-				4F7EF06A16EFA2A700A364D7 /* PhotoFile.h */,
-				4F7EF06B16EFA2A700A364D7 /* PhotoFile.m */,
 				4F7EF06D16EFA6C600A364D7 /* User.h */,
 				4F7EF06E16EFA6C600A364D7 /* User.m */,
 			);
@@ -191,7 +186,6 @@
 			isa = PBXGroup;
 			children = (
 				4F7EF07016EFA78800A364D7 /* Plan */,
-				82BC84C716ED79FA000AC3E1 /* FFEF.framework */,
 				4F96216A16EA7E1D0034E26A /* Artwork */,
 				DBA2CE6116E4FC6100479C8A /* Frames Sharing */,
 				82DAC40516ED77960071B485 /* Frames Sharing Test */,
@@ -212,6 +206,7 @@
 		DBA2CE5A16E4FC6100479C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				82BC84C716ED79FA000AC3E1 /* FFEF.framework */,
 				DBA2CE5B16E4FC6100479C8A /* UIKit.framework */,
 				DBA2CE5D16E4FC6100479C8A /* Foundation.framework */,
 				DBA2CE5F16E4FC6100479C8A /* CoreGraphics.framework */,
@@ -402,7 +397,6 @@
 				DB21A90116E521F500EFDCBE /* PFLogin.m in Sources */,
 				82DAC3F716ED74E00071B485 /* Album.m in Sources */,
 				82DAC3FA16ED75290071B485 /* Photo.m in Sources */,
-				4F7EF06C16EFA2A700A364D7 /* PhotoFile.m in Sources */,
 				4F7EF06F16EFA6C600A364D7 /* User.m in Sources */,
 				4F7EF07416EFA94500A364D7 /* Manager.m in Sources */,
 				8239753D16F291E6008E1605 /* PFAlbumDetailsViewController.m in Sources */,

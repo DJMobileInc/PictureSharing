@@ -175,7 +175,7 @@
     manager = [Manager sharedInstance];
     manager.delegate = self;
     
-    //[manager loggingInWithName:@"Janek2004" andPassword:@"Stany174"];
+    [manager loggingInWithName:@"Janek2004" andPassword:@"Stany174"];
     
     
 
@@ -185,10 +185,29 @@
 
 #pragma manager delegate
 -(void)userLoggedIn:(id)user{
-//    NSLog(@"User Logged In and now calling %@",(FFUser *)user);
-//    //if user logged in create an album?
-//      NSString * guid = [manager.ff metaDataForObj:manager.user].guid;
+  //  NSLog(@"User Logged In and now calling %@",(FFUser *)user);
+    //if user logged in create an album?
+  //  NSString * guid = [manager.ff metaDataForObj:manager.user].guid;
 //    [manager createNewAlbumOfName:@"TestAlbum" forUser:guid privacy:YES];
+   // [self addPicture];
+}
+
+-(void)addPicture{
+    NSString * albumGuid = @"6feFATtuGBe7MAQGHwEw_7";
+    
+    
+    NSArray * images = @[@"lampard1",@"lampard2",@"lampard3",@"lampard4"];
+    
+    int ranIndex = arc4random()%images.count;
+    
+    NSString * path= [[NSBundle mainBundle]pathForResource:[images objectAtIndex:ranIndex] ofType:@"png"];
+    NSData * data = [NSData dataWithContentsOfFile:path];
+    
+    NSString * userGuid = [manager.ff metaDataForObj:manager.user].guid;
+    
+    [manager createNewPhotoWithDescription:@"Some Description goes here" forUser:userGuid forAlbum:albumGuid withData:data];
+    
+    
 }
 
 -(void)createdAlbum:(Album *)album{

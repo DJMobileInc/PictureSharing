@@ -12,6 +12,6 @@
 @property (nonatomic,strong) NSString * name;
 @property (nonatomic,strong) NSString * description;
 @property (nonatomic,strong) NSString * userId;
-@property (nonatomic,assign) BOOL privacy;
+
 
 @end

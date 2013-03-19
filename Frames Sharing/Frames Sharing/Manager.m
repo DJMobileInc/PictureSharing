@@ -10,7 +10,6 @@
 #import "Photo.h"
 #import "User.h"
 #import "Album.h"
-#import "PhotoFile.h"
 
 @interface UIImage (Extras)
 - (UIImage *)imageByScalingProportionallyToSize:(CGSize)targetSize;
@@ -130,9 +129,39 @@ NSString *baseUrl = @"http://djmobileinc.fatfractal.com/pictureframes";
     {
         if(!_ff){
             self.ff = [[FatFractal alloc] initWithBaseUrl:baseUrl];
+            self.ff.autoLoadBlobs = NO;
+            
+            //delete all objects
+           // [self deleteAll];
+            
+            
         }
     }
     return self;
+}
+
+-(void)deleteAll{
+        NSArray * a = [[FatFractal main]getArrayFromUri:[NSString stringWithFormat:@"/ff/resources/Photo/"]];
+    for(Photo * p in a){
+        [self.ff deleteObj:p];
+    }
+    
+    a = [[FatFractal main]getArrayFromUri:[NSString stringWithFormat:@"/ff/resources/PhotoFile/"]];
+    for(id p in a){
+        [self.ff deleteObj:p];
+    }
+   
+    a = [[FatFractal main]getArrayFromUri:[NSString stringWithFormat:@"/ff/resources/PhotoFile/"]];
+    for(id p in a){
+        [self.ff deleteObj:p];
+    }
+
+    a = [[FatFractal main]getArrayFromUri:[NSString stringWithFormat:@"/ff/resources/Images/"]];
+    for(id p in a){
+        [self.ff deleteObj:p];
+    }
+
+    
 }
 
 
@@ -223,7 +252,7 @@ NSString *baseUrl = @"http://djmobileinc.fatfractal.com/pictureframes";
 -(void)createNewAlbumOfName:(NSString *)name forUser:(NSString *)userId privacy:(BOOL)privacy{
    
        Album * album = [[Album alloc]init];
-       album.privacy = privacy;
+      // album.privacy = privacy;
        album.userId = userId;
        album.name=name;
     
@@ -269,30 +298,6 @@ NSString *baseUrl = @"http://djmobileinc.fatfractal.com/pictureframes";
 }
 
 
-//Download Album
-/*
--(void)downloadAlbumOfName:(NSString *)guid forUser:(NSString *)userId{
-    
-    [[FatFractal main]getArrayFromUri:[NSString stringWithFormat:@"/ff/resources/Photo/(userId eq '%@')",guid] onComplete:
-     ^(NSError * theErr, id theObj, NSHTTPURLResponse * theResponse)
-     {
-         if(theErr){
-             [self displayMessage:[theErr localizedDescription]];
-         }
-         else{
-             //retrieved array of albums.
-             NSArray * albumsArray = theObj;
-             
-             [self.delegate receivedAlbums:albumsArray];
-             
-         }
-     }];
-
-}
-*/
-//-(void)receivedAlbums:(NSArray *)albums{
-//
-//}
 
 -(void)getAlbumsForUser:(NSString *)guid{
     
@@ -325,8 +330,6 @@ NSString *baseUrl = @"http://djmobileinc.fatfractal.com/pictureframes";
 //Create and upload new photo
 -(void)createNewPhotoWithDescription:(NSString *)description forUser:(NSString *)userId forAlbum:(NSString *)albumId withData:(NSData *)_imageData{
     Photo * photo = [[Photo alloc]init];
-    PhotoFile * photoFile = [[PhotoFile alloc]init];
-    photoFile.imageData = _imageData;
     
     UIImage * ui = [UIImage imageWithData:_imageData];
     ui = [ui imageByScalingProportionallyToSize:CGSizeMake(800, 1024)];
@@ -335,50 +338,26 @@ NSString *baseUrl = @"http://djmobileinc.fatfractal.com/pictureframes";
     NSData *thumbnailImageData = UIImageJPEGRepresentation(thumbnail, 0.7); // 0.7 is JPG quality
     NSData *imageData = UIImageJPEGRepresentation(ui, 0.7); // 0.7 is JPG quality
     
-    photoFile.thumbnailImageData = thumbnailImageData;
-    photoFile.imageData= imageData;
-    photoFile.date = [NSDate new];
+    photo.thumbnailImageData = thumbnailImageData;
+    photo.imageData= imageData;
+    photo.date = [NSDate new];
+    photo.description= description;
+    photo.albumId = albumId;
+
     
    //Upload file
-    [self.ff createObj:photoFile atUri:@"/PhotoFile" onComplete:
+    [self.ff createObj:photo atUri:@"/Photo" onComplete:
      ^(NSError * theErr, id theObj, NSHTTPURLResponse * theResponse)
      {
          if(!theErr){
              //Now we can update the file associated with it.
-             PhotoFile *photoFile = theObj;
-             //get guid
-             NSString * guid = [[self.ff metaDataForObj:photoFile]guid];
-             photo.uniqueId = guid;
-             photo.description= description;
-             photo.albumId = albumId;
-             
-             [self.ff createObj:photo atUri:@"/Photo" onComplete:
-              ^(NSError * error, id theObj, NSHTTPURLResponse * theResponse)
-              {
-                  if(!error){
-                     // [self.delegate uploadedPhoto];
-                  }
-                  else{
-                      [self displayMessage:@"Error uploading photo."];
-                  }
-             
-              }];
+            //self.delegate pho
          }
          else{
              [self displayMessage:@"Error. File Couldn't be uploaded"];
          }
          
      }];
-    
-    
-    NSError *error;
-    
-    [self.ff createObj:photo atUri:@"/Images" error:&error];
-    if(error)
-    {
-        NSLog(@" Error : %@  ", [error debugDescription]);
-    }
-    
 }
 
 
@@ -389,13 +368,12 @@ NSString *baseUrl = @"http://djmobileinc.fatfractal.com/pictureframes";
 //Download photo
 -(void)downloadPhotoWithId:(NSString *)photoId forUser:(NSString *)userId andIndex:(NSIndexPath * )indexPath
 {
-    NSString * query = [NSString stringWithFormat:@"/ff/resources/PhotoFile/(guid eq '%@')",photoId];
+    NSString * query = [NSString stringWithFormat:@"/ff/resources/Photo/(guid eq '%@')",photoId];
     
     [[FatFractal main]getObjFromUri:query onComplete:
      ^(NSError * theErr, id theObj, NSHTTPURLResponse * theResponse)
      {
-         NSLog(@"Photo Downloaded, yay %@",(PhotoFile *)theObj);
-         [self.delegate downloadedPhotoFile:(PhotoFile *)theObj forIndex:indexPath];
+         [self.delegate downloadedPhotoFile:(Photo *)theObj forIndex:indexPath];
      }];
 }
 
@@ -403,8 +381,29 @@ NSString *baseUrl = @"http://djmobileinc.fatfractal.com/pictureframes";
 //    NSString * query = [NSString stringWithFormat:@"/ff/resources/PhotoFile/(guid eq '%@')",photoId];
 }
 
--(void)getPhotosWithSearchQuery:(NSString *)searchQuery{
+-(void)getPhotosWithSearchQuery:(NSString *)searchText{
+//    NSString * searchQuery = [NSString stringWithFormat:@"/ff/resources/Photo/(title matches '\b%@\b' or description matches '\b%@\b')",searchText,searchText];
+    
+    NSString * searchQuery = [NSString stringWithFormat:@"/ff/resources/Photo/(description matches \b%@\b)",@"Description"];
+    
+     NSLog(@"Search Query  %@",searchQuery);
+    
+    
+    [[FatFractal main]getArrayFromUri:searchQuery onComplete:
+     ^(NSError * theErr, id theObj, NSHTTPURLResponse * theResponse)
+     {
+         if(theErr){
+             [self displayMessage:[theErr localizedDescription]];
+         }
+         else{
+             //retrieved array of photos in album.
+             NSArray * photosArray = theObj;
+             NSLog(@"Photos Array %@",photosArray);
+             [self.exploreDelegate searchCompletedWithResults:photosArray];
+         }
+     }];
 
+    
 }
 
 

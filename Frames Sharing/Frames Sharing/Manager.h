@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "Album.h"
-@class PhotoFile;
+@class Photo;
 
 @protocol ManagerDelegate
 @optional
@@ -17,11 +17,15 @@
     -(void)receivedPhotos:(NSArray *)photos;
     -(void)userLoggedIn:(id) user;
     -(void)uploadedPhoto;
-    -(void)downloadedPhotoFile:(PhotoFile *)file forIndex:(NSIndexPath *)indexPath;
+    -(void)downloadedPhotoFile:(Photo *)file forIndex:(NSIndexPath *)indexPath;
 @end
 
 @protocol ManagerDownloadDelegate
 
+@end
+
+@protocol ManagerExploreDelegate
+    -(void)searchCompletedWithResults:(NSArray *)array;
 @end
 
 
@@ -49,10 +53,10 @@
 @property (strong, nonatomic) FatFractal *ff;
 @property(strong,nonatomic) FFUser *  user;
 @property (assign) id <ManagerDelegate> delegate;
+@property (assign) id <ManagerExploreDelegate> exploreDelegate;
 
 + (Manager *)sharedInstance;
 -(void)testIt;
 -(NSString *)getGUID:(id)object;
-
 
 @end
