@@ -16,7 +16,7 @@
 
 @implementation PFDisplayPhotoViewController
 Manager * manager;
-
+FFUser * user;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -30,8 +30,24 @@ Manager * manager;
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    manager = [Manager sharedInstance];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(userReceived:) name:userRetrievedNotification object:nil];
+    
+    [self getUser];
     [self changeRatings:self.photo.ratings.count];
+    
 }
+
+-(void)getUser{
+    [manager getOwnerOfPhoto:self.photo];
+}
+
+-(void)userReceived:(NSNotification *)notification{
+    user = notification.object;
+    [self displayAuthor:user.userName];
+    
+}
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -61,15 +77,15 @@ Manager * manager;
 }
 
 -(void)displayAuthor :(NSString *)author{
-    
-
+    [self.authorButton setTitle:author forState:UIControlStateNormal];
 }
 
 - (IBAction)voteForPhoto:(id)sender {
+    
+    if(manager.user){
     //get guid
     NSString * userguid = [manager getGUID:manager.user];
     //increase or decrease count
-    NSLog(@"Ratings before: %d",self.photo.ratings.count);
     NSMutableArray * ratings = [[NSMutableArray alloc]initWithArray:self.photo.ratings];
     
     if([ratings containsObject:userguid])
@@ -79,24 +95,33 @@ Manager * manager;
     }
     else{
         [ratings addObject:userguid];
-        NSLog(@"Add Rating");
     }
     self.photo.ratings = ratings;
     //update object
     [manager ratePhoto:self.photo];
     //update ratings
-    NSLog(@"Ratings after: %d",self.photo.ratings.count);
+  
     [self changeRatings:self.photo.ratings.count];
+    }else{
+        [manager displayMessage:@"You need to log in to do it."];
+    
+    }
 }
 
-- (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender{
-//    UIStoryboardSegue * segue = [self.storyboard displayUserAlbum
+- (IBAction)authorButtonPressed:(id)sender {
+    if(!manager.user){
+       [manager displayMessage:@"You need to log in to access this information."];
+      return;
+    }
+    if(!user){
+   
+       return;
+   }
     PFAlbumsViewController * albums = [self.storyboard instantiateViewControllerWithIdentifier:@"PFAlbumsViewController"];
-    //get owner of the photo hmmm
-    
-    
-}
+    albums.user = user;
+    [self.navigationController pushViewController:albums animated:YES];
 
+}
 
 
 @end

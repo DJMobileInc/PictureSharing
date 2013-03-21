@@ -29,11 +29,16 @@ Manager * manager;
     manager.delegate = self;
     [manager.ff setAutoLoadBlobs:NO];
     
-    if(manager.user){
-        [manager getAlbumsForUser:[manager.ff metaDataForObj:manager.user].guid];
+    if(self.user){
+        [manager getAlbumsForUser:[manager.ff metaDataForObj:self.user].guid];
     }
     else{
         [manager displayMessage:@"You need to login to see the albums."];
+    }
+
+    //hide elements if not my album
+    if(self.user !=manager.user){
+        
     }
 }
 
@@ -113,6 +118,8 @@ Manager * manager;
         }
     }
 }
+
+
 
 -(void)createAlbum:(NSString *)name{
    

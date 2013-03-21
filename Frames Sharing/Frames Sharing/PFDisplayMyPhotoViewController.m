@@ -36,8 +36,8 @@
 }
 
 - (IBAction)segmentTappedOn:(id)sender {
+    
 }
-
 
 -(void)changeDescription:(NSString *)desc{
     self.description.text = desc;

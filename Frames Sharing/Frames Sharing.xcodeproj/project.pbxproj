@@ -19,6 +19,7 @@
 		4FAB7E9116F8B72500920E34 /* PFDisplayPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FAB7E9016F8B72500920E34 /* PFDisplayPhotoViewController.m */; };
 		4FAB7E9316F8C8D500920E34 /* nonstar.png in Resources */ = {isa = PBXBuildFile; fileRef = 4FAB7E9216F8C8D500920E34 /* nonstar.png */; };
 		4FAB7E9516F8DDDD00920E34 /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = 4FAB7E9416F8DDDD00920E34 /* star.png */; };
+		4FAB7E9816F902EB00920E34 /* iPadStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FAB7E9616F902EB00920E34 /* iPadStoryboard.storyboard */; };
 		8239752416F0210B008E1605 /* Manager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7EF07316EFA94500A364D7 /* Manager.m */; };
 		8239752516F0210E008E1605 /* PFLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = DB21A90016E521F500EFDCBE /* PFLogin.m */; };
 		8239753716F28D3B008E1605 /* lampard1.png in Resources */ = {isa = PBXBuildFile; fileRef = 8239753316F28D3B008E1605 /* lampard1.png */; };
@@ -55,8 +56,8 @@
 		4F7EF06D16EFA6C600A364D7 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		4F7EF06E16EFA6C600A364D7 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		4F7EF07016EFA78800A364D7 /* Plan */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Plan; sourceTree = "<group>"; };
-		4F7EF07216EFA94500A364D7 /* Manager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Manager.h; sourceTree = "<group>"; };
-		4F7EF07316EFA94500A364D7 /* Manager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Manager.m; sourceTree = "<group>"; };
+		4F7EF07216EFA94500A364D7 /* Manager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Manager.h; path = "Frames Sharing/Manager.h"; sourceTree = "<group>"; };
+		4F7EF07316EFA94500A364D7 /* Manager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Manager.m; path = "Frames Sharing/Manager.m"; sourceTree = "<group>"; };
 		4F96216B16EA7E2E0034E26A /* albums.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = albums.png; sourceTree = "<group>"; };
 		4F96216C16EA7E2E0034E26A /* facebook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = facebook.png; sourceTree = "<group>"; };
 		4F96216D16EA7E2E0034E26A /* ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ipad.png; sourceTree = "<group>"; };
@@ -67,6 +68,7 @@
 		4FAB7E9016F8B72500920E34 /* PFDisplayPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFDisplayPhotoViewController.m; sourceTree = "<group>"; };
 		4FAB7E9216F8C8D500920E34 /* nonstar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nonstar.png; sourceTree = "<group>"; };
 		4FAB7E9416F8DDDD00920E34 /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star.png; sourceTree = "<group>"; };
+		4FAB7E9716F902EB00920E34 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = "Frames Sharing/en.lproj/iPadStoryboard.storyboard"; sourceTree = "<group>"; };
 		8239753316F28D3B008E1605 /* lampard1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lampard1.png; sourceTree = "<group>"; };
 		8239753416F28D3B008E1605 /* lampard2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lampard2.png; sourceTree = "<group>"; };
 		8239753516F28D3B008E1605 /* lampard3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lampard3.png; sourceTree = "<group>"; };
@@ -147,6 +149,7 @@
 				4F7EF06E16EFA6C600A364D7 /* User.m */,
 			);
 			name = CustomObjects;
+			path = "Frames Sharing";
 			sourceTree = "<group>";
 		};
 		4F96216A16EA7E1D0034E26A /* Artwork */ = {
@@ -191,9 +194,13 @@
 		DBA2CE4F16E4FC6100479C8A = {
 			isa = PBXGroup;
 			children = (
+				4FAB7E9616F902EB00920E34 /* iPadStoryboard.storyboard */,
 				4F7EF07016EFA78800A364D7 /* Plan */,
+				4F7EF07216EFA94500A364D7 /* Manager.h */,
+				4F7EF07316EFA94500A364D7 /* Manager.m */,
+				4F7EF06916EFA27600A364D7 /* CustomObjects */,
 				4F96216A16EA7E1D0034E26A /* Artwork */,
-				DBA2CE6116E4FC6100479C8A /* Frames Sharing */,
+				DBA2CE6116E4FC6100479C8A /* Frames Sharing iPhone */,
 				82DAC40516ED77960071B485 /* Frames Sharing Test */,
 				DBA2CE5A16E4FC6100479C8A /* Frameworks */,
 				DBA2CE5916E4FC6100479C8A /* Products */,
@@ -220,11 +227,9 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		DBA2CE6116E4FC6100479C8A /* Frames Sharing */ = {
+		DBA2CE6116E4FC6100479C8A /* Frames Sharing iPhone */ = {
 			isa = PBXGroup;
 			children = (
-				4F7EF07216EFA94500A364D7 /* Manager.h */,
-				4F7EF07316EFA94500A364D7 /* Manager.m */,
 				DB21A8FF16E521F500EFDCBE /* PFLogin.h */,
 				DB21A90016E521F500EFDCBE /* PFLogin.m */,
 				DBA2CE6A16E4FC6100479C8A /* PFSharingAppDelegate.h */,
@@ -241,12 +246,12 @@
 				DBA2CE7616E4FC6100479C8A /* PFSharingViewController.h */,
 				DBA2CE7716E4FC6100479C8A /* PFSharingViewController.m */,
 				DBA2CE6216E4FC6100479C8A /* Supporting Files */,
-				4F7EF06916EFA27600A364D7 /* CustomObjects */,
 				8239753E16F33B3C008E1605 /* PFDisplayMyPhotoViewController.h */,
 				8239753F16F33B3C008E1605 /* PFDisplayMyPhotoViewController.m */,
 				4FAB7E8F16F8B72500920E34 /* PFDisplayPhotoViewController.h */,
 				4FAB7E9016F8B72500920E34 /* PFDisplayPhotoViewController.m */,
 			);
+			name = "Frames Sharing iPhone";
 			path = "Frames Sharing";
 			sourceTree = "<group>";
 		};
@@ -361,6 +366,7 @@
 				8239753A16F28D3B008E1605 /* lampard4.png in Resources */,
 				4FAB7E9316F8C8D500920E34 /* nonstar.png in Resources */,
 				4FAB7E9516F8DDDD00920E34 /* star.png in Resources */,
+				4FAB7E9816F902EB00920E34 /* iPadStoryboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -417,6 +423,14 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		4FAB7E9616F902EB00920E34 /* iPadStoryboard.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4FAB7E9716F902EB00920E34 /* en */,
+			);
+			name = iPadStoryboard.storyboard;
+			sourceTree = "<group>";
+		};
 		82DAC40816ED77960071B485 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -553,6 +567,7 @@
 				INFOPLIST_FILE = "Frames Sharing/Frames Sharing-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -570,6 +585,7 @@
 				INFOPLIST_FILE = "Frames Sharing/Frames Sharing-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

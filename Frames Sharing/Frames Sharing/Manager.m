@@ -106,7 +106,9 @@
 
 @implementation Manager
 @synthesize ff = _ff;
+#pragma mark constants
 NSString *baseUrl = @"http://djmobileinc.fatfractal.com/pictureframes";
+NSString * const userRetrievedNotification = @"kUserRetrievedNotification";
 
 
 + (Manager *)sharedInstance
@@ -341,7 +343,8 @@ NSString *baseUrl = @"http://djmobileinc.fatfractal.com/pictureframes";
              [[FatFractal main]getObjFromUri:queryString onComplete:
               ^(NSError * theErr, id theObj, NSHTTPURLResponse * theResponse)
               {
-                 [NSNotificationCenter ]
+                  [[NSNotificationCenter defaultCenter] postNotificationName:userRetrievedNotification
+                    object:theObj userInfo:nil];
               
               }];
          }

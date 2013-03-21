@@ -25,17 +25,23 @@ NSMutableArray * photoArray;
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+}
+
+-(void)viewWillAppear:(BOOL)animated{
     manager = [Manager sharedInstance];
     manager.exploreDelegate = self;
     [manager.ff setAutoLoadBlobs:NO];
-        
+#warning remove it 
+     [manager loggingInWithName:@"Janek2004" andPassword:@"Stany174"];
+    
+    
     if(!photoArray){
         photoArray = [[NSMutableArray alloc]initWithCapacity:0];
     }
     else{
         [photoArray removeAllObjects];
     }
-
+    NSLog(@"View Will Appear");
 }
 
 #pragma mark - UICollectionViewDelegate
@@ -54,6 +60,8 @@ NSMutableArray * photoArray;
     [pdp changeDescription:p.description];
     [pdp changeImage:[UIImage imageWithData:p.imageData]];
     [pdp changeRatings:p.ratings.count];
+    
+    NSLog(@" Cell Selected ");
     
 }
 
@@ -87,18 +95,6 @@ NSMutableArray * photoArray;
     return cell;
 }
 
-- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
-    [photoArray removeAllObjects];
-    [self.collectionView reloadData];
-    [manager getPhotosWithSearchQuery:searchBar.text];
-}
-
--(void)searchCompletedWithResults:(NSArray *)array{
-    //NSLog(@"Search completed with Array %@",array);
-    photoArray = (NSMutableArray *) array;
-    [self.searchBar resignFirstResponder];
-    [self.collectionView reloadData];
-}
 
 -(void)updateCell:(PFExploreCell *)cell withObject:(id)object andIndexPath:(NSIndexPath*)indexPath{
     
@@ -118,6 +114,32 @@ NSMutableArray * photoArray;
          }
      }];
 }
+
+#pragma mark Search Bar
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
+    [photoArray removeAllObjects];
+    [self.collectionView reloadData];
+    [manager getPhotosWithSearchQuery:searchBar.text];
+    [self.searchBar resignFirstResponder];
+}
+
+-(void)searchCompletedWithResults:(NSArray *)array{
+    
+    NSLog(@"Search completed with Array %@",array);
+    photoArray = (NSMutableArray *) array;
+    
+    NSLog(@" Photo Array %@ ",photoArray);
+    
+    [self.collectionView reloadData];
+}
+
+- (void)searchBar:(UISearchBar *)searchBar selectedScopeButtonIndexDidChange:(NSInteger)selectedScope{
+    [photoArray removeAllObjects];
+    
+}
+
+
 
 
 

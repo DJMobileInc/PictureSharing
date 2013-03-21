@@ -30,6 +30,7 @@
 
 
 @interface Manager : NSObject
+extern  NSString * const userRetrievedNotification;
 
 -(void)loggingInWithName:(NSString *)userName andPassword: (NSString *)password;
 -(void)loggingInWithFacebook;
@@ -47,10 +48,10 @@
 -(void)getAlbumsForUser:(NSString *)userId;
 -(void)displayMessage:(NSString *)message;
 -(void)getNewestPhotos;
+-(void)getHighestRatedPhotos;
 -(void)getPhotosWithSearchQuery:(NSString *)searchQuery;
 -(void)updateObject:(id)object;
-
--(void)getOwnerOfPhoto:(NSString *) photo;
+-(void)getOwnerOfPhoto:(Photo *) photo;
 
 
 @property (strong, nonatomic) FatFractal *ff;
