@@ -418,13 +418,19 @@ NSString * const userRetrievedNotification = @"kUserRetrievedNotification";
 }
 
 -(void)getNewestPhotos{
-//    NSString * query = [NSString stringWithFormat:@"/ff/resources/PhotoFile/(guid eq '%@')",photoId];
+    NSString * query = [NSString stringWithFormat:@"/ff/resources/Photo/(isPublic eq 1)"];
 }
+
+-(void)getHighestRatedPhotos{
+
+
+}
+
 
 -(void)getPhotosWithSearchQuery:(NSString *)searchText{
 //    NSString * searchQuery = [NSString stringWithFormat:@"/ff/resources/Photo/(title matches '\b%@\b' or description matches '\b%@\b')",searchText,searchText];
-#warning TO DO fix the query
-    NSString * searchQuery = [NSString stringWithFormat:@"/ff/resources/Photo/"];
+#warning TO DO fix the query add argument visible for privacy protection
+    NSString * searchQuery = [NSString stringWithFormat:@"/ff/resources/Photo/(isPublic eq 1)"];
         
     
     [[FatFractal main]getArrayFromUri:searchQuery onComplete:

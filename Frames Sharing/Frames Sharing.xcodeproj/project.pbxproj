@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F6DEC3816FCEAF50074A455 /* PFAlbumSplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6DEC3716FCEAF50074A455 /* PFAlbumSplitViewController.m */; };
+		4F6DEC3B16FCEE640074A455 /* PFAlbumsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6DEC3A16FCEE640074A455 /* PFAlbumsListViewController.m */; };
+		4F6DEC3E16FCF6140074A455 /* PFProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6DEC3D16FCF6140074A455 /* PFProfileViewController.m */; };
 		4F7EF06F16EFA6C600A364D7 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7EF06E16EFA6C600A364D7 /* User.m */; };
 		4F7EF07116EFA78800A364D7 /* Plan in Resources */ = {isa = PBXBuildFile; fileRef = 4F7EF07016EFA78800A364D7 /* Plan */; };
 		4F7EF07416EFA94500A364D7 /* Manager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7EF07316EFA94500A364D7 /* Manager.m */; };
@@ -53,6 +56,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4F6DEC3616FCEAF50074A455 /* PFAlbumSplitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFAlbumSplitViewController.h; sourceTree = "<group>"; };
+		4F6DEC3716FCEAF50074A455 /* PFAlbumSplitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFAlbumSplitViewController.m; sourceTree = "<group>"; };
+		4F6DEC3916FCEE640074A455 /* PFAlbumsListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFAlbumsListViewController.h; sourceTree = "<group>"; };
+		4F6DEC3A16FCEE640074A455 /* PFAlbumsListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFAlbumsListViewController.m; sourceTree = "<group>"; };
+		4F6DEC3C16FCF6140074A455 /* PFProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFProfileViewController.h; sourceTree = "<group>"; };
+		4F6DEC3D16FCF6140074A455 /* PFProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFProfileViewController.m; sourceTree = "<group>"; };
 		4F7EF06D16EFA6C600A364D7 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		4F7EF06E16EFA6C600A364D7 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		4F7EF07016EFA78800A364D7 /* Plan */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Plan; sourceTree = "<group>"; };
@@ -195,6 +204,12 @@
 			isa = PBXGroup;
 			children = (
 				4FAB7E9616F902EB00920E34 /* iPadStoryboard.storyboard */,
+				4F6DEC3C16FCF6140074A455 /* PFProfileViewController.h */,
+				4F6DEC3D16FCF6140074A455 /* PFProfileViewController.m */,
+				4F6DEC3916FCEE640074A455 /* PFAlbumsListViewController.h */,
+				4F6DEC3A16FCEE640074A455 /* PFAlbumsListViewController.m */,
+				4F6DEC3616FCEAF50074A455 /* PFAlbumSplitViewController.h */,
+				4F6DEC3716FCEAF50074A455 /* PFAlbumSplitViewController.m */,
 				4F7EF07016EFA78800A364D7 /* Plan */,
 				4F7EF07216EFA94500A364D7 /* Manager.h */,
 				4F7EF07316EFA94500A364D7 /* Manager.m */,
@@ -417,6 +432,9 @@
 				8239753D16F291E6008E1605 /* PFAlbumDetailsViewController.m in Sources */,
 				8239754016F33B3D008E1605 /* PFDisplayMyPhotoViewController.m in Sources */,
 				4FAB7E9116F8B72500920E34 /* PFDisplayPhotoViewController.m in Sources */,
+				4F6DEC3816FCEAF50074A455 /* PFAlbumSplitViewController.m in Sources */,
+				4F6DEC3B16FCEE640074A455 /* PFAlbumsListViewController.m in Sources */,
+				4F6DEC3E16FCF6140074A455 /* PFProfileViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
