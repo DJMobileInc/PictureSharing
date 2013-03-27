@@ -8,6 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-@interface PFiPadAlbumsViewController : NSObject
-
+@interface PFiPadAlbumsViewController : UIViewController
+@property (nonatomic,strong) FFUser * user;
 @end

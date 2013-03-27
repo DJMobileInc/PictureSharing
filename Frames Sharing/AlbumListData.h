@@ -8,6 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
-@interface AlbumListData : NSObject
+@interface AlbumListData : NSObject <UITableViewDataSource, UITableViewDelegate>
+@property (nonatomic,retain) NSMutableArray * objects;
+@property (nonatomic,retain) UIStoryboard * storyboard;
+@property (nonatomic,retain)UINavigationController * navigationController;
+
 
 @end

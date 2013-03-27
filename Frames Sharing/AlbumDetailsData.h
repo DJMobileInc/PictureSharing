@@ -7,7 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Manager.h"
 
-@interface AlbumDetailsData : NSObject
+@interface AlbumDetailsData : NSObject <UICollectionViewDataSource, UICollectionViewDelegate>
+
+@property (nonatomic,retain) Manager * manager;;
+@property (nonatomic,retain) NSMutableArray * photoArray;
+@property (nonatomic,retain) UIStoryboard * storyboard;
+@property (nonatomic,retain)UINavigationController * navigationController;
+
+
 
 @end
