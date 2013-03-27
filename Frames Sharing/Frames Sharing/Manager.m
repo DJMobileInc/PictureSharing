@@ -10,6 +10,7 @@
 #import "Photo.h"
 #import "User.h"
 #import "Album.h"
+#import "PFProfileViewController.h"
 
 @interface UIImage (Extras)
 - (UIImage *)imageByScalingProportionallyToSize:(CGSize)targetSize;
@@ -109,6 +110,12 @@
 #pragma mark constants
 NSString *baseUrl = @"http://djmobileinc.fatfractal.com/pictureframes";
 NSString * const userRetrievedNotification = @"kUserRetrievedNotification";
+NSString * const albumsRetrievedNotification = @"kAlbumsRetrievedNotification";
+NSString * const photosRetrievedNotification = @"kPhotosRetrievedNotification";
+NSString * const loginSucceededNotification = @"kLoginNotification";
+
+UIPopoverController * popover;
+
 
 
 + (Manager *)sharedInstance
@@ -134,7 +141,7 @@ NSString * const userRetrievedNotification = @"kUserRetrievedNotification";
             self.ff.autoLoadBlobs = NO;
             
             //delete all objects
-           // [self deleteAll];
+          //[self deleteAll];
             
             
         }
@@ -153,7 +160,7 @@ NSString * const userRetrievedNotification = @"kUserRetrievedNotification";
         [self.ff deleteObj:p];
     }
    
-    a = [[FatFractal main]getArrayFromUri:[NSString stringWithFormat:@"/ff/resources/PhotoFile/"]];
+    a = [[FatFractal main]getArrayFromUri:[NSString stringWithFormat:@"/ff/resources/Album/"]];
     for(id p in a){
         [self.ff deleteObj:p];
     }
@@ -179,6 +186,15 @@ NSString * const userRetrievedNotification = @"kUserRetrievedNotification";
 
 
 #pragma mark user
+-(void)showLoginScreenForViewController:(UIViewController *)vc fromStoryboard:(UIStoryboard *)storyboard{
+    PFProfileViewController * pf = [storyboard  instantiateViewControllerWithIdentifier:@"PFProfileViewController"];
+    popover = [[UIPopoverController alloc]initWithContentViewController:pf];
+    [popover presentPopoverFromRect:vc.view.frame inView:vc.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+    
+    
+
+}
+
 
 //logging in:
 -(void)loggingInWithFacebook{
@@ -186,14 +202,7 @@ NSString * const userRetrievedNotification = @"kUserRetrievedNotification";
 }
 
 -(void)loggingInWithName:(NSString *)userName andPassword: (NSString *)password{
-   
-//    NSError * error;
-//    self.user = [[FatFractal main] loginWithUserName:userName andPassword:password error:&error];
-//    
-//    
-    
-       
-    
+
     [[FatFractal main]loginWithUserName:userName andPassword:password onComplete: ^(NSError * error, id theObj, NSHTTPURLResponse * theResponse)
      {
          if(error){
@@ -202,32 +211,11 @@ NSString * const userRetrievedNotification = @"kUserRetrievedNotification";
          else{
              self.user =  (FFUser *)theObj;
              [self displayMessage:@"Succesfully Logged In"];
-             [self.delegate userLoggedIn:self.user];
+             [[NSNotificationCenter defaultCenter]postNotificationName:loginSucceededNotification object:theObj];
          }
 
          
     }];
-    
-    
-    
-//    dispatch_async(
-//                   dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0),
-//                   ^{
-//                       NSError * error;
-//                       self.user = [[FatFractal main] loginWithUserName:userName andPassword:password error:&error];
-//
-//                        dispatch_async(dispatch_get_main_queue(), ^{
-//                           if(error){
-//                               [self displayMessage:[error localizedDescription]];
-//                           }
-//                           else{
-//                               [self displayMessage:@"Succesfully Logged In"];
-//                               [self.delegate userLoggedIn:self.user];
-//                           }
-//  
-//                       });
-//                       
-//    });
 }
 
 -(void)signUpWithName:(NSString *)userName andPassword: (NSString *)password{
@@ -292,9 +280,8 @@ NSString * const userRetrievedNotification = @"kUserRetrievedNotification";
          }
          else{
              //retrieved array of photos in album.
-             NSArray * albumsArray = theObj;
-             
-             [self.delegate receivedPhotos:albumsArray];
+             [[NSNotificationCenter defaultCenter] postNotificationName:photosRetrievedNotification
+                                                                 object:theObj userInfo:nil];
          }
      }];
 }
@@ -303,6 +290,7 @@ NSString * const userRetrievedNotification = @"kUserRetrievedNotification";
 
 -(void)getAlbumsForUser:(NSString *)guid{
     
+    NSLog(@" /Album/(userId = 7TuJG1fpPUbIFyxBHQiRy7) %@",guid);
     [[FatFractal main]getArrayFromUri:[NSString stringWithFormat:@"/ff/resources/Album/(userId eq '%@')",guid] onComplete:
      ^(NSError * theErr, id theObj, NSHTTPURLResponse * theResponse)
      {
@@ -311,8 +299,11 @@ NSString * const userRetrievedNotification = @"kUserRetrievedNotification";
          }
          else{
              //retrieved array of albums.
-             NSArray * albumsArray = theObj;
-             [self.delegate receivedAlbums:albumsArray];
+             [[NSNotificationCenter defaultCenter] postNotificationName:albumsRetrievedNotification
+                                                                 object:theObj userInfo:nil];
+             
+             
+             
 
          }
      }];
@@ -369,8 +360,8 @@ NSString * const userRetrievedNotification = @"kUserRetrievedNotification";
 
 //Create and upload new photo
 -(void)createNewPhotoWithDescription:(NSString *)description forUser:(NSString *)userId forAlbum:(NSString *)albumId withData:(NSData *)_imageData{
+
     Photo * photo = [[Photo alloc]init];
-    
     UIImage * ui = [UIImage imageWithData:_imageData];
     ui = [ui imageByScalingProportionallyToSize:CGSizeMake(800, 1024)];
     UIImage * thumbnail = [ui imageByScalingProportionallyToSize:CGSizeMake(100, 100)];
@@ -389,9 +380,12 @@ NSString * const userRetrievedNotification = @"kUserRetrievedNotification";
     [self.ff createObj:photo atUri:@"/Photo" onComplete:
      ^(NSError * theErr, id theObj, NSHTTPURLResponse * theResponse)
      {
-         if(!theErr){
+         if(theErr==nil){
              //Now we can update the file associated with it.
             //self.delegate pho
+          NSLog(@" Image Uploaded %@",[(Photo *)theObj thumbnailImageData]);
+             
+             
          }
          else{
              [self displayMessage:@"Error. File Couldn't be uploaded"];

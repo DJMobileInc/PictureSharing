@@ -8,6 +8,7 @@
 
 #import "PFAlbumsViewController.h"
 #import "Album.h"
+#import "AlbumListData.h"
 #import "PFAlbumDetailsViewController.h"
 @interface PFAlbumsViewController () <UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -21,77 +22,47 @@
 
 @implementation PFAlbumsViewController
 Manager * manager;
-
+AlbumListData * albumsList;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     manager = [Manager sharedInstance];
     manager.delegate = self;
-    [manager.ff setAutoLoadBlobs:NO];
+    //[manager.ff setAutoLoadBlobs:NO];
+    self.user = manager.user;
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(albumsRetrieved:) name:albumsRetrievedNotification object:nil];
     
     if(self.user){
         [manager getAlbumsForUser:[manager.ff metaDataForObj:self.user].guid];
     }
     else{
-        [manager displayMessage:@"You need to login to see the albums."];
+        //[manager displayMessage:@"You need to login to see the albums."];
     }
 
     //hide elements if not my album
     if(self.user !=manager.user){
         
     }
+    
+    albumsList = [[AlbumListData alloc]init];
+    albumsList.storyboard  = self.storyboard;
+    albumsList.navigationController = self.navigationController;
+    
+    self.tableView.dataSource  = albumsList;
+    self.tableView.delegate = albumsList;
+    
+}
+
+-(void)albumsRetrieved:(NSNotification *)notification{
+    albumsList.objects = notification.object;
+    [self.tableView reloadData];
+    
+    
+    
+    NSLog(@"Albums Retrieved %@",notification.object);
 }
 
 
-//-(IBAction)hideOrShowAlbumView{
-//    float h= self.addAlbumView.frame.size.height;
-//
-//    [UIView animateWithDuration:1 animations:^{
-//        if(self.addAlbumView.frame.origin.y == 0)
-//        {
-//            CGRect avoffset = CGRectOffset(self.addAlbumView.frame, 0, h);
-//            CGRect toffset =  CGRectOffset(self.tableView.frame, 0, h);
-//            self.tableView.frame = toffset;
-//            self.addAlbumView.frame =avoffset;
-//        }
-//        else{
-//            CGRect avoffset = CGRectOffset(self.addAlbumView.frame, 0, -h);
-//            CGRect toffset =  CGRectOffset(self.tableView.frame, 0, -h);
-//            self.tableView.frame = toffset;
-//            self.addAlbumView.frame =avoffset;
-//        }
-//        
-//    } completion:nil];
-//}
-
-
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    
-    return self.objects.count;
-}
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"AlbumCell"];
-    if(cell == nil) {
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"AlbumCell"];
-    }
-    
-    Album * album = (Album *)self.objects[indexPath.row];
-
-    cell.textLabel.text =album.name;
-    return cell;
-}
-
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-   PFAlbumDetailsViewController * vc =  [self.storyboard instantiateViewControllerWithIdentifier:@"PFAlbumDetailsViewController"];
-    Album * album = (Album *)self.objects[indexPath.row];
-    vc.albumGuid = [manager getGUID:album];
-  
-    
-    [self.navigationController pushViewController:vc animated:YES];
-    
-    
-}
 
 - (IBAction)makeNewAlbum:(UIBarButtonItem *)sender {
     if (!_objects) {
@@ -120,7 +91,6 @@ Manager * manager;
 }
 
 
-
 -(void)createAlbum:(NSString *)name{
    
     if(manager.user){
@@ -139,16 +109,6 @@ Manager * manager;
     [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
--(void)receivedAlbums:(NSArray *)albums{
-    [self.objects removeAllObjects];
-    self.objects =[[NSMutableArray alloc]initWithArray:albums];
-    
-       [self.tableView reloadData];
-    
-    
-    
-    
-}
 
 
 

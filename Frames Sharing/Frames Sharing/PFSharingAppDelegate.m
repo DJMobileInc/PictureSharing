@@ -20,8 +20,19 @@ Manager * manager;
     
     NSString *baseUrl = @"http://djmobileinc.fatfractal.com/pictureframes";
     self.ff = [[FatFractal alloc] initWithBaseUrl:baseUrl];
-    self.ff.debug = NO;
+    self.ff.debug = YES;
     manager.ff = self.ff;
+//    
+//    [(UISplitViewController *) [self.storyboard instantiateViewControllerWithIdentifier:@"PFSplitAlbumsViewController"]setDelegate:self];
+//    
+//    NSLog(@"View Did Load");
+//    
+//    UIWindow * window = [[[UIApplication sharedApplication]delegate]window];
+//    
+//    UISplitViewController *splitViewController = (UISplitViewController *) self.window.rootViewController;
+//    splitViewController.delegate = [splitViewController.viewControllers lastObject];
+
+    
     
     return YES;
 }

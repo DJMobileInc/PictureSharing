@@ -30,7 +30,7 @@ NSMutableArray * photoArray;
 -(void)viewWillAppear:(BOOL)animated{
     manager = [Manager sharedInstance];
     manager.exploreDelegate = self;
-    [manager.ff setAutoLoadBlobs:NO];
+   // [manager.ff setAutoLoadBlobs:NO];
 #warning remove it 
      [manager loggingInWithName:@"Janek2004" andPassword:@"Stany174"];
     
@@ -100,9 +100,15 @@ NSMutableArray * photoArray;
     
     NSLog(@"Update Cell");
     
-    [manager.ff loadBlobsForObj:object onComplete:^
+    [manager.ff loadBlobsForObj:(Photo *)object onComplete:^
      
      (NSError *theErr, id theObj, NSHTTPURLResponse *theResponse){
+         if(theErr)
+         {
+             NSLog(@" Error for blob  %@ ",[theErr debugDescription]);
+         }
+
+         
          Photo * photo = theObj;
          if(photoArray){
              [photoArray replaceObjectAtIndex:indexPath.row withObject:photo];

@@ -13,10 +13,7 @@
 @protocol ManagerDelegate
 @optional
     -(void)createdAlbum:(Album *)album;
-    -(void)receivedAlbums:(NSArray *)albums;
-    -(void)receivedPhotos:(NSArray *)photos;
-    -(void)userLoggedIn:(id) user;
-    -(void)uploadedPhoto;
+//    -(void)receivedPhotos:(NSArray *)photos;
     -(void)downloadedPhotoFile:(Photo *)file forIndex:(NSIndexPath *)indexPath;
 @end
 
@@ -31,6 +28,10 @@
 
 @interface Manager : NSObject
 extern  NSString * const userRetrievedNotification;
+extern  NSString * const albumsRetrievedNotification;
+extern  NSString * const photosRetrievedNotification;
+extern  NSString * const loginSucceededNotification;
+
 
 -(void)loggingInWithName:(NSString *)userName andPassword: (NSString *)password;
 -(void)loggingInWithFacebook;
@@ -53,6 +54,7 @@ extern  NSString * const userRetrievedNotification;
 -(void)updateObject:(id)object;
 -(void)getOwnerOfPhoto:(Photo *) photo;
 
+-(void)showLoginScreenForViewController:(UIViewController *)vc fromStoryboard:(UIStoryboard *)storyboard;
 
 @property (strong, nonatomic) FatFractal *ff;
 @property(strong,nonatomic) FFUser *  user;

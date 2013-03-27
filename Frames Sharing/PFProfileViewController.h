@@ -12,5 +12,10 @@
 @property (strong, nonatomic) IBOutlet UIImageView *profilePhoto;
 @property (strong, nonatomic) IBOutlet UILabel *userName;
 @property (strong, nonatomic) IBOutlet UITextView *userDescription;
+@property (strong, nonatomic) IBOutlet UIButton *albumsButton;
+@property (strong, nonatomic) IBOutlet UIButton *loginButton;
+@property (strong, nonatomic) FFUser * user;
+
+- (IBAction)loginAction:(id)sender;
 
 @end

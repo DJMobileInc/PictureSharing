@@ -23,35 +23,6 @@
 
 
 -(void)viewDidAppear:(BOOL)animated{
-//    NSError * error;
-//    NSLog(@" _________________START __________________");
-//    NSArray *responseArray = [[FatFractal main]getArrayFromUrl:[NSString stringWithFormat:@"/ff/resources/Images"] error:&error];
-//    
-//    for(int i =0;i<responseArray.count;i++){
-//        
-//        Photo * p = [responseArray objectAtIndex:i];
-//        FFMetaData * meta = [[FatFractal main]metaDataForObj:p  ];
-//        
-//        NSLog(@"Meta: guid %@ ff url %@  ff refs %@ ",[meta guid],[meta ffUrl], [meta ffRefs]);
-//        
-//        
-//        
-//        if(p.imageData)
-//        {
-//            /*
-//            UIImage * img = [UIImage imageWithData:p.imageData];
-//            [self updateUIWithUIImage:img];
-//            // NSLog(@"Update Image ");
-//             */
-//        }
-//        else{
-//            NSLog(@"It doesn;t");
-//        }
-//    }
-//
-//    NSLog(@" _________________END __________________");
-//
-
 }
 
 
@@ -62,9 +33,18 @@
 {
     
     manager =[Manager sharedInstance];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(userLoggedIn:) name:loginSucceededNotification object:nil];
+    
     [self testIt];
     [super viewDidLoad];
 }
+
+-(void)viewDidDisappear:(BOOL)animated{
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:loginSucceededNotification object:nil];
+    
+}
+
+
 
 -(void)updateUIWithUIImage:(UIImage *)image{
     
@@ -128,6 +108,7 @@
         
     }
 }
+
 - (IBAction)loginOrSignUp:(UIBarButtonItem *)sender {
     self.loginView = [[PFLogin alloc]initWithFrame:CGRectMake(0, -200, self.view.frame.size.width, 200)];
     self.loginView.userName.delegate = self;
@@ -184,18 +165,17 @@
 }
 
 #pragma manager delegate
--(void)userLoggedIn:(id)user{
-  //  NSLog(@"User Logged In and now calling %@",(FFUser *)user);
+-(void)userLoggedIn:(NSNotification *)notification{
+    NSLog(@"User Logged In and now calling %@",(FFUser *)notification.object);
     //if user logged in create an album?
   //  NSString * guid = [manager.ff metaDataForObj:manager.user].guid;
-//    [manager createNewAlbumOfName:@"TestAlbum" forUser:guid privacy:YES];
-   // [self addPicture];
+  //  [manager createNewAlbumOfName:@"TestAlbum" forUser:guid privacy:YES];
+    manager.user = notification.object;
+    //[self addPicture];
 }
 
 -(void)addPicture{
-    NSString * albumGuid = @"6feFATtuGBe7MAQGHwEw_7";
-    
-    
+    NSString * albumGuid = @"3_0cgjEmNcfuw6oN_kAYU4";
     NSArray * images = @[@"lampard1",@"lampard2",@"lampard3",@"lampard4"];
     
     int ranIndex = arc4random()%images.count;
@@ -203,6 +183,13 @@
     NSString * path= [[NSBundle mainBundle]pathForResource:[images objectAtIndex:ranIndex] ofType:@"png"];
     NSData * data = [NSData dataWithContentsOfFile:path];
     
+    if(data!=nil)
+    {
+        NSLog(@"Data yes");
+    }
+    else{
+        NSLog(@"Data no");    
+    }
     NSString * userGuid = [manager.ff metaDataForObj:manager.user].guid;
     
     [manager createNewPhotoWithDescription:@"Some Description goes here" forUser:userGuid forAlbum:albumGuid withData:data];
@@ -214,19 +201,7 @@
     NSLog(@"Album Created: %@", album);
     if(album!=nil){
         //add photos to album
-        NSString * albumGuid = [manager.ff metaDataForObj:album].guid;
-        
-        
-        NSArray * images = @[@"lampard1",@"lampard2",@"lampard3",@"lampard4"];
-        
-        int ranIndex = arc4random()%images.count;
-        
-        NSString * path= [[NSBundle mainBundle]pathForResource:[images objectAtIndex:ranIndex] ofType:@"png"];
-        NSData * data = [NSData dataWithContentsOfFile:path];
-        
-        NSString * userGuid = [manager.ff metaDataForObj:manager.user].guid;
-        
-        [manager createNewPhotoWithDescription:@"Some Description goes here" forUser:userGuid forAlbum:albumGuid withData:data];
+        [self addPicture];
     }
 
 }

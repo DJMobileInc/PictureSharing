@@ -12,6 +12,8 @@
 #import "Photo.h"
 #import "PFDisplayMyPhotoViewController.h"
 #import "Photo.h"
+#import "AlbumDetailsData.h"
+
 
 @interface PFAlbumDetailsViewController ()
 @property (strong, nonatomic) IBOutlet UICollectionView *collectionView;
@@ -19,8 +21,13 @@
 @end
 
 @implementation PFAlbumDetailsViewController
+AlbumDetailsData * albumDetails;
 Manager * manager;
 NSMutableArray * photoArray;
+
+
+
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -34,11 +41,14 @@ NSMutableArray * photoArray;
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    manager = [Manager sharedInstance];
-    manager.delegate = nil;
-    manager.delegate = self;
+    albumDetails = [[AlbumDetailsData alloc]init];
+    self.collectionView.dataSource = albumDetails;
+    self.collectionView.delegate = albumDetails;
+
     
+    manager = [Manager sharedInstance];
     [manager.ff setAutoLoadBlobs:NO];
+    
     if(!photoArray){
         photoArray = [[NSMutableArray alloc]initWithCapacity:0];
     }
@@ -46,29 +56,18 @@ NSMutableArray * photoArray;
         [photoArray removeAllObjects];
     }
     [manager getPhotosForAlbum:self.albumGuid];
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(photosRetrieved:) name:photosRetrievedNotification object:nil];
 }
 
--(void)updateCell:(PFExploreCell *)cell withObject:(id)object andIndexPath:(NSIndexPath*)indexPath{
-    
-      NSLog(@"Update Cell");
-    
-    [manager.ff loadBlobsForObj:object onComplete:^
-     
-     (NSError *theErr, id theObj, NSHTTPURLResponse *theResponse){
-        Photo * photo = theObj;
-         if(photoArray){
-         [photoArray replaceObjectAtIndex:indexPath.row withObject:photo];
 
-        cell.imageView.image = [UIImage imageWithData:photo.thumbnailImageData];
-         
-         }
-    }];
-    
-}
 
--(void)receivedPhotos:(NSArray *)photos{
-    NSLog(@"Received Photos");
-    photoArray =[NSMutableArray arrayWithArray:photos];
+-(void)photosRetrieved:(NSNotification *)notification{
+    NSLog(@"Received Photos %@",notification.object);
+    if(notification.object){
+        photoArray =[NSMutableArray arrayWithArray:notification.object];
+        albumDetails.photoArray= photoArray;
+    }
     [self.collectionView reloadData];
     
 }
@@ -94,53 +93,6 @@ NSMutableArray * photoArray;
 
 #pragma mark - UICollectionViewDelegate
 
--(void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
-    //TODO deselect item
-}
-
--(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-
-    PFDisplayMyPhotoViewController * pdp = [self.storyboard instantiateViewControllerWithIdentifier:@"PFDisplayMyPhotoViewController"];
-    Photo * p = [photoArray objectAtIndex:indexPath.row];
-    
-    [self.navigationController pushViewController:pdp animated:YES];
-    [pdp changeDescription:p.description];
-    [pdp changeImage:[UIImage imageWithData:p.imageData]];
-    [pdp changeRatings:p.ratings.count];
-}
-#pragma mark – UICollectionViewDelegateFlowLayout
-
--(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    
-    CGSize retVal = CGSizeMake(75, 75);
-    // retVal.height += 35;
-    // retVal.width += 35;
-    return  retVal;
-}
-- (UIEdgeInsets)collectionView:
-(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
-    return UIEdgeInsetsMake(10, 10, 10, 10);
-}
-#pragma mark - UICollectionView Datasource
-
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    
-    return photoArray.count;
-}
-
--(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    return 1;
-}
-
-- (UICollectionViewCell *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    PFExploreCell *cell = [cv dequeueReusableCellWithReuseIdentifier:@"ExploreCell" forIndexPath:indexPath];
-    cell.backgroundColor = [UIColor greenColor];
-    Photo * photo = [photoArray objectAtIndex:indexPath.row];
-    [self updateCell:cell withObject:photo andIndexPath:indexPath];
-    
-    
-    return cell;
-}
 
 
 
