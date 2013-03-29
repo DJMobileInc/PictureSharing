@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F1F7C5F1704EBDB0083968B /* LoginRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1F7C5E1704EBDB0083968B /* LoginRegisterViewController.m */; };
+		4F1F7C601704EBDB0083968B /* LoginRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1F7C5E1704EBDB0083968B /* LoginRegisterViewController.m */; };
 		4F6DEC3E16FCF6140074A455 /* PFProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6DEC3D16FCF6140074A455 /* PFProfileViewController.m */; };
 		4F6DEC411700F8120074A455 /* AlbumListData.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6DEC401700F8120074A455 /* AlbumListData.m */; };
 		4F6DEC441700F8D60074A455 /* PFiPadAlbumsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6DEC431700F8D60074A455 /* PFiPadAlbumsViewController.m */; };
@@ -57,6 +59,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4F1F7C5D1704EBDB0083968B /* LoginRegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginRegisterViewController.h; sourceTree = "<group>"; };
+		4F1F7C5E1704EBDB0083968B /* LoginRegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginRegisterViewController.m; sourceTree = "<group>"; };
 		4F6DEC3C16FCF6140074A455 /* PFProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFProfileViewController.h; sourceTree = "<group>"; };
 		4F6DEC3D16FCF6140074A455 /* PFProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFProfileViewController.m; sourceTree = "<group>"; };
 		4F6DEC3F1700F8120074A455 /* AlbumListData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlbumListData.h; sourceTree = "<group>"; };
@@ -218,6 +222,8 @@
 				4F7EF07016EFA78800A364D7 /* Plan */,
 				4F7EF07216EFA94500A364D7 /* Manager.h */,
 				4F7EF07316EFA94500A364D7 /* Manager.m */,
+				4F1F7C5D1704EBDB0083968B /* LoginRegisterViewController.h */,
+				4F1F7C5E1704EBDB0083968B /* LoginRegisterViewController.m */,
 				4F7EF06916EFA27600A364D7 /* CustomObjects */,
 				4F96216A16EA7E1D0034E26A /* Artwork */,
 				DBA2CE6116E4FC6100479C8A /* Frames Sharing iPhone */,
@@ -416,6 +422,7 @@
 				82DAC40D16ED77960071B485 /* Frames_Sharing_Test.m in Sources */,
 				8239752416F0210B008E1605 /* Manager.m in Sources */,
 				8239752516F0210E008E1605 /* PFLogin.m in Sources */,
+				4F1F7C601704EBDB0083968B /* LoginRegisterViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -441,6 +448,7 @@
 				4F6DEC411700F8120074A455 /* AlbumListData.m in Sources */,
 				4F6DEC441700F8D60074A455 /* PFiPadAlbumsViewController.m in Sources */,
 				4F6DEC471700FB9D0074A455 /* AlbumDetailsData.m in Sources */,
+				4F1F7C5F1704EBDB0083968B /* LoginRegisterViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

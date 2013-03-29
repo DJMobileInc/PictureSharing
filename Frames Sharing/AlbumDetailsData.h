@@ -11,10 +11,10 @@
 
 @interface AlbumDetailsData : NSObject <UICollectionViewDataSource, UICollectionViewDelegate>
 
-@property (nonatomic,retain) Manager * manager;;
-@property (nonatomic,retain) NSMutableArray * photoArray;
-@property (nonatomic,retain) UIStoryboard * storyboard;
-@property (nonatomic,retain)UINavigationController * navigationController;
+@property (nonatomic,strong) Manager * manager;;
+@property (nonatomic,strong) NSMutableArray * photoArray;
+@property (nonatomic,strong) UIStoryboard * storyboard;
+@property (nonatomic, strong)UINavigationController * navigationController;
 
 
 

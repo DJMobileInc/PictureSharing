@@ -28,7 +28,7 @@ AlbumListData * albumsList;
     [super viewDidLoad];
     manager = [Manager sharedInstance];
     manager.delegate = self;
-    //[manager.ff setAutoLoadBlobs:NO];
+    [manager.ff setAutoLoadBlobs:NO];
     self.user = manager.user;
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(albumsRetrieved:) name:albumsRetrievedNotification object:nil];
     

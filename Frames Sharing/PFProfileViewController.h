@@ -17,5 +17,6 @@
 @property (strong, nonatomic) FFUser * user;
 
 - (IBAction)loginAction:(id)sender;
+- (IBAction)showAlbums:(id)sender;
 
 @end

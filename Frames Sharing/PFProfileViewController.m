@@ -8,7 +8,8 @@
 
 #import "PFProfileViewController.h"
 #import "Manager.h"
-
+#import "LoginRegisterViewController.h"
+#import "PFAlbumsViewController.h"
 @interface PFProfileViewController ()
 
 @end
@@ -30,11 +31,10 @@ Manager * manager;
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     manager = [Manager sharedInstance];
-    if(self.user)
-    {
-    
-    }
-    else{
+  
+}
+
+-(void)viewWillAppear:(BOOL)animated{
     if(!manager.user)//hide elements
     {
         self.profilePhoto.image = nil;
@@ -43,16 +43,30 @@ Manager * manager;
         self.userName.text = @"";
         [self.loginButton setTitle:@"Login" forState:UIControlStateNormal];
         [self.loginButton addTarget:self action:@selector(loginAction:) forControlEvents:UIControlEventTouchUpInside];
+        
+        NSLog(@"user deoosn't exist??");
     }
     else{
-        //self.userDescription.text = manager.user
-        self.userName.text = manager.user.userName;
+        self.userName.text = self.user.userName;
+        if(self.user == manager.user){
+            
+            [self.loginButton setTitle:@"Logout" forState:UIControlStateNormal];
+            
+            
+            //            [self.loginButton  setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+            [self.loginButton addTarget:self action:@selector(logout) forControlEvents:UIControlEventTouchUpInside];
+            
+            NSLog(@"Button Logged In Text %@ ",self.loginButton.titleLabel.text);
+            
+        }
+        else{
+            NSLog(@"User not logged in");
+            
+        }
+        self.albumsButton.hidden =NO;
         
-        [self.loginButton setTitle:@"Logout" forState:UIControlStateNormal];
-        [self.loginButton addTarget:self action:@selector(logout) forControlEvents:UIControlEventTouchUpInside];
+    }
 
-    }
-    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -62,12 +76,24 @@ Manager * manager;
 }
 
 - (IBAction)loginAction:(id)sender {
+    //get to the login controller.
+    LoginRegisterViewController *pf = [self.storyboard instantiateViewControllerWithIdentifier:@"LoginPopover"];
+    [self.navigationController pushViewController:pf animated:YES];
+}
 
-
+- (IBAction)showAlbums:(id)sender {
+    PFAlbumsViewController *pfa = [self.storyboard instantiateViewControllerWithIdentifier:@"PFAlbumsViewController"];
+    pfa.user = self.user;
+    [self.navigationController pushViewController:pfa animated:YES];
+    
+    
 }
 
 -(void)logout{
-
+    [manager.ff logout];
+     manager.user = nil;
+    [self.navigationController popToRootViewControllerAnimated:YES];
+    
 }
 
 @end

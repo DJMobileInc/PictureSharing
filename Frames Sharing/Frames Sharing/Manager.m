@@ -111,6 +111,7 @@
 NSString *baseUrl = @"http://djmobileinc.fatfractal.com/pictureframes";
 NSString * const userRetrievedNotification = @"kUserRetrievedNotification";
 NSString * const albumsRetrievedNotification = @"kAlbumsRetrievedNotification";
+NSString * const albumCreatedNotification = @"kAlbumsCreatedNotification";
 NSString * const photosRetrievedNotification = @"kPhotosRetrievedNotification";
 NSString * const loginSucceededNotification = @"kLoginNotification";
 
@@ -190,8 +191,6 @@ UIPopoverController * popover;
     PFProfileViewController * pf = [storyboard  instantiateViewControllerWithIdentifier:@"PFProfileViewController"];
     popover = [[UIPopoverController alloc]initWithContentViewController:pf];
     [popover presentPopoverFromRect:vc.view.frame inView:vc.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
-    
-    
 
 }
 
@@ -251,7 +250,8 @@ UIPopoverController * popover;
      {
          if(!theErr){
              Album *album = theObj;
-             [self.delegate createdAlbum:album];
+             [[NSNotificationCenter defaultCenter]postNotificationName:albumCreatedNotification object:album];
+             
              NSLog(@"Created album");
              
          }
@@ -399,17 +399,17 @@ UIPopoverController * popover;
 -(void)deletePhotoWithId:(NSString *)photoId forUser:(NSString *)userId forAlbum:(NSString *)album{
     
 }
-//Download photo
--(void)downloadPhotoWithId:(NSString *)photoId forUser:(NSString *)userId andIndex:(NSIndexPath * )indexPath
-{
-    NSString * query = [NSString stringWithFormat:@"/ff/resources/Photo/(guid eq '%@')",photoId];
-    
-    [[FatFractal main]getObjFromUri:query onComplete:
-     ^(NSError * theErr, id theObj, NSHTTPURLResponse * theResponse)
-     {
-         [self.delegate downloadedPhotoFile:(Photo *)theObj forIndex:indexPath];
-     }];
-}
+////Download photo
+//-(void)downloadPhotoWithId:(NSString *)photoId forUser:(NSString *)userId andIndex:(NSIndexPath * )indexPath
+//{
+//    NSString * query = [NSString stringWithFormat:@"/ff/resources/Photo/(guid eq '%@')",photoId];
+//    
+//    [[FatFractal main]getObjFromUri:query onComplete:
+//     ^(NSError * theErr, id theObj, NSHTTPURLResponse * theResponse)
+//     {
+//         [self.delegate downloadedPhotoFile:(Photo *)theObj forIndex:indexPath];
+//     }];
+//}
 
 -(void)getNewestPhotos{
     NSString * query = [NSString stringWithFormat:@"/ff/resources/Photo/(isPublic eq 1)"];
@@ -422,10 +422,11 @@ UIPopoverController * popover;
 
 
 -(void)getPhotosWithSearchQuery:(NSString *)searchText{
-//    NSString * searchQuery = [NSString stringWithFormat:@"/ff/resources/Photo/(title matches '\b%@\b' or description matches '\b%@\b')",searchText,searchText];
+    NSString * searchQuery = [NSString stringWithFormat:@"/ff/resources/Photo/(title matches '.*%@.*' and isPublic eq 1 or description matches '.*%@.*' and isPublic eq 1)",searchText,searchText];
+    
 #warning TO DO fix the query add argument visible for privacy protection
-    NSString * searchQuery = [NSString stringWithFormat:@"/ff/resources/Photo/(isPublic eq 1)"];
-        
+//    NSString * searchQuery = [NSString stringWithFormat:@"/ff/resources/Photo/(isPublic eq 1)"];
+    
     
     [[FatFractal main]getArrayFromUri:searchQuery onComplete:
      ^(NSError * theErr, id theObj, NSHTTPURLResponse * theResponse)

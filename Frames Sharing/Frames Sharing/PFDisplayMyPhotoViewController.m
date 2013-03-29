@@ -7,13 +7,14 @@
 //
 
 #import "PFDisplayMyPhotoViewController.h"
-
+#import "Manager.h"
+#import "Photo.h"
 @interface PFDisplayMyPhotoViewController ()
 
 @end
 
 @implementation PFDisplayMyPhotoViewController
-
+Manager * manager;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -27,6 +28,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    manager = [Manager sharedInstance];
 }
 
 - (void)didReceiveMemoryWarning
@@ -36,7 +38,30 @@
 }
 
 - (IBAction)segmentTappedOn:(id)sender {
+    if(self.segmentedControl.selectedSegmentIndex ==0)
+    {
+        self.photo.isPublic = YES;
+    }
+    else{
+        self.photo.isPublic = NO;
+    }
+    [manager updateObject:self.photo];
+
+}
+
+-(void)setPhoto:(Photo *)photo{
+    NSLog(@"Set Photo Was Called.");
     
+}
+
+
+-(void)changePrivacy:(BOOL)private{
+    if(!private){
+        self.segmentedControl.selectedSegmentIndex =0;
+    }
+    else{
+        self.segmentedControl.selectedSegmentIndex =1;
+    }
 }
 
 -(void)changeDescription:(NSString *)desc{

@@ -10,8 +10,6 @@
 #import "PFExploreCell.h"
 #import "Manager.h"
 #import "Photo.h"
-#import "PFDisplayMyPhotoViewController.h"
-#import "Photo.h"
 #import "AlbumDetailsData.h"
 
 
@@ -24,9 +22,6 @@
 AlbumDetailsData * albumDetails;
 Manager * manager;
 NSMutableArray * photoArray;
-
-
-
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -42,13 +37,16 @@ NSMutableArray * photoArray;
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     albumDetails = [[AlbumDetailsData alloc]init];
+    albumDetails.storyboard= self.storyboard;
+    albumDetails.navigationController = self.navigationController;
     self.collectionView.dataSource = albumDetails;
     self.collectionView.delegate = albumDetails;
 
     
     manager = [Manager sharedInstance];
     [manager.ff setAutoLoadBlobs:NO];
-    
+    albumDetails.manager =manager;
+
     if(!photoArray){
         photoArray = [[NSMutableArray alloc]initWithCapacity:0];
     }

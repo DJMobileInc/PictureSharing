@@ -15,21 +15,20 @@
 
 @implementation AlbumDetailsData
 
-
-
 -(void)updateCell:(PFExploreCell *)cell withObject:(id)object andIndexPath:(NSIndexPath*)indexPath{
     
-    NSLog(@"Update Cell 1 ");
-    
+
+    NSLog(@"Manager Blobs %d ",self.manager.ff.autoLoadBlobs);
+
     [self.manager.ff loadBlobsForObj: (Photo *)object onComplete:^
      
      (NSError *theErr, id theObj, NSHTTPURLResponse *theResponse){
          if(theErr)
          {
-            NSLog(@" Error for blob  %@ ",[theErr debugDescription]);
+          //  NSLog(@" Error for blob  %@ ",[theErr debugDescription]);
          }
          else{
-             NSLog(@"No Error");
+            // NSLog(@"No Error");
          
          }
          Photo * photo = theObj;
@@ -37,10 +36,10 @@
              if(photo){
              [self.photoArray replaceObjectAtIndex:indexPath.row withObject:photo];
              cell.imageView.image = [UIImage imageWithData:photo.thumbnailImageData];
-              NSLog(@"Update Cell 2");
+             // NSLog(@"Update Cell 2");
              }
              else{
-              NSLog(@" Photo doesn't exist ");
+             // NSLog(@" Photo doesn't exist ");
              }
          }
      }];
@@ -60,9 +59,10 @@
     [self.navigationController pushViewController:pdp animated:YES];
     [pdp changeDescription:p.description];
     [pdp changeImage:[UIImage imageWithData:p.imageData]];
-  //  [pdp changeRatings:p.ratings.count];
+     pdp.photo = p;
+    [pdp changeRatings:p.ratings.count];
+     
     
-    NSLog(@"Push");
 }
 #pragma mark – UICollectionViewDelegateFlowLayout
 
@@ -92,6 +92,7 @@
     PFExploreCell *cell = [cv dequeueReusableCellWithReuseIdentifier:@"ExploreCell" forIndexPath:indexPath];
     cell.backgroundColor = [UIColor greenColor];
     Photo * photo = [self.photoArray objectAtIndex:indexPath.row];
+    //cell.imageView.image =photo.thumbnailImageData;
     [self updateCell:cell withObject:photo andIndexPath:indexPath];
     
     

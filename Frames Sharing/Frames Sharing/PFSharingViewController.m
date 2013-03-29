@@ -7,13 +7,11 @@
 //
 
 #import "PFSharingViewController.h"
-#import "PFLogin.h"
-#import <FFEF/FatFractal.h>
-#import <FFEF/FFMetaData.h>
 #import "Photo.h"
+#import "PFProfileViewController.h"
+#import "LoginRegisterViewController.h"
 
 @interface PFSharingViewController () <UITextFieldDelegate>
-@property (strong, nonatomic)PFLogin *loginView;
 
 @end
 
@@ -23,6 +21,7 @@
 
 
 -(void)viewDidAppear:(BOOL)animated{
+    [self configureView];
 }
 
 
@@ -33,17 +32,37 @@
 {
     
     manager =[Manager sharedInstance];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(userLoggedIn:) name:loginSucceededNotification object:nil];
-    
     [self testIt];
+    
+    
+    
     [super viewDidLoad];
 }
 
 -(void)viewDidDisappear:(BOOL)animated{
-    [[NSNotificationCenter defaultCenter]removeObserver:self name:loginSucceededNotification object:nil];
-    
+     
 }
 
+-(void)configureView{
+    if(manager.user){
+        //configure view
+        UIBarButtonItem *anotherButton = [[UIBarButtonItem alloc] initWithTitle:@"Profile" style:UIBarButtonItemStylePlain target:self action:@selector(showProfile)];
+        self.navigationItem.rightBarButtonItem = anotherButton;
+        
+    }
+    else{
+        UIBarButtonItem *anotherButton = [[UIBarButtonItem alloc] initWithTitle:@"Login" style:UIBarButtonItemStylePlain target:self action:@selector(loginOrSignUp:)];
+        self.navigationItem.rightBarButtonItem = anotherButton;
+    }
+}
+
+-(void)showProfile{
+    PFProfileViewController * p = [self.storyboard instantiateViewControllerWithIdentifier:@"PFProfileViewController"];
+    p.user = manager.user;
+    [self.navigationController pushViewController:p animated:YES];
+    
+    
+}
 
 
 -(void)updateUIWithUIImage:(UIImage *)image{
@@ -110,42 +129,13 @@
 }
 
 - (IBAction)loginOrSignUp:(UIBarButtonItem *)sender {
-    self.loginView = [[PFLogin alloc]initWithFrame:CGRectMake(0, -200, self.view.frame.size.width, 200)];
-    self.loginView.userName.delegate = self;
-    self.loginView.password.delegate = self;
-    [self.loginView.loginButton addTarget:self action:@selector(doStuff) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:self.loginView];
-    [self.navigationItem.rightBarButtonItems[0] setEnabled:NO];
-    [UIView animateWithDuration:1 animations:^() {
-        self.loginView.frame = CGRectOffset(self.loginView.frame, 0, 200);
-    }completion:^(BOOL finished) {
-        
-    }];
+    LoginRegisterViewController *pf = [self.storyboard instantiateViewControllerWithIdentifier:@"LoginPopover"];
+    [self.navigationController pushViewController:pf animated:YES];
 }
+
 -(BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
     return YES;
-}
--(void)doStuff{
-    
-    if( self.loginView.userName.text.length>0 &&self.loginView.password.text.length>0)
-    {
-    [manager loggingInWithName: self.loginView.userName.text andPassword: self.loginView.password.text];
-    
-    [UIView animateWithDuration:1 animations:^() {
-        self.loginView.frame = CGRectOffset(self.loginView.frame, 0, -200);
-    }completion:^(BOOL finished) {
-        if (finished) {
-            self.loginView = nil;
-    [self.navigationItem.rightBarButtonItems[0] setEnabled:YES];
-            [self.loginView removeFromSuperview];
-        }
-        
-    }];
-    }
-    else{
-        [manager displayMessage:@"Please Fill All Required Information"];
-    }
 }
 
 #pragma mark test it.
@@ -156,68 +146,7 @@
     manager = [Manager sharedInstance];
     manager.delegate = self;
     
-    [manager loggingInWithName:@"Janek2004" andPassword:@"Stany174"];
-    
-    
-
 #endif
-
-}
-
-#pragma manager delegate
--(void)userLoggedIn:(NSNotification *)notification{
-    NSLog(@"User Logged In and now calling %@",(FFUser *)notification.object);
-    //if user logged in create an album?
-  //  NSString * guid = [manager.ff metaDataForObj:manager.user].guid;
-  //  [manager createNewAlbumOfName:@"TestAlbum" forUser:guid privacy:YES];
-    manager.user = notification.object;
-    //[self addPicture];
-}
-
--(void)addPicture{
-    NSString * albumGuid = @"3_0cgjEmNcfuw6oN_kAYU4";
-    NSArray * images = @[@"lampard1",@"lampard2",@"lampard3",@"lampard4"];
-    
-    int ranIndex = arc4random()%images.count;
-    
-    NSString * path= [[NSBundle mainBundle]pathForResource:[images objectAtIndex:ranIndex] ofType:@"png"];
-    NSData * data = [NSData dataWithContentsOfFile:path];
-    
-    if(data!=nil)
-    {
-        NSLog(@"Data yes");
-    }
-    else{
-        NSLog(@"Data no");    
-    }
-    NSString * userGuid = [manager.ff metaDataForObj:manager.user].guid;
-    
-    [manager createNewPhotoWithDescription:@"Some Description goes here" forUser:userGuid forAlbum:albumGuid withData:data];
-    
-    
-}
-
--(void)createdAlbum:(Album *)album{
-    NSLog(@"Album Created: %@", album);
-    if(album!=nil){
-        //add photos to album
-        [self addPicture];
-    }
-
-}
-
--(void)uploadedPhoto{
-    NSLog(@"Photo Uploaded. Yay");
-    //Get Albums
-    [manager getAlbumsForUser:[manager.ff metaDataForObj:manager.user].guid];
-}
-
--(void)downloadedAlbums:(NSArray *)albums{
-    NSLog(@" Albums downloaded %@",albums);
-
-}
-
--(void)receivedAlbums:(NSArray *)albums{
 
 }
 

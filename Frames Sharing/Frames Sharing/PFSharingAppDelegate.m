@@ -8,7 +8,7 @@
 
 #import "PFSharingAppDelegate.h"
 #import "Manager.h"
-
+#import "User.h"
 
 @implementation PFSharingAppDelegate
 @synthesize ff = _ff;
@@ -22,17 +22,7 @@ Manager * manager;
     self.ff = [[FatFractal alloc] initWithBaseUrl:baseUrl];
     self.ff.debug = YES;
     manager.ff = self.ff;
-//    
-//    [(UISplitViewController *) [self.storyboard instantiateViewControllerWithIdentifier:@"PFSplitAlbumsViewController"]setDelegate:self];
-//    
-//    NSLog(@"View Did Load");
-//    
-//    UIWindow * window = [[[UIApplication sharedApplication]delegate]window];
-//    
-//    UISplitViewController *splitViewController = (UISplitViewController *) self.window.rootViewController;
-//    splitViewController.delegate = [splitViewController.viewControllers lastObject];
-
-    
+   [[FatFractal main] registerClass:[User class] forClazz:@"FFUser"];
     
     return YES;
 }

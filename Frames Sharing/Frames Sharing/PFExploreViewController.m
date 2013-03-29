@@ -30,10 +30,7 @@ NSMutableArray * photoArray;
 -(void)viewWillAppear:(BOOL)animated{
     manager = [Manager sharedInstance];
     manager.exploreDelegate = self;
-   // [manager.ff setAutoLoadBlobs:NO];
-#warning remove it 
-     [manager loggingInWithName:@"Janek2004" andPassword:@"Stany174"];
-    
+    [manager.ff setAutoLoadBlobs:NO];
     
     if(!photoArray){
         photoArray = [[NSMutableArray alloc]initWithCapacity:0];
@@ -41,7 +38,7 @@ NSMutableArray * photoArray;
     else{
         [photoArray removeAllObjects];
     }
-    NSLog(@"View Will Appear");
+    // NSLog(@"View Will Appear");
 }
 
 #pragma mark - UICollectionViewDelegate

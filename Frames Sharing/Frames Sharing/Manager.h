@@ -11,10 +11,8 @@
 @class Photo;
 
 @protocol ManagerDelegate
-@optional
-    -(void)createdAlbum:(Album *)album;
-//    -(void)receivedPhotos:(NSArray *)photos;
-    -(void)downloadedPhotoFile:(Photo *)file forIndex:(NSIndexPath *)indexPath;
+//@optional
+//    -(void)downloadedPhotoFile:(Photo *)file forIndex:(NSIndexPath *)indexPath;
 @end
 
 @protocol ManagerDownloadDelegate
@@ -31,10 +29,12 @@ extern  NSString * const userRetrievedNotification;
 extern  NSString * const albumsRetrievedNotification;
 extern  NSString * const photosRetrievedNotification;
 extern  NSString * const loginSucceededNotification;
+extern  NSString * const albumCreatedNotification;
 
 
 -(void)loggingInWithName:(NSString *)userName andPassword: (NSString *)password;
 -(void)loggingInWithFacebook;
+
 -(void)signUpWithName:(NSString *)userName andPassword: (NSString *)password;
 -(void)updateUsernameForUserId:(NSString *)userId withName: (NSString *)name;
 
