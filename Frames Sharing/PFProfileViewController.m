@@ -49,11 +49,9 @@ Manager * manager;
     else{
         self.userName.text = self.user.userName;
         if(self.user == manager.user){
-            
+                        
             [self.loginButton setTitle:@"Logout" forState:UIControlStateNormal];
             
-            
-            //            [self.loginButton  setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
             [self.loginButton addTarget:self action:@selector(logout) forControlEvents:UIControlEventTouchUpInside];
             
             NSLog(@"Button Logged In Text %@ ",self.loginButton.titleLabel.text);
