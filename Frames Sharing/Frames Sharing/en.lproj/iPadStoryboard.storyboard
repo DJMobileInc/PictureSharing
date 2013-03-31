@@ -269,7 +269,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="V3G-Jc-2YQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2168" y="660"/>
+            <point key="canvasLocation" x="2250" y="516"/>
         </scene>
         <!--Fi Pad Albums View Controller-->
         <scene sceneID="1Eg-vJ-xum">
@@ -498,10 +498,335 @@
             </objects>
             <point key="canvasLocation" x="2761" y="928"/>
         </scene>
+        <!--Login Register View Controller - Login Popover-->
+        <scene sceneID="rYJ-6E-91j">
+            <objects>
+                <viewController storyboardIdentifier="LoginPopover" title="Login Popover" id="5XZ-uo-0ot" customClass="LoginRegisterViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="obc-eZ-kTW">
+                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gYQ-gY-OJO">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="36" id="IV5-Hi-7lq"/>
+                                    <constraint firstAttribute="width" constant="125" id="gOl-ZF-5Wl"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Login">
+                                    <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="loginUser:" destination="5XZ-uo-0ot" eventType="touchUpInside" id="t3D-fJ-sDU"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Plt-4M-3JZ">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="36" id="PPG-0A-fn0"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Register">
+                                    <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="showRegistrationScreen:" destination="5XZ-uo-0ot" eventType="touchUpInside" id="YNy-b4-lN7"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="j9i-aq-a5u">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="148" id="Cur-Ig-8HZ"/>
+                                    <constraint firstAttribute="height" constant="31" id="w7G-4p-KjM"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sZ0-2J-qEi">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="31" id="rDf-gY-fsx"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                            </textField>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="No account?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kzi-x3-THZ">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="IhF-RK-pMV"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Login" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WZJ-uC-Bi9">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="223" id="J1n-GB-GdE"/>
+                                    <constraint firstAttribute="height" constant="40" id="Tkx-YE-78U"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                                <color key="shadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="Plt-4M-3JZ" secondAttribute="bottom" constant="96" id="5hk-vw-nfd"/>
+                            <constraint firstAttribute="bottom" secondItem="Kzi-x3-THZ" secondAttribute="bottom" constant="134" id="7uy-XR-tLe"/>
+                            <constraint firstItem="Plt-4M-3JZ" firstAttribute="leading" secondItem="gYQ-gY-OJO" secondAttribute="leading" type="default" id="8dI-pA-XHf"/>
+                            <constraint firstItem="WZJ-uC-Bi9" firstAttribute="top" secondItem="obc-eZ-kTW" secondAttribute="top" constant="-6" id="CTk-Rg-kj5"/>
+                            <constraint firstAttribute="bottom" secondItem="gYQ-gY-OJO" secondAttribute="bottom" constant="164" id="OMl-bo-W4m"/>
+                            <constraint firstItem="sZ0-2J-qEi" firstAttribute="top" secondItem="j9i-aq-a5u" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="QDw-gX-ANL"/>
+                            <constraint firstItem="j9i-aq-a5u" firstAttribute="top" secondItem="obc-eZ-kTW" secondAttribute="top" constant="103" id="TNZ-qf-Xcv"/>
+                            <constraint firstItem="sZ0-2J-qEi" firstAttribute="centerX" secondItem="obc-eZ-kTW" secondAttribute="centerX" type="default" id="UV5-9O-YtS"/>
+                            <constraint firstItem="Plt-4M-3JZ" firstAttribute="centerX" secondItem="Kzi-x3-THZ" secondAttribute="centerX" type="default" id="ZXU-RH-nKW"/>
+                            <constraint firstItem="WZJ-uC-Bi9" firstAttribute="centerX" secondItem="gYQ-gY-OJO" secondAttribute="centerX" type="default" id="da3-bZ-Gyl"/>
+                            <constraint firstItem="sZ0-2J-qEi" firstAttribute="trailing" secondItem="j9i-aq-a5u" secondAttribute="trailing" type="default" id="fjs-IN-4OH"/>
+                            <constraint firstItem="sZ0-2J-qEi" firstAttribute="leading" secondItem="j9i-aq-a5u" secondAttribute="leading" type="default" id="fkN-IS-8uv"/>
+                            <constraint firstItem="gYQ-gY-OJO" firstAttribute="trailing" secondItem="Plt-4M-3JZ" secondAttribute="trailing" type="default" id="wbM-iX-mng"/>
+                            <constraint firstItem="WZJ-uC-Bi9" firstAttribute="leading" secondItem="obc-eZ-kTW" secondAttribute="leading" constant="42" id="we9-KZ-ySq"/>
+                        </constraints>
+                    </view>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackTranslucent"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <connections>
+                        <outlet property="confirmPasswordTextField" destination="bcU-hn-Ird" id="p5i-DK-Kav"/>
+                        <outlet property="displayNameTextField" destination="ayU-di-mS6" id="Rto-sq-z8n"/>
+                        <outlet property="passwordLoginTextField" destination="sZ0-2J-qEi" id="tqv-gQ-zGn"/>
+                        <outlet property="passwordTextField" destination="yzb-Zl-gfC" id="YBr-7p-81N"/>
+                        <outlet property="registrationView" destination="h2a-WQ-rtK" id="4H3-mZ-gUF"/>
+                        <outlet property="usernameLoginTextField" destination="j9i-aq-a5u" id="9dG-ZB-bqn"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="B1n-Nc-wje" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="h2a-WQ-rtK">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NxE-1d-4ZC">
+                            <constraints>
+                                <constraint firstAttribute="height" constant="36" id="5I0-u9-Zv1"/>
+                                <constraint firstAttribute="width" constant="125" id="TAh-s5-M6e"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                            <state key="normal" title="Register *">
+                                <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="highlighted">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="registerUser:" destination="5XZ-uo-0ot" eventType="touchUpInside" id="Kdw-Qu-ywS"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u9n-Nf-djW">
+                            <constraints>
+                                <constraint firstAttribute="width" constant="125" id="ZQQ-JJ-GWE"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                            <state key="normal" title="Cancel">
+                                <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="highlighted">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="showLoginScreen:" destination="5XZ-uo-0ot" eventType="touchUpInside" id="lXy-sM-vS6"/>
+                            </connections>
+                        </button>
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Confirm Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bcU-hn-Ird">
+                            <constraints>
+                                <constraint firstAttribute="height" constant="31" id="ozQ-iB-CTK"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                        </textField>
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yzb-Zl-gfC">
+                            <constraints>
+                                <constraint firstAttribute="height" constant="31" id="dhd-uO-RQO"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                        </textField>
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ayU-di-mS6">
+                            <constraints>
+                                <constraint firstAttribute="width" constant="148" id="25l-i6-E22"/>
+                                <constraint firstAttribute="height" constant="31" id="WWX-rQ-Ow5"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="By clicking on the register button, you confirm that you agree on the terms and conditions described above." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="10" preferredMaxLayoutWidth="299" translatesAutoresizingMaskIntoConstraints="NO" id="QAt-lS-zhu">
+                            <constraints>
+                                <constraint firstAttribute="height" constant="45" id="MQF-ar-ZgX"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Register" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SPI-Z7-rUz">
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="Q3O-Wg-mAR"/>
+                                <constraint firstAttribute="width" constant="223" id="SrH-7J-Ac6"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                            <color key="shadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </label>
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XPM-ks-0MN">
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="298" id="0tX-OX-Go6"/>
+                                <constraint firstAttribute="height" constant="153" id="Ods-eT-2Js"/>
+                            </constraints>
+                            <string key="text">Terms and Conditions
+
+The Information We Collect
+We keep information about statistics like:
+Log in and registration dates,
+We store information about date and size of uploaded files
+
+Sharing Your Information with Third Parties
+We don't do it.
+We don’t share your recordings or the information about your recording with third parties.
+
+Other
+By clicking on the Register button you agree to comply with Terms and Conditions and agree to use the Screen Capture app on your own responsibility. 
+Contact
+If you have any questions about our policy or the security of Screen Capture applications, please contact us at mobiledjapps@gmail.com
+
+
+</string>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                        </textView>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="yzb-Zl-gfC" firstAttribute="leading" secondItem="bcU-hn-Ird" secondAttribute="leading" type="default" id="2ka-na-FSC"/>
+                        <constraint firstItem="XPM-ks-0MN" firstAttribute="leading" secondItem="h2a-WQ-rtK" secondAttribute="leading" constant="14" id="6Wu-mT-Uvp"/>
+                        <constraint firstAttribute="bottom" secondItem="XPM-ks-0MN" secondAttribute="bottom" constant="41" id="9Lj-vp-Kgj"/>
+                        <constraint firstItem="bcU-hn-Ird" firstAttribute="trailing" secondItem="yzb-Zl-gfC" secondAttribute="trailing" type="default" id="D7o-zz-ZxA"/>
+                        <constraint firstAttribute="trailing" secondItem="u9n-Nf-djW" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="FVy-AG-WHl"/>
+                        <constraint firstItem="QAt-lS-zhu" firstAttribute="leading" secondItem="h2a-WQ-rtK" secondAttribute="leading" constant="10" id="FyG-ZC-Ver"/>
+                        <constraint firstItem="NxE-1d-4ZC" firstAttribute="leading" secondItem="h2a-WQ-rtK" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="MWa-v9-9X6"/>
+                        <constraint firstItem="bcU-hn-Ird" firstAttribute="baseline" secondItem="ayU-di-mS6" secondAttribute="baseline" type="default" id="NOE-9t-Kv0"/>
+                        <constraint firstItem="yzb-Zl-gfC" firstAttribute="top" secondItem="h2a-WQ-rtK" secondAttribute="top" constant="115" id="O8j-Kc-v0m"/>
+                        <constraint firstItem="QAt-lS-zhu" firstAttribute="bottom" secondItem="h2a-WQ-rtK" secondAttribute="bottom" type="default" id="Oc8-Ny-RFA"/>
+                        <constraint firstItem="ayU-di-mS6" firstAttribute="top" secondItem="h2a-WQ-rtK" secondAttribute="top" constant="80" id="RKy-zC-czX"/>
+                        <constraint firstItem="u9n-Nf-djW" firstAttribute="top" secondItem="NxE-1d-4ZC" secondAttribute="top" type="default" id="bIc-3e-GqH"/>
+                        <constraint firstItem="ayU-di-mS6" firstAttribute="leading" secondItem="yzb-Zl-gfC" secondAttribute="leading" type="default" id="jZF-Nf-Tyi"/>
+                        <constraint firstItem="u9n-Nf-djW" firstAttribute="bottom" secondItem="NxE-1d-4ZC" secondAttribute="bottom" type="default" id="m1c-Ks-d09"/>
+                        <constraint firstItem="yzb-Zl-gfC" firstAttribute="centerX" secondItem="h2a-WQ-rtK" secondAttribute="centerX" type="default" id="ndB-XW-WIt"/>
+                        <constraint firstItem="SPI-Z7-rUz" firstAttribute="top" secondItem="h2a-WQ-rtK" secondAttribute="top" constant="2" id="qTu-HI-DcO"/>
+                        <constraint firstItem="bcU-hn-Ird" firstAttribute="top" secondItem="h2a-WQ-rtK" secondAttribute="top" constant="150" id="vnf-qf-gvh"/>
+                        <constraint firstItem="NxE-1d-4ZC" firstAttribute="top" secondItem="h2a-WQ-rtK" secondAttribute="top" constant="216" id="vra-7B-RzT"/>
+                        <constraint firstItem="SPI-Z7-rUz" firstAttribute="centerX" secondItem="QAt-lS-zhu" secondAttribute="centerX" type="default" id="w7g-2a-wSi"/>
+                        <constraint firstItem="ayU-di-mS6" firstAttribute="trailing" secondItem="yzb-Zl-gfC" secondAttribute="trailing" type="default" id="zSI-ac-EAS"/>
+                    </constraints>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackTranslucent"/>
+                </view>
+            </objects>
+            <point key="canvasLocation" x="1030" y="2017"/>
+        </scene>
     </scenes>
     <resources>
         <image name="star.png" width="100" height="101"/>
     </resources>
+    <classes>
+        <class className="LoginRegisterViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginRegisterViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="loginUser:"/>
+                <relationship kind="action" name="registerUser:"/>
+                <relationship kind="action" name="showLoginScreen:"/>
+                <relationship kind="action" name="showRegistrationScreen:"/>
+                <relationship kind="outlet" name="confirmPasswordTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="displayNameTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="emailTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="passwordLoginTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="passwordTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="registrationView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="usernameLoginTextField" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="PFDisplayMyPhotoViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PFDisplayMyPhotoViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="segmentTappedOn:"/>
+                <relationship kind="outlet" name="description" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="imageView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="segmentedControl" candidateClass="UISegmentedControl"/>
+                <relationship kind="outlet" name="starsCount" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="PFDisplayPhotoViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PFDisplayPhotoViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="voteForPhoto:"/>
+                <relationship kind="outlet" name="authorButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="description" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="imageView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="starsCount" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="voteButton" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="PFExploreCell" superclassName="UICollectionViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PFExploreCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="imageView" candidateClass="UIImageView"/>
+            </relationships>
+        </class>
+        <class className="PFExploreViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PFExploreViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="collectionView" candidateClass="UICollectionView"/>
+                <relationship kind="outlet" name="searchBar" candidateClass="UISearchBar"/>
+            </relationships>
+        </class>
+        <class className="PFProfileViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PFProfileViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="loginAction:"/>
+                <relationship kind="action" name="showAlbums:"/>
+                <relationship kind="outlet" name="albumsButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="loginButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="profilePhoto" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="userDescription" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="userName" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="PFiPadAlbumsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PFiPadAlbumsViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="refreshAlbums:"/>
+                <relationship kind="outlet" name="collectionView" candidateClass="UICollectionView"/>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="UICollectionReusableView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionReusableView.h"/>
+        </class>
+        <class className="UICollectionViewCell" superclassName="UICollectionReusableView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewCell.h"/>
+        </class>
+        <class className="UICollectionViewFlowLayout" superclassName="UICollectionViewLayout">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewFlowLayout.h"/>
+        </class>
+        <class className="UICollectionViewLayout" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewLayout.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>

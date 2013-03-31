@@ -3,12 +3,11 @@
 //  Frames Sharing
 //
 //  Created by Janusz Chudzynski on 3/19/13.
-//  Copyright (c) 2013 Blue Plover Productions. All rights reserved.
-//
+
 
 #import "PFDisplayPhotoViewController.h"
 #import "Manager.h"
-#import "PFAlbumsViewController.h"
+#import "PFProfileViewController.h"
 @interface PFDisplayPhotoViewController ()
 @property (strong, nonatomic) IBOutlet UIButton *authorButton;
 
@@ -117,9 +116,9 @@ FFUser * user;
    
        return;
    }
-    PFAlbumsViewController * albums = [self.storyboard instantiateViewControllerWithIdentifier:@"PFAlbumsViewController"];
-    albums.user = user;
-    [self.navigationController pushViewController:albums animated:YES];
+    PFProfileViewController * p = [self.storyboard instantiateViewControllerWithIdentifier:@"PFProfileViewController"];
+    p.user = manager.user;
+    [self.navigationController pushViewController:p animated:YES];
 
 }
 
