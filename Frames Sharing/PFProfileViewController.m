@@ -10,6 +10,7 @@
 #import "Manager.h"
 #import "LoginRegisterViewController.h"
 #import "PFAlbumsViewController.h"
+#import "User.h"
 @interface PFProfileViewController ()
 
 @end

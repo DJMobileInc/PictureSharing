@@ -8,6 +8,8 @@
 #import "PFDisplayPhotoViewController.h"
 #import "Manager.h"
 #import "PFProfileViewController.h"
+#import "User.h"
+
 @interface PFDisplayPhotoViewController ()
 @property (strong, nonatomic) IBOutlet UIButton *authorButton;
 
@@ -15,7 +17,7 @@
 
 @implementation PFDisplayPhotoViewController
 Manager * manager;
-FFUser * user;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -23,6 +25,11 @@ FFUser * user;
         // Custom initialization
     }
     return self;
+}
+- (IBAction)flagPhoto:(id)sender {
+    self.photo.flag = YES;
+    [manager updateObject:self.photo];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)viewDidLoad
@@ -42,8 +49,9 @@ FFUser * user;
 }
 
 -(void)userReceived:(NSNotification *)notification{
-    user = notification.object;
-    [self displayAuthor:user.userName];
+    self.user = notification.object;
+    [self displayAuthor:self.user.userName];
+    NSLog(@"User Retrieved %@ ",self.user);
     
 }
 
@@ -112,10 +120,12 @@ FFUser * user;
        [manager displayMessage:@"You need to log in to access this information."];
       return;
     }
-    if(!user){
-   
-       return;
-   }
+    
+//    if(!user){
+//   
+//       return;
+//   }
+
     PFProfileViewController * p = [self.storyboard instantiateViewControllerWithIdentifier:@"PFProfileViewController"];
     p.user = manager.user;
     [self.navigationController pushViewController:p animated:YES];

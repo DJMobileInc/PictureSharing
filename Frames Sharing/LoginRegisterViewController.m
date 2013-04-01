@@ -51,8 +51,12 @@
 }
 
 -(void)userLoggedIn:(NSNotification *)notification{
-    NSLog(@"User Logged In and now calling %@",(FFUser *)notification.object);
+    NSLog(@"User Logged In and now calling %@",(User *)notification.object);
     manager.user = notification.object;
+    for (int i=0; i<6; i++) {
+       // [self addPicture];
+    }
+    
     if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad){
         [self.delegate dissmissPopover];
     }
@@ -170,7 +174,7 @@
     NSLog(@"Album Created: %@", album);
     if(album!=nil){
         //add photos to album
-        [self addPicture];
+       // [self addPicture];
     }
     
 }

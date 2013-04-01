@@ -10,6 +10,7 @@
 #import "AlbumListData.h"
 #import "AlbumDetailsData.h"
 #import "Manager.h"
+#import "User.h"
 
 @interface PFiPadAlbumsViewController()
 @property (strong, nonatomic) IBOutlet UICollectionView *collectionView;

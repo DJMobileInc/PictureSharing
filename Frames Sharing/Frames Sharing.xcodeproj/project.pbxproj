@@ -34,6 +34,9 @@
 		8239753A16F28D3B008E1605 /* lampard4.png in Resources */ = {isa = PBXBuildFile; fileRef = 8239753616F28D3B008E1605 /* lampard4.png */; };
 		8239753D16F291E6008E1605 /* PFAlbumDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8239753C16F291E5008E1605 /* PFAlbumDetailsViewController.m */; };
 		8239754016F33B3D008E1605 /* PFDisplayMyPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8239753F16F33B3C008E1605 /* PFDisplayMyPhotoViewController.m */; };
+		8265840317082349009E8911 /* thrash.png in Resources */ = {isa = PBXBuildFile; fileRef = 8265840217082349009E8911 /* thrash.png */; };
+		82658406170823F8009E8911 /* flag_red.png in Resources */ = {isa = PBXBuildFile; fileRef = 82658405170823F8009E8911 /* flag_red.png */; };
+		82658408170825C8009E8911 /* user.png in Resources */ = {isa = PBXBuildFile; fileRef = 82658407170825C7009E8911 /* user.png */; };
 		82BC84C816ED79FA000AC3E1 /* FFEF.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82BC84C716ED79FA000AC3E1 /* FFEF.framework */; };
 		82DAC3F716ED74E00071B485 /* Album.m in Sources */ = {isa = PBXBuildFile; fileRef = 82DAC3F616ED74E00071B485 /* Album.m */; };
 		82DAC3FA16ED75290071B485 /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = 82DAC3F916ED75290071B485 /* Photo.m */; };
@@ -93,6 +96,9 @@
 		8239753C16F291E5008E1605 /* PFAlbumDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFAlbumDetailsViewController.m; sourceTree = "<group>"; };
 		8239753E16F33B3C008E1605 /* PFDisplayMyPhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFDisplayMyPhotoViewController.h; sourceTree = "<group>"; };
 		8239753F16F33B3C008E1605 /* PFDisplayMyPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFDisplayMyPhotoViewController.m; sourceTree = "<group>"; };
+		8265840217082349009E8911 /* thrash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = thrash.png; sourceTree = "<group>"; };
+		82658405170823F8009E8911 /* flag_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flag_red.png; sourceTree = "<group>"; };
+		82658407170825C7009E8911 /* user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user.png; sourceTree = "<group>"; };
 		82BC84C716ED79FA000AC3E1 /* FFEF.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FFEF.framework; path = ../../FatFractal/FFEF.framework; sourceTree = "<group>"; };
 		82DAC3F516ED74E00071B485 /* Album.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Album.h; sourceTree = "<group>"; };
 		82DAC3F616ED74E00071B485 /* Album.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Album.m; sourceTree = "<group>"; };
@@ -224,6 +230,9 @@
 				4F7EF07316EFA94500A364D7 /* Manager.m */,
 				4F1F7C5D1704EBDB0083968B /* LoginRegisterViewController.h */,
 				4F1F7C5E1704EBDB0083968B /* LoginRegisterViewController.m */,
+				8265840217082349009E8911 /* thrash.png */,
+				82658407170825C7009E8911 /* user.png */,
+				82658405170823F8009E8911 /* flag_red.png */,
 				4F7EF06916EFA27600A364D7 /* CustomObjects */,
 				4F96216A16EA7E1D0034E26A /* Artwork */,
 				DBA2CE6116E4FC6100479C8A /* Frames Sharing iPhone */,
@@ -393,6 +402,9 @@
 				4FAB7E9316F8C8D500920E34 /* nonstar.png in Resources */,
 				4FAB7E9516F8DDDD00920E34 /* star.png in Resources */,
 				4FAB7E9816F902EB00920E34 /* iPadStoryboard.storyboard in Resources */,
+				8265840317082349009E8911 /* thrash.png in Resources */,
+				82658406170823F8009E8911 /* flag_red.png in Resources */,
+				82658408170825C8009E8911 /* user.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

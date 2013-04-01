@@ -25,13 +25,21 @@ NSMutableArray * photoArray;
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    manager = [Manager sharedInstance];
+    [manager.ff setAutoLoadBlobs:NO];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(searchCompletedWithResults:) name:photosRetrievedFromSearchNotification object:nil];
+    [manager getNewestPhotos];
+    
 }
 
+-(void)viewWillDisappear:(BOOL)animated{
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:photosRetrievedFromSearchNotification object:nil];
+}
+
+
+
 -(void)viewWillAppear:(BOOL)animated{
-    manager = [Manager sharedInstance];
-    manager.exploreDelegate = self;
-    [manager.ff setAutoLoadBlobs:NO];
-    
+       
     if(!photoArray){
         photoArray = [[NSMutableArray alloc]initWithCapacity:0];
     }
@@ -51,7 +59,7 @@ NSMutableArray * photoArray;
     
     PFDisplayPhotoViewController * pdp = [self.storyboard instantiateViewControllerWithIdentifier:@"PFDisplayPhotoViewController"];
     Photo * p = [photoArray objectAtIndex:indexPath.row];
-    pdp.photo = p;   
+    pdp.photo = p;
     [self.navigationController pushViewController:pdp animated:YES];
  
     [pdp changeDescription:p.description];
@@ -105,15 +113,15 @@ NSMutableArray * photoArray;
              NSLog(@" Error for blob  %@ ",[theErr debugDescription]);
          }
 
-         
          Photo * photo = theObj;
          if(photoArray){
-             [photoArray replaceObjectAtIndex:indexPath.row withObject:photo];
+             if(indexPath.row<photoArray.count){
+                 [photoArray replaceObjectAtIndex:indexPath.row withObject:photo];
+                 
+                 cell.imageView.image = [UIImage imageWithData:photo.thumbnailImageData];
              
-             cell.imageView.image = [UIImage imageWithData:photo.thumbnailImageData];
-             
-             NSLog(@"Cell Updated ");
-             
+                 NSLog(@"Cell Updated ");
+             }
          }
      }];
 }
@@ -127,11 +135,9 @@ NSMutableArray * photoArray;
     [self.searchBar resignFirstResponder];
 }
 
--(void)searchCompletedWithResults:(NSArray *)array{
-    
-    NSLog(@"Search completed with Array %@",array);
+-(void)searchCompletedWithResults:(NSNotification *)notification{
+    NSArray * array = notification.object;
     photoArray = (NSMutableArray *) array;
-    
     NSLog(@" Photo Array %@ ",photoArray);
     
     [self.collectionView reloadData];

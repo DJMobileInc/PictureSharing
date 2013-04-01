@@ -18,6 +18,8 @@
     if(self)
     {
         self.ratings = [[NSMutableArray alloc]initWithCapacity:0];
+        self.flag =NO;
+        self.isPublic = YES;
     }
     return self;
 }

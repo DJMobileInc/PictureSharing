@@ -8,9 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "Manager.h"
-@interface PFAlbumDetailsViewController : UIViewController <ManagerDelegate>
-@property (nonatomic,strong) NSString * albumGuid;
+#import "Album.h"
 
+@interface PFAlbumDetailsViewController : UIViewController
+@property (nonatomic,strong) NSString * albumGuid;
+@property (nonatomic,strong) Album * album;
 @property (strong, nonatomic) IBOutlet UIToolbar *toolbar;
 
 @end

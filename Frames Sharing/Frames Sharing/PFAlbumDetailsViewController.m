@@ -15,6 +15,8 @@
 
 @interface PFAlbumDetailsViewController ()
 @property (strong, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (strong, nonatomic) IBOutlet UISegmentedControl *privacySegmentedControl;
+@property (strong, nonatomic) IBOutlet UIButton *trashButton;
 
 @end
 
@@ -55,9 +57,56 @@ NSMutableArray * photoArray;
     }
     [manager getPhotosForAlbum:self.albumGuid];
     
+      NSLog(@"album userid %@ and manager.user %@",self.album.userId, [manager getGUID:manager.user]);
+    
+    if([self.album.userId isEqualToString: [manager getGUID:manager.user]])
+    {
+        self.privacySegmentedControl.selectedSegmentIndex= 1;
+
+        if(self.album.isPublic)
+        {
+            self.privacySegmentedControl.selectedSegmentIndex= 0;
+            
+        }
+      
+        
+    }
+    else{
+        self.trashButton.hidden = YES;
+        self.privacySegmentedControl.hidden = YES;
+        
+    }
+    
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(photosRetrieved:) name:photosRetrievedNotification object:nil];
 }
 
+
+- (IBAction)removeAlbum:(id)sender {
+    [manager delete:self.album];
+}
+
+
+- (IBAction)privacyChanged:(id)sender {
+    if(self.privacySegmentedControl.selectedSegmentIndex==0){
+        self.album.isPublic = YES;
+    }
+    else{
+        self.album.isPublic = NO;
+        for (Photo * p in photoArray){
+            p.isPublic = NO;
+            [manager updateObject:p];
+        }
+    }
+    
+    [manager updateObject:self.album];
+}
+
+
+
+-(void)viewWillDisappear:(BOOL)animated{
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
+    
+}
 
 
 -(void)photosRetrieved:(NSNotification *)notification{
@@ -69,7 +118,7 @@ NSMutableArray * photoArray;
     [self.collectionView reloadData];
     
 }
-
+/*
 -(void)downloadedPhotoFile:(Photo *)file forIndex:(NSIndexPath *)indexPath{
     
     PFExploreCell * cell =(PFExploreCell *) [self.collectionView cellForItemAtIndexPath:indexPath];
@@ -83,6 +132,7 @@ NSMutableArray * photoArray;
             
     }
 }
+ */
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

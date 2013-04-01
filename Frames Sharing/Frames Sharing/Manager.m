@@ -82,7 +82,6 @@
         }
     }
     
-    
     // this is actually the interesting part:
     UIGraphicsBeginImageContextWithOptions(targetSize, NO, 0.0);
     
@@ -97,7 +96,6 @@
     UIGraphicsEndImageContext();
     
     if(newImage == nil) NSLog(@"could not scale image");
-    
     
     return newImage ;
 }
@@ -114,6 +112,9 @@ NSString * const albumsRetrievedNotification = @"kAlbumsRetrievedNotification";
 NSString * const albumCreatedNotification = @"kAlbumsCreatedNotification";
 NSString * const photosRetrievedNotification = @"kPhotosRetrievedNotification";
 NSString * const loginSucceededNotification = @"kLoginNotification";
+NSString * const objectDeletedNotification = @"objectDeletedNotification";
+
+NSString * const photosRetrievedFromSearchNotification=@"kPhotosRetrievedFromSearchNotification";
 
 UIPopoverController * popover;
 
@@ -208,7 +209,11 @@ UIPopoverController * popover;
              [self displayMessage:[error localizedDescription]];
          }
          else{
-             self.user =  (FFUser *)theObj;
+             self.user =  theObj;
+             UIImage * img = [UIImage imageNamed:@"user"];
+             NSData * imageData =  UIImageJPEGRepresentation(img, 0.7);
+             self.user.profilePicture = imageData;
+             [self updateObject:self.user];
              [self displayMessage:@"Succesfully Logged In"];
              [[NSNotificationCenter defaultCenter]postNotificationName:loginSucceededNotification object:theObj];
          }
@@ -264,13 +269,6 @@ UIPopoverController * popover;
 }
 
 
-//Delete Albums
--(void)deleteAlbumOfName:(NSString *)name forUser:(NSString *)userId{
-    
-    
-    
-}
-
 -(void)getPhotosForAlbum:(NSString *)albumId{
     [[FatFractal main]getArrayFromUri:[NSString stringWithFormat:@"/ff/resources/Photo/(albumId eq '%@')",albumId] onComplete:
      ^(NSError * theErr, id theObj, NSHTTPURLResponse * theResponse)
@@ -290,7 +288,8 @@ UIPopoverController * popover;
 
 -(void)getAlbumsForUser:(NSString *)guid{
     
-    NSLog(@" /Album/(userId = 7TuJG1fpPUbIFyxBHQiRy7) %@",guid);
+    //NSLog(@" /Album/(userId = 7TuJG1fpPUbIFyxBHQiRy7) %@",guid);
+    
     [[FatFractal main]getArrayFromUri:[NSString stringWithFormat:@"/ff/resources/Album/(userId eq '%@')",guid] onComplete:
      ^(NSError * theErr, id theObj, NSHTTPURLResponse * theResponse)
      {
@@ -301,10 +300,6 @@ UIPopoverController * popover;
              //retrieved array of albums.
              [[NSNotificationCenter defaultCenter] postNotificationName:albumsRetrievedNotification
                                                                  object:theObj userInfo:nil];
-             
-             
-             
-
          }
      }];
 }
@@ -383,9 +378,7 @@ UIPopoverController * popover;
          if(theErr==nil){
              //Now we can update the file associated with it.
             //self.delegate pho
-          NSLog(@" Image Uploaded %@",[(Photo *)theObj thumbnailImageData]);
-             
-             
+                    
          }
          else{
              [self displayMessage:@"Error. File Couldn't be uploaded"];
@@ -394,35 +387,55 @@ UIPopoverController * popover;
      }];
 }
 
+-(void)delete:(id)object{
+    [self.ff deleteObj:object onComplete: ^(NSError * theErr, id theObj, NSHTTPURLResponse * theResponse)
+     {
+         if(theErr==nil){
+             [[NSNotificationCenter defaultCenter]postNotificationName:objectDeletedNotification object:object];
+             NSLog(@" object deleted ");
+         }
+         else{
+             NSLog(@" object errror deleted %@",[theErr debugDescription]);
+         }
+     }
+             onOffline:^(NSError * theErr, id theObj, NSHTTPURLResponse * theResponse)
+     {
+         if(theErr==nil){
+             //[self displayMessage:@"Your device is offline"];
+             
+         }
+     }];
 
-//Delete photo
--(void)deletePhotoWithId:(NSString *)photoId forUser:(NSString *)userId forAlbum:(NSString *)album{
-    
 }
-////Download photo
-//-(void)downloadPhotoWithId:(NSString *)photoId forUser:(NSString *)userId andIndex:(NSIndexPath * )indexPath
-//{
-//    NSString * query = [NSString stringWithFormat:@"/ff/resources/Photo/(guid eq '%@')",photoId];
-//    
-//    [[FatFractal main]getObjFromUri:query onComplete:
-//     ^(NSError * theErr, id theObj, NSHTTPURLResponse * theResponse)
-//     {
-//         [self.delegate downloadedPhotoFile:(Photo *)theObj forIndex:indexPath];
-//     }];
-//}
 
 -(void)getNewestPhotos{
-    NSString * query = [NSString stringWithFormat:@"/ff/resources/Photo/(isPublic eq 1)"];
+    
+    NSString * searchQuery = [NSString stringWithFormat:@"/ff/resources/Photo/(isPublic eq 1 and flag eq 0)"];
+    [[FatFractal main]getArrayFromUri:searchQuery onComplete:
+     ^(NSError * theErr, id theObj, NSHTTPURLResponse * theResponse)
+     {
+         if(theErr){
+             [self displayMessage:[theErr localizedDescription]];
+         }
+         else{
+             //retrieved array of photos in album.
+             NSArray * photosArray = theObj;
+             NSLog(@"Photos Array %@",photosArray);
+             
+             [[NSNotificationCenter defaultCenter]postNotificationName:photosRetrievedFromSearchNotification object:photosArray];
+         }
+     }];
+
 }
 
 -(void)getHighestRatedPhotos{
-
+    
 
 }
 
 
 -(void)getPhotosWithSearchQuery:(NSString *)searchText{
-    NSString * searchQuery = [NSString stringWithFormat:@"/ff/resources/Photo/(title matches '.*%@.*' and isPublic eq 1 or description matches '.*%@.*' and isPublic eq 1)",searchText,searchText];
+    NSString * searchQuery = [NSString stringWithFormat:@"/ff/resources/Photo/(title matches '.*%@.*' and isPublic eq 1 and flag eq 0 or description matches '.*%@.*' and isPublic eq 1 and eq 0)",searchText,searchText];
     
 #warning TO DO fix the query add argument visible for privacy protection
 //    NSString * searchQuery = [NSString stringWithFormat:@"/ff/resources/Photo/(isPublic eq 1)"];
@@ -438,11 +451,11 @@ UIPopoverController * popover;
              //retrieved array of photos in album.
              NSArray * photosArray = theObj;
              NSLog(@"Photos Array %@",photosArray);
-             [self.exploreDelegate searchCompletedWithResults:photosArray];
+             
+             [[NSNotificationCenter defaultCenter]postNotificationName:photosRetrievedFromSearchNotification object:photosArray];
+
          }
      }];
-
-    
 }
 
 

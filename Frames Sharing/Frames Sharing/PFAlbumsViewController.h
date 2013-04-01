@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "Manager.h"
-@interface PFAlbumsViewController : UIViewController <ManagerDelegate>
-@property (nonatomic,strong)FFUser * user;
+@class User;
+@interface PFAlbumsViewController : UIViewController
+@property (nonatomic,strong)User * user;
 
 @end

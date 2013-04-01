@@ -144,7 +144,7 @@
 #if DEBUG
     NSLog(@"Debug mode on: ");
     manager = [Manager sharedInstance];
-    manager.delegate = self;
+
     
 #endif
 

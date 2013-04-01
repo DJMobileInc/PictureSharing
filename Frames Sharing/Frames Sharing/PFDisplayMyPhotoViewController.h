@@ -9,7 +9,8 @@
 #import <UIKit/UIKit.h>
 @class Photo;
 
-@interface PFDisplayMyPhotoViewController : UIViewController
+@interface PFDisplayMyPhotoViewController : UIViewController<UITextViewDelegate>
+
 @property (strong, nonatomic) IBOutlet UITextView *description;
 @property (strong, nonatomic) IBOutlet UIImageView *imageView;
 @property (strong, nonatomic) IBOutlet UILabel *starsCount;

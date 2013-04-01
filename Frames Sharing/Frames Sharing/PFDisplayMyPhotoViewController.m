@@ -23,12 +23,19 @@ Manager * manager;
     }
     return self;
 }
+- (IBAction)deletePhoto:(id)sender {
+    [manager delete:self.photo];
+    NSLog(@"Photo %@",self.photo);
+    
+    [self.navigationController popViewControllerAnimated:YES];
+}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     manager = [Manager sharedInstance];
+    self.description.delegate = self;
 }
 
 - (void)didReceiveMemoryWarning
@@ -49,10 +56,10 @@ Manager * manager;
 
 }
 
--(void)setPhoto:(Photo *)photo{
-    NSLog(@"Set Photo Was Called.");
-    
-}
+//-(void)setPhoto:(Photo *)photo{
+//    NSLog(@"Set Photo Was Called.");
+//    
+//}
 
 
 -(void)changePrivacy:(BOOL)private{
@@ -75,6 +82,23 @@ Manager * manager;
 -(void)changeRatings :(int)ratings{
     self.starsCount.text = [NSString stringWithFormat:@"%d",ratings];
 }
+
+-(void)done{
+    [self.description resignFirstResponder];
+      self.navigationItem.rightBarButtonItem =nil;
+}
+
+
+-(void)textViewDidBeginEditing:(UITextView *)textView{
+    UIBarButtonItem *anotherButton = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStylePlain target:self action:@selector(done)];
+    self.navigationItem.rightBarButtonItem = anotherButton;
+
+}
+-(void)textViewDidEndEditing:(UITextView *)textView{
+    [textView resignFirstResponder];
+     self.navigationItem.rightBarButtonItem =nil;
+}
+
 
 
 @end

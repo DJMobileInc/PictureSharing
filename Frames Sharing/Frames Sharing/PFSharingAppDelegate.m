@@ -20,7 +20,7 @@ Manager * manager;
     
     NSString *baseUrl = @"http://djmobileinc.fatfractal.com/pictureframes";
     self.ff = [[FatFractal alloc] initWithBaseUrl:baseUrl];
-    self.ff.debug = YES;
+    //self.ff.debug = YES;
     manager.ff = self.ff;
    [[FatFractal main] registerClass:[User class] forClazz:@"FFUser"];
     

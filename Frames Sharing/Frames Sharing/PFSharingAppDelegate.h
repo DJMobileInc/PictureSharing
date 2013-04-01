@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Manager.h"
 
-@interface PFSharingAppDelegate : UIResponder <UIApplicationDelegate, ManagerDelegate>
+@interface PFSharingAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) FatFractal *ff;

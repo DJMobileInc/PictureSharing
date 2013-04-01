@@ -49,8 +49,9 @@ Manager * manager;
     }
     else{
         PFAlbumDetailsViewController * vc =  [self.storyboard instantiateViewControllerWithIdentifier:@"PFAlbumDetailsViewController"];
-             vc.albumGuid = [manager getGUID:album];
-        
+        vc.album =album;
+        vc.albumGuid = [manager getGUID:album];
+            
         [self.navigationController pushViewController:vc animated:YES];
     }
 }
