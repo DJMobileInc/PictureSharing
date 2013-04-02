@@ -13,5 +13,11 @@
     #import <Foundation/Foundation.h>
     #import <FFEF/FatFractal.h>
     #import <FFEF/FFMetaData.h>
+    #import <iAd/iAd.h>
+    #import <MobileCoreServices/MobileCoreServices.h>
+    #import <MessageUI/MessageUI.h>
+    #import "MKStoreManager.h"
+    #import <CoreImage/CoreImage.h>
+    #import <QuartzCore/QuartzCore.h>
 
 #endif

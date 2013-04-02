@@ -61,11 +61,7 @@ Manager * manager;
     albumDetails.manager = manager;
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(albumsRetrieved:) name:albumsRetrievedNotification object:nil];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(photosRetrieved:) name:photosRetrievedNotification object:nil];
-
-
-
-    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(photosRetrieved:) name:photosRetrievedNotification object:nil]; 
     
 #warning remove it 
     [manager loggingInWithName:@"Janek2004" andPassword:@"Stany174"];

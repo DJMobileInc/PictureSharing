@@ -7,12 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-@class Album;
 
 @interface User : FFUser
 @property (nonatomic, retain) NSString * aboutDescription;
 @property (nonatomic, retain) NSData * profilePicture;
-@property (nonatomic, retain) NSMutableArray * albums;
-
 
 @end

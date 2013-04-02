@@ -47,5 +47,9 @@ extern  NSString * const objectDeletedNotification;
 + (Manager *)sharedInstance;
 -(void)testIt;
 -(NSString *)getGUID:(id)object;
+@property (nonatomic, strong) UIImage * defaultImage;
+@property (nonatomic, strong) UIImage * defaultFrame;
+@property (nonatomic,strong) UIImage * modifiedImage;
+
 
 @end

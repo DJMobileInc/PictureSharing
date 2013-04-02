@@ -90,7 +90,23 @@
 }
 
 - (IBAction)createVCSegue:(UIButton *)sender {
-    [self performSegueWithIdentifier:@"create" sender:self];
+    //[self performSegueWithIdentifier:@"create" sender:self];
+   
+    UIViewController *vc;
+    if(UI_USER_INTERFACE_IDIOM()== UIUserInterfaceIdiomPhone)
+    {
+        UIStoryboard *iPhoneStoryboard = [UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil];
+        vc = [iPhoneStoryboard instantiateInitialViewController];
+    }
+    else{
+        UIStoryboard *iPadStoryboard = [UIStoryboard storyboardWithName:@"MainStoryboard_iPad" bundle:nil];
+        vc =[iPadStoryboard instantiateInitialViewController];
+    }
+
+    vc.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+//    [self presentModalViewController:initialSettingsVC animated:YES];
+    [self.navigationController pushViewController:vc animated:YES];
+    
 }
 - (IBAction)exploreVCSegue:(UIButton *)sender {
     if(manager.user){

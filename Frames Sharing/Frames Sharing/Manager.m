@@ -141,12 +141,16 @@ UIPopoverController * popover;
         if(!_ff){
             self.ff = [[FatFractal alloc] initWithBaseUrl:baseUrl];
             self.ff.autoLoadBlobs = NO;
+             [[FatFractal main] registerClass:[User class] forClazz:@"FFUser"];
+    
             
             //delete all objects
           //[self deleteAll];
             
             
         }
+        
+        [self.ff registerClass:[User class] forClazz:@"FFUser"];
     }
     return self;
 }

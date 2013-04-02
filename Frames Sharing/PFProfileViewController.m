@@ -65,7 +65,9 @@ Manager * manager;
         self.albumsButton.hidden =NO;
         
     }
-
+    //setting image
+    UIImage * img = [UIImage imageWithData:self.user.profilePicture];
+    self.profilePhoto.image = img;
 }
 
 - (void)didReceiveMemoryWarning
