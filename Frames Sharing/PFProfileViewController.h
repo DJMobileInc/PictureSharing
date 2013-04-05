@@ -8,8 +8,8 @@
 
 #import <UIKit/UIKit.h>
 @class User;
-@interface PFProfileViewController : UIViewController
-@property (strong, nonatomic) IBOutlet UIImageView *profilePhoto;
+@interface PFProfileViewController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIActionSheetDelegate>
+
 @property (strong, nonatomic) IBOutlet UILabel *userName;
 @property (strong, nonatomic) IBOutlet UITextView *userDescription;
 @property (strong, nonatomic) IBOutlet UIButton *albumsButton;
@@ -18,5 +18,7 @@
 
 - (IBAction)loginAction:(id)sender;
 - (IBAction)showAlbums:(id)sender;
+@property (strong, nonatomic) IBOutlet UIButton *profilePictureButton;
+- (IBAction)profilePictureButtonClicked:(id)sender;
 
 @end

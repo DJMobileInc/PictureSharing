@@ -56,12 +56,15 @@
     }
 }
 
--(void)showProfile{
+-(IBAction)showProfile{
+    if(manager.user){
     PFProfileViewController * p = [self.storyboard instantiateViewControllerWithIdentifier:@"PFProfileViewController"];
     p.user = manager.user;
     [self.navigationController pushViewController:p animated:YES];
-    
-    
+    }
+    else{
+            [manager displayMessage:@"You need be logged in to display profile."];
+    }
 }
 
 

@@ -23,7 +23,9 @@ Manager * manager;
     //self.ff.debug = YES;
     manager.ff = self.ff;
    [[FatFractal main] registerClass:[User class] forClazz:@"FFUser"];
-    
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackOpaque animated:NO];
+    UIImage *navBar = [UIImage imageNamed:@"AppNavBackground.png"];
+    [[UINavigationBar appearance] setBackgroundImage:navBar forBarMetrics:UIBarMetricsDefault];
     return YES;
 }
 

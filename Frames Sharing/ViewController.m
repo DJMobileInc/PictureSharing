@@ -26,97 +26,9 @@
 
 #import "Manager.h"
 #import "SocialHelper.h"
-@interface UIImage (Extras)
-- (UIImage *)imageByScalingProportionallyToSize:(CGSize)targetSize;
-+ (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize ;
-@end;
-@implementation UIImage (Extras)
-- (UIImage *)crop:(CGRect)rect {
-    
-    rect = CGRectMake(rect.origin.x*self.scale,
-                      rect.origin.y*self.scale,
-                      rect.size.width*self.scale,
-                      rect.size.height*self.scale);
-    
-    CGImageRef imageRef = CGImageCreateWithImageInRect([self CGImage], rect);
-    UIImage *result = [UIImage imageWithCGImage:imageRef
-                                          scale:self.scale
-                                    orientation:self.imageOrientation];
-    CGImageRelease(imageRef);
-    return result;
-}
+#import "CameraPicker.h"
+#import "PFSharingCenterViewController.h"
 
-
-
-+ (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize {
-    UIGraphicsBeginImageContextWithOptions(newSize, NO, 0.0);
-    [image drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
-    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    return newImage;
-}
-
-- (UIImage *)imageByScalingProportionallyToSize:(CGSize)targetSize {
-    
-    UIImage *sourceImage = self;
-    UIImage *newImage = nil;
-    
-    CGSize imageSize = sourceImage.size;
-    CGFloat width = imageSize.width;
-    CGFloat height = imageSize.height;
-    
-    CGFloat targetWidth = targetSize.width;
-    CGFloat targetHeight = targetSize.height;
-    
-    CGFloat scaleFactor = 0.0;
-    CGFloat scaledWidth = targetWidth;
-    CGFloat scaledHeight = targetHeight;
-    
-    CGPoint thumbnailPoint = CGPointMake(0.0,0.0);
-    
-    if (CGSizeEqualToSize(imageSize, targetSize) == NO) {
-        
-        CGFloat widthFactor = targetWidth / width;
-        CGFloat heightFactor = targetHeight / height;
-        
-        if (widthFactor < heightFactor)
-            scaleFactor = widthFactor;
-        else
-            scaleFactor = heightFactor;
-        
-        scaledWidth  = width * scaleFactor;
-        scaledHeight = height * scaleFactor;
-        
-        // center the image
-        
-        if (widthFactor < heightFactor) {
-            thumbnailPoint.y = (targetHeight - scaledHeight) * 0.5;
-        } else if (widthFactor > heightFactor) {
-            thumbnailPoint.x = (targetWidth - scaledWidth) * 0.5;
-        }
-    }
-    
-    
-    // this is actually the interesting part:
-    UIGraphicsBeginImageContextWithOptions(targetSize, NO, 0.0);
-    
-    CGRect thumbnailRect = CGRectZero;
-    thumbnailRect.origin = thumbnailPoint;
-    thumbnailRect.size.width  = scaledWidth;
-    thumbnailRect.size.height = scaledHeight;
-    
-    [sourceImage drawInRect:thumbnailRect];
-    
-    newImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    
-    if(newImage == nil) NSLog(@"could not scale image");
-    
-    
-    return newImage ;
-}
-
-@end;
 
 @interface ViewController ()
 @property (strong, nonatomic) IBOutlet UIView *framesView;
@@ -152,9 +64,10 @@
 @implementation ViewController
 
 UIPopoverController * cameraPopoverController;
+UIPopoverController * sharingCenterPopoverController;
 UIActionSheet *  photoAction;
-UIActionSheet * shareAction;
 
+CameraPicker * camera;
 CGRect imageFrame;
 
 - (BOOL)deviceIsAnIPad {
@@ -317,22 +230,15 @@ CGRect imageFrame;
    
     UIView * t= _photoContainerImgView;// recognizer.view;
     CGPoint center = [recognizer translationInView:[t superview]];
-    //[t setCenter:CGPointMake(t.center.x + center.x, t.center.y + center.y)];
-  //  t.transform =    CGAffineTransformTranslate(self.photoContainerImgView.transform, center.x, center.y);
   
     imageFrame =   CGRectApplyAffineTransform(imageFrame, CGAffineTransformTranslate(self.photoContainerImgView.transform, center.x, center.y));
     self.photoContainerImgView.frame = imageFrame;
     
     [recognizer setTranslation:CGPointZero inView:[t superview]];
-
-    
 }
 
 -(void)viewPinchOn:(UIPinchGestureRecognizer *)recognizer{
-        //_photoContainerImgView.transform = CGAffineTransformScale(self.photoContainerImgView.transform, recognizer.scale, recognizer.scale);
-    CGAffineTransform  transform = CGAffineTransformScale(self.photoContainerImgView.transform, recognizer.scale, recognizer.scale);
-//    CGRect transformedRect = CGRectApplyAffineTransform[self.frameContainerImageView.frame,
-    
+       CGAffineTransform  transform = CGAffineTransformScale(self.photoContainerImgView.transform, recognizer.scale, recognizer.scale);
         
     CGRect tf =CGRectApplyAffineTransform(_photoContainerImgView.bounds, transform);
     CGRect fRect = self.frameContainerImageView.frame;
@@ -340,8 +246,6 @@ CGRect imageFrame;
     
     if(tf.size.width <=fRect.size.width * 2 && tf.size.width>250)
     {
-        //_photoContainerImgView.transform = transform;//CGAffineTransformScale(self.photoContainerImgView.transform, recognizer.scale, recognizer.scale);
-       // NSLog(@"Affine Transform %f,", _photoContainerImgView.transform.tx);
         _photoContainerImgView.frame= tf;
         imageFrame =tf;
         
@@ -361,14 +265,9 @@ CGRect imageFrame;
     SharedStore * sharedStore = [SharedStore sharedStore];
     NSMutableArray * array = [sharedStore updateItems];
     
-   // NSLog(@"All Items %@ ",array);
     for(ContentPack * cp in array)
     {
-//        NSLog(@"Common Name %@ ",cp.commonName);
-//        NSLog(@"Content %@ ",cp.freeContent.images);
         if ([cp.commonName isEqualToString:contentPackName]) {
-            
-//            NSLog(@"Matched!");
             return cp;
         }
         
@@ -379,70 +278,7 @@ CGRect imageFrame;
 
 
 -(void)manageOrientation{
-    
     self.photoContainerImgView.center =  self.view.center;
-    
-    /*
-     CGRect pFrame =  CGRectMake(86, 146, 595, 706);
-     CGRect lFrame =  CGRectMake(155, 107, 706, 587);
-  
-    UIView * t= _photoContainerImgView;// recognizer.view;
-    CGPoint center = [recognizer translationInView:[t superview]];
-    //[t setCenter:CGPointMake(t.center.x + center.x, t.center.y + center.y)];
-    //  t.transform =    CGAffineTransformTranslate(self.photoContainerImgView.transform, center.x, center.y);
-    
-    imageFrame =   CGRectApplyAffineTransform(imageFrame, CGAffineTransformTranslate(self.photoContainerImgView.transform, center.x, center.y));
-    self.photoContainerImgView.frame = imageFrame;
-
-    
-    if([self deviceIsAnIPad]){
-        if(UIInterfaceOrientationIsLandscape(self.interfaceOrientation))
-        {
-       
-        [UIView animateWithDuration:0.2 animations:^{
-             self.applicationFrame.image = [UIImage imageNamed:@"ApplicationFrame"];
-             self.photoContainerImgView.frame = lFrame;
-             self.frameContainerImageView.frame =lFrame;
-            
-            
-        } completion:^(BOOL finished){
-            self.photoContainerImgView.frame = lFrame;
-            self.frameContainerImageView.frame =lFrame;
-        }];
-    
-        }
-        else{
-        [UIView animateWithDuration:0.2 animations:^{
-            self.applicationFrame.image = [UIImage imageNamed:@"ApplicationFramePortrait"];
-            self.photoContainerImgView.frame = pFrame;
-            self.frameContainerImageView.frame =pFrame;
-
-        } completion:^(BOOL finished){
-            self.photoContainerImgView.frame = pFrame;
-            self.frameContainerImageView.frame =pFrame;
-        }];
-        }
-    }
-    else{
-        self.applicationFrame.image = nil;
-        float bannerh = 30.0;
-        float buttonsh = 30.0;
-
-       // NSLog(@"Bounds %fFrame %f ",self.view.bounds.size.width, self.view.frame.size.width);
-        CGRect piFrame = CGRectMake(0, bannerh*3, self.view.bounds.size.width, self.view.bounds.size.height - 6 *  bannerh);
-        CGRect liFrame = CGRectMake(3 *buttonsh, bannerh, self.view.bounds.size.width-6 * buttonsh, self.view.bounds.size.height - buttonsh - bannerh);
-        if(UIInterfaceOrientationIsLandscape(self.interfaceOrientation))
-        {
-            self.photoContainerImgView.frame = liFrame;
-            self.frameContainerImageView.frame = liFrame;
-            
-        }
-        else{
-            self.photoContainerImgView.frame = piFrame;
-            self.frameContainerImageView.frame =piFrame;
-        }
-    }
-     */
 }
 
 
@@ -453,7 +289,8 @@ CGRect imageFrame;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    camera = [[CameraPicker alloc]init];
+    
     self.panGestureRecognizer =[[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(viewPanOn:)];
     self.pinchGestureRecognizer =[[UIPinchGestureRecognizer alloc]initWithTarget:self action:@selector(viewPinchOn:)];
     
@@ -499,17 +336,7 @@ CGRect imageFrame;
             self.photoContainerImgView.image= notification.object;
             
         } completion:^(BOOL finished){
-        }];
- 
-//        if ([self amIAnIPad]) {
-//            if([filtersPopover isPopoverVisible]){
-//                [filtersPopover dismissPopoverAnimated:YES];
-//            }
-//        }
-//        else{
-//            [filters dismissViewControllerAnimated:YES completion:nil];
-//        }
-   }
+        }];   }
 }
 
 
@@ -642,113 +469,8 @@ CGRect imageFrame;
     }
 }
 
-#pragma mark Camera
-#pragma mark camera methods
-- (BOOL) startCameraControllerFromViewController: (UIViewController*) controller
-                                   usingDelegate: (id <UIImagePickerControllerDelegate,
-                                                   UINavigationControllerDelegate>) delegate {
-    
-    if (([UIImagePickerController isSourceTypeAvailable: UIImagePickerControllerSourceTypeCamera] == NO))
-    {   UIAlertView * alert=[[UIAlertView alloc]initWithTitle:@"Error" message:@"We were not able to find a camera on this device" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
-        [alert show];
-        return NO;
-    }
-    
-    UIImagePickerController *cameraUI = [[UIImagePickerController alloc] init];
-    cameraUI.sourceType = UIImagePickerControllerSourceTypeCamera;
-    
-    // Displays a control that allows the user to choose picture or
-    // movie capture, if both are available:
-    cameraUI.mediaTypes =
-    [UIImagePickerController availableMediaTypesForSourceType:
-     UIImagePickerControllerSourceTypeCamera];
-    
-    // Hides the controls for moving & scaling pictures, or for
-    // trimming movies. To instead show the controls, use YES.
-    cameraUI.allowsEditing = YES;
-    cameraUI.delegate = self;
-    if([self deviceIsAnIPad]){
-    if(!cameraPopoverController.isPopoverVisible){
-        cameraPopoverController=[[UIPopoverController alloc]initWithContentViewController:cameraUI];
-        [cameraPopoverController presentPopoverFromRect:self.framesButon.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
-    }
-    }
-    else{
-        [self presentViewController:cameraUI animated:YES completion:nil];
-    
-    }
-    return YES;
-}
-
-- (BOOL) startCameraControllerPickerViewController: (UIViewController*) controller
-                                     usingDelegate: (id <UIImagePickerControllerDelegate,
-                                                     UINavigationControllerDelegate>) delegate {
-    
-    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary] == NO )
-    {
-        UIAlertView * alert=[[UIAlertView alloc]initWithTitle:@"Error" message:@"We were not able to use photo album on this device" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
-        [alert show];
-        return NO;
-    }
-    UIImagePickerController *cameraUI = [[UIImagePickerController alloc] init];
-    cameraUI.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-    
-    // Displays a control that allows the user to choose picture or
-    // movie capture, if both are available:
-    cameraUI.mediaTypes =[UIImagePickerController availableMediaTypesForSourceType:
-                          UIImagePickerControllerSourceTypePhotoLibrary];
-    
-    // Hides the controls for moving & scaling pictures, or for
-    // trimming movies. To instead show the controls, use YES.
-    cameraUI.allowsEditing = NO;
-    cameraUI.delegate = self;
-    if([self deviceIsAnIPad]){
-    if(!cameraPopoverController.isPopoverVisible){
-        
-        cameraPopoverController=[[UIPopoverController alloc]initWithContentViewController:cameraUI];
-        
-        [cameraPopoverController presentPopoverFromRect:self.framesButon.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
-    }
-    }
-    else{
-        [self presentViewController:cameraUI animated:YES completion:nil];
-        
-    }
-
-    return YES;
-}
 
 
-
-// For responding to the user accepting a newly-captured picture or movie
-- (void) imagePickerController: (UIImagePickerController *) picker
- didFinishPickingMediaWithInfo: (NSDictionary *) info {
-    
-    NSString *mediaType = [info objectForKey: UIImagePickerControllerMediaType];
-    //  NSLog(@"Did Finish Picking");
-    UIImage *originalImage, *editedImage;
-    UIImage * imageToUse;
-    // Handle a still image capture
-    if (CFStringCompare ((__bridge CFStringRef) mediaType, kUTTypeImage, 0)
-        == kCFCompareEqualTo) {
-        
-        originalImage = (UIImage *) [info objectForKey:
-                                     UIImagePickerControllerOriginalImage];
-        if (editedImage) {
-            imageToUse = editedImage;
-            
-            
-        } else {
-            imageToUse = originalImage;
-        }
-    }
-    [picker dismissViewControllerAnimated:YES completion:nil];
-    [cameraPopoverController dismissPopoverAnimated:YES];
-
-   // [self addGesturesToView:photo];
-    self.photoContainerImgView.image = imageToUse;
-    _manager.defaultImage = imageToUse;
-}
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (buttonIndex == actionSheet.cancelButtonIndex) { return; }
@@ -756,97 +478,16 @@ CGRect imageFrame;
     if([actionSheet isEqual:photoAction]){
         if(buttonIndex==0) // make photo
         {
-            [self startCameraControllerFromViewController:self usingDelegate:self];
-            
+            [camera startCameraControllerFromViewController:self usingDelegate:self from:self.framesButon picker:NO andPopover:cameraPopoverController];
         }
         else//pick photo
         {
-            [self startCameraControllerPickerViewController:self usingDelegate:self];
-            
-        }
-    }
-    if([actionSheet isEqual:shareAction]){
-        UIImage * resultImage = [self createScreenshot];
-        SocialHelper * helper = [[SocialHelper alloc]init];
-        //Create image from Current Canvas
-        NSString * urlString = @"https://itunes.apple.com/us/app/ipicture-frames-lt/id508059391?ls=1&mt=8";
-        
-        NSURL *  url = [NSURL URLWithString:urlString];
-        
-        if( [[actionSheet buttonTitleAtIndex:buttonIndex]isEqualToString:@"Email"])
-        {
-            MFMailComposeViewController  * mf=[[MFMailComposeViewController alloc]init];
-            mf.mailComposeDelegate=self;
-            
-            //Setting Subject
-            NSMutableString * body=[[NSMutableString alloc]initWithCapacity:0];
-            NSString * tempString= [NSString stringWithFormat:@"<a href=\"%@\">Download App!</a>\n",urlString];
-            [body appendString:tempString];
-            
-            [mf setSubject:@"Hey, look at this!"];
-            [mf setMessageBody:body isHTML:YES];
-            
-            //Adding Image
-            NSData *imageData = UIImagePNGRepresentation(resultImage);
-            [mf addAttachmentData:imageData mimeType:@"image/png" fileName:@"Image"];
-            [self presentViewController:mf animated:YES completion:nil];
-        }
-        
-        if( [[actionSheet buttonTitleAtIndex:buttonIndex]isEqualToString:@"Twitter"])
-        {
-            [helper postMessage:@"Message" image:resultImage  andURL:url forService:SLServiceTypeTwitter andTarget:self];
-        }
-        if( [[actionSheet buttonTitleAtIndex:buttonIndex]isEqualToString:@"Save to Album"])
-        {
-//            resultImage
-           
-
-            UIImageWriteToSavedPhotosAlbum(resultImage, self, @selector(image:didFinishWithError:contextInfo:), nil);
-        }
-        if( [[actionSheet buttonTitleAtIndex:buttonIndex]isEqualToString:@"Facebook"])
-        {
-            [helper postMessage:@"Message" image:resultImage  andURL:url forService:SLServiceTypeFacebook andTarget:self];
-            
-        }
-        if( [[actionSheet buttonTitleAtIndex:buttonIndex]isEqualToString:@"Sina Weibo"])
-        {
-            [helper postMessage:@"Message" image:resultImage  andURL:url forService:SLServiceTypeSinaWeibo andTarget:self];
+            [camera startCameraControllerFromViewController:self usingDelegate:self from:self.framesButon picker:YES andPopover:cameraPopoverController];
             
         }
     }
 }
 
-- (void) image: (UIImage *) image
-didFinishWithError: (NSError *) error
-   contextInfo: (void *) contextInfo{
-    if(error!=nil)
-    {
-        UIAlertView * alert=[[UIAlertView alloc]initWithTitle:@"Error" message:@"Image couldn't be saved at this time." delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
-        [alert show];
-        
-    }
-    else{
-        UIAlertView * alert=[[UIAlertView alloc]initWithTitle:@"Message" message:@"Image was successfully saved." delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
-        [alert show];
-    }
-}
-#pragma mark email
-- (void)mailComposeController:(MFMailComposeViewController *)controller
-
-          didFinishWithResult:(MFMailComposeResult)result
-
-                        error:(NSError *)error
-
-{
-    
-    [self dismissViewControllerAnimated:YES completion:nil];
-    
-}
-
--(void) messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result{
-    
-    
-}
 
 
 - (IBAction)photoAction:(id)sender {
@@ -856,21 +497,35 @@ didFinishWithError: (NSError *) error
 }
 
 - (IBAction)shareAction:(id)sender {
-    shareAction=[[UIActionSheet alloc]initWithTitle:@"Share" delegate:self cancelButtonTitle:nil destructiveButtonTitle:@"Cancel" otherButtonTitles:nil];
-    
-    
-    if([MFMailComposeViewController canSendMail])
+    UIImage * resultImage = [self createScreenshot];
+    PFSharingCenterViewController *vc;
+    if([self deviceIsAnIPad])
     {
-        [shareAction addButtonWithTitle:@"Email"];
+        //pick right storyboard
+        UIStoryboard *iPhoneStoryboard = [UIStoryboard storyboardWithName:@"iPadStoryboard" bundle:nil];
+        vc = [iPhoneStoryboard instantiateViewControllerWithIdentifier:@"sharingCenterViewController"];
+        vc.imageToShare = resultImage;
+        //present it in popover
+        if(!sharingCenterPopoverController)
+        {
+            sharingCenterPopoverController = [[UIPopoverController alloc]initWithContentViewController:vc];
+        }
+        if([sharingCenterPopoverController isPopoverVisible]){
+            [sharingCenterPopoverController dismissPopoverAnimated:YES];
+        }
+        else{
+            [sharingCenterPopoverController presentPopoverFromRect:self.framesButon.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+            
+        }
+        
     }
-    [shareAction addButtonWithTitle:@"Twitter"];
-    
-    [shareAction addButtonWithTitle:@"Save to Album"];
-    [shareAction addButtonWithTitle:@"Facebook"];
-    [shareAction addButtonWithTitle:@"Sina Weibo"];
-    
-    [shareAction showInView:self.view];
-    
+    else{
+        UIStoryboard *iPadStoryboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
+         vc =(PFSharingCenterViewController *) [iPadStoryboard instantiateViewControllerWithIdentifier:@"sharingCenterViewController"];
+         vc.imageToShare = resultImage;
+        
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 
 
@@ -929,9 +584,6 @@ didFinishWithError: (NSError *) error
     float aspect;
     float hnew;
     float wnew;
-    
-    NSLog(@"%f %f %f %f %f %f  ",xi, yi,wo,ho, wi,hi);
-    //Calculate new size
 
     aspect = ho/wo;
     if(ho>wo){ // portrait
@@ -950,8 +602,8 @@ didFinishWithError: (NSError *) error
     float wt = wi * wScaleAspect;
     float ht = hi * hScaleAspect;
     
-    NSLog(@"W %f H %f %f",wt, ht,wScaleAspect);
-    NSLog(@"W %f H %f %f ",wnew, hnew, hScaleAspect);
+   // NSLog(@"W %f H %f %f",wt, ht,wScaleAspect);
+   // NSLog(@"W %f H %f %f ",wnew, hnew, hScaleAspect);
     //Resize to the frame...
     UIImage * photoImage =   [self.photoContainerImgView.image imageByScalingProportionallyToSize:CGSizeMake(wt, ht)];
     
@@ -1051,7 +703,34 @@ didFinishWithError: (NSError *) error
 }
 
 
-
+// For responding to the user accepting a newly-captured picture or movie
+- (void) imagePickerController: (UIImagePickerController *) picker
+ didFinishPickingMediaWithInfo: (NSDictionary *) info {
+    
+    NSString *mediaType = [info objectForKey: UIImagePickerControllerMediaType];
+   
+    UIImage *originalImage, *editedImage;
+    UIImage * imageToUse;
+    // Handle a still image capture
+    if (CFStringCompare ((__bridge CFStringRef) mediaType, kUTTypeImage, 0)
+        == kCFCompareEqualTo) {
+        
+        originalImage = (UIImage *) [info objectForKey:
+                                     UIImagePickerControllerOriginalImage];
+        if (editedImage) {
+            imageToUse = editedImage;
+            
+            
+        } else {
+            imageToUse = originalImage;
+        }
+    }
+    [picker dismissViewControllerAnimated:YES completion:nil];
+    [cameraPopoverController dismissPopoverAnimated:YES];
+    
+    self.photoContainerImgView.image = imageToUse;
+    _manager.defaultImage = imageToUse;
+}
 
 
 @end

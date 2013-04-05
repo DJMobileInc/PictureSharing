@@ -12,10 +12,7 @@
 #import "Album.h"
 #import "PFProfileViewController.h"
 
-@interface UIImage (Extras)
-- (UIImage *)imageByScalingProportionallyToSize:(CGSize)targetSize;
-+ (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize ;
-@end;
+
 @implementation UIImage (Extras)
 - (UIImage *)crop:(CGRect)rect {
     
@@ -113,8 +110,12 @@ NSString * const albumCreatedNotification = @"kAlbumsCreatedNotification";
 NSString * const photosRetrievedNotification = @"kPhotosRetrievedNotification";
 NSString * const loginSucceededNotification = @"kLoginNotification";
 NSString * const objectDeletedNotification = @"objectDeletedNotification";
+NSString * const photoCreatedNotification = @"photoCreatedNotification";;
 
 NSString * const photosRetrievedFromSearchNotification=@"kPhotosRetrievedFromSearchNotification";
+NSString * const appURLString = @"https://itunes.apple.com/us/app/ipicture-frames-lt/id508059391?ls=1&mt=8";
+
+
 
 UIPopoverController * popover;
 
@@ -127,10 +128,8 @@ UIPopoverController * popover;
     static dispatch_once_t onceToken = 0;
     dispatch_once(&onceToken, ^{
         sharedInstance = [[Manager alloc] init];
-        // Do any other initialisation stuff here
-    
+        // Do any other initialisation stuff here        
      });
-    
     
     return sharedInstance;
 }
@@ -142,14 +141,7 @@ UIPopoverController * popover;
             self.ff = [[FatFractal alloc] initWithBaseUrl:baseUrl];
             self.ff.autoLoadBlobs = NO;
              [[FatFractal main] registerClass:[User class] forClazz:@"FFUser"];
-    
-            
-            //delete all objects
-          //[self deleteAll];
-            
-            
         }
-        
         [self.ff registerClass:[User class] forClazz:@"FFUser"];
     }
     return self;
@@ -439,7 +431,7 @@ UIPopoverController * popover;
 
 
 -(void)getPhotosWithSearchQuery:(NSString *)searchText{
-    NSString * searchQuery = [NSString stringWithFormat:@"/ff/resources/Photo/(title matches '.*%@.*' and isPublic eq 1 and flag eq 0 or description matches '.*%@.*' and isPublic eq 1 and eq 0)",searchText,searchText];
+    NSString * searchQuery = [NSString stringWithFormat:@"/ff/resources/Photo/(title matches '.*%@.*' and isPublic eq 1 and flag eq 0 or description matches '.*%@.*' and isPublic eq 1 and flag eq 0)",searchText,searchText];
     
 #warning TO DO fix the query add argument visible for privacy protection
 //    NSString * searchQuery = [NSString stringWithFormat:@"/ff/resources/Photo/(isPublic eq 1)"];

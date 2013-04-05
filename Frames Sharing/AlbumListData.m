@@ -12,7 +12,16 @@
 #import "Manager.h"
 
 @implementation AlbumListData
-Manager * manager;
+
+
+-(id)init{
+    self = [super init];
+    if(self){
+        manager = [Manager sharedInstance];
+    }
+    return self;
+}
+
 
 #pragma mark - Table view data source
 

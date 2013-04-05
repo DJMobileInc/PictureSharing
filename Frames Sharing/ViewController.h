@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "SharedStore.h"
-@interface ViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, ADBannerViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIActionSheetDelegate, MFMailComposeViewControllerDelegate, PurchaseCompleted>
+@interface ViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, ADBannerViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIActionSheetDelegate, PurchaseCompleted>
 
 @end

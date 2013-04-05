@@ -28,6 +28,14 @@ NSMutableArray * photoArray;
     manager = [Manager sharedInstance];
     [manager.ff setAutoLoadBlobs:NO];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(searchCompletedWithResults:) name:photosRetrievedFromSearchNotification object:nil];
+    if(!photoArray){
+        photoArray = [[NSMutableArray alloc]initWithCapacity:0];
+    }
+    else{
+        [photoArray removeAllObjects];
+    }
+    // NSLog(@"View Will Appear");
+
     [manager getNewestPhotos];
     
 }
@@ -40,14 +48,7 @@ NSMutableArray * photoArray;
 
 -(void)viewWillAppear:(BOOL)animated{
        
-    if(!photoArray){
-        photoArray = [[NSMutableArray alloc]initWithCapacity:0];
     }
-    else{
-        [photoArray removeAllObjects];
-    }
-    // NSLog(@"View Will Appear");
-}
 
 #pragma mark - UICollectionViewDelegate
 

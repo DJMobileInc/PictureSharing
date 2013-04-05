@@ -14,7 +14,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic)NSMutableArray *objects;
 @property (strong, nonatomic)NSString *albumName;
-@property (strong, nonatomic) IBOutlet UIView *addAlbumView;
+//@property (strong, nonatomic) IBOutlet UIView *addAlbumView;
 @property (strong, nonatomic) IBOutlet UITextField *albumTxtField;
 
 
@@ -40,7 +40,7 @@ AlbumListData * albumsList;
 
     //hide elements if not my album
     if(self.user !=manager.user){
-        
+    
     }
     
     albumsList = [[AlbumListData alloc]init];
@@ -49,6 +49,11 @@ AlbumListData * albumsList;
     
     self.tableView.dataSource  = albumsList;
     self.tableView.delegate = albumsList;
+}
+
+-(void)viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
     
 }
 

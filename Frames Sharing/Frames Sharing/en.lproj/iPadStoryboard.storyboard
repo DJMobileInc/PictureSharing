@@ -1,28 +1,29 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2840" systemVersion="11G63b" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="yKs-GW-2U5">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="11G63" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="yKs-GW-2U5">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1926"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
     <scenes>
-        <!--Explore View Controller-->
+        <!--Explore View Controller - Explore-->
         <scene sceneID="b6F-aA-Y8V">
             <objects>
-                <viewController storyboardIdentifier="PFExploreViewController" id="xqb-CS-YuW" customClass="PFExploreViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PFExploreViewController" title="Explore" id="xqb-CS-YuW" customClass="PFExploreViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="p2v-am-8qe">
-                        <rect key="frame" x="0.0" y="64" width="1024" height="704"/>
+                        <rect key="frame" x="0.0" y="20" width="1024" height="748"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Csx-OP-Qtl">
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="829" id="1wL-ty-jOc"/>
-                                </constraints>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="bVN-zu-C4F">
                                     <size key="itemSize" width="153" height="153"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
+                                <imageView key="backgroundView" userInteractionEnabled="NO" contentMode="scaleToFill" id="ncR-7z-orR">
+                                    <rect key="frame" x="0.0" y="0.0" width="1024" height="660"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                </imageView>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ExploreCell" id="Ulq-Nr-apz" customClass="PFExploreCell">
                                         <rect key="frame" x="0.0" y="0.0" width="153" height="153"/>
@@ -60,12 +61,8 @@
                                     <barButtonItem title="My Profile" id="4U7-6R-6Ys"/>
                                 </items>
                             </toolbar>
-                            <searchBar contentMode="redraw" showsScopeBar="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tUy-cr-ZfM">
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="tUy-cr-ZfM">
                                 <textInputTraits key="textInputTraits"/>
-                                <scopeButtonTitles>
-                                    <string>Newest</string>
-                                    <string>Highest Rates</string>
-                                </scopeButtonTitles>
                                 <connections>
                                     <outlet property="delegate" destination="xqb-CS-YuW" id="k7T-9K-4Sg"/>
                                 </connections>
@@ -82,6 +79,7 @@
                             <constraint firstItem="azw-Ti-hrP" firstAttribute="trailing" secondItem="p2v-am-8qe" secondAttribute="trailing" type="default" id="cRO-9F-FCp"/>
                             <constraint firstItem="azw-Ti-hrP" firstAttribute="top" secondItem="Csx-OP-Qtl" secondAttribute="bottom" type="default" id="dym-f0-EBR"/>
                             <constraint firstItem="Csx-OP-Qtl" firstAttribute="leading" secondItem="p2v-am-8qe" secondAttribute="leading" type="default" id="ewR-HN-uOO"/>
+                            <constraint firstItem="Csx-OP-Qtl" firstAttribute="top" secondItem="tUy-cr-ZfM" secondAttribute="bottom" type="default" id="sst-IZ-mTa"/>
                         </constraints>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
@@ -92,54 +90,22 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mAC-To-wJP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1686" y="1892"/>
+            <point key="canvasLocation" x="122" y="1436"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="rBl-lp-wsN">
             <objects>
-                <navigationController definesPresentationContext="YES" id="yKs-GW-2U5" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="initilaViewController" definesPresentationContext="YES" id="yKs-GW-2U5" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="xEP-Kw-jss">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="qce-ld-55F" kind="relationship" relationship="rootViewController" id="3ir-Fr-RNr"/>
+                        <segue destination="xqb-CS-YuW" kind="relationship" relationship="rootViewController" id="tz4-7U-uFp"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pFs-Zu-8vr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-19" y="274"/>
-        </scene>
-        <!--Albums List View Controller - Albums-->
-        <scene sceneID="Vc7-Qj-BSe">
-            <objects>
-                <tableViewController clearsSelectionOnViewWillAppear="NO" id="2Dp-7J-HaZ" customClass="PFAlbumsListViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="8KW-hO-jDi">
-                        <rect key="frame" x="0.0" y="20" width="768" height="1004"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="AlbumListCell" id="suv-DS-H7C">
-                                <rect key="frame" x="0.0" y="22" width="768" height="44"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="768" height="43"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                </view>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="2Dp-7J-HaZ" id="UKv-M1-Lyy"/>
-                            <outlet property="delegate" destination="2Dp-7J-HaZ" id="2zj-OC-05j"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Albums" id="uwx-7B-cMp">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="RM7-Co-B4m"/>
-                    </navigationItem>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="VxR-iX-e09" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="955" y="-887"/>
         </scene>
         <!--Profile View Controller-->
         <scene sceneID="DF6-2F-p6L">
@@ -274,9 +240,9 @@
         <!--Fi Pad Albums View Controller-->
         <scene sceneID="1Eg-vJ-xum">
             <objects>
-                <viewController id="qce-ld-55F" customClass="PFiPadAlbumsViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PFiPadAlbumsViewController" id="qce-ld-55F" customClass="PFiPadAlbumsViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="NhH-fr-wbM">
-                        <rect key="frame" x="0.0" y="64" width="1024" height="704"/>
+                        <rect key="frame" x="0.0" y="20" width="1024" height="748"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="zpF-ia-qOc">
@@ -374,7 +340,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="A4y-Ln-eoj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1030" y="575"/>
+            <point key="canvasLocation" x="1118" y="247"/>
         </scene>
         <!--Display My Photo View Controller-->
         <scene sceneID="vif-0d-G4T">
@@ -734,7 +700,7 @@ If you have any questions about our policy or the security of Screen Capture app
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackTranslucent"/>
                 </view>
             </objects>
-            <point key="canvasLocation" x="1030" y="2017"/>
+            <point key="canvasLocation" x="1622" y="1825"/>
         </scene>
     </scenes>
     <resources>
@@ -745,4 +711,7 @@ If you have any questions about our policy or the security of Screen Capture app
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="ANI-ES-BOi"/>
+    </inferredMetricsTieBreakers>
 </document>

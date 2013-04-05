@@ -11,12 +11,16 @@
 #import "LoginRegisterViewController.h"
 #import "PFAlbumsViewController.h"
 #import "User.h"
-@interface PFProfileViewController ()
+#import "CameraPicker.h"
+@interface PFProfileViewController ()<UITextViewDelegate>
 
 @end
 
 @implementation PFProfileViewController
 Manager * manager;
+UIActionSheet * photoAction;
+CameraPicker * camera;
+UIPopoverController * cameraPopoverController;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -32,42 +36,45 @@ Manager * manager;
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     manager = [Manager sharedInstance];
-  
+    self.userDescription.delegate = self;
+     camera = [[CameraPicker alloc]init];
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated{
     if(!manager.user)//hide elements
     {
-        self.profilePhoto.image = nil;
+      
         self.userDescription.text = @"";
         self.albumsButton.hidden = YES;
         self.userName.text = @"";
         [self.loginButton setTitle:@"Login" forState:UIControlStateNormal];
         [self.loginButton addTarget:self action:@selector(loginAction:) forControlEvents:UIControlEventTouchUpInside];
-        
+        self.profilePictureButton.enabled = NO;
         NSLog(@"user deoosn't exist??");
     }
     else{
         self.userName.text = self.user.userName;
+        self.albumsButton.hidden =NO;
+
         if(self.user == manager.user){
                         
             [self.loginButton setTitle:@"Logout" forState:UIControlStateNormal];
             
             [self.loginButton addTarget:self action:@selector(logout) forControlEvents:UIControlEventTouchUpInside];
-            
+            [self.userDescription setEditable:YES];
             NSLog(@"Button Logged In Text %@ ",self.loginButton.titleLabel.text);
-            
+                   self.profilePictureButton.enabled = YES;
         }
         else{
             NSLog(@"User not logged in");
+           [self.userDescription setEditable:NO];
             
-        }
-        self.albumsButton.hidden =NO;
-        
+        }    
     }
     //setting image
     UIImage * img = [UIImage imageWithData:self.user.profilePicture];
-    self.profilePhoto.image = img;
+    [self.profilePictureButton setImage:img forState:UIControlStateNormal];
 }
 
 - (void)didReceiveMemoryWarning
@@ -96,5 +103,69 @@ Manager * manager;
     [self.navigationController popToRootViewControllerAnimated:YES];
     
 }
+
+-(void)textViewDidBeginEditing:(UITextView *)textView{
+    UIBarButtonItem *anotherButton = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStylePlain target:self action:@selector(done)];
+    self.navigationItem.rightBarButtonItem = anotherButton;
+    
+}
+-(void)textViewDidEndEditing:(UITextView *)textView{
+    [textView resignFirstResponder];
+    self.navigationItem.rightBarButtonItem =nil;
+}
+
+
+
+- (IBAction)profilePictureButtonClicked:(id)sender {
+    photoAction=[[UIActionSheet alloc]initWithTitle:@"Photos" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"New Photo", @"Photo Library", nil];
+    [photoAction showInView:self.view];
+  
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex == actionSheet.cancelButtonIndex) { return; }
+    
+    if([actionSheet isEqual:photoAction]){
+        if(buttonIndex==0) // make photo
+        {
+            [camera startCameraControllerFromViewController:self usingDelegate:self from:self.view picker:NO andPopover:cameraPopoverController];
+        }
+        else//pick photo
+        {
+            [camera startCameraControllerFromViewController:self usingDelegate:self from:self.view picker:YES andPopover:cameraPopoverController];
+            
+        }
+    }
+}
+
+- (void) imagePickerController: (UIImagePickerController *) picker
+ didFinishPickingMediaWithInfo: (NSDictionary *) info {
+    
+    NSString *mediaType = [info objectForKey: UIImagePickerControllerMediaType];
+    //  NSLog(@"Did Finish Picking");
+    UIImage *originalImage, *editedImage;
+    UIImage * imageToUse;
+    // Handle a still image capture
+    if (CFStringCompare ((__bridge CFStringRef) mediaType, kUTTypeImage, 0)
+        == kCFCompareEqualTo) {
+        
+        originalImage = (UIImage *) [info objectForKey:
+                                     UIImagePickerControllerOriginalImage];
+        if (editedImage) {
+            imageToUse = editedImage;
+            
+            
+        } else {
+            imageToUse = originalImage;
+        }
+    }
+    [picker dismissViewControllerAnimated:YES completion:nil];
+    [cameraPopoverController dismissPopoverAnimated:YES];
+
+    [self.profilePictureButton setImage:imageToUse forState:UIControlStateNormal];
+    
+}
+
+
 
 @end

@@ -10,7 +10,11 @@
 #import "Album.h"
 @class Photo;
 @class User;
-
+@interface UIImage (Extras)
+- (UIImage *)imageByScalingProportionallyToSize:(CGSize)targetSize;
++ (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize ;
+- (UIImage *)crop:(CGRect)rect;
+@end;
 @interface Manager : NSObject
 extern  NSString * const userRetrievedNotification;
 extern  NSString * const albumsRetrievedNotification;
@@ -19,6 +23,9 @@ extern  NSString * const loginSucceededNotification;
 extern  NSString * const albumCreatedNotification;
 extern  NSString * const photosRetrievedFromSearchNotification;
 extern  NSString * const objectDeletedNotification;
+extern  NSString * const photoCreatedNotification;
+extern  NSString * const appURLString;
+
 
 -(void)loggingInWithName:(NSString *)userName andPassword: (NSString *)password;
 -(void)loggingInWithFacebook;

@@ -57,7 +57,7 @@ Manager * manager;
     self.tableView.dataSource  = albumsList;
     self.tableView.delegate = albumsList;
     manager = [Manager sharedInstance];
-    [self getAlbums];
+   // [self getAlbums];
     albumDetails.manager = manager;
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(albumsRetrieved:) name:albumsRetrievedNotification object:nil];

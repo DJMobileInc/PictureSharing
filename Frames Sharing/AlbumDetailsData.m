@@ -34,10 +34,11 @@
          Photo * photo = theObj;
          if(self.photoArray.count > 0){
              if(photo){
-             [self.photoArray replaceObjectAtIndex:indexPath.row withObject:photo];
-             cell.imageView.image = [UIImage imageWithData:photo.thumbnailImageData];
-             // NSLog(@"Update Cell 2");
-             }
+              if(indexPath.row<self.photoArray.count){
+                  [self.photoArray replaceObjectAtIndex:indexPath.row withObject:photo];
+                   cell.imageView.image = [UIImage imageWithData:photo.thumbnailImageData];
+              }
+              }
              else{
              // NSLog(@" Photo doesn't exist ");
              }

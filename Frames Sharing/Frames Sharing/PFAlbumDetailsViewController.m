@@ -118,21 +118,6 @@ NSMutableArray * photoArray;
     [self.collectionView reloadData];
     
 }
-/*
--(void)downloadedPhotoFile:(Photo *)file forIndex:(NSIndexPath *)indexPath{
-    
-    PFExploreCell * cell =(PFExploreCell *) [self.collectionView cellForItemAtIndexPath:indexPath];
-   
-    UIImage * thumbnail = [UIImage imageWithData:file.thumbnailImageData];
-
-    cell.imageView.image = thumbnail;
-    Photo * pf = [photoArray objectAtIndex:indexPath.row];
-    if(photoArray){
-        [photoArray replaceObjectAtIndex:indexPath.row withObject:pf];
-            
-    }
-}
- */
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

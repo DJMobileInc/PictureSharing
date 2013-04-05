@@ -9,6 +9,14 @@
 /* Begin PBXBuildFile section */
 		4F1F7C5F1704EBDB0083968B /* LoginRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1F7C5E1704EBDB0083968B /* LoginRegisterViewController.m */; };
 		4F1F7C601704EBDB0083968B /* LoginRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1F7C5E1704EBDB0083968B /* LoginRegisterViewController.m */; };
+		4F3C7255170B956600B2BB79 /* AppNavBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F3C7254170B956600B2BB79 /* AppNavBackground.png */; };
+		4F3C725C170C6D5800B2BB79 /* albumsIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F3C7256170C6D5800B2BB79 /* albumsIcon.png */; };
+		4F3C725D170C6D5800B2BB79 /* createNewIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F3C7257170C6D5800B2BB79 /* createNewIcon.png */; };
+		4F3C725E170C6D5800B2BB79 /* helpIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F3C7258170C6D5800B2BB79 /* helpIcon.png */; };
+		4F3C725F170C6D5800B2BB79 /* profileIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F3C7259170C6D5800B2BB79 /* profileIcon.png */; };
+		4F3C7260170C6D5800B2BB79 /* searchIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F3C725A170C6D5800B2BB79 /* searchIcon.png */; };
+		4F3C7261170C6D5800B2BB79 /* smallBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F3C725B170C6D5800B2BB79 /* smallBackground.png */; };
+		4F3C7264170CD4E600B2BB79 /* CameraPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3C7263170CD4E600B2BB79 /* CameraPicker.m */; };
 		4F6DEC3E16FCF6140074A455 /* PFProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6DEC3D16FCF6140074A455 /* PFProfileViewController.m */; };
 		4F6DEC411700F8120074A455 /* AlbumListData.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6DEC401700F8120074A455 /* AlbumListData.m */; };
 		4F6DEC441700F8D60074A455 /* PFiPadAlbumsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6DEC431700F8D60074A455 /* PFiPadAlbumsViewController.m */; };
@@ -665,6 +673,9 @@
 		828C4CB9170A5BDA00F110F7 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 828C4CA2170A58AA00F110F7 /* iAd.framework */; };
 		828C4CBA170A5BDD00F110F7 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 828C4CA0170A588200F110F7 /* MessageUI.framework */; };
 		828C4CBB170A5C0F00F110F7 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 828C4CB2170A5B1200F110F7 /* Security.framework */; };
+		828C4CC6170D19EC00F110F7 /* PFPickAlbumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 828C4CC5170D19EC00F110F7 /* PFPickAlbumViewController.m */; };
+		828C4CCA170D1AD400F110F7 /* AlbumPickerListData.m in Sources */ = {isa = PBXBuildFile; fileRef = 828C4CC9170D1AD400F110F7 /* AlbumPickerListData.m */; };
+		828C4CCD170D223500F110F7 /* PFSharingCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 828C4CCC170D223500F110F7 /* PFSharingCenterViewController.m */; };
 		82BC84C816ED79FA000AC3E1 /* FFEF.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82BC84C716ED79FA000AC3E1 /* FFEF.framework */; };
 		82DAC3F716ED74E00071B485 /* Album.m in Sources */ = {isa = PBXBuildFile; fileRef = 82DAC3F616ED74E00071B485 /* Album.m */; };
 		82DAC3FA16ED75290071B485 /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = 82DAC3F916ED75290071B485 /* Photo.m */; };
@@ -692,6 +703,15 @@
 /* Begin PBXFileReference section */
 		4F1F7C5D1704EBDB0083968B /* LoginRegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoginRegisterViewController.h; path = ../LoginRegisterViewController.h; sourceTree = "<group>"; };
 		4F1F7C5E1704EBDB0083968B /* LoginRegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoginRegisterViewController.m; path = ../LoginRegisterViewController.m; sourceTree = "<group>"; };
+		4F3C7254170B956600B2BB79 /* AppNavBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppNavBackground.png; sourceTree = "<group>"; };
+		4F3C7256170C6D5800B2BB79 /* albumsIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = albumsIcon.png; sourceTree = "<group>"; };
+		4F3C7257170C6D5800B2BB79 /* createNewIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = createNewIcon.png; sourceTree = "<group>"; };
+		4F3C7258170C6D5800B2BB79 /* helpIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = helpIcon.png; sourceTree = "<group>"; };
+		4F3C7259170C6D5800B2BB79 /* profileIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profileIcon.png; sourceTree = "<group>"; };
+		4F3C725A170C6D5800B2BB79 /* searchIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = searchIcon.png; sourceTree = "<group>"; };
+		4F3C725B170C6D5800B2BB79 /* smallBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smallBackground.png; sourceTree = "<group>"; };
+		4F3C7262170CD4E600B2BB79 /* CameraPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CameraPicker.h; path = ../CameraPicker.h; sourceTree = "<group>"; };
+		4F3C7263170CD4E600B2BB79 /* CameraPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CameraPicker.m; path = ../CameraPicker.m; sourceTree = "<group>"; };
 		4F6DEC3C16FCF6140074A455 /* PFProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PFProfileViewController.h; path = ../PFProfileViewController.h; sourceTree = "<group>"; };
 		4F6DEC3D16FCF6140074A455 /* PFProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PFProfileViewController.m; path = ../PFProfileViewController.m; sourceTree = "<group>"; };
 		4F6DEC3F1700F8120074A455 /* AlbumListData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AlbumListData.h; path = ../AlbumListData.h; sourceTree = "<group>"; };
@@ -703,8 +723,8 @@
 		4F7EF06D16EFA6C600A364D7 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		4F7EF06E16EFA6C600A364D7 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		4F7EF07016EFA78800A364D7 /* Plan */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Plan; sourceTree = "<group>"; };
-		4F7EF07216EFA94500A364D7 /* Manager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Manager.h; path = "Frames Sharing/Manager.h"; sourceTree = "<group>"; };
-		4F7EF07316EFA94500A364D7 /* Manager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Manager.m; path = "Frames Sharing/Manager.m"; sourceTree = "<group>"; };
+		4F7EF07216EFA94500A364D7 /* Manager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Manager.h; sourceTree = "<group>"; };
+		4F7EF07316EFA94500A364D7 /* Manager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Manager.m; sourceTree = "<group>"; };
 		4F96216B16EA7E2E0034E26A /* albums.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = albums.png; sourceTree = "<group>"; };
 		4F96216C16EA7E2E0034E26A /* facebook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = facebook.png; sourceTree = "<group>"; };
 		4F96216D16EA7E2E0034E26A /* ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ipad.png; sourceTree = "<group>"; };
@@ -1060,6 +1080,12 @@
 		828C4CAE170A5AAE00F110F7 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		828C4CB0170A5AB500F110F7 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		828C4CB2170A5B1200F110F7 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		828C4CC4170D19EC00F110F7 /* PFPickAlbumViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFPickAlbumViewController.h; sourceTree = "<group>"; };
+		828C4CC5170D19EC00F110F7 /* PFPickAlbumViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFPickAlbumViewController.m; sourceTree = "<group>"; };
+		828C4CC8170D1AD400F110F7 /* AlbumPickerListData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlbumPickerListData.h; sourceTree = "<group>"; };
+		828C4CC9170D1AD400F110F7 /* AlbumPickerListData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlbumPickerListData.m; sourceTree = "<group>"; };
+		828C4CCB170D223500F110F7 /* PFSharingCenterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFSharingCenterViewController.h; sourceTree = "<group>"; };
+		828C4CCC170D223500F110F7 /* PFSharingCenterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFSharingCenterViewController.m; sourceTree = "<group>"; };
 		82BC84C716ED79FA000AC3E1 /* FFEF.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FFEF.framework; path = ../../FatFractal/FFEF.framework; sourceTree = "<group>"; };
 		82DAC3F516ED74E00071B485 /* Album.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Album.h; sourceTree = "<group>"; };
 		82DAC3F616ED74E00071B485 /* Album.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Album.m; sourceTree = "<group>"; };
@@ -1140,6 +1166,10 @@
 		4F7EF06916EFA27600A364D7 /* CustomObjects */ = {
 			isa = PBXGroup;
 			children = (
+				4F7EF07216EFA94500A364D7 /* Manager.h */,
+				4F7EF07316EFA94500A364D7 /* Manager.m */,
+				4F3C7262170CD4E600B2BB79 /* CameraPicker.h */,
+				4F3C7263170CD4E600B2BB79 /* CameraPicker.m */,
 				82DAC3F516ED74E00071B485 /* Album.h */,
 				82DAC3F616ED74E00071B485 /* Album.m */,
 				82DAC3F816ED75290071B485 /* Photo.h */,
@@ -1154,6 +1184,13 @@
 		4F96216A16EA7E1D0034E26A /* Artwork */ = {
 			isa = PBXGroup;
 			children = (
+				4F3C7256170C6D5800B2BB79 /* albumsIcon.png */,
+				4F3C7257170C6D5800B2BB79 /* createNewIcon.png */,
+				4F3C7258170C6D5800B2BB79 /* helpIcon.png */,
+				4F3C7259170C6D5800B2BB79 /* profileIcon.png */,
+				4F3C725A170C6D5800B2BB79 /* searchIcon.png */,
+				4F3C725B170C6D5800B2BB79 /* smallBackground.png */,
+				4F3C7254170B956600B2BB79 /* AppNavBackground.png */,
 				8265840217082349009E8911 /* thrash.png */,
 				82658407170825C7009E8911 /* user.png */,
 				82658405170823F8009E8911 /* flag_red.png */,
@@ -1683,8 +1720,6 @@
 			children = (
 				828C4901170A573700F110F7 /* Photo Editor */,
 				4F7EF07016EFA78800A364D7 /* Plan */,
-				4F7EF07216EFA94500A364D7 /* Manager.h */,
-				4F7EF07316EFA94500A364D7 /* Manager.m */,
 				4F7EF06916EFA27600A364D7 /* CustomObjects */,
 				4F96216A16EA7E1D0034E26A /* Artwork */,
 				DBA2CE6116E4FC6100479C8A /* Frames Sharing VC */,
@@ -1729,6 +1764,8 @@
 				4F1F7C5E1704EBDB0083968B /* LoginRegisterViewController.m */,
 				4F6DEC3F1700F8120074A455 /* AlbumListData.h */,
 				4F6DEC401700F8120074A455 /* AlbumListData.m */,
+				828C4CC8170D1AD400F110F7 /* AlbumPickerListData.h */,
+				828C4CC9170D1AD400F110F7 /* AlbumPickerListData.m */,
 				4F6DEC451700FB9D0074A455 /* AlbumDetailsData.h */,
 				4F6DEC461700FB9D0074A455 /* AlbumDetailsData.m */,
 				4FAB7E9616F902EB00920E34 /* iPadStoryboard.storyboard */,
@@ -1741,21 +1778,25 @@
 				DBA2CE6A16E4FC6100479C8A /* PFSharingAppDelegate.h */,
 				DBA2CE6B16E4FC6100479C8A /* PFSharingAppDelegate.m */,
 				DBA2CE7316E4FC6100479C8A /* MainStoryboard.storyboard */,
+				828C4CC4170D19EC00F110F7 /* PFPickAlbumViewController.h */,
+				828C4CC5170D19EC00F110F7 /* PFPickAlbumViewController.m */,
+				DBA2CE8116E519CA00479C8A /* PFAlbumsViewController.h */,
+				DBA2CE8216E519CA00479C8A /* PFAlbumsViewController.m */,
 				8239753B16F291E5008E1605 /* PFAlbumDetailsViewController.h */,
 				8239753C16F291E5008E1605 /* PFAlbumDetailsViewController.m */,
 				DB21A8FC16E51B4100EFDCBE /* PFExploreCell.h */,
 				DB21A8FD16E51B4100EFDCBE /* PFExploreCell.m */,
 				DBA2CE8416E519E700479C8A /* PFExploreViewController.h */,
 				DBA2CE8516E519E700479C8A /* PFExploreViewController.m */,
-				DBA2CE8116E519CA00479C8A /* PFAlbumsViewController.h */,
-				DBA2CE8216E519CA00479C8A /* PFAlbumsViewController.m */,
 				DBA2CE7616E4FC6100479C8A /* PFSharingViewController.h */,
 				DBA2CE7716E4FC6100479C8A /* PFSharingViewController.m */,
-				DBA2CE6216E4FC6100479C8A /* Supporting Files */,
+				828C4CCB170D223500F110F7 /* PFSharingCenterViewController.h */,
+				828C4CCC170D223500F110F7 /* PFSharingCenterViewController.m */,
 				8239753E16F33B3C008E1605 /* PFDisplayMyPhotoViewController.h */,
 				8239753F16F33B3C008E1605 /* PFDisplayMyPhotoViewController.m */,
 				4FAB7E8F16F8B72500920E34 /* PFDisplayPhotoViewController.h */,
 				4FAB7E9016F8B72500920E34 /* PFDisplayPhotoViewController.m */,
+				DBA2CE6216E4FC6100479C8A /* Supporting Files */,
 			);
 			name = "Frames Sharing VC";
 			path = "Frames Sharing";
@@ -2452,6 +2493,13 @@
 				828C4C9A170A582900F110F7 /* storeWoodBackground.png in Resources */,
 				828C4C9C170A582900F110F7 /* YellowButton.png in Resources */,
 				828C4C9E170A582900F110F7 /* YellowButtonPin.png in Resources */,
+				4F3C7255170B956600B2BB79 /* AppNavBackground.png in Resources */,
+				4F3C725C170C6D5800B2BB79 /* albumsIcon.png in Resources */,
+				4F3C725D170C6D5800B2BB79 /* createNewIcon.png in Resources */,
+				4F3C725E170C6D5800B2BB79 /* helpIcon.png in Resources */,
+				4F3C725F170C6D5800B2BB79 /* profileIcon.png in Resources */,
+				4F3C7260170C6D5800B2BB79 /* searchIcon.png in Resources */,
+				4F3C7261170C6D5800B2BB79 /* smallBackground.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2544,6 +2592,10 @@
 				828C48FF170A56F500F110F7 /* SocialHelper.m in Sources */,
 				828C490A170A577700F110F7 /* ViewController.m in Sources */,
 				828C4CA6170A58C500F110F7 /* FilterEffects.m in Sources */,
+				4F3C7264170CD4E600B2BB79 /* CameraPicker.m in Sources */,
+				828C4CC6170D19EC00F110F7 /* PFPickAlbumViewController.m in Sources */,
+				828C4CCA170D1AD400F110F7 /* AlbumPickerListData.m in Sources */,
+				828C4CCD170D223500F110F7 /* PFSharingCenterViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

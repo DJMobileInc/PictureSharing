@@ -7,11 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Manager.h"
+@class Manager;
 
 @interface AlbumListData : NSObject <UITableViewDataSource, UITableViewDelegate>
+{
+    Manager * manager;
+}
 @property (nonatomic,retain) NSMutableArray * objects;
 @property (nonatomic,retain) UIStoryboard * storyboard;
 @property (nonatomic,retain)UINavigationController * navigationController;
-
 
 @end
