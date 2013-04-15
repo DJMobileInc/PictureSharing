@@ -11,9 +11,30 @@
 #import "User.h"
 #import "Album.h"
 #import "PFProfileViewController.h"
+#import "PFSharingCenterViewController.h"
+#import "ViewController.h"
 
 
 @implementation UIImage (Extras)
+
++ (void)saveImage:(UIImage *)image withName:(NSString *)name {
+    NSData *data = UIImageJPEGRepresentation(image, 1.0);
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSString *fullPath = [NSTemporaryDirectory() stringByAppendingPathComponent:name];
+    NSLog(@" Full path %@",fullPath);
+    
+    [fileManager createFileAtPath:fullPath contents:data attributes:nil];
+}
+
++ (UIImage *)loadImage:(NSString *)name {
+    NSString *fullPath = [NSTemporaryDirectory() stringByAppendingPathComponent:name];
+    
+    UIImage *img = [UIImage imageWithContentsOfFile:fullPath];
+        NSLog(@" Img %@",img);
+    return img;
+}
+
+
 - (UIImage *)crop:(CGRect)rect {
     
     rect = CGRectMake(rect.origin.x*self.scale,
@@ -148,22 +169,22 @@ UIPopoverController * popover;
 }
 
 -(void)deleteAll{
-        NSArray * a = [[FatFractal main]getArrayFromUri:[NSString stringWithFormat:@"/ff/resources/Photo/"]];
+        NSArray * a = [self.ff getArrayFromUri:[NSString stringWithFormat:@"/ff/resources/Photo/"]];
     for(Photo * p in a){
         [self.ff deleteObj:p];
     }
     
-    a = [[FatFractal main]getArrayFromUri:[NSString stringWithFormat:@"/ff/resources/PhotoFile/"]];
+    a = [self.ff getArrayFromUri:[NSString stringWithFormat:@"/ff/resources/PhotoFile/"]];
     for(id p in a){
         [self.ff deleteObj:p];
     }
    
-    a = [[FatFractal main]getArrayFromUri:[NSString stringWithFormat:@"/ff/resources/Album/"]];
+    a = [self.ff getArrayFromUri:[NSString stringWithFormat:@"/ff/resources/Album/"]];
     for(id p in a){
         [self.ff deleteObj:p];
     }
 
-    a = [[FatFractal main]getArrayFromUri:[NSString stringWithFormat:@"/ff/resources/Images/"]];
+    a = [self.ff getArrayFromUri:[NSString stringWithFormat:@"/ff/resources/Images/"]];
     for(id p in a){
         [self.ff deleteObj:p];
     }
@@ -177,9 +198,6 @@ UIPopoverController * popover;
 
     UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"Message" message:message delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
     [alert show];
-    NSLog(@"User is: %@",self.user);
-    NSLog(@"Username is: %@",self.user.userName);
-    
 }
 
 
@@ -199,17 +217,19 @@ UIPopoverController * popover;
 
 -(void)loggingInWithName:(NSString *)userName andPassword: (NSString *)password{
 
-    [[FatFractal main]loginWithUserName:userName andPassword:password onComplete: ^(NSError * error, id theObj, NSHTTPURLResponse * theResponse)
+    [self.ff loginWithUserName:userName andPassword:password onComplete: ^(NSError * error, id theObj, NSHTTPURLResponse * theResponse)
      {
          if(error){
              [self displayMessage:[error localizedDescription]];
          }
          else{
              self.user =  theObj;
+            /*
              UIImage * img = [UIImage imageNamed:@"user"];
              NSData * imageData =  UIImageJPEGRepresentation(img, 0.7);
              self.user.profilePicture = imageData;
              [self updateObject:self.user];
+            */
              [self displayMessage:@"Succesfully Logged In"];
              [[NSNotificationCenter defaultCenter]postNotificationName:loginSucceededNotification object:theObj];
          }
@@ -220,7 +240,7 @@ UIPopoverController * popover;
 
 -(void)signUpWithName:(NSString *)userName andPassword: (NSString *)password{
     //for now using the auto registration
-    //self.user = [[FatFractal main] loginWithUserName:userName andPassword:password];
+    //self.user = [self.ff loginWithUserName:userName andPassword:password];
     [self loggingInWithName:userName andPassword:password];
     
 }
@@ -266,10 +286,12 @@ UIPopoverController * popover;
 
 
 -(void)getPhotosForAlbum:(NSString *)albumId{
-    [[FatFractal main]getArrayFromUri:[NSString stringWithFormat:@"/ff/resources/Photo/(albumId eq '%@')",albumId] onComplete:
+    NSLog(@"Get Photos for Album requested");
+    [self.ff getArrayFromUri:[NSString stringWithFormat:@"/ff/resources/Photo/(albumId eq '%@')",albumId] onComplete:
      ^(NSError * theErr, id theObj, NSHTTPURLResponse * theResponse)
      {
-         if(theErr){
+        
+         NSLog(@"Get Photos for Album retrieved");if(theErr){
              [self displayMessage:[theErr localizedDescription]];
          }
          else{
@@ -286,7 +308,7 @@ UIPopoverController * popover;
     
     //NSLog(@" /Album/(userId = 7TuJG1fpPUbIFyxBHQiRy7) %@",guid);
     
-    [[FatFractal main]getArrayFromUri:[NSString stringWithFormat:@"/ff/resources/Album/(userId eq '%@')",guid] onComplete:
+    [self.ff getArrayFromUri:[NSString stringWithFormat:@"/ff/resources/Album/(userId eq '%@')",guid] onComplete:
      ^(NSError * theErr, id theObj, NSHTTPURLResponse * theResponse)
      {
          if(theErr){
@@ -306,11 +328,11 @@ UIPopoverController * popover;
 
 #pragma mark photo
 
--(void)getOwnerOfPhoto:(Photo *) photo{
+-(void)getOwnerOfPhoto:(Photo *) photo asynchronusly:(BOOL)yes{
     //find album
     NSString * queryString  = [NSString stringWithFormat:@"/ff/resources/Album/(guid eq '%@')",photo.albumId];
     
-    [[FatFractal main]getObjFromUri:queryString onComplete:
+    [self.ff getObjFromUri:queryString onComplete:
      ^(NSError * theErr, id theObj, NSHTTPURLResponse * theResponse)
      {
          if(theErr){
@@ -322,7 +344,7 @@ UIPopoverController * popover;
              NSString * userGuid = album.userId;
              NSString * queryString  = [NSString stringWithFormat:@"/ff/resources/FFUser/%@",userGuid];
             //getting user
-             [[FatFractal main]getObjFromUri:queryString onComplete:
+             [self.ff getObjFromUri:queryString onComplete:
               ^(NSError * theErr, id theObj, NSHTTPURLResponse * theResponse)
               {
                   [[NSNotificationCenter defaultCenter] postNotificationName:userRetrievedNotification
@@ -356,9 +378,9 @@ UIPopoverController * popover;
     UIImage * ui = [UIImage imageWithData:_imageData];
     ui = [ui imageByScalingProportionallyToSize:CGSizeMake(800, 1024)];
     UIImage * thumbnail = [ui imageByScalingProportionallyToSize:CGSizeMake(100, 100)];
-
-    NSData *thumbnailImageData = UIImageJPEGRepresentation(thumbnail, 0.7); // 0.7 is JPG quality
-    NSData *imageData = UIImageJPEGRepresentation(ui, 0.7); // 0.7 is JPG quality
+    
+    NSData *thumbnailImageData = UIImagePNGRepresentation(thumbnail); // 0.7 is JPG quality
+    NSData *imageData = UIImagePNGRepresentation(ui); // 0.7 is JPG quality
     
     photo.thumbnailImageData = thumbnailImageData;
     photo.imageData= imageData;
@@ -374,6 +396,7 @@ UIPopoverController * popover;
          if(theErr==nil){
              //Now we can update the file associated with it.
             //self.delegate pho
+             [[NSNotificationCenter defaultCenter]postNotificationName:photoCreatedNotification object:nil];
                     
          }
          else{
@@ -406,8 +429,9 @@ UIPopoverController * popover;
 
 -(void)getNewestPhotos{
     
+    NSLog(@"Getting newest Photos ");
     NSString * searchQuery = [NSString stringWithFormat:@"/ff/resources/Photo/(isPublic eq 1 and flag eq 0)"];
-    [[FatFractal main]getArrayFromUri:searchQuery onComplete:
+    [self.ff getArrayFromUri:searchQuery onComplete:
      ^(NSError * theErr, id theObj, NSHTTPURLResponse * theResponse)
      {
          if(theErr){
@@ -433,11 +457,8 @@ UIPopoverController * popover;
 -(void)getPhotosWithSearchQuery:(NSString *)searchText{
     NSString * searchQuery = [NSString stringWithFormat:@"/ff/resources/Photo/(title matches '.*%@.*' and isPublic eq 1 and flag eq 0 or description matches '.*%@.*' and isPublic eq 1 and flag eq 0)",searchText,searchText];
     
-#warning TO DO fix the query add argument visible for privacy protection
-//    NSString * searchQuery = [NSString stringWithFormat:@"/ff/resources/Photo/(isPublic eq 1)"];
-    
-    
-    [[FatFractal main]getArrayFromUri:searchQuery onComplete:
+
+    [self.ff getArrayFromUri:searchQuery onComplete:
      ^(NSError * theErr, id theObj, NSHTTPURLResponse * theResponse)
      {
          if(theErr){
@@ -446,14 +467,10 @@ UIPopoverController * popover;
          else{
              //retrieved array of photos in album.
              NSArray * photosArray = theObj;
-             NSLog(@"Photos Array %@",photosArray);
-             
              [[NSNotificationCenter defaultCenter]postNotificationName:photosRetrievedFromSearchNotification object:photosArray];
-
          }
      }];
 }
-
 
 
 -(void)testIt{
@@ -461,12 +478,59 @@ UIPopoverController * popover;
     [self loggingInWithName:@"Janek2004" andPassword:@"Stany174"];
 }
 
+-(void)showPhotoEditorForNavigationController:(id)navigationController editImage:(UIImage *)image{
+    UIViewController *vc;
+    if(UI_USER_INTERFACE_IDIOM()== UIUserInterfaceIdiomPhone)
+    {
+        UIStoryboard *iPhoneStoryboard = [UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil];
+        vc = [iPhoneStoryboard instantiateInitialViewController];
+    }
+    else{
+        UIStoryboard *iPadStoryboard = [UIStoryboard storyboardWithName:@"MainStoryboard_iPad" bundle:nil];
+        vc =[iPadStoryboard instantiateInitialViewController];
+    }
+    if(image){
+        [(ViewController *)vc setImageToDisplay:image];
+        
+    }
+    vc.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    NSLog(@"_1nav %@ and %@ ",navigationController,vc);
+    
+    [navigationController pushViewController:vc animated:YES];
+}
 
 
 
-
-
-
+-(void)showSharingCenterForPhoto:(UIImage *)resultImage andPopover:(UIPopoverController*)sharingCenterPopoverController inView:(UIView *)view andNavigationController: (id)navigationController fromBarButton:(UIButton *)barButton{
+    PFSharingCenterViewController *vc;
+   
+    if(UI_USER_INTERFACE_IDIOM()== UIUserInterfaceIdiomPad)
+    {
+        //pick right storyboard
+        UIStoryboard *iPhoneStoryboard = [UIStoryboard storyboardWithName:@"iPadStoryboard" bundle:nil];
+        vc = [iPhoneStoryboard instantiateViewControllerWithIdentifier:@"sharingCenterViewController"];
+        vc.imageToShare = resultImage;
+        //present it in popover
+        popover = sharingCenterPopoverController;
+        if(!popover)
+        {
+             popover = [[UIPopoverController alloc]initWithContentViewController:vc];
+        }
+        if([ popover isPopoverVisible]){
+            [ popover dismissPopoverAnimated:YES];
+        }
+        else{
+            [popover presentPopoverFromRect:CGRectMake(400,500,10, 10)  inView:view permittedArrowDirections:UIPopoverArrowDirectionDown animated:YES];
+        }
+    }
+    else{
+        UIStoryboard *iPadStoryboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
+        vc =(PFSharingCenterViewController *) [iPadStoryboard instantiateViewControllerWithIdentifier:@"sharingCenterViewController"];
+        vc.imageToShare = resultImage;
+        
+        [navigationController pushViewController:vc animated:YES];
+    }
+}
 
 
 @end

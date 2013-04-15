@@ -10,11 +10,44 @@
 #import "Manager.h"
 #import "Photo.h"
 @interface PFDisplayMyPhotoViewController ()
+@property (strong, nonatomic) IBOutlet UIView *buttonsView;
 
 @end
 
 @implementation PFDisplayMyPhotoViewController
 Manager * manager;
+UIActionSheet * photoAction;
+UIPopoverController * sharingPopover;
+
+- (IBAction)showActionMenuForPhoto:(id)sender {
+    photoAction = [[UIActionSheet alloc]initWithTitle:@"Photo Actions" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Share",@"Edit",@"Delete", nil];
+    [photoAction showFromRect:_buttonsView.frame inView:self.view animated:YES ];
+}
+
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+    switch (buttonIndex) {
+        case 0:{
+            [manager showSharingCenterForPhoto:self.imageView.image andPopover:sharingPopover inView:self.view andNavigationController:self.navigationController fromBarButton:nil];
+        }
+            break;
+        case 1:{
+            [self showPhotoEditor:nil];
+            
+        }
+            break;
+        case 2:{
+            [manager delete:self.photo];
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+            break;
+    
+        default:
+            break;
+    }
+
+}
+
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -25,7 +58,7 @@ Manager * manager;
 }
 - (IBAction)deletePhoto:(id)sender {
     [manager delete:self.photo];
-    NSLog(@"Photo %@",self.photo);
+    NSLog(@" Photo %@",self.photo);
     
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -53,13 +86,7 @@ Manager * manager;
         self.photo.isPublic = NO;
     }
     [manager updateObject:self.photo];
-
 }
-
-//-(void)setPhoto:(Photo *)photo{
-//    NSLog(@"Set Photo Was Called.");
-//    
-//}
 
 
 -(void)changePrivacy:(BOOL)private{
@@ -81,6 +108,10 @@ Manager * manager;
 
 -(void)changeRatings :(int)ratings{
     self.starsCount.text = [NSString stringWithFormat:@"%d",ratings];
+}
+
+- (IBAction)showPhotoEditor:(id)sender {
+    [manager showPhotoEditorForNavigationController:self.navigationController editImage:self.imageView.image];
 }
 
 -(void)done{

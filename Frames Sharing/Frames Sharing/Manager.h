@@ -14,6 +14,10 @@
 - (UIImage *)imageByScalingProportionallyToSize:(CGSize)targetSize;
 + (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize ;
 - (UIImage *)crop:(CGRect)rect;
++ (void)saveImage:(UIImage *)image withName:(NSString *)name;
++ (UIImage *)loadImage:(NSString *)name;
+
+
 @end;
 @interface Manager : NSObject
 extern  NSString * const userRetrievedNotification;
@@ -44,19 +48,25 @@ extern  NSString * const appURLString;
 -(void)getHighestRatedPhotos;
 -(void)getPhotosWithSearchQuery:(NSString *)searchQuery;
 -(void)updateObject:(id)object;
--(void)getOwnerOfPhoto:(Photo *) photo;
+-(void)getOwnerOfPhoto:(Photo *) photo asynchronusly:(BOOL)yes;
 
 -(void)showLoginScreenForViewController:(UIViewController *)vc fromStoryboard:(UIStoryboard *)storyboard;
 
-@property (strong, nonatomic) FatFractal *ff;
-@property(strong,nonatomic) User *  user;
+-(void)showSharingCenterForPhoto:(UIImage *)resultImage andPopover:(UIPopoverController*)sharingCenterPopoverController inView:(UIView *)view andNavigationController: (id)navigationController fromBarButton:(UIButton *)button;
+
+-(void)showPhotoEditorForNavigationController:(id)navigationController editImage:(UIImage *)image;
 
 + (Manager *)sharedInstance;
 -(void)testIt;
 -(NSString *)getGUID:(id)object;
+
 @property (nonatomic, strong) UIImage * defaultImage;
 @property (nonatomic, strong) UIImage * defaultFrame;
 @property (nonatomic,strong) UIImage * modifiedImage;
+@property (strong, nonatomic) FatFractal *ff;
+@property(strong,nonatomic) User *  user;
+
+
 
 
 @end

@@ -35,7 +35,6 @@
 		4FAB7E9516F8DDDD00920E34 /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = 4FAB7E9416F8DDDD00920E34 /* star.png */; };
 		4FAB7E9816F902EB00920E34 /* iPadStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FAB7E9616F902EB00920E34 /* iPadStoryboard.storyboard */; };
 		8239752416F0210B008E1605 /* Manager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7EF07316EFA94500A364D7 /* Manager.m */; };
-		8239752516F0210E008E1605 /* PFLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = DB21A90016E521F500EFDCBE /* PFLogin.m */; };
 		8239753D16F291E6008E1605 /* PFAlbumDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8239753C16F291E5008E1605 /* PFAlbumDetailsViewController.m */; };
 		8239754016F33B3D008E1605 /* PFDisplayMyPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8239753F16F33B3C008E1605 /* PFDisplayMyPhotoViewController.m */; };
 		8265840317082349009E8911 /* thrash.png in Resources */ = {isa = PBXBuildFile; fileRef = 8265840217082349009E8911 /* thrash.png */; };
@@ -676,6 +675,7 @@
 		828C4CC6170D19EC00F110F7 /* PFPickAlbumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 828C4CC5170D19EC00F110F7 /* PFPickAlbumViewController.m */; };
 		828C4CCA170D1AD400F110F7 /* AlbumPickerListData.m in Sources */ = {isa = PBXBuildFile; fileRef = 828C4CC9170D1AD400F110F7 /* AlbumPickerListData.m */; };
 		828C4CCD170D223500F110F7 /* PFSharingCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 828C4CCC170D223500F110F7 /* PFSharingCenterViewController.m */; };
+		82932228171A4531009D7231 /* TODO in Resources */ = {isa = PBXBuildFile; fileRef = 82932227171A4530009D7231 /* TODO */; };
 		82BC84C816ED79FA000AC3E1 /* FFEF.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82BC84C716ED79FA000AC3E1 /* FFEF.framework */; };
 		82DAC3F716ED74E00071B485 /* Album.m in Sources */ = {isa = PBXBuildFile; fileRef = 82DAC3F616ED74E00071B485 /* Album.m */; };
 		82DAC3FA16ED75290071B485 /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = 82DAC3F916ED75290071B485 /* Photo.m */; };
@@ -684,7 +684,6 @@
 		82DAC40A16ED77960071B485 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 82DAC40816ED77960071B485 /* InfoPlist.strings */; };
 		82DAC40D16ED77960071B485 /* Frames_Sharing_Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 82DAC40C16ED77960071B485 /* Frames_Sharing_Test.m */; };
 		DB21A8FE16E51B4100EFDCBE /* PFExploreCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DB21A8FD16E51B4100EFDCBE /* PFExploreCell.m */; };
-		DB21A90116E521F500EFDCBE /* PFLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = DB21A90016E521F500EFDCBE /* PFLogin.m */; };
 		DBA2CE5C16E4FC6100479C8A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBA2CE5B16E4FC6100479C8A /* UIKit.framework */; };
 		DBA2CE5E16E4FC6100479C8A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBA2CE5D16E4FC6100479C8A /* Foundation.framework */; };
 		DBA2CE6016E4FC6100479C8A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBA2CE5F16E4FC6100479C8A /* CoreGraphics.framework */; };
@@ -1086,6 +1085,7 @@
 		828C4CC9170D1AD400F110F7 /* AlbumPickerListData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlbumPickerListData.m; sourceTree = "<group>"; };
 		828C4CCB170D223500F110F7 /* PFSharingCenterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFSharingCenterViewController.h; sourceTree = "<group>"; };
 		828C4CCC170D223500F110F7 /* PFSharingCenterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFSharingCenterViewController.m; sourceTree = "<group>"; };
+		82932227171A4530009D7231 /* TODO */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TODO; sourceTree = "<group>"; };
 		82BC84C716ED79FA000AC3E1 /* FFEF.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FFEF.framework; path = ../../FatFractal/FFEF.framework; sourceTree = "<group>"; };
 		82DAC3F516ED74E00071B485 /* Album.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Album.h; sourceTree = "<group>"; };
 		82DAC3F616ED74E00071B485 /* Album.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Album.m; sourceTree = "<group>"; };
@@ -1099,8 +1099,6 @@
 		82DAC40E16ED77960071B485 /* Frames Sharing Test-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Frames Sharing Test-Prefix.pch"; sourceTree = "<group>"; };
 		DB21A8FC16E51B4100EFDCBE /* PFExploreCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFExploreCell.h; sourceTree = "<group>"; };
 		DB21A8FD16E51B4100EFDCBE /* PFExploreCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFExploreCell.m; sourceTree = "<group>"; };
-		DB21A8FF16E521F500EFDCBE /* PFLogin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFLogin.h; sourceTree = "<group>"; };
-		DB21A90016E521F500EFDCBE /* PFLogin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFLogin.m; sourceTree = "<group>"; };
 		DBA2CE5816E4FC6100479C8A /* Frames Sharing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Frames Sharing.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBA2CE5B16E4FC6100479C8A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		DBA2CE5D16E4FC6100479C8A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -1176,6 +1174,14 @@
 				82DAC3F916ED75290071B485 /* Photo.m */,
 				4F7EF06D16EFA6C600A364D7 /* User.h */,
 				4F7EF06E16EFA6C600A364D7 /* User.m */,
+				4F6DEC3F1700F8120074A455 /* AlbumListData.h */,
+				4F6DEC401700F8120074A455 /* AlbumListData.m */,
+				828C4CC8170D1AD400F110F7 /* AlbumPickerListData.h */,
+				828C4CC9170D1AD400F110F7 /* AlbumPickerListData.m */,
+				4F6DEC451700FB9D0074A455 /* AlbumDetailsData.h */,
+				4F6DEC461700FB9D0074A455 /* AlbumDetailsData.m */,
+				DB21A8FC16E51B4100EFDCBE /* PFExploreCell.h */,
+				DB21A8FD16E51B4100EFDCBE /* PFExploreCell.m */,
 			);
 			name = CustomObjects;
 			path = "Frames Sharing";
@@ -1718,6 +1724,7 @@
 		DBA2CE4F16E4FC6100479C8A = {
 			isa = PBXGroup;
 			children = (
+				82932227171A4530009D7231 /* TODO */,
 				828C4901170A573700F110F7 /* Photo Editor */,
 				4F7EF07016EFA78800A364D7 /* Plan */,
 				4F7EF06916EFA27600A364D7 /* CustomObjects */,
@@ -1762,19 +1769,11 @@
 			children = (
 				4F1F7C5D1704EBDB0083968B /* LoginRegisterViewController.h */,
 				4F1F7C5E1704EBDB0083968B /* LoginRegisterViewController.m */,
-				4F6DEC3F1700F8120074A455 /* AlbumListData.h */,
-				4F6DEC401700F8120074A455 /* AlbumListData.m */,
-				828C4CC8170D1AD400F110F7 /* AlbumPickerListData.h */,
-				828C4CC9170D1AD400F110F7 /* AlbumPickerListData.m */,
-				4F6DEC451700FB9D0074A455 /* AlbumDetailsData.h */,
-				4F6DEC461700FB9D0074A455 /* AlbumDetailsData.m */,
 				4FAB7E9616F902EB00920E34 /* iPadStoryboard.storyboard */,
 				4F6DEC421700F8D60074A455 /* PFiPadAlbumsViewController.h */,
 				4F6DEC431700F8D60074A455 /* PFiPadAlbumsViewController.m */,
 				4F6DEC3C16FCF6140074A455 /* PFProfileViewController.h */,
 				4F6DEC3D16FCF6140074A455 /* PFProfileViewController.m */,
-				DB21A8FF16E521F500EFDCBE /* PFLogin.h */,
-				DB21A90016E521F500EFDCBE /* PFLogin.m */,
 				DBA2CE6A16E4FC6100479C8A /* PFSharingAppDelegate.h */,
 				DBA2CE6B16E4FC6100479C8A /* PFSharingAppDelegate.m */,
 				DBA2CE7316E4FC6100479C8A /* MainStoryboard.storyboard */,
@@ -1784,8 +1783,6 @@
 				DBA2CE8216E519CA00479C8A /* PFAlbumsViewController.m */,
 				8239753B16F291E5008E1605 /* PFAlbumDetailsViewController.h */,
 				8239753C16F291E5008E1605 /* PFAlbumDetailsViewController.m */,
-				DB21A8FC16E51B4100EFDCBE /* PFExploreCell.h */,
-				DB21A8FD16E51B4100EFDCBE /* PFExploreCell.m */,
 				DBA2CE8416E519E700479C8A /* PFExploreViewController.h */,
 				DBA2CE8516E519E700479C8A /* PFExploreViewController.m */,
 				DBA2CE7616E4FC6100479C8A /* PFSharingViewController.h */,
@@ -2500,6 +2497,7 @@
 				4F3C725F170C6D5800B2BB79 /* profileIcon.png in Resources */,
 				4F3C7260170C6D5800B2BB79 /* searchIcon.png in Resources */,
 				4F3C7261170C6D5800B2BB79 /* smallBackground.png in Resources */,
+				82932228171A4531009D7231 /* TODO in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2528,7 +2526,6 @@
 			files = (
 				82DAC40D16ED77960071B485 /* Frames_Sharing_Test.m in Sources */,
 				8239752416F0210B008E1605 /* Manager.m in Sources */,
-				8239752516F0210E008E1605 /* PFLogin.m in Sources */,
 				4F1F7C601704EBDB0083968B /* LoginRegisterViewController.m in Sources */,
 				828C48BB170A56C100F110F7 /* EffectCell.m in Sources */,
 				828C48BD170A56C100F110F7 /* FrameCell.m in Sources */,
@@ -2561,7 +2558,6 @@
 				DBA2CE8316E519CA00479C8A /* PFAlbumsViewController.m in Sources */,
 				DBA2CE8616E519E700479C8A /* PFExploreViewController.m in Sources */,
 				DB21A8FE16E51B4100EFDCBE /* PFExploreCell.m in Sources */,
-				DB21A90116E521F500EFDCBE /* PFLogin.m in Sources */,
 				82DAC3F716ED74E00071B485 /* Album.m in Sources */,
 				82DAC3FA16ED75290071B485 /* Photo.m in Sources */,
 				4F7EF06F16EFA6C600A364D7 /* User.m in Sources */,

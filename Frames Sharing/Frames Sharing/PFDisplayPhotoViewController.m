@@ -12,6 +12,7 @@
 
 @interface PFDisplayPhotoViewController ()
 @property (strong, nonatomic) IBOutlet UIButton *authorButton;
+- (IBAction)flagPhoto:(id)sender;
 
 @end
 
@@ -45,14 +46,13 @@ Manager * manager;
 }
 
 -(void)getUser{
-    [manager getOwnerOfPhoto:self.photo];
+    [manager getOwnerOfPhoto:self.photo asynchronusly:YES];
 }
 
 -(void)userReceived:(NSNotification *)notification{
     self.user = notification.object;
     [self displayAuthor:self.user.userName];
     NSLog(@"User Retrieved %@ ",self.user);
-    
 }
 
 
@@ -121,13 +121,10 @@ Manager * manager;
       return;
     }
     
-//    if(!user){
-//   
-//       return;
-//   }
-
     PFProfileViewController * p = [self.storyboard instantiateViewControllerWithIdentifier:@"PFProfileViewController"];
-    p.user = manager.user;
+    if(self.user){
+        p.user = self.user;
+    }
     [self.navigationController pushViewController:p animated:YES];
 
 }

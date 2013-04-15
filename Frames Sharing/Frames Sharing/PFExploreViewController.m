@@ -21,6 +21,12 @@
 Manager * manager;
 NSMutableArray * photoArray;
 
+#pragma mark iPad Methods
+
+
+
+#pragma mark end of iPad
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -34,7 +40,6 @@ NSMutableArray * photoArray;
     else{
         [photoArray removeAllObjects];
     }
-    // NSLog(@"View Will Appear");
 
     [manager getNewestPhotos];
     
@@ -58,9 +63,14 @@ NSMutableArray * photoArray;
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    PFDisplayPhotoViewController * pdp = [self.storyboard instantiateViewControllerWithIdentifier:@"PFDisplayPhotoViewController"];
+    PFDisplayPhotoViewController * pdp;
     Photo * p = [photoArray objectAtIndex:indexPath.row];
+   // if(manager.user == [manager getOwnerOfPhoto:p] )
+    pdp= [self.storyboard instantiateViewControllerWithIdentifier:@"PFDisplayPhotoViewController"];
+   
     pdp.photo = p;
+    
+    
     [self.navigationController pushViewController:pdp animated:YES];
  
     [pdp changeDescription:p.description];
@@ -72,16 +82,18 @@ NSMutableArray * photoArray;
 }
 
 #pragma mark – UICollectionViewDelegateFlowLayout
-
+/*
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     
     CGSize retVal = CGSizeMake(75, 75);
     return  retVal;
 }
+ 
 - (UIEdgeInsets)collectionView:
 (UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
     return UIEdgeInsetsMake(10, 10, 10, 10);
 }
+*/
 #pragma mark - UICollectionView Datasource
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
@@ -105,27 +117,34 @@ NSMutableArray * photoArray;
 -(void)updateCell:(PFExploreCell *)cell withObject:(id)object andIndexPath:(NSIndexPath*)indexPath{
     
     NSLog(@"Update Cell");
-    
-    [manager.ff loadBlobsForObj:(Photo *)object onComplete:^
-     
-     (NSError *theErr, id theObj, NSHTTPURLResponse *theResponse){
-         if(theErr)
-         {
-             NSLog(@" Error for blob  %@ ",[theErr debugDescription]);
-         }
-
-         Photo * photo = theObj;
-         if(photoArray){
-             if(indexPath.row<photoArray.count){
-                 [photoArray replaceObjectAtIndex:indexPath.row withObject:photo];
-                 
-                 cell.imageView.image = [UIImage imageWithData:photo.thumbnailImageData];
-             
-                 NSLog(@"Cell Updated ");
+    if([[(Photo *)object thumbnailImageData]length]>0 && [[(Photo *)object imageData]length]>0){
+        NSLog(@"No need to update.");
+         cell.imageView.image = [UIImage imageWithData:[(Photo *)object  thumbnailImageData]];
+        
+    }
+    else{
+        NSLog(@"Yes need to update it");
+        [manager.ff loadBlobsForObj:(Photo *)object onComplete:^
+         (NSError *theErr, id theObj, NSHTTPURLResponse *theResponse){
+             if(theErr)
+             {
+                 NSLog(@" Error for blob  %@ ",[theErr debugDescription]);
              }
-         }
-     }];
-}
+             
+             Photo * photo = theObj;
+             if(photoArray && photo!=nil){
+                 if(indexPath.row<photoArray.count){
+                     
+                     [photoArray replaceObjectAtIndex:indexPath.row withObject:photo];
+                     
+                     cell.imageView.image = [UIImage imageWithData:photo.thumbnailImageData];
+                     
+                     NSLog(@"Cell Updated ");
+                 }
+             }
+         }];
+    }
+   }
 
 #pragma mark Search Bar
 
@@ -139,19 +158,21 @@ NSMutableArray * photoArray;
 -(void)searchCompletedWithResults:(NSNotification *)notification{
     NSArray * array = notification.object;
     photoArray = (NSMutableArray *) array;
-    NSLog(@" Photo Array %@ ",photoArray);
-    
     [self.collectionView reloadData];
+    NSLog(@"Search completed with results");
 }
 
 - (void)searchBar:(UISearchBar *)searchBar selectedScopeButtonIndexDidChange:(NSInteger)selectedScope{
     [photoArray removeAllObjects];
-    
 }
 
-
-
-
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if ([segue.identifier isEqualToString:@"menu"]) {
+        [segue.destinationViewController performSelector:@selector(setCurrentNavigationController:)
+                                              withObject:self.navigationController];
+        NSLog(@"Segue menu");
+    }
+}
 
 
 

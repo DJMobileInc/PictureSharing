@@ -10,4 +10,7 @@
 
 @interface PFSharingCenterViewController : UIViewController <MFMailComposeViewControllerDelegate>
 @property(nonatomic,strong)UIImage * imageToShare;
+@property(nonatomic,strong)UINavigationController *   currentNavigationController;
+
+
 @end

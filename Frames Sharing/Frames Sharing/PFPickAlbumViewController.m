@@ -14,7 +14,7 @@
 @interface PFPickAlbumViewController () <UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (strong, nonatomic)NSMutableArray *objects;
+//@property (strong, nonatomic)NSMutableArray *objects;
 @property (strong, nonatomic)NSString *albumName;
 
 
@@ -28,6 +28,7 @@ UIAlertView * photoDescriptionAlert;
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+   // _objects = [[NSMutableArray alloc] init];
     manager = [Manager sharedInstance];
     [manager.ff setAutoLoadBlobs:NO];
     self.user = manager.user;
@@ -38,7 +39,6 @@ UIAlertView * photoDescriptionAlert;
     [manager getAlbumsForUser:[manager.ff metaDataForObj:manager.user].guid];
    
     //hide elements if not my album
-    
     albumsList = [[AlbumPickerListData alloc]init];
     albumsList.storyboard  = self.storyboard;
     albumsList.navigationController = self.navigationController;
@@ -49,6 +49,8 @@ UIAlertView * photoDescriptionAlert;
 -(void)photoCreated:(NSNotification *)notification{
     [manager displayMessage:@"Added Photo"];
     NSLog(@"Photo Added");
+    [self.navigationController popViewControllerAnimated:YES];
+    
 }
 
 -(void)albumCreated:(NSNotification *)notification{
@@ -83,25 +85,29 @@ UIAlertView * photoDescriptionAlert;
 }
 
 - (IBAction)makeNewAlbum:(UIBarButtonItem *)sender {
-    if (!_objects) {
-        _objects = [[NSMutableArray alloc] init];
-    }
+//    if (!_objects) {
+//        _objects = [[NSMutableArray alloc] init];
+//    }
     UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Album Name" message:@"Name this album" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK" , nil];
     alert.alertViewStyle = UIAlertViewStylePlainTextInput;
     [alert show];
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    NSLog(@" 1 ");
     if(alertView == photoDescriptionAlert){
-            
+        NSLog(@" 2 ");
         if(buttonIndex == 1) {
+            NSLog(@" 3 ");
             NSIndexPath * path = [self.tableView indexPathForSelectedRow];
             if(path){
+                   NSLog(@" 4 ");
                 int index =path.row;
                 if(index >=0){
                     NSString * userGuid = [manager.ff metaDataForObj:manager.user].guid;
-                    
-                    Album * album = [self.objects objectAtIndex:index];
+                   NSLog(@" 5 %@ ",albumsList.objects);
+                    Album * album = [albumsList.objects objectAtIndex:index];
+                    NSLog(@"ALbum  %@ %@",album, [manager getGUID:album]);
                     [manager createNewPhotoWithDescription:[alertView textFieldAtIndex:0].text forUser:userGuid forAlbum:[manager getGUID:album] withData:UIImageJPEGRepresentation(self.imageToShare, 0.7)];
                     
                 }
@@ -142,14 +148,15 @@ UIAlertView * photoDescriptionAlert;
 //delegate methods
 -(void)createdAlbum:(Album *)album{
     //    NSLog(@"Album Created: %@", album);
-    [self.objects addObject:album];
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:self.objects.count - 1 inSection:0];
+    [albumsList.objects addObject:album];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:albumsList.objects.count - 1 inSection:0];
     [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    Album * album = (Album *)self.objects[indexPath.row];
     
+    Album * album = (Album *)albumsList.objects[indexPath.row];
+    NSLog(@"ALbum Selected %@",album);
     if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
     {
         //[manager getPhotosForAlbum:[manager getGUID:album]];

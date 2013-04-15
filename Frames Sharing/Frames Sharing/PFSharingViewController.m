@@ -32,9 +32,6 @@
 {
     
     manager =[Manager sharedInstance];
-    [self testIt];
-    
-    
     
     [super viewDidLoad];
 }
@@ -58,33 +55,35 @@
 
 -(IBAction)showProfile{
     if(manager.user){
-    PFProfileViewController * p = [self.storyboard instantiateViewControllerWithIdentifier:@"PFProfileViewController"];
-    p.user = manager.user;
-    [self.navigationController pushViewController:p animated:YES];
+     PFProfileViewController * p = [self.storyboard instantiateViewControllerWithIdentifier:@"PFProfileViewController"];
+     p.user = manager.user;
+    
+     [self.navigationController pushViewController:p animated:YES];
     }
-    else{
-            [manager displayMessage:@"You need be logged in to display profile."];
+    else
+    {
+     [manager displayMessage:@"You need be logged in to display profile."];
     }
 }
 
 
--(void)updateUIWithUIImage:(UIImage *)image{
-    
-    NSLog(@"Update it");
-    self.imgView.image = image;
-    
-    float x = arc4random()%200;
-    float y = arc4random()%400;
-    
-    float w = 100;
-    float h  = 100;
-
-    UIImageView * img = [[UIImageView alloc]initWithFrame:CGRectMake(x, y, w, h)];
-    img.image =image;
-    
-    [self.view addSubview: img];
-}
-
+//-(void)updateUIWithUIImage:(UIImage *)image{
+//    
+//    NSLog(@"Update it");
+//    //self.imgView.image = image;
+//    
+//    float x = arc4random()%200;
+//    float y = arc4random()%400;
+//    
+//    float w = 100;
+//    float h  = 100;
+//
+//    UIImageView * img = [[UIImageView alloc]initWithFrame:CGRectMake(x, y, w, h)];
+//    img.image =image;
+//    
+//    [self.view addSubview: img];
+//}
+//
 
 - (void)didReceiveMemoryWarning
 {
@@ -93,24 +92,17 @@
 }
 
 - (IBAction)createVCSegue:(UIButton *)sender {
-    //[self performSegueWithIdentifier:@"create" sender:self];
-   
-    UIViewController *vc;
-    if(UI_USER_INTERFACE_IDIOM()== UIUserInterfaceIdiomPhone)
-    {
-        UIStoryboard *iPhoneStoryboard = [UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil];
-        vc = [iPhoneStoryboard instantiateInitialViewController];
-    }
-    else{
-        UIStoryboard *iPadStoryboard = [UIStoryboard storyboardWithName:@"MainStoryboard_iPad" bundle:nil];
-        vc =[iPadStoryboard instantiateInitialViewController];
-    }
 
-    vc.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-//    [self presentModalViewController:initialSettingsVC animated:YES];
-    [self.navigationController pushViewController:vc animated:YES];
-    
+     //[self performSegueWithIdentifier:@"menu" sender:self];
+    if(self.navigationController)
+    {
+        [manager showPhotoEditorForNavigationController:self.navigationController editImage:nil];
+    }
+    if(self.currentNavigationController){
+        [manager showPhotoEditorForNavigationController:self.currentNavigationController editImage:nil];
+    }
 }
+
 - (IBAction)exploreVCSegue:(UIButton *)sender {
     if(manager.user){
         [self performSegueWithIdentifier:@"explore" sender:self];
@@ -133,10 +125,7 @@
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:@"create"]) {
-        //
-    }
-    else if ([segue.identifier isEqualToString:@"explore"]) {
+    if ([segue.identifier isEqualToString:@"explore"]) {
         
     }
     else if ([segue.identifier isEqualToString:@"share"]) {
@@ -157,17 +146,6 @@
     return YES;
 }
 
-#pragma mark test it.
--(void)testIt{
-
-#if DEBUG
-    NSLog(@"Debug mode on: ");
-    manager = [Manager sharedInstance];
-
-    
-#endif
-
-}
 
 
 

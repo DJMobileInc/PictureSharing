@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 @class Photo;
 
-@interface PFDisplayMyPhotoViewController : UIViewController<UITextViewDelegate>
+@interface PFDisplayMyPhotoViewController : UIViewController<UITextViewDelegate, UIActionSheetDelegate>
 
 @property (strong, nonatomic) IBOutlet UITextView *description;
 @property (strong, nonatomic) IBOutlet UIImageView *imageView;
@@ -21,6 +21,6 @@
 -(void)changeDescription:(NSString *)desc;
 -(void)changeImage:(UIImage *)image;
 -(void)changeRatings :(int)ratings;
-
+- (IBAction)showPhotoEditor:(id)sender;
 
 @end

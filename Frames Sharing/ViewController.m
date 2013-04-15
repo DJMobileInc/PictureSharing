@@ -67,6 +67,7 @@ UIPopoverController * cameraPopoverController;
 UIPopoverController * sharingCenterPopoverController;
 UIActionSheet *  photoAction;
 
+Manager * manager;
 CameraPicker * camera;
 CGRect imageFrame;
 
@@ -318,6 +319,11 @@ CGRect imageFrame;
     SharedStore * st =[SharedStore sharedStore];
     st.delegate =self;
     _manager = [Manager sharedInstance];
+    if(self.imageToDisplay){
+        NSLog(@" assigning  ");
+        self.photoContainerImgView.image = self.imageToDisplay;
+
+    }
     _manager.defaultImage = self.photoContainerImgView.image;
     [self manageOrientation];
 }
@@ -483,11 +489,9 @@ CGRect imageFrame;
         else//pick photo
         {
             [camera startCameraControllerFromViewController:self usingDelegate:self from:self.framesButon picker:YES andPopover:cameraPopoverController];
-            
         }
     }
 }
-
 
 
 - (IBAction)photoAction:(id)sender {
@@ -496,36 +500,11 @@ CGRect imageFrame;
     [photoAction showInView:self.view];
 }
 
+
 - (IBAction)shareAction:(id)sender {
     UIImage * resultImage = [self createScreenshot];
-    PFSharingCenterViewController *vc;
-    if([self deviceIsAnIPad])
-    {
-        //pick right storyboard
-        UIStoryboard *iPhoneStoryboard = [UIStoryboard storyboardWithName:@"iPadStoryboard" bundle:nil];
-        vc = [iPhoneStoryboard instantiateViewControllerWithIdentifier:@"sharingCenterViewController"];
-        vc.imageToShare = resultImage;
-        //present it in popover
-        if(!sharingCenterPopoverController)
-        {
-            sharingCenterPopoverController = [[UIPopoverController alloc]initWithContentViewController:vc];
-        }
-        if([sharingCenterPopoverController isPopoverVisible]){
-            [sharingCenterPopoverController dismissPopoverAnimated:YES];
-        }
-        else{
-            [sharingCenterPopoverController presentPopoverFromRect:self.framesButon.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
-            
-        }
-        
-    }
-    else{
-        UIStoryboard *iPadStoryboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
-         vc =(PFSharingCenterViewController *) [iPadStoryboard instantiateViewControllerWithIdentifier:@"sharingCenterViewController"];
-         vc.imageToShare = resultImage;
-        
-        [self.navigationController pushViewController:vc animated:YES];
-    }
+    [manager showSharingCenterForPhoto:resultImage andPopover:sharingCenterPopoverController inView:self.view andNavigationController:self.navigationController fromBarButton:self.framesButon];
+
 }
 
 
@@ -709,6 +688,7 @@ CGRect imageFrame;
     
     NSString *mediaType = [info objectForKey: UIImagePickerControllerMediaType];
    
+    
     UIImage *originalImage, *editedImage;
     UIImage * imageToUse;
     // Handle a still image capture
@@ -719,11 +699,16 @@ CGRect imageFrame;
                                      UIImagePickerControllerOriginalImage];
         if (editedImage) {
             imageToUse = editedImage;
-            
-            
         } else {
             imageToUse = originalImage;
         }
+        
+        imageToUse = [info objectForKey: UIImagePickerControllerEditedImage];
+       
+        NSLog(@"Image Size %f  %f",imageToUse.size.height,imageToUse.size.width);
+
+    //imageToUse = UIImageJPEGRepresentation(imageToUse, 0.60);
+        
     }
     [picker dismissViewControllerAnimated:YES completion:nil];
     [cameraPopoverController dismissPopoverAnimated:YES];

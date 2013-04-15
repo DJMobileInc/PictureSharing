@@ -24,11 +24,15 @@ SocialHelper * helper;
 
 }
 - (IBAction)saveToRemoteAlbum:(id)sender {
+    if(manager.user){
     PFPickAlbumViewController * pf = [self.storyboard instantiateViewControllerWithIdentifier:@"PFPickAlbumsViewController"];
     pf.user = manager.user;
     pf.imageToShare = self.imageToShare;
     [self.navigationController pushViewController:pf animated:YES];
-
+    }
+    else{
+        [manager displayMessage:@"You need to login to complete this operation."];
+    }
 }
 
 - (IBAction)shareWithFacebook:(id)sender {

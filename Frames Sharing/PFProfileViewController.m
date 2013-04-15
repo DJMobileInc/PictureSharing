@@ -38,13 +38,30 @@ UIPopoverController * cameraPopoverController;
     manager = [Manager sharedInstance];
     self.userDescription.delegate = self;
      camera = [[CameraPicker alloc]init];
-    
+    [manager.ff loadBlobsForObj:self.user onComplete:^
+     (NSError *theErr, id theObj, NSHTTPURLResponse *theResponse){
+         if(theErr)
+         {
+             NSLog(@" Error for blob  %@ ",[theErr debugDescription]);
+         }
+         
+         User * user = (User *) theObj;
+         NSLog(@"User is: %@ %@",self.user, user);
+         
+         self.user = user;
+         UIImage * img = [UIImage imageWithData: user.profilePicture];
+         NSLog(@"Image is: %@",img);
+         [self.profilePictureButton setImage:img forState:UIControlStateNormal];
+         NSLog(@" Image should be updated and updated user is: %@",self.user.profilePicture);
+     }];
+
 }
 
 -(void)viewWillAppear:(BOOL)animated{
+    NSLog(@"Testing User %@ %@",manager.user,self.user);
+    
     if(!manager.user)//hide elements
     {
-      
         self.userDescription.text = @"";
         self.albumsButton.hidden = YES;
         self.userName.text = @"";
@@ -64,18 +81,20 @@ UIPopoverController * cameraPopoverController;
             [self.loginButton addTarget:self action:@selector(logout) forControlEvents:UIControlEventTouchUpInside];
             [self.userDescription setEditable:YES];
             NSLog(@"Button Logged In Text %@ ",self.loginButton.titleLabel.text);
-                   self.profilePictureButton.enabled = YES;
+            self.profilePictureButton.enabled = YES;
+            [self.loginButton setHidden:NO];
         }
         else{
             NSLog(@"User not logged in");
            [self.userDescription setEditable:NO];
+           [self.loginButton setHidden:YES];
             
         }    
     }
     //setting image
-    UIImage * img = [UIImage imageWithData:self.user.profilePicture];
-    [self.profilePictureButton setImage:img forState:UIControlStateNormal];
-}
+ //   
+    
+   }
 
 - (void)didReceiveMemoryWarning
 {
@@ -107,8 +126,14 @@ UIPopoverController * cameraPopoverController;
 -(void)textViewDidBeginEditing:(UITextView *)textView{
     UIBarButtonItem *anotherButton = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStylePlain target:self action:@selector(done)];
     self.navigationItem.rightBarButtonItem = anotherButton;
-    
 }
+
+-(void)done{
+    manager.user.aboutDescription = self.userDescription.text;
+    [manager updateObject:self.user];
+
+}
+
 -(void)textViewDidEndEditing:(UITextView *)textView{
     [textView resignFirstResponder];
     self.navigationItem.rightBarButtonItem =nil;
@@ -117,9 +142,10 @@ UIPopoverController * cameraPopoverController;
 
 
 - (IBAction)profilePictureButtonClicked:(id)sender {
-    photoAction=[[UIActionSheet alloc]initWithTitle:@"Photos" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"New Photo", @"Photo Library", nil];
-    [photoAction showInView:self.view];
-  
+    if(self.user == manager.user){
+        photoAction=[[UIActionSheet alloc]initWithTitle:@"Photos" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"New Photo", @"Photo Library", nil];
+        [photoAction showInView:self.view];
+    }
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
@@ -163,9 +189,9 @@ UIPopoverController * cameraPopoverController;
     [cameraPopoverController dismissPopoverAnimated:YES];
 
     [self.profilePictureButton setImage:imageToUse forState:UIControlStateNormal];
+     self.user.profilePicture = UIImageJPEGRepresentation(imageToUse,0.7);
     
+    [manager updateObject:self.user];
 }
-
-
 
 @end

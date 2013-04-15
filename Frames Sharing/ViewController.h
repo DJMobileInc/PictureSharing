@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "SharedStore.h"
 @interface ViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, ADBannerViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIActionSheetDelegate, PurchaseCompleted>
+@property (strong,nonatomic) UIImage * imageToDisplay;
+
 
 @end
