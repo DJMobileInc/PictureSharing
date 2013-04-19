@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Consumables</key>
+	<dict/>
+	<key>Non-Consumables</key>
+	<array>
+		<string>com.djmobile.animalPack1</string>
+		<string>com.djmobile.assortedPack1</string>
+		<string>com.djmobile.lovePack1</string>
+		<string>com.djmobile.stonelPack1</string>
+		<string>com.djmobile.christmasFrames1</string>
+		<string>com.djmobile.woodPack1</string>
+	</array>
+	<key>Subscriptions</key>
+	<dict/>
+</dict>
+</plist>

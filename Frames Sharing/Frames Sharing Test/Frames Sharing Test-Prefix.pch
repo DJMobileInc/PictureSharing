@@ -1,0 +1,11 @@
+//
+// Prefix header for all source files of the 'Frames Sharing Test' target in the 'Frames Sharing Test' project
+//
+
+#ifdef __OBJC__
+    #import <UIKit/UIKit.h>
+    #import <Foundation/Foundation.h>
+    #import <FFEF/FatFractal.h>
+    #import <FFEF/FFMetaData.h>
+
+#endif
