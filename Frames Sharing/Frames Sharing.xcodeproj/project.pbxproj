@@ -18,6 +18,7 @@
 		4F3C7261170C6D5800B2BB79 /* smallBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F3C725B170C6D5800B2BB79 /* smallBackground.png */; };
 		4F3C7264170CD4E600B2BB79 /* CameraPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3C7263170CD4E600B2BB79 /* CameraPicker.m */; };
 		4F4A01FE1721DACF00E91615 /* RotatingNavigationControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4A01FD1721DACF00E91615 /* RotatingNavigationControllerViewController.m */; };
+		4F4A02001725D14400E91615 /* djMobileLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F4A01FF1725D14400E91615 /* djMobileLogo.png */; };
 		4F6DEC3E16FCF6140074A455 /* PFProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6DEC3D16FCF6140074A455 /* PFProfileViewController.m */; };
 		4F6DEC411700F8120074A455 /* AlbumListData.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6DEC401700F8120074A455 /* AlbumListData.m */; };
 		4F6DEC441700F8D60074A455 /* PFiPadAlbumsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6DEC431700F8D60074A455 /* PFiPadAlbumsViewController.m */; };
@@ -714,6 +715,7 @@
 		4F3C7263170CD4E600B2BB79 /* CameraPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CameraPicker.m; path = ../CameraPicker.m; sourceTree = "<group>"; };
 		4F4A01FC1721DACF00E91615 /* RotatingNavigationControllerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RotatingNavigationControllerViewController.h; sourceTree = "<group>"; };
 		4F4A01FD1721DACF00E91615 /* RotatingNavigationControllerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RotatingNavigationControllerViewController.m; sourceTree = "<group>"; };
+		4F4A01FF1725D14400E91615 /* djMobileLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = djMobileLogo.png; sourceTree = "<group>"; };
 		4F6DEC3C16FCF6140074A455 /* PFProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PFProfileViewController.h; path = ../PFProfileViewController.h; sourceTree = "<group>"; };
 		4F6DEC3D16FCF6140074A455 /* PFProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PFProfileViewController.m; path = ../PFProfileViewController.m; sourceTree = "<group>"; };
 		4F6DEC3F1700F8120074A455 /* AlbumListData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AlbumListData.h; path = ../AlbumListData.h; sourceTree = "<group>"; };
@@ -1281,6 +1283,7 @@
 				828C48AE170A56B100F110F7 /* icon77.png */,
 				828C48AF170A56B100F110F7 /* icon114.png */,
 				828C48B0170A56B100F110F7 /* icon144.png */,
+				4F4A01FF1725D14400E91615 /* djMobileLogo.png */,
 				828C48FD170A56F500F110F7 /* SocialHelper.h */,
 				828C48FE170A56F500F110F7 /* SocialHelper.m */,
 				828C48BE170A56CC00F110F7 /* Fiters */,
@@ -2503,6 +2506,7 @@
 				4F3C7260170C6D5800B2BB79 /* searchIcon.png in Resources */,
 				4F3C7261170C6D5800B2BB79 /* smallBackground.png in Resources */,
 				82932228171A4531009D7231 /* TODO in Resources */,
+				4F4A02001725D14400E91615 /* djMobileLogo.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

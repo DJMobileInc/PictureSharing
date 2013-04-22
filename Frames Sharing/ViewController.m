@@ -62,6 +62,7 @@
 
 @property (strong, nonatomic) IBOutlet UIView * framesButtonsContainerView;
 
+@property (strong, nonatomic) IBOutlet UIButton *aboutButton;
 
 - (IBAction)hideFramesFor:(id)sender;
 - (IBAction)framesButtonAction:(id)sender;
@@ -446,6 +447,7 @@ CGRect imageFrame;
     
     [self.view addSubview:self.framesButtonsContainerView];
     [self.view addSubview:self.menuViewHolder];
+    [self.view addSubview:self.aboutButton];
     [self.view addSubview:self.bannerView];
 
     

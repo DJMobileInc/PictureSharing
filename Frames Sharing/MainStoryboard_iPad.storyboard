@@ -19,7 +19,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yAc-yn-HqT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4397" y="38"/>
+            <point key="canvasLocation" x="-4917" y="190"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="4">
@@ -414,6 +414,25 @@
                                     <outlet property="delegate" destination="2" id="Ohl-Mq-PSc"/>
                                 </connections>
                             </adBannerView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="kc5-a2-P6i">
+                                <rect key="frame" x="892" y="68" width="98" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
+                                <state key="normal" title="About" backgroundImage="buttonExtraBack.png">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="disabled" backgroundImage="buttonPushed.png"/>
+                                <state key="selected" backgroundImage="buttonExtraBack.png"/>
+                                <state key="highlighted" backgroundImage="buttonPushed.png">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="Ok2-3S-Xin" kind="popover" popoverAnchorView="kc5-a2-P6i" id="z0e-2a-U40">
+                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                    </segue>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
@@ -421,6 +440,7 @@
                     <navigationItem key="navigationItem" id="if0-WF-IVs"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
+                        <outlet property="aboutButton" destination="kc5-a2-P6i" id="TbH-Zh-06U"/>
                         <outlet property="applicationBackground" destination="Xhx-v4-1oG" id="uZy-QP-kyJ"/>
                         <outlet property="applicationFrame" destination="vco-2h-dji" id="8od-lD-epJ"/>
                         <outlet property="bannerView" destination="AVI-qx-m3v" id="agP-J5-qhB"/>
@@ -438,7 +458,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3507" y="-556"/>
+            <point key="canvasLocation" x="-3931" y="-740"/>
         </scene>
         <!--Internal Store View Controller - Store-->
         <scene sceneID="BAy-jK-6vb">
@@ -774,7 +794,61 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="noY-kg-v2F" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2581" y="295"/>
+            <point key="canvasLocation" x="-2694" y="38"/>
+        </scene>
+        <!--View Controller - Menu-->
+        <scene sceneID="sRO-KC-2vC">
+            <objects>
+                <viewController id="Ok2-3S-Xin" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="9ae-9J-TqO">
+                        <rect key="frame" x="0.0" y="20" width="350" height="330"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="smallBackground.png" id="L5E-EP-23q">
+                                <rect key="frame" x="0.0" y="0.0" width="350" height="404"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="djMobileLogo.png" id="ici-He-SdF">
+                                <rect key="frame" x="45" y="5" width="260" height="76"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" editable="NO" text="Thank you for downloading our app. We would like to make sure that we deliver the best user experience. " textAlignment="center" id="mYd-iF-A1o">
+                                <rect key="frame" x="20" y="65" width="301" height="70"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="textColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" editable="NO" textAlignment="center" id="Col-JK-LQX">
+                                <rect key="frame" x="20" y="128" width="301" height="197"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <string key="text">If you have any questions about the app don't hesitate to email us at:
+mobiledjapps@gmail.com
+
+Visit our website:
+http://djmobilesoftware.com/
+
+Check out our other apps:
+https://itunes.apple.com/us/artist/dj-mobile-inc./id470773123</string>
+                                <color key="textColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES" calendarEvent="YES"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Menu" id="OzN-b7-R5V"/>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackTranslucent"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fYm-j4-tR0" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2842" y="-740"/>
         </scene>
     </scenes>
     <resources>
@@ -793,6 +867,7 @@
         <image name="buttonPushed.png" width="98" height="40"/>
         <image name="cameraIcon.png" width="49" height="49"/>
         <image name="createNewIcon.png" width="98" height="98"/>
+        <image name="djMobileLogo.png" width="600" height="200"/>
         <image name="flowers.jpg" width="1280" height="1024"/>
         <image name="flowers_thumb.jpg" width="200" height="200"/>
         <image name="lampard2_thumb.png" width="250" height="250"/>
@@ -800,87 +875,6 @@
         <image name="searchIcon.png" width="98" height="98"/>
         <image name="smallBackground.png" width="320" height="480"/>
     </resources>
-    <classes>
-        <class className="EffectCell" superclassName="UICollectionViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/EffectCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="effectLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="photo" candidateClass="UIImageView"/>
-            </relationships>
-        </class>
-        <class className="FrameCell" superclassName="UICollectionViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FrameCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="lock" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="photoFrame" candidateClass="UIImageView"/>
-            </relationships>
-        </class>
-        <class className="InternalStoreViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/InternalStoreViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="dismissController:"/>
-                <relationship kind="action" name="restorePurchases:"/>
-            </relationships>
-        </class>
-        <class className="PFSharingViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PFSharingViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="albumsVCSegue:" candidateClass="UIButton"/>
-                <relationship kind="action" name="createVCSegue:" candidateClass="UIButton"/>
-                <relationship kind="action" name="exploreVCSegue:" candidateClass="UIButton"/>
-                <relationship kind="action" name="loginOrSignUp:" candidateClass="UIBarButtonItem"/>
-                <relationship kind="action" name="shareVCSegue:" candidateClass="UIButton"/>
-                <relationship kind="action" name="showProfile"/>
-            </relationships>
-        </class>
-        <class className="StoreItemDetailViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/StoreItemDetailViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="imageView" candidateClass="UIImageView"/>
-            </relationships>
-        </class>
-        <class className="StoreItemsViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/StoreItemsViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="buyItems:"/>
-            </relationships>
-        </class>
-        <class className="UICollectionReusableView" superclassName="UIView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionReusableView.h"/>
-        </class>
-        <class className="UICollectionViewCell" superclassName="UICollectionReusableView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewCell.h"/>
-        </class>
-        <class className="UICollectionViewFlowLayout" superclassName="UICollectionViewLayout">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewFlowLayout.h"/>
-        </class>
-        <class className="ViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="framesButtonAction:"/>
-                <relationship kind="action" name="hideEffects:"/>
-                <relationship kind="action" name="hideFramesFor:"/>
-                <relationship kind="action" name="photoAction:"/>
-                <relationship kind="action" name="shareAction:"/>
-                <relationship kind="action" name="showEffects:"/>
-                <relationship kind="action" name="showFramesFor:"/>
-                <relationship kind="action" name="showMenu:"/>
-                <relationship kind="outlet" name="applicationBackground" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="applicationFrame" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="bannerView" candidateClass="ADBannerView"/>
-                <relationship kind="outlet" name="effectsCollectionView" candidateClass="UICollectionView"/>
-                <relationship kind="outlet" name="effectsView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="frameContainerImageView" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="framesButon" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="framesButtonsContainerView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="framesCollectionView" candidateClass="UICollectionView"/>
-                <relationship kind="outlet" name="framesTitleButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="framesView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="menuViewHolder" candidateClass="UIView"/>
-                <relationship kind="outlet" name="photoContainerImgView" candidateClass="UIImageView"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>
