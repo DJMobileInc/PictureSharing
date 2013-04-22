@@ -172,6 +172,8 @@ UIActionSheet *  loginActionSheet;
             self.ff = [[FatFractal alloc] initWithBaseUrl:baseUrl];
             self.ff.autoLoadBlobs = NO;
              [[FatFractal main] registerClass:[User class] forClazz:@"FFUser"];
+           // [self deleteAll];
+            
         }
         [self.ff registerClass:[User class] forClazz:@"FFUser"];
     }
@@ -253,12 +255,14 @@ showLoginScreenForViewController:(UIViewController *)vc andNavigationController:
 
 -(void)loggingInWithName:(NSString *)userName andPassword: (NSString *)password{
 
+   [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     [self.ff loginWithUserName:userName andPassword:password onComplete: ^(NSError * error, id theObj, NSHTTPURLResponse * theResponse)
      {
          if(error){
              [self displayMessage:[error localizedDescription]];
          }
          else{
+             [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
              self.user =  theObj;
             [self displayMessage:@"Succesfully Logged In"];
              [[NSNotificationCenter defaultCenter]postNotificationName:loginSucceededNotification object:theObj];
@@ -273,7 +277,7 @@ showLoginScreenForViewController:(UIViewController *)vc andNavigationController:
 
 -(void)signUpWithName:(NSString *)userName andPassword: (NSString *)password{
     //for now using the auto registration
-    //self.user = [self.ff loginWithUserName:userName andPassword:password];
+    
     [self loggingInWithName:userName andPassword:password];
     
 }
@@ -298,10 +302,11 @@ showLoginScreenForViewController:(UIViewController *)vc andNavigationController:
       // album.privacy = privacy;
        album.userId = userId;
        album.name=name;
-    
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     [self.ff createObj:album atUri:@"/Album" onComplete:
      ^(NSError * theErr, id theObj, NSHTTPURLResponse * theResponse)
      {
+         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
          if(!theErr){
              Album *album = theObj;
              [[NSNotificationCenter defaultCenter]postNotificationName:albumCreatedNotification object:album];
@@ -319,7 +324,8 @@ showLoginScreenForViewController:(UIViewController *)vc andNavigationController:
 
 
 -(void)getPhotosForAlbum:(NSString *)albumId{
-    NSLog(@"Get Photos for Album requested");
+   
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     [self.ff getArrayFromUri:[NSString stringWithFormat:@"/ff/resources/Photo/(albumId eq '%@')",albumId] onComplete:
      ^(NSError * theErr, id theObj, NSHTTPURLResponse * theResponse)
      {
@@ -332,18 +338,19 @@ showLoginScreenForViewController:(UIViewController *)vc andNavigationController:
              [[NSNotificationCenter defaultCenter] postNotificationName:photosRetrievedNotification
                                                                  object:theObj userInfo:nil];
          }
+         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
      }];
 }
 
 
-
 -(void)getAlbumsForUser:(NSString *)guid{
     
-    //NSLog(@" /Album/(userId = 7TuJG1fpPUbIFyxBHQiRy7) %@",guid);
+   [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     
     [self.ff getArrayFromUri:[NSString stringWithFormat:@"/ff/resources/Album/(userId eq '%@')",guid] onComplete:
      ^(NSError * theErr, id theObj, NSHTTPURLResponse * theResponse)
      {
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
          if(theErr){
              [self displayMessage:[theErr localizedDescription]];
          }
@@ -364,10 +371,11 @@ showLoginScreenForViewController:(UIViewController *)vc andNavigationController:
 -(void)getOwnerOfPhoto:(Photo *) photo asynchronusly:(BOOL)yes{
     //find album
     NSString * queryString  = [NSString stringWithFormat:@"/ff/resources/Album/(guid eq '%@')",photo.albumId];
-    
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     [self.ff getObjFromUri:queryString onComplete:
      ^(NSError * theErr, id theObj, NSHTTPURLResponse * theResponse)
      {
+      [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
          if(theErr){
              //[self displayMessage:[theErr localizedDescription]];
          }
@@ -389,10 +397,12 @@ showLoginScreenForViewController:(UIViewController *)vc andNavigationController:
 }
 
 -(void)updateObject:(id)object{
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     [self.ff updateObj:object onComplete:^(NSError *err, id obj, NSHTTPURLResponse *httpResponse) {
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         if(!err)
         {
-           // NSLog(@" Object Updated %@ %@",(User *)obj,[(User *)obj profilePicture]);
+            NSLog(@" Object Updated %@", obj);
             if([obj isKindOfClass:[User class]]){
                 self.user = (User *)obj;
             }
@@ -428,10 +438,12 @@ showLoginScreenForViewController:(UIViewController *)vc andNavigationController:
     photo.albumId = albumId;
     photo.owner =self.user;
     
-   //Upload file
+   [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+    //Upload file
     [self.ff createObj:photo atUri:@"/Photo" onComplete:
      ^(NSError * theErr, id theObj, NSHTTPURLResponse * theResponse)
      {
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
          if(theErr==nil){
              //Now we can update the file associated with it.
             //self.delegate pho
@@ -446,8 +458,10 @@ showLoginScreenForViewController:(UIViewController *)vc andNavigationController:
 }
 
 -(void)delete:(id)object{
+   [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     [self.ff deleteObj:object onComplete: ^(NSError * theErr, id theObj, NSHTTPURLResponse * theResponse)
      {
+         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
          if(theErr==nil){
              [[NSNotificationCenter defaultCenter]postNotificationName:objectDeletedNotification object:object];
              NSLog(@" object deleted ");
@@ -468,10 +482,12 @@ showLoginScreenForViewController:(UIViewController *)vc andNavigationController:
 
 -(void)getNewestPhotos{
     
+   [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     NSString * searchQuery = [NSString stringWithFormat:@"/ff/resources/Photo/(isPublic eq 1 and flag eq 0)"];
     [self.ff getArrayFromUri:searchQuery onComplete:
      ^(NSError * theErr, id theObj, NSHTTPURLResponse * theResponse)
      {
+         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
          if(theErr){
              [self displayMessage:[theErr localizedDescription]];
          }
@@ -495,10 +511,11 @@ showLoginScreenForViewController:(UIViewController *)vc andNavigationController:
 -(void)getPhotosWithSearchQuery:(NSString *)searchText{
     NSString * searchQuery = [NSString stringWithFormat:@"/ff/resources/Photo/(title matches '.*%@.*' and isPublic eq 1 and flag eq 0 or description matches '.*%@.*' and isPublic eq 1 and flag eq 0)",searchText,searchText];
     
-
+[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     [self.ff getArrayFromUri:searchQuery onComplete:
      ^(NSError * theErr, id theObj, NSHTTPURLResponse * theResponse)
      {
+         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
          if(theErr){
              [self displayMessage:[theErr localizedDescription]];
          }
@@ -535,11 +552,15 @@ showLoginScreenForViewController:(UIViewController *)vc andNavigationController:
         
     }
     vc.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-    NSLog(@"_1nav %@ and %@ ",navigationController,vc);
     
-    [navigationController pushViewController:vc animated:YES];
+    if([vc isKindOfClass:[UINavigationController class]])
+    {
+       [navigationController pushViewController:[(UINavigationController * )vc topViewController] animated:YES];
+    }
+    else{
+        [navigationController pushViewController:vc animated:YES];
+    }
 }
-
 
 -(void)showLoginScreenForViewController:(UIViewController *)vc andNavigationController: (id)navigationController fromRectView:(UIView *)view{
 
@@ -548,13 +569,9 @@ showLoginScreenForViewController:(UIViewController *)vc andNavigationController:
         
         LoginRegisterViewController * lr = [storyboard  instantiateViewControllerWithIdentifier:@"LoginPopover"];
 
-        
         popover = [[UIPopoverController alloc]initWithContentViewController:lr];
-                NSLog(@"popover %@", popover);
         
-    
         [popover presentPopoverFromRect:CGRectMake(view.center.x, view.frame.size.height,10, 10) inView:vc.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
-        
         
     }
     else{
@@ -562,10 +579,8 @@ showLoginScreenForViewController:(UIViewController *)vc andNavigationController:
      
         LoginRegisterViewController * lr = [storyboard  instantiateViewControllerWithIdentifier:@"LoginPopover"];
   
-      
-
         [navigationController pushViewController:lr  animated:YES];
-        NSLog(@"navigation controller %@ ",navigationController);
+
     }
 }
 
@@ -597,7 +612,6 @@ showLoginScreenForViewController:(UIViewController *)vc andNavigationController:
         vc.imageToShare = resultImage;
         
         [navigationController pushViewController:vc animated:YES];
-        NSLog(@"navigation controller %@ ",navigationController);
         
     }
 }

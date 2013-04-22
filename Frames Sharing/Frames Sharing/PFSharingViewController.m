@@ -226,7 +226,7 @@ UIPopoverController * profilePopover;
 
 - (BOOL)shouldAutorotate {
     
-    UIInterfaceOrientation orientation = [[UIDevice currentDevice] orientation];
+    UIInterfaceOrientation orientation = (UIInterfaceOrientation) [[UIDevice currentDevice] orientation];
     
     if (orientation==UIInterfaceOrientationPortrait) {
         // do some sh!t

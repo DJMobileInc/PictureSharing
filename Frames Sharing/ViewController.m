@@ -38,7 +38,12 @@
 @property (strong, nonatomic) IBOutlet UIImageView *applicationFrame;
 @property (strong, nonatomic) IBOutlet UIImageView *photoContainerImgView;
 @property (strong, nonatomic) IBOutlet UIImageView *frameContainerImageView;
-@property (strong, nonatomic) UITapGestureRecognizer * tapGesture;
+
+@property (strong, nonatomic) IBOutlet UIImageView *applicationBackground;
+
+@property (strong, nonatomic) IBOutlet UIView *menuViewHolder;
+
+
 @property (strong, nonatomic) IBOutlet UICollectionView *framesCollectionView;
 @property (strong, nonatomic) IBOutlet UICollectionView *effectsCollectionView;
 
@@ -52,6 +57,11 @@
 
 @property (strong,nonatomic) UIPanGestureRecognizer *panGestureRecognizer;
 @property (strong,nonatomic) UIPinchGestureRecognizer * pinchGestureRecognizer;
+@property (strong, nonatomic) UITapGestureRecognizer * tapGesture;
+
+
+@property (strong, nonatomic) IBOutlet UIView * framesButtonsContainerView;
+
 
 - (IBAction)hideFramesFor:(id)sender;
 - (IBAction)framesButtonAction:(id)sender;
@@ -71,6 +81,8 @@ UIActionSheet *  photoAction;
 Manager * manager;
 CameraPicker * camera;
 CGRect imageFrame;
+
+
 
 - (BOOL)deviceIsAnIPad {
     if ([[UIDevice currentDevice] respondsToSelector:@selector(userInterfaceIdiom)])
@@ -146,9 +158,10 @@ CGRect imageFrame;
 
     [UIView animateWithDuration:1 animations:^{
    if([self deviceIsAnIPad]){     
-        float y = self.frameContainerImageView.frame.origin.y +self.frameContainerImageView.frame.size.height-self.framesView.frame.size.height ;
-        
-    self.framesView.frame = CGRectMake(self.framesView.frame.origin.x, y, self.framesView.frame.size.width, self.framesView.frame.size.height);
+
+  float y = self.menuViewHolder.frame.origin.y - self.framesView.frame.size.height;
+    
+    self.framesView.frame = CGRectMake(0, y, self.view.frame.size.width, self.framesView.frame.size.height);
         
 #warning TO DO
 //#warning ADD In-App purchase images FRAMES TO ITUNES CONNECT
@@ -185,9 +198,9 @@ CGRect imageFrame;
     [self hideAll];
     [UIView animateWithDuration:1 animations:^{
         if([self deviceIsAnIPad]){
-        float y = self.frameContainerImageView.frame.origin.y +self.frameContainerImageView.frame.size.height-self.effectsView.frame.size.height ;
-        
-        self.effectsView.frame = CGRectMake(self.effectsView.frame.origin.x, y, self.effectsView.frame.size.width, self.effectsView.frame.size.height);
+        float y = self.menuViewHolder.frame.origin.y - self.framesView.frame.size.height;
+            
+        self.effectsView.frame = CGRectMake(0, y, self.view.frame.size.width, self.effectsView.frame.size.height);
         }
         else{
             float y = self.view.bounds.size.height - self.effectsView.frame.size.height -30.0 ;
@@ -198,8 +211,6 @@ CGRect imageFrame;
                      completion:^(BOOL finished){
                          
     }];
-    
-   
 
 }
 
@@ -215,9 +226,18 @@ CGRect imageFrame;
 
 
 
+
 - (IBAction)showMenu:(id)sender {
     self.navigationController.navigationBarHidden = NO;
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    UIStoryboard * story = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
+    
+    UIViewController * vc = [story instantiateInitialViewController];
+    [self.navigationController pushViewController:vc animated:YES];
+    
+    
+    
+    
+    //[self.navigationController popToRootViewControllerAnimated:YES];
 
 }
 
@@ -267,8 +287,6 @@ CGRect imageFrame;
         // NSLog(@"Affine Transform %f,", _photoContainerImgView.transform.tx);
         _photoContainerImgView.frame= tf;
         _photoContainerImgView.center = self.frameContainerImageView.center;
-        
-        
         imageFrame =_photoContainerImgView.frame;
         
         
@@ -280,10 +298,11 @@ CGRect imageFrame;
 
 
 
--(void)viewWillAppear:(BOOL)animated{
+-(void)viewDidAppear:(BOOL)animated{
     [self hideAll];
     [self manageOrientation];
     [manager dismissPopovers];
+    NSLog(@"Did Appear");
     self.navigationController.navigationBarHidden = YES;
     if(!self.imageToDisplay)
     {if(manager.defaultFrame){
@@ -294,6 +313,7 @@ CGRect imageFrame;
     {
         self.photoContainerImgView.image = manager.modifiedImage;
     }
+    imageFrame = self.photoContainerImgView.frame;
 }
 }
 -(void)viewDidDisappear:(BOOL)animated{
@@ -323,42 +343,81 @@ CGRect imageFrame;
 
 
 -(void)manageOrientation{
-    CGRect pFrame =  CGRectMake(86, 146, 595, 706);
-    CGRect lFrame =  CGRectMake(155, 107, 706, 587);
+    float pfx = 86;
+    float pfy = 146;
+    
+    float pfw = 595;
+    float pfh = 706;
+   
+    
+    float lfx = 155;
+    float lfy = 107;
+    
+    float lfw = 706;
+    float lfh = 587;
+    
+    float width = self.view.frame.size.width;
+    float height = self.view.frame.size.height;
+    
+    
+    CGRect pFrame =  CGRectMake(pfx, pfy, pfw, pfh);
+    CGRect lFrame =  CGRectMake(lfx, lfy, lfw, lfh);
+    
+    UIView * vup = [[UIView alloc]init];
+    UIView * vleft = [[UIView alloc]init];
+    UIView * vright = [[UIView alloc]init];
+    UIView * vbottom = [[UIView alloc]init];
+    
+    vup.backgroundColor = [UIColor blackColor];
+    vleft.backgroundColor = [UIColor blackColor];
+    vright.backgroundColor = [UIColor blackColor];
+    vbottom.backgroundColor = [UIColor blackColor];
     
     if([self deviceIsAnIPad]){
         if(UIInterfaceOrientationIsLandscape(self.interfaceOrientation))
         {
-            
             [UIView animateWithDuration:0.2 animations:^{
                 self.applicationFrame.image = [UIImage imageNamed:@"ApplicationFrame"];
-                self.photoContainerImgView.frame = lFrame;
+                vup.frame = CGRectMake(0,0,width, lfy);
+                vleft.frame = CGRectMake(0,0,lfx, height);
+                vright.frame = CGRectMake(lfx + lfw,0,width - (lfx +lfw), height);
+                vbottom.frame = CGRectMake(0,lfy+lfh,width,height-(lfy+lfh));
                 self.frameContainerImageView.frame =lFrame;
-                
-                
-            } completion:^(BOOL finished){}];
+                         
+            } completion:^(BOOL finished){
+
+                self.photoContainerImgView.center = self.view.center;
+  
+            
+            }];
             
         }
         else{
             [UIView animateWithDuration:0.2 animations:^{
                 self.applicationFrame.image = [UIImage imageNamed:@"ApplicationFramePortrait"];
-                self.photoContainerImgView.frame = pFrame;
+              
+                vup.frame = CGRectMake(0,0,width, pfy);
+                vleft.frame = CGRectMake(0,0,pfx, height);
+                vright.frame = CGRectMake(pfx + pfw,0,width - (pfx +pfw), height);
+                vbottom.frame = CGRectMake(0,pfy+pfh,width,height-(pfy+pfh));
+                
                 self.frameContainerImageView.frame =pFrame;
+                self.photoContainerImgView.center = self.frameContainerImageView.center;
                 
             } completion:^(BOOL finished){}];
         }
     }
     else{
-        float bannerh = 30.0;
-        float buttonsh = 30.0;
+//        float bannerh = 30.0;
+//        float buttonsh = 30.0;
         self.applicationFrame.image = nil;
         
         NSLog(@"Bounds %fFrame %f ",self.view.bounds.size.width, self.view.frame.size.width);
-        CGRect piFrame = CGRectMake(0, bannerh*3, self.view.bounds.size.width, self.view.bounds.size.height - 6 *  bannerh);
-        CGRect liFrame = CGRectMake(3 *buttonsh, bannerh, self.view.bounds.size.width-6 * buttonsh, self.view.bounds.size.height - buttonsh - bannerh);
+//        CGRect piFrame = CGRectMake(0, bannerh*3, self.view.bounds.size.width, self.view.bounds.size.height - 6 *  bannerh);
+//        CGRect liFrame = CGRectMake(3 *buttonsh, bannerh, self.view.bounds.size.width-6 * buttonsh, self.view.bounds.size.height - buttonsh - bannerh);
         
-        liFrame = CGRectMake(90, 30, 300, 208);
-        piFrame= CGRectMake(0, 186, 320, 320);
+//        liFrame = CGRectMake(90, 30, 300, 208);
+//        piFrame= CGRectMake(0, 186, 320, 320);
         
         if(UIInterfaceOrientationIsLandscape(self.interfaceOrientation))
         {
@@ -372,12 +431,32 @@ CGRect imageFrame;
         NSLog(@"Frame after %@ ",self.frameContainerImageView);
     
     }
+    //User Interface changes.
+    [self.view addSubview:self.applicationBackground];
+    [self.view addSubview:self.photoContainerImgView];
+    [self.view addSubview:vup];
+    [self.view addSubview:vleft];
+    [self.view addSubview:vright];
+    [self.view addSubview:vbottom];
+
+    
+    [self.view addSubview:self.frameContainerImageView];
+    [self.view addSubview:self.framesView];
+    [self.view addSubview:self.effectsView];
+    
+    [self.view addSubview:self.framesButtonsContainerView];
+    [self.view addSubview:self.menuViewHolder];
+    [self.view addSubview:self.bannerView];
+
+    
+#warning add more views
+    
+    
+    
+    
+    
 }
 
-
--(void)viewDidAppear:(BOOL)animated{
-    	imageFrame = self.photoContainerImgView.frame;
-}
 
 - (void)viewDidLoad
 {
@@ -418,6 +497,7 @@ CGRect imageFrame;
     }
     _manager.defaultImage = self.photoContainerImgView.image;
      self.navigationController.navigationBarHidden = YES;
+    _manager.currentNavigationController = self.navigationController;
     [self manageOrientation];
     
 }
@@ -620,7 +700,7 @@ CGRect imageFrame;
 
 - (BOOL)shouldAutorotate {
     
-    UIInterfaceOrientation orientation = [[UIDevice currentDevice] orientation];
+    UIInterfaceOrientation orientation = (UIInterfaceOrientation) [[UIDevice currentDevice] orientation];
     
     if (orientation==UIInterfaceOrientationPortrait) {
         // do some sh!t
@@ -687,15 +767,17 @@ CGRect imageFrame;
     float aspect;
     float hnew;
     float wnew;
-
+    
+    float maxSize = 640.0;
+    
     aspect = ho/wo;
     if(ho>wo){ // portrait
-        hnew =800.0;
-        wnew= 800.0 * wo/ho;
+        hnew =maxSize;
+        wnew= maxSize * wo/ho;
     }
     else{
-        wnew =800.0;
-        hnew= 800.0 * ho/wo;
+        wnew =maxSize;
+        hnew= maxSize * ho/wo;
     }
     
     float wScaleAspect = wnew/wo;
@@ -800,9 +882,21 @@ CGRect imageFrame;
     UIGraphicsEndImageContext();
     
     NSData * pngData = UIImagePNGRepresentation(resultImage);
+    pngData = UIImageJPEGRepresentation(resultImage, 0.7);
     resultImage = [UIImage imageWithData:pngData];
 
-     return resultImage;
+//    NSData *imageData;
+//    if ( /* PNG IMAGE */ )
+//        imageData = UIImagePNGReprensentation(selectedImage);
+//    else
+//        imageData = UIImageJPEGReprensentation(selectedImage);
+    
+    NSUInteger fileLength = [pngData length];
+    NSLog(@"file length : [%u]", fileLength);
+    
+    
+    
+    return resultImage;
 }
 
 
@@ -839,6 +933,8 @@ CGRect imageFrame;
     
     self.photoContainerImgView.image = imageToUse;
     _manager.defaultImage = imageToUse;
+    _manager.modifiedImage = imageToUse;
+
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{

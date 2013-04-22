@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="11G63" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="yKs-GW-2U5">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="11G63" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="xqb-CS-YuW">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
@@ -65,10 +65,20 @@
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="Be4-v1-Ct3"/>
+                                    <barButtonItem title="Show All" id="OJk-nm-VJn">
+                                        <connections>
+                                            <action selector="getAll:" destination="xqb-CS-YuW" id="1Ge-3b-yKk"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem systemItem="refresh" id="HNd-oT-VNF">
+                                        <connections>
+                                            <action selector="refreshButtonClicked:" destination="xqb-CS-YuW" id="seR-yz-g23"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
-                            <searchBar contentMode="redraw" barStyle="blackOpaque" showsScopeBar="YES" id="tUy-cr-ZfM">
-                                <rect key="frame" x="0.0" y="0.0" width="1024" height="88"/>
+                            <searchBar contentMode="redraw" barStyle="blackOpaque" id="tUy-cr-ZfM">
+                                <rect key="frame" x="0.0" y="0.0" width="1024" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <scopeButtonTitles>
@@ -1032,12 +1042,128 @@ If you have any questions about our policy or the security of Screen Capture app
         <image name="twitter.png" width="76" height="75"/>
         <image name="user.png" width="354" height="500"/>
     </resources>
+    <classes>
+        <class className="LoginRegisterViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginRegisterViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="loginUser:"/>
+                <relationship kind="action" name="registerUser:"/>
+                <relationship kind="action" name="showLoginScreen:"/>
+                <relationship kind="action" name="showRegistrationScreen:"/>
+                <relationship kind="outlet" name="confirmPasswordTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="displayNameTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="emailTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="passwordLoginTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="passwordTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="registrationView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="usernameLoginTextField" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="PFDisplayMyPhotoViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PFDisplayMyPhotoViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="segmentTappedOn:"/>
+                <relationship kind="action" name="showPhotoEditor:"/>
+                <relationship kind="outlet" name="buttonsView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="description" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="imageView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="segmentedControl" candidateClass="UISegmentedControl"/>
+                <relationship kind="outlet" name="starsCount" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="PFDisplayPhotoViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PFDisplayPhotoViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="authorButtonPressed:"/>
+                <relationship kind="action" name="flagPhoto:"/>
+                <relationship kind="action" name="voteForPhoto:"/>
+                <relationship kind="outlet" name="authorButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="description" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="imageView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="starsCount" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="voteButton" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="PFExploreCell" superclassName="UICollectionViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PFExploreCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="imageView" candidateClass="UIImageView"/>
+            </relationships>
+        </class>
+        <class className="PFExploreViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PFExploreViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="getAll:"/>
+                <relationship kind="action" name="loginOrSignUp:" candidateClass="UIBarButtonItem"/>
+                <relationship kind="action" name="refreshButtonClicked:"/>
+                <relationship kind="outlet" name="collectionView" candidateClass="UICollectionView"/>
+                <relationship kind="outlet" name="searchBar" candidateClass="UISearchBar"/>
+                <relationship kind="outlet" name="searchStatus" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="PFProfileViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PFProfileViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="profilePictureButtonClicked:"/>
+                <relationship kind="action" name="showAlbums:"/>
+                <relationship kind="outlet" name="albumsButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="loginButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="profilePictureButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="userDescription" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="userName" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="PFSharingCenterViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PFSharingCenterViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="saveToAlbumDevice:"/>
+                <relationship kind="action" name="saveToRemoteAlbum:"/>
+                <relationship kind="action" name="shareWithEmail:"/>
+                <relationship kind="action" name="shareWithFacebook:"/>
+                <relationship kind="action" name="shareWithSinaWeibo:"/>
+                <relationship kind="action" name="shareWithTwitter:"/>
+            </relationships>
+        </class>
+        <class className="PFSharingViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PFSharingViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="albumsVCSegue:" candidateClass="UIButton"/>
+                <relationship kind="action" name="createVCSegue:" candidateClass="UIButton"/>
+                <relationship kind="action" name="exploreVCSegue:" candidateClass="UIButton"/>
+                <relationship kind="action" name="loginOrSignUp:" candidateClass="UIBarButtonItem"/>
+                <relationship kind="action" name="shareVCSegue:" candidateClass="UIButton"/>
+                <relationship kind="action" name="showProfile"/>
+            </relationships>
+        </class>
+        <class className="PFiPadAlbumsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PFiPadAlbumsViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="makeNewAlbum:" candidateClass="UIBarButtonItem"/>
+                <relationship kind="action" name="refreshAlbums:"/>
+                <relationship kind="action" name="showMenu:"/>
+                <relationship kind="outlet" name="collectionView" candidateClass="UICollectionView"/>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="UICollectionReusableView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionReusableView.h"/>
+        </class>
+        <class className="UICollectionViewCell" superclassName="UICollectionReusableView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewCell.h"/>
+        </class>
+        <class className="UICollectionViewFlowLayout" superclassName="UICollectionViewLayout">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewFlowLayout.h"/>
+        </class>
+        <class className="UICollectionViewLayout" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewLayout.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="qIy-rA-JlE"/>
+        <segue reference="ohP-09-pwz"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="11G63" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="aLu-ca-R3F">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="11G63" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="2">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
@@ -189,15 +189,15 @@
             <objects>
                 <viewController storyboardIdentifier="PFExploreViewController" id="t7h-fv-AuS" customClass="PFExploreViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ILd-v4-aXq">
-                        <rect key="frame" x="0.0" y="64" width="568" height="256"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="smallBackground.png" id="DBC-oS-LEM">
-                                <rect key="frame" x="0.0" y="0.0" width="568" height="256"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                             <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" id="okJ-fK-tGM">
-                                <rect key="frame" x="0.0" y="96" width="568" height="160"/>
+                                <rect key="frame" x="0.0" y="44" width="320" height="416"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Xr1-2g-Qu0">
@@ -231,8 +231,8 @@
                                     <outlet property="delegate" destination="t7h-fv-AuS" id="70n-jH-lzy"/>
                                 </connections>
                             </collectionView>
-                            <searchBar contentMode="redraw" barStyle="blackOpaque" showsScopeBar="YES" id="WD2-KI-NsR">
-                                <rect key="frame" x="0.0" y="0.0" width="568" height="88"/>
+                            <searchBar contentMode="redraw" barStyle="blackOpaque" id="WD2-KI-NsR">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <scopeButtonTitles>
@@ -243,15 +243,39 @@
                                     <outlet property="delegate" destination="t7h-fv-AuS" id="Yrm-K7-0Rj"/>
                                 </connections>
                             </searchBar>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" barStyle="blackOpaque" id="Wa8-ag-Zbo">
+                                <rect key="frame" x="0.0" y="460" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <items>
+                                    <barButtonItem title="Show All" id="HPR-W4-FPo">
+                                        <connections>
+                                            <action selector="getAll:" destination="t7h-fv-AuS" id="tvL-Ve-a4h"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="8Y0-CT-fKL"/>
+                                    <barButtonItem systemItem="refresh" id="ZuV-K1-m36">
+                                        <connections>
+                                            <action selector="refreshButtonClicked:" destination="t7h-fv-AuS" id="UwQ-FT-nDA"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="PrP-P8-Sfh">
+                                <rect key="frame" x="54" y="440" width="213" height="14"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <navigationItem key="navigationItem" title="Explore" id="D8Z-z6-7RP"/>
-                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <connections>
                         <outlet property="collectionView" destination="okJ-fK-tGM" id="Xgs-CD-xgm"/>
                         <outlet property="searchBar" destination="WD2-KI-NsR" id="kq7-JI-tIZ"/>
+                        <outlet property="searchStatus" destination="PrP-P8-Sfh" id="Z3a-V7-v5J"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lWN-BM-aH3" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -902,7 +926,7 @@
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="No account?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ABl-Lh-OK1">
-                                <rect key="frame" x="210" y="219" width="68" height="21"/>
+                                <rect key="frame" x="200" y="219" width="100" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
@@ -1143,8 +1167,6 @@ If you have any questions about our policy or the security of Screen Capture app
         <class className="PFAlbumDetailsViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PFAlbumDetailsViewController.h"/>
             <relationships>
-                <relationship kind="action" name="privacyChanged:"/>
-                <relationship kind="action" name="removeAlbum:"/>
                 <relationship kind="outlet" name="collectionView" candidateClass="UICollectionView"/>
                 <relationship kind="outlet" name="privacySegmentedControl" candidateClass="UISegmentedControl"/>
                 <relationship kind="outlet" name="toolbar" candidateClass="UIToolbar"/>
@@ -1163,9 +1185,7 @@ If you have any questions about our policy or the security of Screen Capture app
         <class className="PFDisplayMyPhotoViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PFDisplayMyPhotoViewController.h"/>
             <relationships>
-                <relationship kind="action" name="deletePhoto:"/>
                 <relationship kind="action" name="segmentTappedOn:"/>
-                <relationship kind="action" name="showActionMenuForPhoto:"/>
                 <relationship kind="action" name="showPhotoEditor:"/>
                 <relationship kind="outlet" name="buttonsView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="description" candidateClass="UITextView"/>
@@ -1195,16 +1215,14 @@ If you have any questions about our policy or the security of Screen Capture app
         <class className="PFExploreViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PFExploreViewController.h"/>
             <relationships>
-                <relationship kind="action" name="loginOrSignUp:" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="collectionView" candidateClass="UICollectionView"/>
                 <relationship kind="outlet" name="searchBar" candidateClass="UISearchBar"/>
+                <relationship kind="outlet" name="searchStatus" candidateClass="UILabel"/>
             </relationships>
         </class>
         <class className="PFPickAlbumViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PFPickAlbumViewController.h"/>
             <relationships>
-                <relationship kind="action" name="makeNewAlbum:" candidateClass="UIBarButtonItem"/>
-                <relationship kind="action" name="selectAlbum:"/>
                 <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
             </relationships>
         </class>
@@ -1222,14 +1240,6 @@ If you have any questions about our policy or the security of Screen Capture app
         </class>
         <class className="PFSharingCenterViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PFSharingCenterViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="saveToAlbumDevice:"/>
-                <relationship kind="action" name="saveToRemoteAlbum:"/>
-                <relationship kind="action" name="shareWithEmail:"/>
-                <relationship kind="action" name="shareWithFacebook:"/>
-                <relationship kind="action" name="shareWithSinaWeibo:"/>
-                <relationship kind="action" name="shareWithTwitter:"/>
-            </relationships>
         </class>
         <class className="PFSharingViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PFSharingViewController.h"/>
@@ -1237,7 +1247,6 @@ If you have any questions about our policy or the security of Screen Capture app
                 <relationship kind="action" name="albumsVCSegue:" candidateClass="UIButton"/>
                 <relationship kind="action" name="createVCSegue:" candidateClass="UIButton"/>
                 <relationship kind="action" name="exploreVCSegue:" candidateClass="UIButton"/>
-                <relationship kind="action" name="loginOrSignUp:" candidateClass="UIBarButtonItem"/>
                 <relationship kind="action" name="shareVCSegue:" candidateClass="UIButton"/>
                 <relationship kind="action" name="showProfile"/>
             </relationships>
@@ -1253,9 +1262,6 @@ If you have any questions about our policy or the security of Screen Capture app
         </class>
         <class className="UICollectionViewFlowLayout" superclassName="UICollectionViewLayout">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewFlowLayout.h"/>
-        </class>
-        <class className="UICollectionViewLayout" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewLayout.h"/>
         </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

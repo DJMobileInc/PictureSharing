@@ -121,7 +121,7 @@ UIPopoverController * cameraPopoverController;
 }
 
 -(void)logout{
-    [manager.ff logout];
+   // [manager.ff logout];
     manager.user = nil;
     
     if(self.navigationController){
@@ -132,8 +132,9 @@ UIPopoverController * cameraPopoverController;
     else{
         [manager dismissPopovers];
         [manager.currentNavigationController  popToRootViewControllerAnimated:YES];
-
     }
+    [manager displayMessage:@"Successfully logged out."];
+    
     
 }
 

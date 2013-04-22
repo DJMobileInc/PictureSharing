@@ -336,7 +336,7 @@
 -(ContentPack *)checkIfBought:(ContentPack *)contentPack{
     if( [MKStoreManager isFeaturePurchased:contentPack.key])
     {
-        NSLog(@" it is purchased ");
+     //   NSLog(@" it is purchased ");
         for(UIImage * im in contentPack.premiumContent.images)
         {
             [contentPack.freeContent.images addObject:im];
@@ -348,7 +348,7 @@
         }
     }
     else{
-        NSLog(@" it is not purchased ");
+      //  NSLog(@" it is not purchased ");
         
     }
     return contentPack;

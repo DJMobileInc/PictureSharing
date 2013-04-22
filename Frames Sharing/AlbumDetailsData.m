@@ -17,34 +17,6 @@
 
 -(void)updateCell:(PFExploreCell *)cell withObject:(id)object andIndexPath:(NSIndexPath*)indexPath{
     
-//    NSString * guid = [self.manager getGUID: (Photo *)object];
-//    NSLog(@" GUID  %@",guid);
-//        [self.manager.ff loadBlobsForObj: (Photo *)object onComplete:^
-//         (NSError *theErr, id theObj, NSHTTPURLResponse *theResponse){
-//             if(theErr)
-//             {
-//                 NSLog(@" Error for blob  %@ ",[theErr debugDescription]);
-//             }
-//             else{
-//                 // NSLog(@"No Error");
-//                 
-//             }
-//             Photo * photo = theObj;
-//             if(self.photoArray.count > 0){
-//                 if(photo){
-//                     if(indexPath.row<self.photoArray.count){
-//                         [self.photoArray replaceObjectAtIndex:indexPath.row withObject:photo];
-//                         cell.imageView.image = [UIImage imageWithData:photo.thumbnailImageData];
-//                         [UIImage saveImage:[UIImage imageWithData:photo.imageData ] withName:guid];
-//                     }
-//                 }
-//                 else{
-//                     // NSLog(@" Photo doesn't exist ");
-//                 }
-//             }
-//         }];
-//    
-//  //  }
 
     NSLog(@"Update Cell");
     if([[(Photo *)object thumbnailImageData]length]>0 && [[(Photo *)object imageData]length]>0){
@@ -54,8 +26,10 @@
     }
     else{
         NSLog(@"Yes need to update it");
+           [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
         [self.manager.ff loadBlobsForObj:(Photo *)object onComplete:^
          (NSError *theErr, id theObj, NSHTTPURLResponse *theResponse){
+                [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
              if(theErr)
              {
                  NSLog(@" Error for blob  %@ ",[theErr debugDescription]);

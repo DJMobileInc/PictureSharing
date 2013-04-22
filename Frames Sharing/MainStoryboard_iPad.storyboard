@@ -1,125 +1,61 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="11G63" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="11G63" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="XYX-2h-gdF">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
     <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="TIr-Ja-tgV">
+            <objects>
+                <navigationController definesPresentationContext="YES" id="XYX-2h-gdF" sceneMemberID="viewController">
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="blackOpaque" prompted="NO"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="blackOpaque" id="EwD-au-9K0">
+                        <rect key="frame" x="0.0" y="-44" width="0.0" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="2" kind="relationship" relationship="rootViewController" id="t53-ki-oLb"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yAc-yn-HqT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-4397" y="38"/>
+        </scene>
         <!--View Controller-->
         <scene sceneID="4">
             <objects>
                 <viewController id="2" customClass="ViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5">
-                        <rect key="frame" x="0.0" y="20" width="768" height="1004"/>
+                        <rect key="frame" x="0.0" y="64" width="1024" height="704"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="AppBackground.png" id="Xhx-v4-1oG" userLabel="AppBackground.png">
-                                <rect key="frame" x="0.0" y="0.0" width="768" height="1004"/>
+                                <rect key="frame" x="0.0" y="0.0" width="1024" height="704"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                             <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" image="ApplicationFramePortrait.png" id="vco-2h-dji" userLabel="ApplicationFrame.png">
-                                <rect key="frame" x="0.0" y="0.0" width="768" height="1004"/>
+                                <rect key="frame" x="0.0" y="0.0" width="1024" height="704"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="flowers.jpg" id="xC9-n8-IxT" userLabel="PhotoContainer">
-                                <rect key="frame" x="0.0" y="232" width="794" height="526"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <rect key="frame" x="230" y="232" width="794" height="526"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="artisticRed.png" id="ZCd-Q9-V6O" userLabel="FrameContainer">
-                                <rect key="frame" x="32" y="150" width="700" height="700"/>
+                                <rect key="frame" x="42" y="150" width="933" height="454"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <view contentMode="scaleToFill" id="K5R-UK-G7Q" userLabel="FramesView">
-                                <rect key="frame" x="28" y="781" width="707" height="170"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="BlackBar.png" id="xer-hZ-ghW">
-                                        <rect key="frame" x="0.0" y="0.0" width="707" height="170"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                    </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="9ff-TI-pdv">
-                                        <rect key="frame" x="665" y="7" width="30" height="20"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
-                                        <state key="normal" title="X" backgroundImage="YellowButton.png">
-                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <state key="highlighted">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="hideFramesFor:" destination="2" eventType="touchUpInside" id="5AW-1K-EfX"/>
-                                        </connections>
-                                    </button>
-                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" id="ojj-rh-LGX">
-                                        <rect key="frame" x="1" y="53" width="702" height="118"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="kJQ-WV-qfh">
-                                            <size key="itemSize" width="115" height="115"/>
-                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                        </collectionViewFlowLayout>
-                                        <cells>
-                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="frameCellId" id="KFT-p8-lzX" customClass="FrameCell">
-                                                <rect key="frame" x="0.0" y="1" width="115" height="115"/>
-                                                <autoresizingMask key="autoresizingMask"/>
-                                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                                    <rect key="frame" x="0.0" y="0.0" width="115" height="115"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="flowers.jpg" id="hWM-gt-6hV">
-                                                            <rect key="frame" x="14" y="13" width="88" height="88"/>
-                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                        </imageView>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="lampard2_thumb.png" id="l0O-yc-dgv">
-                                                            <rect key="frame" x="0.0" y="0.0" width="115" height="115"/>
-                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                        </imageView>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="Lock.png" id="hp1-bz-lte">
-                                                            <rect key="frame" x="71" y="69" width="37" height="37"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        </imageView>
-                                                    </subviews>
-                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                </view>
-                                                <connections>
-                                                    <outlet property="lock" destination="hp1-bz-lte" id="hyh-f4-DMu"/>
-                                                    <outlet property="photoFrame" destination="l0O-yc-dgv" id="8nw-aO-cY8"/>
-                                                </connections>
-                                            </collectionViewCell>
-                                        </cells>
-                                        <connections>
-                                            <outlet property="dataSource" destination="2" id="tA4-30-z59"/>
-                                            <outlet property="delegate" destination="2" id="amI-Rf-92R"/>
-                                        </connections>
-                                    </collectionView>
-                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" buttonType="roundedRect" lineBreakMode="middleTruncation" id="QZM-sJ-HJi">
-                                        <rect key="frame" x="279" y="0.0" width="147" height="39"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="13"/>
-                                        <state key="normal" title="Frames Content Ttile" backgroundImage="YellowButtonPin.png">
-                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <state key="highlighted">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            </view>
                             <view contentMode="scaleToFill" id="Qwz-j8-fKj" userLabel="EffectsView">
-                                <rect key="frame" x="29" y="781" width="707" height="155"/>
+                                <rect key="frame" x="0.0" y="481" width="1024" height="155"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" image="BlackBar.png" id="fXe-lE-AZ0">
-                                        <rect key="frame" x="0.0" y="0.0" width="707" height="170"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="BlackBar.png" id="fXe-lE-AZ0">
+                                        <rect key="frame" x="0.0" y="0.0" width="1024" height="170"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     </imageView>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" id="7z6-m1-MOs">
-                                        <rect key="frame" x="93" y="38" width="526" height="118"/>
+                                        <rect key="frame" x="6" y="38" width="1007" height="118"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Tov-LL-brx">
                                             <size key="itemSize" width="115" height="115"/>
@@ -165,7 +101,7 @@
                                         </connections>
                                     </collectionView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="m1D-ql-qEq">
-                                        <rect key="frame" x="585" y="11" width="28" height="25"/>
+                                        <rect key="frame" x="985" y="11" width="28" height="25"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                         <state key="normal" title="X" backgroundImage="YellowButton.png">
@@ -182,8 +118,89 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
+                            <view contentMode="scaleToFill" id="K5R-UK-G7Q" userLabel="FramesView">
+                                <rect key="frame" x="0.0" y="481" width="1024" height="170"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="BlackBar.png" id="xer-hZ-ghW">
+                                        <rect key="frame" x="0.0" y="0.0" width="1024" height="170"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="9ff-TI-pdv">
+                                        <rect key="frame" x="984" y="9" width="30" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
+                                        <state key="normal" title="X" backgroundImage="YellowButton.png">
+                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="hideFramesFor:" destination="2" eventType="touchUpInside" id="5AW-1K-EfX"/>
+                                        </connections>
+                                    </button>
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" id="ojj-rh-LGX">
+                                        <rect key="frame" x="7" y="53" width="1007" height="118"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="kJQ-WV-qfh">
+                                            <size key="itemSize" width="115" height="115"/>
+                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        </collectionViewFlowLayout>
+                                        <cells>
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="frameCellId" id="KFT-p8-lzX" customClass="FrameCell">
+                                                <rect key="frame" x="0.0" y="1" width="115" height="115"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                                    <rect key="frame" x="0.0" y="0.0" width="115" height="115"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="flowers.jpg" id="hWM-gt-6hV">
+                                                            <rect key="frame" x="14" y="13" width="88" height="88"/>
+                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                        </imageView>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="lampard2_thumb.png" id="l0O-yc-dgv">
+                                                            <rect key="frame" x="0.0" y="0.0" width="115" height="115"/>
+                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                        </imageView>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="Lock.png" id="hp1-bz-lte">
+                                                            <rect key="frame" x="71" y="69" width="37" height="37"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        </imageView>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                </view>
+                                                <connections>
+                                                    <outlet property="lock" destination="hp1-bz-lte" id="hyh-f4-DMu"/>
+                                                    <outlet property="photoFrame" destination="l0O-yc-dgv" id="8nw-aO-cY8"/>
+                                                </connections>
+                                            </collectionViewCell>
+                                        </cells>
+                                        <connections>
+                                            <outlet property="dataSource" destination="2" id="tA4-30-z59"/>
+                                            <outlet property="delegate" destination="2" id="amI-Rf-92R"/>
+                                        </connections>
+                                    </collectionView>
+                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" buttonType="roundedRect" lineBreakMode="middleTruncation" id="QZM-sJ-HJi">
+                                        <rect key="frame" x="439" y="0.0" width="147" height="39"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="13"/>
+                                        <state key="normal" title="Frames Content Ttile" backgroundImage="YellowButtonPin.png">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
                             <view contentMode="scaleToFill" id="S1S-XB-SkT">
-                                <rect key="frame" x="9" y="48" width="184" height="210"/>
+                                <rect key="frame" x="9" y="60" width="184" height="210"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" buttonType="roundedRect" lineBreakMode="middleTruncation" id="P0j-3p-3IO">
@@ -280,7 +297,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" id="Xq5-LL-3oh">
-                                <rect key="frame" x="29" y="953" width="706" height="48"/>
+                                <rect key="frame" x="148" y="653" width="706" height="48"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="T2u-6N-bW8">
@@ -391,7 +408,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
                             <adBannerView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="AVI-qx-m3v">
-                                <rect key="frame" x="0.0" y="0.0" width="768" height="64"/>
+                                <rect key="frame" x="0.0" y="0.0" width="1024" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <connections>
                                     <outlet property="delegate" destination="2" id="Ohl-Mq-PSc"/>
@@ -399,18 +416,23 @@
                             </adBannerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
-                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
+                    <navigationItem key="navigationItem" id="if0-WF-IVs"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
+                        <outlet property="applicationBackground" destination="Xhx-v4-1oG" id="uZy-QP-kyJ"/>
                         <outlet property="applicationFrame" destination="vco-2h-dji" id="8od-lD-epJ"/>
                         <outlet property="bannerView" destination="AVI-qx-m3v" id="agP-J5-qhB"/>
                         <outlet property="effectsCollectionView" destination="7z6-m1-MOs" id="AcL-a3-FIE"/>
                         <outlet property="effectsView" destination="Qwz-j8-fKj" id="8RX-Ry-wGh"/>
                         <outlet property="frameContainerImageView" destination="ZCd-Q9-V6O" id="xW8-55-2lk"/>
                         <outlet property="framesButon" destination="QXd-Of-kER" id="ZV2-L1-twh"/>
+                        <outlet property="framesButtonsContainerView" destination="S1S-XB-SkT" id="tgG-Id-i7H"/>
                         <outlet property="framesCollectionView" destination="ojj-rh-LGX" id="zxg-tE-T4V"/>
                         <outlet property="framesTitleButton" destination="QZM-sJ-HJi" id="ezz-z8-ecn"/>
                         <outlet property="framesView" destination="K5R-UK-G7Q" id="qCC-fC-qIO"/>
+                        <outlet property="menuViewHolder" destination="Xq5-LL-3oh" id="e5S-eb-LMY"/>
                         <outlet property="photoContainerImgView" destination="xC9-n8-IxT" id="MkZ-i1-RlO"/>
                     </connections>
                 </viewController>
@@ -426,7 +448,7 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="storeWoodBackground.png" id="LGW-dI-unv">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="AppBackground.png" id="LGW-dI-unv">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
@@ -482,6 +504,7 @@
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <navigationItem key="navigationItem" id="3Qv-v2-old"/>
                     <value key="contentSizeForViewInPopover" type="size" width="320" height="460"/>
@@ -496,8 +519,10 @@
             <objects>
                 <navigationController autoresizesArchivedViewToFullSize="NO" title="Store" definesPresentationContext="YES" id="sur-Be-dFc" sceneMemberID="viewController">
                     <value key="contentSizeForViewInPopover" type="size" width="320" height="480"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="blackOpaque" prompted="NO"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="B8m-Xp-ef8">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="blackOpaque" id="B8m-Xp-ef8">
+                        <rect key="frame" x="0.0" y="-44" width="0.0" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -506,7 +531,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gxd-2J-lva" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-5229" y="-489"/>
+            <point key="canvasLocation" x="-5353" y="-793"/>
         </scene>
         <!--Store Items View Controller - Store-->
         <scene sceneID="T0Q-BU-iJ5">
@@ -516,7 +541,7 @@
                         <rect key="frame" x="0.0" y="20" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="storeWoodBackground.png" id="IRt-yq-gue">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="AppBackground.png" id="IRt-yq-gue">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
@@ -774,8 +799,88 @@
         <image name="profileIcon.png" width="98" height="98"/>
         <image name="searchIcon.png" width="98" height="98"/>
         <image name="smallBackground.png" width="320" height="480"/>
-        <image name="storeWoodBackground.png" width="320" height="460"/>
     </resources>
+    <classes>
+        <class className="EffectCell" superclassName="UICollectionViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/EffectCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="effectLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="photo" candidateClass="UIImageView"/>
+            </relationships>
+        </class>
+        <class className="FrameCell" superclassName="UICollectionViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FrameCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="lock" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="photoFrame" candidateClass="UIImageView"/>
+            </relationships>
+        </class>
+        <class className="InternalStoreViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/InternalStoreViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="dismissController:"/>
+                <relationship kind="action" name="restorePurchases:"/>
+            </relationships>
+        </class>
+        <class className="PFSharingViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PFSharingViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="albumsVCSegue:" candidateClass="UIButton"/>
+                <relationship kind="action" name="createVCSegue:" candidateClass="UIButton"/>
+                <relationship kind="action" name="exploreVCSegue:" candidateClass="UIButton"/>
+                <relationship kind="action" name="loginOrSignUp:" candidateClass="UIBarButtonItem"/>
+                <relationship kind="action" name="shareVCSegue:" candidateClass="UIButton"/>
+                <relationship kind="action" name="showProfile"/>
+            </relationships>
+        </class>
+        <class className="StoreItemDetailViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/StoreItemDetailViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="imageView" candidateClass="UIImageView"/>
+            </relationships>
+        </class>
+        <class className="StoreItemsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/StoreItemsViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="buyItems:"/>
+            </relationships>
+        </class>
+        <class className="UICollectionReusableView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionReusableView.h"/>
+        </class>
+        <class className="UICollectionViewCell" superclassName="UICollectionReusableView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewCell.h"/>
+        </class>
+        <class className="UICollectionViewFlowLayout" superclassName="UICollectionViewLayout">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewFlowLayout.h"/>
+        </class>
+        <class className="ViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="framesButtonAction:"/>
+                <relationship kind="action" name="hideEffects:"/>
+                <relationship kind="action" name="hideFramesFor:"/>
+                <relationship kind="action" name="photoAction:"/>
+                <relationship kind="action" name="shareAction:"/>
+                <relationship kind="action" name="showEffects:"/>
+                <relationship kind="action" name="showFramesFor:"/>
+                <relationship kind="action" name="showMenu:"/>
+                <relationship kind="outlet" name="applicationBackground" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="applicationFrame" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="bannerView" candidateClass="ADBannerView"/>
+                <relationship kind="outlet" name="effectsCollectionView" candidateClass="UICollectionView"/>
+                <relationship kind="outlet" name="effectsView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="frameContainerImageView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="framesButon" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="framesButtonsContainerView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="framesCollectionView" candidateClass="UICollectionView"/>
+                <relationship kind="outlet" name="framesTitleButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="framesView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="menuViewHolder" candidateClass="UIView"/>
+                <relationship kind="outlet" name="photoContainerImgView" candidateClass="UIImageView"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>

@@ -14,6 +14,7 @@
 #import "PFProfileViewController.h"
 
 @interface PFExploreViewController ()<UISearchBarDelegate>
+@property (strong, nonatomic) IBOutlet UILabel *searchStatus;
 
 @property (strong, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
@@ -123,16 +124,6 @@ UIPopoverController * profilePopover;
 
 
 
-
-
-
-
-
-
-
-
-
-
 #pragma mark - UICollectionViewDelegate
 
 -(void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -194,16 +185,17 @@ UIPopoverController * profilePopover;
 
 -(void)updateCell:(PFExploreCell *)cell withObject:(id)object andIndexPath:(NSIndexPath*)indexPath{
     
-    NSLog(@"Update Cell");
+
     if([[(Photo *)object thumbnailImageData]length]>0 && [[(Photo *)object imageData]length]>0){
         NSLog(@"No need to update.");
          cell.imageView.image = [UIImage imageWithData:[(Photo *)object  thumbnailImageData]];
         
     }
     else{
-        NSLog(@"Yes need to update it");
+   [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
         [manager.ff loadBlobsForObj:(Photo *)object onComplete:^
          (NSError *theErr, id theObj, NSHTTPURLResponse *theResponse){
+               [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
              if(theErr)
              {
                  NSLog(@" Error for blob  %@ ",[theErr debugDescription]);
@@ -226,14 +218,26 @@ UIPopoverController * profilePopover;
 
 #pragma mark Search Bar
 
+- (IBAction)refreshButtonClicked:(id)sender
+{
+      [self searchBarSearchButtonClicked:self.searchBar];
+
+}
+
+
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
     [photoArray removeAllObjects];
     [self.collectionView reloadData];
-    [manager getPhotosWithSearchQuery:searchBar.text];
+    if(self.searchBar.text.length==0)
+    {
+        [manager getNewestPhotos];
+    }else{
+        [manager getPhotosWithSearchQuery:self.searchBar.text];    
+    }
+    
     [self.searchBar resignFirstResponder];
-    
-    NSLog(@"Searching ");
-    
+    self.searchStatus.text = @" Searching ";
+       
 }
 
 -(void)searchCompletedWithResults:(NSNotification *)notification{
@@ -241,7 +245,22 @@ UIPopoverController * profilePopover;
     photoArray = (NSMutableArray *) array;
     [self.collectionView reloadData];
     NSLog(@"Search completed with results");
+    if(photoArray.count == 0)
+    {
+         self.searchStatus.text = @" No results found. Try different query. ";
+    }
+    else{
+         self.searchStatus.text = @"";
+    }
+    
 }
+
+- (IBAction)getAll:(id)sender {
+      [manager getNewestPhotos];
+}
+
+
+
 
 - (void)searchBar:(UISearchBar *)searchBar selectedScopeButtonIndexDidChange:(NSInteger)selectedScope{
     [photoArray removeAllObjects];
