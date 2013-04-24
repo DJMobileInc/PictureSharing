@@ -325,12 +325,13 @@ showLoginScreenForViewController:(UIViewController *)vc andNavigationController:
 
 -(void)getPhotosForAlbum:(NSString *)albumId{
    
-    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+   // [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     [self.ff getArrayFromUri:[NSString stringWithFormat:@"/ff/resources/Photo/(albumId eq '%@')",albumId] onComplete:
      ^(NSError * theErr, id theObj, NSHTTPURLResponse * theResponse)
      {
         
-         NSLog(@"Get Photos for Album retrieved");if(theErr){
+         NSLog(@"Get Photos for Album retrieved");
+         if(theErr){
              [self displayMessage:[theErr localizedDescription]];
          }
          else{
@@ -338,7 +339,7 @@ showLoginScreenForViewController:(UIViewController *)vc andNavigationController:
              [[NSNotificationCenter defaultCenter] postNotificationName:photosRetrievedNotification
                                                                  object:theObj userInfo:nil];
          }
-         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+        // [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
      }];
 }
 
@@ -426,7 +427,7 @@ showLoginScreenForViewController:(UIViewController *)vc andNavigationController:
     Photo * photo = [[Photo alloc]init];
     UIImage * ui = [UIImage imageWithData:_imageData];
     ui = [ui imageByScalingProportionallyToSize:CGSizeMake(800, 1024)];
-    UIImage * thumbnail = [ui imageByScalingProportionallyToSize:CGSizeMake(100, 100)];
+    UIImage * thumbnail = [ui imageByScalingProportionallyToSize:CGSizeMake(300, 300)];
     
     NSData *thumbnailImageData = UIImagePNGRepresentation(thumbnail); // 0.7 is JPG quality
     NSData *imageData = UIImagePNGRepresentation(ui); // 0.7 is JPG quality
@@ -437,6 +438,8 @@ showLoginScreenForViewController:(UIViewController *)vc andNavigationController:
     photo.description= description;
     photo.albumId = albumId;
     photo.owner =self.user;
+    photo.isPublic = 0;
+    
     
    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     //Upload file
@@ -509,7 +512,7 @@ showLoginScreenForViewController:(UIViewController *)vc andNavigationController:
 
 
 -(void)getPhotosWithSearchQuery:(NSString *)searchText{
-    NSString * searchQuery = [NSString stringWithFormat:@"/ff/resources/Photo/(title matches '.*%@.*' and isPublic eq 1 and flag eq 0 or description matches '.*%@.*' and isPublic eq 1 and flag eq 0)",searchText,searchText];
+    NSString * searchQuery = [NSString stringWithFormat:@"/ff/resources/Photo/(description matches '.*%@.*' and isPublic eq 1 and flag eq 0)", searchText];
     
 [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     [self.ff getArrayFromUri:searchQuery onComplete:
@@ -551,7 +554,7 @@ showLoginScreenForViewController:(UIViewController *)vc andNavigationController:
         [(ViewController *)vc setImageToDisplay:image];
         
     }
-    vc.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    vc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
     
     if([vc isKindOfClass:[UINavigationController class]])
     {

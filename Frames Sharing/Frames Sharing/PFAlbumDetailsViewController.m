@@ -46,7 +46,6 @@ NSMutableArray * photoArray;
 
     
     manager = [Manager sharedInstance];
-    [manager.ff setAutoLoadBlobs:NO];
 
     albumDetails.manager =manager;
 

@@ -18,8 +18,7 @@ User * photoOwner;
     self = [super init];
     if(self){
         manager = [Manager sharedInstance];
-       //[NSNotificationCenter defaultCenter]addObserver:self selector:<#(SEL)#> name:<#(NSString *)#> object:<#(id)#>
-    }
+     }
     return self;
 }
 
@@ -48,9 +47,10 @@ User * photoOwner;
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"AlbumCell"];
     }
     
-    Album * album = (Album *)self.objects[indexPath.row];
-    NSLog(@"album %@", [manager getGUID:album]);
+    Album * album = (Album *)self.objects[indexPath.row];    
     cell.textLabel.text =album.name;
+    cell.imageView.image = [UIImage imageNamed:@"albumSmallIcon"];
+    
     return cell;
 }
 

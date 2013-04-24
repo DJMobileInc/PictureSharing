@@ -33,7 +33,6 @@ UIPopoverController * profilePopover;
     else{
     
     }
-    NSLog(@" Navigation Controller %@ %@ ",self.navigationController, manager.currentNavigationController);
     self.navigationController.navigationBarHidden = NO;
     
     [super viewDidLoad];
@@ -123,7 +122,7 @@ UIPopoverController * profilePopover;
 }
 
 - (IBAction)exploreVCSegue:(UIButton *)sender {
-    if(manager.user){
+//    if(manager.user){
         UIStoryboard *st;
         PFExploreViewController * explorer;
         
@@ -143,10 +142,10 @@ UIPopoverController * profilePopover;
             [self.navigationController pushViewController:explorer animated:YES];
 
         }
-    }
-    else{
-       [manager displayActionSheetWithMessage:@"You need to be logged in to continue." forView:self.view navigationController:self.currentNavigationController storyboard:self.storyboard andViewController:self];
-    }
+//    }
+//    else{
+//       [manager displayActionSheetWithMessage:@"You need to be logged in to continue." forView:self.view navigationController:self.currentNavigationController storyboard:self.storyboard andViewController:self];
+//    }
 }
 - (IBAction)shareVCSegue:(UIButton *)sender {
     //[self performSegueWithIdentifier:@"share" sender:self];

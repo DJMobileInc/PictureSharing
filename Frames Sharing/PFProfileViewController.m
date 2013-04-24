@@ -31,8 +31,6 @@ UIPopoverController * cameraPopoverController;
     manager = [Manager sharedInstance];
     self.userDescription.delegate = self;
      camera = [[CameraPicker alloc]init];
-    //NSLog(@"User is: %@ %@",self.user, self.user.profilePicture);
-    
     
     [manager.ff loadBlobsForObj:self.user onComplete:^
      (NSError *theErr, id theObj, NSHTTPURLResponse *theResponse){
@@ -42,13 +40,11 @@ UIPopoverController * cameraPopoverController;
          }
          
          User * user = (User *) theObj;
-       //  NSLog(@"User is: %@ %@",self.user, user);
+     
          
          self.user = user;
          UIImage * img = [UIImage imageWithData: user.profilePicture];
-        // NSLog(@"Image is: %@",img);
          [self.profilePictureButton setImage:img forState:UIControlStateNormal];
-        // NSLog(@" Image should be updated and updated user is: %@",self.user.profilePicture);
      }];
 
 }

@@ -58,7 +58,7 @@ UIPopoverController * sharingPopover;
 }
 - (IBAction)deletePhoto:(id)sender {
     [manager delete:self.photo];
-    NSLog(@" Photo %@",self.photo);
+    
     
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -70,6 +70,8 @@ UIPopoverController * sharingPopover;
     manager = [Manager sharedInstance];
     self.description.delegate = self;
     [self changePrivacy:!self.photo.isPublic];
+
+    NSLog(@" Photo %d",self.photo.isPublic);
 }
 
 - (void)didReceiveMemoryWarning

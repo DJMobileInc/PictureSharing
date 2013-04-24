@@ -19,5 +19,6 @@
     #import "MKStoreManager.h"
     #import <CoreImage/CoreImage.h>
     #import <QuartzCore/QuartzCore.h>
+    #import "MBProgressHUD.h"
 
 #endif

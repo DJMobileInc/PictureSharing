@@ -30,7 +30,6 @@ UIAlertView * photoDescriptionAlert;
 	// Do any additional setup after loading the view.
    // _objects = [[NSMutableArray alloc] init];
     manager = [Manager sharedInstance];
-    [manager.ff setAutoLoadBlobs:NO];
     self.user = manager.user;
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(albumsRetrieved:) name:albumsRetrievedNotification object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(albumCreated:) name:albumCreatedNotification object:nil];
@@ -56,6 +55,8 @@ UIAlertView * photoDescriptionAlert;
 -(void)albumCreated:(NSNotification *)notification{
     [manager getAlbumsForUser:[manager.ff metaDataForObj:manager.user].guid];    
 }
+
+
 -(void)albumsRetrieved:(NSNotification *)notification{
     albumsList.objects = notification.object;
     [self.tableView reloadData];

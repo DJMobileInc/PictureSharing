@@ -299,11 +299,11 @@ CGRect imageFrame;
 
 
 
--(void)viewDidAppear:(BOOL)animated{
+-(void)viewWillAppear:(BOOL)animated{
     [self hideAll];
     [self manageOrientation];
     [manager dismissPopovers];
-    NSLog(@"Did Appear");
+    NSLog(@"Will Appear");
     self.navigationController.navigationBarHidden = YES;
     if(!self.imageToDisplay)
     {if(manager.defaultFrame){
@@ -377,7 +377,7 @@ CGRect imageFrame;
     if([self deviceIsAnIPad]){
         if(UIInterfaceOrientationIsLandscape(self.interfaceOrientation))
         {
-            [UIView animateWithDuration:0.2 animations:^{
+            [UIView animateWithDuration:0.1 animations:^{
                 self.applicationFrame.image = [UIImage imageNamed:@"ApplicationFrame"];
                 vup.frame = CGRectMake(0,0,width, lfy);
                 vleft.frame = CGRectMake(0,0,lfx, height);
@@ -394,7 +394,7 @@ CGRect imageFrame;
             
         }
         else{
-            [UIView animateWithDuration:0.2 animations:^{
+            [UIView animateWithDuration:0.1 animations:^{
                 self.applicationFrame.image = [UIImage imageNamed:@"ApplicationFramePortrait"];
               
                 vup.frame = CGRectMake(0,0,width, pfy);

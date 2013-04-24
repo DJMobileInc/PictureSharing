@@ -19,18 +19,11 @@
     {
         self.ratings = [[NSMutableArray alloc]initWithCapacity:0];
         self.flag =NO;
-        self.isPublic = YES;
+//        self.isPublic = NO;
     }
     return self;
 }
 
-- (NSString *)uuid
-{
-    CFUUIDRef uuidRef = CFUUIDCreate(NULL);
-    CFStringRef uuidStringRef = CFUUIDCreateString(NULL, uuidRef);
-    CFRelease(uuidRef);
-    return (__bridge NSString *)uuidStringRef;
-}
 
 
 @end

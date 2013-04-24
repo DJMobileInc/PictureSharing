@@ -17,18 +17,17 @@
 
 -(void)updateCell:(PFExploreCell *)cell withObject:(id)object andIndexPath:(NSIndexPath*)indexPath{
     
-
-    NSLog(@"Update Cell");
     if([[(Photo *)object thumbnailImageData]length]>0 && [[(Photo *)object imageData]length]>0){
-        NSLog(@"No need to update.");
+    
         cell.imageView.image = [UIImage imageWithData:[(Photo *)object  thumbnailImageData]];
         
     }
     else{
-        NSLog(@"Yes need to update it");
-           [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+        [MBProgressHUD showHUDAddedTo:cell animated:YES];
         [self.manager.ff loadBlobsForObj:(Photo *)object onComplete:^
          (NSError *theErr, id theObj, NSHTTPURLResponse *theResponse){
+             [MBProgressHUD hideHUDForView:cell animated:YES];
+             
                 [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
              if(theErr)
              {
@@ -43,7 +42,6 @@
                      
                      cell.imageView.image = [UIImage imageWithData:photo.thumbnailImageData];
                      
-                     NSLog(@"Cell Updated ");
                  }
              }
          }];
@@ -79,17 +77,17 @@
 }
 #pragma mark – UICollectionViewDelegateFlowLayout
 
--(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    
-    CGSize retVal = CGSizeMake(75, 75);
-    // retVal.height += 35;
-    // retVal.width += 35;
-    return  retVal;
-}
-- (UIEdgeInsets)collectionView:
-(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
-    return UIEdgeInsetsMake(5, 5, 5, 5);
-}
+//-(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+//    
+//    CGSize retVal = CGSizeMake(95, 95);
+//    // retVal.height += 35;
+//    // retVal.width += 35;
+//    return  retVal;
+//}
+//- (UIEdgeInsets)collectionView:
+//(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
+//    return UIEdgeInsetsMake(1, 1, 1, 1);
+//}
 #pragma mark - UICollectionView Datasource
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {

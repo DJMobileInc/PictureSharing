@@ -27,7 +27,6 @@ UIActionSheet * loginActionSheet;
 {
     [super viewDidLoad];
     manager = [Manager sharedInstance];
-    [manager.ff setAutoLoadBlobs:NO];
     self.user = manager.user;
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(albumsRetrieved:) name:albumsRetrievedNotification object:nil];
     [self getAlbums:nil];

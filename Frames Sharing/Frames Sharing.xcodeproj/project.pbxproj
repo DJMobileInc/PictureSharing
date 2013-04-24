@@ -36,6 +36,10 @@
 		4FAB7E9316F8C8D500920E34 /* nonstar.png in Resources */ = {isa = PBXBuildFile; fileRef = 4FAB7E9216F8C8D500920E34 /* nonstar.png */; };
 		4FAB7E9516F8DDDD00920E34 /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = 4FAB7E9416F8DDDD00920E34 /* star.png */; };
 		4FAB7E9816F902EB00920E34 /* iPadStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FAB7E9616F902EB00920E34 /* iPadStoryboard.storyboard */; };
+		82050C54172748BB00925839 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 82050C53172748BB00925839 /* MBProgressHUD.m */; };
+		82050C55172748BB00925839 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 82050C53172748BB00925839 /* MBProgressHUD.m */; };
+		82050C5717277D8300925839 /* albumSmallIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 82050C5617277D8300925839 /* albumSmallIcon.png */; };
+		82050C5817277D8300925839 /* albumSmallIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 82050C5617277D8300925839 /* albumSmallIcon.png */; };
 		8239752416F0210B008E1605 /* Manager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7EF07316EFA94500A364D7 /* Manager.m */; };
 		8239753D16F291E6008E1605 /* PFAlbumDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8239753C16F291E5008E1605 /* PFAlbumDetailsViewController.m */; };
 		8239754016F33B3D008E1605 /* PFDisplayMyPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8239753F16F33B3C008E1605 /* PFDisplayMyPhotoViewController.m */; };
@@ -740,6 +744,9 @@
 		4FAB7E9216F8C8D500920E34 /* nonstar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nonstar.png; sourceTree = "<group>"; };
 		4FAB7E9416F8DDDD00920E34 /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star.png; sourceTree = "<group>"; };
 		4FAB7E9716F902EB00920E34 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = "Frames Sharing/en.lproj/iPadStoryboard.storyboard"; sourceTree = "<group>"; };
+		82050C52172748BB00925839 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		82050C53172748BB00925839 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		82050C5617277D8300925839 /* albumSmallIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = albumSmallIcon.png; sourceTree = "<group>"; };
 		8239753B16F291E5008E1605 /* PFAlbumDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFAlbumDetailsViewController.h; sourceTree = "<group>"; };
 		8239753C16F291E5008E1605 /* PFAlbumDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFAlbumDetailsViewController.m; sourceTree = "<group>"; };
 		8239753E16F33B3C008E1605 /* PFDisplayMyPhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFDisplayMyPhotoViewController.h; sourceTree = "<group>"; };
@@ -1169,6 +1176,8 @@
 		4F7EF06916EFA27600A364D7 /* CustomObjects */ = {
 			isa = PBXGroup;
 			children = (
+				82050C52172748BB00925839 /* MBProgressHUD.h */,
+				82050C53172748BB00925839 /* MBProgressHUD.m */,
 				4F7EF07216EFA94500A364D7 /* Manager.h */,
 				4F7EF07316EFA94500A364D7 /* Manager.m */,
 				4F3C7262170CD4E600B2BB79 /* CameraPicker.h */,
@@ -1195,6 +1204,7 @@
 		4F96216A16EA7E1D0034E26A /* Artwork */ = {
 			isa = PBXGroup;
 			children = (
+				82050C5617277D8300925839 /* albumSmallIcon.png */,
 				4F3C7256170C6D5800B2BB79 /* albumsIcon.png */,
 				4F3C7257170C6D5800B2BB79 /* createNewIcon.png */,
 				4F3C7258170C6D5800B2BB79 /* helpIcon.png */,
@@ -2181,6 +2191,7 @@
 				828C4C9B170A582900F110F7 /* storeWoodBackground.png in Resources */,
 				828C4C9D170A582900F110F7 /* YellowButton.png in Resources */,
 				828C4C9F170A582900F110F7 /* YellowButtonPin.png in Resources */,
+				82050C5817277D8300925839 /* albumSmallIcon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2507,6 +2518,7 @@
 				4F3C7261170C6D5800B2BB79 /* smallBackground.png in Resources */,
 				82932228171A4531009D7231 /* TODO in Resources */,
 				4F4A02001725D14400E91615 /* djMobileLogo.png in Resources */,
+				82050C5717277D8300925839 /* albumSmallIcon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2554,6 +2566,7 @@
 				828C4900170A56F500F110F7 /* SocialHelper.m in Sources */,
 				828C490B170A577700F110F7 /* ViewController.m in Sources */,
 				828C4CA7170A58C500F110F7 /* FilterEffects.m in Sources */,
+				82050C55172748BB00925839 /* MBProgressHUD.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2602,6 +2615,7 @@
 				828C4CCA170D1AD400F110F7 /* AlbumPickerListData.m in Sources */,
 				828C4CCD170D223500F110F7 /* PFSharingCenterViewController.m in Sources */,
 				4F4A01FE1721DACF00E91615 /* RotatingNavigationControllerViewController.m in Sources */,
+				82050C54172748BB00925839 /* MBProgressHUD.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

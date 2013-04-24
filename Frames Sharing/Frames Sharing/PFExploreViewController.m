@@ -25,7 +25,7 @@ Manager * manager;
 NSMutableArray * photoArray;
 UIPopoverController * profilePopover;
 #pragma mark iPad Methods
-
+MBProgressHUD *hud;
 
 
 #pragma mark end of iPad
@@ -35,8 +35,12 @@ UIPopoverController * profilePopover;
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     manager = [Manager sharedInstance];
-    [manager.ff setAutoLoadBlobs:NO];
+   
+    hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.labelText = @"Loading";
+    
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(searchCompletedWithResults:) name:photosRetrievedFromSearchNotification object:nil];
+    
     if(!photoArray){
         photoArray = [[NSMutableArray alloc]initWithCapacity:0];
     }
@@ -59,24 +63,9 @@ UIPopoverController * profilePopover;
 
 
 -(void)viewDidAppear:(BOOL)animated{
-    //[self configureView];
+  
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(searchCompletedWithResults:) name:photosRetrievedFromSearchNotification object:nil];
 
-}
-
-#warning it might be unused
--(void)configureView{
-  
-    if(manager.user){
-        //configure view
-        UIBarButtonItem *anotherButton = [[UIBarButtonItem alloc] initWithTitle:@"Profile" style:UIBarButtonItemStylePlain target:self action:@selector(showProfile)];
-        self.navigationItem.rightBarButtonItem = anotherButton;
-        
-    }
-    else{
-        UIBarButtonItem *anotherButton = [[UIBarButtonItem alloc] initWithTitle:@"Login" style:UIBarButtonItemStylePlain target:self action:@selector(loginOrSignUp:)];
-        self.navigationItem.rightBarButtonItem = anotherButton;
-    }
 }
 
 - (IBAction)loginOrSignUp:(UIBarButtonItem *)sender {
@@ -149,20 +138,20 @@ UIPopoverController * profilePopover;
     NSLog(@" Cell Selected ");
     
 }
+//
+//#pragma mark – UICollectionViewDelegateFlowLayout
+//
+//-(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+//    
+//    CGSize retVal = CGSizeMake(105, 105);
+//    return  retVal;
+//}
+// 
+//- (UIEdgeInsets)collectionView:
+//(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
+//    return UIEdgeInsetsMake(2, 2, 2, 2);
+//}
 
-#pragma mark – UICollectionViewDelegateFlowLayout
-/*
--(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    
-    CGSize retVal = CGSizeMake(75, 75);
-    return  retVal;
-}
- 
-- (UIEdgeInsets)collectionView:
-(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
-    return UIEdgeInsetsMake(10, 10, 10, 10);
-}
-*/
 #pragma mark - UICollectionView Datasource
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
@@ -192,10 +181,12 @@ UIPopoverController * profilePopover;
         
     }
     else{
-   [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+  
+        [MBProgressHUD showHUDAddedTo:cell animated:YES];
         [manager.ff loadBlobsForObj:(Photo *)object onComplete:^
          (NSError *theErr, id theObj, NSHTTPURLResponse *theResponse){
-               [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+            [MBProgressHUD hideHUDForView:cell animated:YES];
+             
              if(theErr)
              {
                  NSLog(@" Error for blob  %@ ",[theErr debugDescription]);
@@ -252,7 +243,7 @@ UIPopoverController * profilePopover;
     else{
          self.searchStatus.text = @"";
     }
-    
+     [hud hide:YES];
 }
 
 - (IBAction)getAll:(id)sender {

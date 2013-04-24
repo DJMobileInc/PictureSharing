@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="11G63" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="xqb-CS-YuW">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3080" systemVersion="11G63b" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="xqb-CS-YuW">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2078"/>
     </dependencies>
     <scenes>
         <!--Explore View Controller - Explore-->
@@ -21,21 +21,21 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="5" minimumInteritemSpacing="5" id="bVN-zu-C4F">
-                                    <size key="itemSize" width="135" height="135"/>
+                                    <size key="itemSize" width="240" height="240"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ExploreCell" id="Ulq-Nr-apz" customClass="PFExploreCell">
-                                        <rect key="frame" x="0.0" y="0.0" width="135" height="135"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="240" height="240"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="135" height="135"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="240" height="240"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="Yfb-M9-qCm">
-                                                    <rect key="frame" x="4" y="5" width="126" height="126"/>
+                                                    <rect key="frame" x="4" y="5" width="231" height="231"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 </imageView>
@@ -97,6 +97,7 @@
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
                         <outlet property="collectionView" destination="Csx-OP-Qtl" id="uHY-Qb-tXz"/>
+                        <outlet property="searchBar" destination="tUy-cr-ZfM" id="AjT-4i-9x5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mAC-To-wJP" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -239,10 +240,10 @@
                                 <rect key="frame" x="0.0" y="0.0" width="1024" height="748"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="zpF-ia-qOc">
+                            <tableView clipsSubviews="YES" alpha="0.80000000000000004" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="zpF-ia-qOc">
                                 <rect key="frame" x="0.0" y="44" width="283" height="660"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="l90-zZ-cGi">
                                 <rect key="frame" x="0.0" y="704" width="1024" height="44"/>
@@ -277,25 +278,25 @@
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </toolbar>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" id="6Wi-rt-Rml">
-                                <rect key="frame" x="283" y="0.0" width="741" height="704"/>
+                                <rect key="frame" x="291" y="0.0" width="733" height="704"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="76p-FZ-37y">
-                                    <size key="itemSize" width="153" height="153"/>
+                                    <size key="itemSize" width="230" height="230"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ExploreCell" id="QGE-U5-gPV" customClass="PFExploreCell">
-                                        <rect key="frame" x="0.0" y="0.0" width="153" height="153"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="230" height="230"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="153" height="153"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="230" height="230"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="287-TP-zS0">
-                                                    <rect key="frame" x="4" y="5" width="144" height="144"/>
+                                                    <rect key="frame" x="4" y="5" width="221" height="221"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 </imageView>
@@ -1074,7 +1075,6 @@ If you have any questions about our policy or the security of Screen Capture app
         <class className="PFDisplayPhotoViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PFDisplayPhotoViewController.h"/>
             <relationships>
-                <relationship kind="action" name="authorButtonPressed:"/>
                 <relationship kind="action" name="flagPhoto:"/>
                 <relationship kind="action" name="voteForPhoto:"/>
                 <relationship kind="outlet" name="authorButton" candidateClass="UIButton"/>
@@ -1093,9 +1093,6 @@ If you have any questions about our policy or the security of Screen Capture app
         <class className="PFExploreViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PFExploreViewController.h"/>
             <relationships>
-                <relationship kind="action" name="getAll:"/>
-                <relationship kind="action" name="loginOrSignUp:" candidateClass="UIBarButtonItem"/>
-                <relationship kind="action" name="refreshButtonClicked:"/>
                 <relationship kind="outlet" name="collectionView" candidateClass="UICollectionView"/>
                 <relationship kind="outlet" name="searchBar" candidateClass="UISearchBar"/>
                 <relationship kind="outlet" name="searchStatus" candidateClass="UILabel"/>
@@ -1115,14 +1112,6 @@ If you have any questions about our policy or the security of Screen Capture app
         </class>
         <class className="PFSharingCenterViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PFSharingCenterViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="saveToAlbumDevice:"/>
-                <relationship kind="action" name="saveToRemoteAlbum:"/>
-                <relationship kind="action" name="shareWithEmail:"/>
-                <relationship kind="action" name="shareWithFacebook:"/>
-                <relationship kind="action" name="shareWithSinaWeibo:"/>
-                <relationship kind="action" name="shareWithTwitter:"/>
-            </relationships>
         </class>
         <class className="PFSharingViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PFSharingViewController.h"/>
@@ -1130,7 +1119,6 @@ If you have any questions about our policy or the security of Screen Capture app
                 <relationship kind="action" name="albumsVCSegue:" candidateClass="UIButton"/>
                 <relationship kind="action" name="createVCSegue:" candidateClass="UIButton"/>
                 <relationship kind="action" name="exploreVCSegue:" candidateClass="UIButton"/>
-                <relationship kind="action" name="loginOrSignUp:" candidateClass="UIBarButtonItem"/>
                 <relationship kind="action" name="shareVCSegue:" candidateClass="UIButton"/>
                 <relationship kind="action" name="showProfile"/>
             </relationships>
@@ -1140,7 +1128,6 @@ If you have any questions about our policy or the security of Screen Capture app
             <relationships>
                 <relationship kind="action" name="makeNewAlbum:" candidateClass="UIBarButtonItem"/>
                 <relationship kind="action" name="refreshAlbums:"/>
-                <relationship kind="action" name="showMenu:"/>
                 <relationship kind="outlet" name="collectionView" candidateClass="UICollectionView"/>
                 <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
             </relationships>
@@ -1154,9 +1141,6 @@ If you have any questions about our policy or the security of Screen Capture app
         <class className="UICollectionViewFlowLayout" superclassName="UICollectionViewLayout">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewFlowLayout.h"/>
         </class>
-        <class className="UICollectionViewLayout" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewLayout.h"/>
-        </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
@@ -1164,6 +1148,6 @@ If you have any questions about our policy or the security of Screen Capture app
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="ohP-09-pwz"/>
+        <segue reference="qIy-rA-JlE"/>
     </inferredMetricsTieBreakers>
 </document>
