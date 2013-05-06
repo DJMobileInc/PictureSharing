@@ -88,17 +88,15 @@ NSMutableDictionary *  currentPhotos;
 
 
 -(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
     [[NSNotificationCenter defaultCenter]removeObserver:self name:photosRetrievedFromSearchNotification object:nil];
     [_queue cancelAllOperations];
-    [super viewWillDisappear:animated];
 }
 
 
 
 -(void)viewDidAppear:(BOOL)animated{
-  
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(searchCompletedWithResults:) name:photosRetrievedFromSearchNotification object:nil];
-
 }
 
 - (IBAction)loginOrSignUp:(UIBarButtonItem *)sender {
@@ -167,7 +165,7 @@ NSMutableDictionary *  currentPhotos;
      
     pdp= [self.storyboard instantiateViewControllerWithIdentifier:@"PFDisplayPhotoViewController"];
     pdp.photo = p;
-    
+    NSLog(@"%@",p);
     [self.navigationController pushViewController:pdp animated:YES];
  
     [pdp changeDescription:p.description];
@@ -340,8 +338,8 @@ NSMutableDictionary *  currentPhotos;
                 else{
                     //NSLog(@" there was an error");
                 }
-                //we don't want to load blobs automatically.
-                manager.ff.autoLoadBlobs = NO;
+                //we want to load blobs automatically.
+                manager.ff.autoLoadBlobs = YES;
                 
                 [[NSOperationQueue mainQueue] addOperationWithBlock:^{
                     PFExploreCell * cell = (PFExploreCell *) [self.collectionView cellForItemAtIndexPath:indexPath];

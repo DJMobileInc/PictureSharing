@@ -64,6 +64,23 @@ UIBarButtonItem * newBarButtonItem;
          self.profilePicture.image = [UIImage imageWithData:[(User *)theObj profilePicture]];
          
      }];
+    //if the image data is null, load it and place the image in the imageView
+    if(!self.photo.imageData || !self.photo.thumbnailImageData) {
+        [MBProgressHUD showHUDAddedTo:self.imageView animated:YES];
+        [manager.ff loadBlobsForObj:self.photo onComplete:^(NSError *theErr, id theObj, NSHTTPURLResponse *theResponse) {
+            if(!theErr){
+                self.photo = (Photo *)theObj;
+                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                    self.imageView.image = [UIImage imageWithData:self.photo.imageData];
+                    [MBProgressHUD hideAllHUDsForView:self.imageView animated:NO];
+                }];
+            }
+            else {
+                NSLog(@"%@", theErr.localizedDescription); //maybe put an actual error message for the user in here.
+                [MBProgressHUD hideAllHUDsForView:self.imageView animated:NO];
+            }
+        }];
+    }
 
 }
 
