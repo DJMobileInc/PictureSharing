@@ -10,7 +10,7 @@
 #import "Manager.h"
 #import "Album.h"
 
-@interface PFAlbumDetailsViewController : UIViewController
+@interface PFAlbumDetailsViewController : UIViewController <UIActionSheetDelegate>
 @property (nonatomic,strong) NSString * albumGuid;
 @property (nonatomic,strong) Album * album;
 @property (strong, nonatomic) IBOutlet UIToolbar *toolbar;

@@ -61,15 +61,14 @@ Manager * manager;
     if(buttonIndex == 1) {
         self.albumName = [alertView textFieldAtIndex:0].text;
         
-        NSLog(@"album name is %@ %d",self.albumName,self.albumName.length );
-        
+              
         if(self.albumName.length>0){
             if(manager.user){
                 [manager createNewAlbumOfName:self.albumName forUser:[manager getGUID:manager.user] privacy:YES];
             }
             else{
                 //[manager displayMessage:@"You need to be logged in to create new album on the cloud."];
-                [manager displayActionSheetWithMessage:@"" forView:self.view navigationController:self.navigationController storyboard:self.storyboard andViewController:self];
+                [manager displayActionSheetWithMessage:@"" forView:self.view navigationController:self.navigationController  andViewController:self];
             }
         }
         else{
@@ -158,7 +157,10 @@ Manager * manager;
     }
 }
 
-
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(    NSTimeInterval)duration {
+    [super willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
+    [self.collectionView reloadData];
+}
 
 
 @end

@@ -15,6 +15,7 @@
 
 @property(strong,nonatomic) NSString * title;
 @property(strong,nonatomic) NSString * albumId;
+@property(strong,nonatomic) NSString * guid;
 @property(strong,nonatomic) NSMutableArray * ratings;
 @property(strong,nonatomic) NSData * imageData;
 @property(strong,nonatomic) NSData * thumbnailImageData;

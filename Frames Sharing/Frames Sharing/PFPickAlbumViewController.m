@@ -105,11 +105,9 @@ UIAlertView * photoDescriptionAlert;
                    NSLog(@" 4 ");
                 int index =path.row;
                 if(index >=0){
-                    NSString * userGuid = [manager.ff metaDataForObj:manager.user].guid;
-                   NSLog(@" 5 %@ ",albumsList.objects);
                     Album * album = [albumsList.objects objectAtIndex:index];
                     NSLog(@"ALbum  %@ %@",album, [manager getGUID:album]);
-                    [manager createNewPhotoWithDescription:[alertView textFieldAtIndex:0].text forUser:userGuid forAlbum:[manager getGUID:album] withData:UIImageJPEGRepresentation(self.imageToShare, 0.7) user:(self.user)];
+                    [manager createNewPhotoWithDescription:[alertView textFieldAtIndex:0].text forAlbum:[manager getGUID:album] withData:UIImageJPEGRepresentation(self.imageToShare, 0.7) user:(self.user)];
                     
                 }
             }

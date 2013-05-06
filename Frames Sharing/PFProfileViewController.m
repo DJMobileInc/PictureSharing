@@ -23,6 +23,7 @@ Manager * manager;
 UIActionSheet * photoAction;
 CameraPicker * camera;
 UIPopoverController * cameraPopoverController;
+BOOL tryLoading =NO;
 
 - (void)viewDidLoad
 {
@@ -31,35 +32,49 @@ UIPopoverController * cameraPopoverController;
     manager = [Manager sharedInstance];
     self.userDescription.delegate = self;
      camera = [[CameraPicker alloc]init];
-    
+    [self loadPhoto];
+       if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad){
+        self.contentSizeForViewInPopover =  CGSizeMake(350, 404);
+    }
+
+}
+
+-(void)loadPhoto{
     [manager.ff loadBlobsForObj:self.user onComplete:^
      (NSError *theErr, id theObj, NSHTTPURLResponse *theResponse){
+         tryLoading = YES;
          if(theErr)
          {
              NSLog(@" Error for blob  %@ ",[theErr debugDescription]);
          }
          
          User * user = (User *) theObj;
-     
+         
          
          self.user = user;
          UIImage * img = [UIImage imageWithData: user.profilePicture];
-         [self.profilePictureButton setImage:img forState:UIControlStateNormal];
+         if(img){
+             self.profileImageView.image = img;
+         }
      }];
-
+ 
 }
 
+
+
 -(void)viewWillAppear:(BOOL)animated{
-    NSLog(@"Testing User %@ and %@",manager.user,self.user);
-    
+    if(!tryLoading)
+    {
+         [self loadPhoto];
+    }
     if(!manager.user)//hide elements
     {
         self.userDescription.text = @"";
         self.albumsButton.hidden = YES;
         self.userName.text = @"";
         self.profilePictureButton.enabled = NO;
+        [self.profilePictureButton setHidden:YES];
         [self.loginButton setHidden:YES];
-      //  NSLog(@"user deoesn't exist ?");
     }
     else{
         self.userName.text = self.user.userName;
@@ -70,12 +85,13 @@ UIPopoverController * cameraPopoverController;
             [self.loginButton setTitle:@"Logout" forState:UIControlStateNormal];
             [self.loginButton addTarget:self action:@selector(logout) forControlEvents:UIControlEventTouchUpInside];
             [self.userDescription setEditable:YES];
-            NSLog(@"Button Logged In Text %@ ",self.loginButton.titleLabel.text);
+           
             self.profilePictureButton.enabled = YES;
+            [self.profilePictureButton setHidden:NO];
             [self.loginButton setHidden:NO];
         }
         else{
-            NSLog(@"User not logged in");
+                       
            [self.userDescription setEditable:NO];
            [self.loginButton setHidden:YES];
             
@@ -142,6 +158,7 @@ UIPopoverController * cameraPopoverController;
 -(void)done{
     manager.user.aboutDescription = self.userDescription.text;
     [manager updateObject:self.user];
+    [self.userDescription resignFirstResponder];
     
 
 }
@@ -201,10 +218,14 @@ UIPopoverController * cameraPopoverController;
     [picker dismissViewControllerAnimated:YES completion:nil];
     [cameraPopoverController dismissPopoverAnimated:YES];
 
-    [self.profilePictureButton setImage:imageToUse forState:UIControlStateNormal];
-     self.user.profilePicture = UIImageJPEGRepresentation(imageToUse,0.7);
+    //resize in queue
+    #warning  resize in queue
     
-    NSLog(@" user %@ manager %@ ",self.user, manager);
+    self.profileImageView.image = imageToUse;
+    
+    self.user.profilePicture = UIImageJPEGRepresentation([imageToUse imageByScalingProportionallyToSize:CGSizeMake(200, 200)],0.7);
+    self.user.smallProfilePicture = UIImageJPEGRepresentation([imageToUse imageByScalingProportionallyToSize:CGSizeMake(50, 50)],0.7);
+    
     
 [manager.ff updateBlob:self.user.profilePicture withMimeType:@"image/jpeg" forObj:self.user memberName:@"profilePicture" onComplete: ^(NSError * theErr, id theObj, NSHTTPURLResponse * theResponse){
     if(!theErr){
@@ -215,6 +236,18 @@ UIPopoverController * cameraPopoverController;
     }
  }
  ];
+
+[manager.ff updateBlob:self.user.smallProfilePicture withMimeType:@"image/jpeg" forObj:self.user memberName:@"smallProfilePicture" onComplete: ^(NSError * theErr, id theObj, NSHTTPURLResponse * theResponse){
+        if(!theErr){
+            NSLog(@"Object Updated");
+        }
+        else{
+            NSLog(@"Object Not  Updated %@", [theErr debugDescription]);
+        }
+    }
+     ];
+
+    
 
 }
 

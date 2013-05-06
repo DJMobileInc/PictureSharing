@@ -22,9 +22,7 @@ User * photoOwner;
     return self;
 }
 
--(void)photoOwnerFound:(NSNotification *)n{
-    
-}
+
 
 
 #pragma mark - Table view data source

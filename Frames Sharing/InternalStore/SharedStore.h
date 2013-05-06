@@ -40,7 +40,7 @@
 @property (nonatomic)id <PurchaseCompleted> delegate;
 @property (nonatomic)id <RestoreCompleted> restoreDelegate;
 -(NSMutableArray *)updateItems;
-
+-(NSMutableArray *)getAllItems;
 - (void)restorePreviousPurchases;
 - (IBAction)buyItemsForId:(NSString *)keyId;
 

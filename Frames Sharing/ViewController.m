@@ -98,7 +98,7 @@ CGRect imageFrame;
 
 
 - (IBAction)showFramesFor:(id)sender {
-     [self hideAll];
+    [self hideAll];
     int tag = [sender tag];
     switch (tag) {
         case kChristmas:
@@ -235,11 +235,6 @@ CGRect imageFrame;
     UIViewController * vc = [story instantiateInitialViewController];
     [self.navigationController pushViewController:vc animated:YES];
     
-    
-    
-    
-    //[self.navigationController popToRootViewControllerAnimated:YES];
-
 }
 
 
@@ -261,9 +256,7 @@ CGRect imageFrame;
     
     UIView * t= _photoContainerImgView;// recognizer.view;
     CGPoint center = [recognizer translationInView:[t superview]];
-    //[t setCenter:CGPointMake(t.center.x + center.x, t.center.y + center.y)];
-    //  t.transform =    CGAffineTransformTranslate(self.photoContainerImgView.transform, center.x, center.y);
-    
+     
     imageFrame =   CGRectApplyAffineTransform(imageFrame, CGAffineTransformTranslate(self.photoContainerImgView.transform, center.x, center.y));
     self.photoContainerImgView.frame = imageFrame;
     
@@ -273,9 +266,7 @@ CGRect imageFrame;
 }
 
 -(void)viewPinchOn:(UIPinchGestureRecognizer *)recognizer{
-    //_photoContainerImgView.transform = CGAffineTransformScale(self.photoContainerImgView.transform, recognizer.scale, recognizer.scale);
-    CGAffineTransform  transform = CGAffineTransformScale(self.photoContainerImgView.transform, recognizer.scale, recognizer.scale);
-    //    CGRect transformedRect = CGRectApplyAffineTransform[self.frameContainerImageView.frame,
+      CGAffineTransform  transform = CGAffineTransformScale(self.photoContainerImgView.transform, recognizer.scale, recognizer.scale);
     
     
     CGRect tf =CGRectApplyAffineTransform(_photoContainerImgView.bounds, transform);
@@ -284,14 +275,9 @@ CGRect imageFrame;
     
     if(tf.size.width <=fRect.size.width * 2 && tf.size.width>250)
     {
-        //_photoContainerImgView.transform = transform;//CGAffineTransformScale(self.photoContainerImgView.transform, recognizer.scale, recognizer.scale);
-        // NSLog(@"Affine Transform %f,", _photoContainerImgView.transform.tx);
         _photoContainerImgView.frame= tf;
         _photoContainerImgView.center = self.frameContainerImageView.center;
         imageFrame =_photoContainerImgView.frame;
-        
-        
-        
         
     }
     recognizer.scale = 1;
@@ -300,20 +286,28 @@ CGRect imageFrame;
 
 
 -(void)viewWillAppear:(BOOL)animated{
+    
     [self hideAll];
     [self manageOrientation];
     [manager dismissPopovers];
-    NSLog(@"Will Appear");
+
     self.navigationController.navigationBarHidden = YES;
     if(!self.imageToDisplay)
-    {if(manager.defaultFrame){
-        self.frameContainerImageView.image= manager.defaultFrame;
-
-    }
-    if(manager.modifiedImage)
-    {
-        self.photoContainerImgView.image = manager.modifiedImage;
-    }
+        {
+            if(manager.defaultFrame){
+                self.frameContainerImageView.image= manager.defaultFrame;
+            }
+            else{
+                if(self.frameContainerImageView.image)
+                {
+                    manager.defaultFrame = self.frameContainerImageView.image;
+                }
+            }
+            
+            if(manager.modifiedImage)
+            {
+                self.photoContainerImgView.image = manager.modifiedImage;
+            }
     imageFrame = self.photoContainerImgView.frame;
 }
 }
@@ -347,15 +341,24 @@ CGRect imageFrame;
     float pfx = 86;
     float pfy = 146;
     
-    float pfw = 595;
-    float pfh = 706;
-   
+ 
     
+    float pfw = 595;
+    pfw  = 650;
+
+    float pfh = 706;
+    pfh = 650;
+    pfx  = self.view.center.x - pfw/2.0;
+
     float lfx = 155;
-    float lfy = 107;
+    float lfy = 47;
     
     float lfw = 706;
+    lfw = 650;
     float lfh = 587;
+    lfh = 650;
+    
+    lfx  = self.view.center.x - lfw/2.0;
     
     float width = self.view.frame.size.width;
     float height = self.view.frame.size.height;
@@ -409,28 +412,7 @@ CGRect imageFrame;
         }
     }
     else{
-//        float bannerh = 30.0;
-//        float buttonsh = 30.0;
-        self.applicationFrame.image = nil;
-        
-        NSLog(@"Bounds %fFrame %f ",self.view.bounds.size.width, self.view.frame.size.width);
-//        CGRect piFrame = CGRectMake(0, bannerh*3, self.view.bounds.size.width, self.view.bounds.size.height - 6 *  bannerh);
-//        CGRect liFrame = CGRectMake(3 *buttonsh, bannerh, self.view.bounds.size.width-6 * buttonsh, self.view.bounds.size.height - buttonsh - bannerh);
-        
-//        liFrame = CGRectMake(90, 30, 300, 208);
-//        piFrame= CGRectMake(0, 186, 320, 320);
-        
-        if(UIInterfaceOrientationIsLandscape(self.interfaceOrientation))
-        {
-//            self.photoContainerImgView.frame = liFrame;
-//            self.frameContainerImageView.frame = liFrame;
-//        }
-//        else{
-//            self.photoContainerImgView.frame = piFrame;
-//            self.frameContainerImageView.frame =piFrame;
-        }
-        NSLog(@"Frame after %@ ",self.frameContainerImageView);
-    
+        self.applicationFrame.image = nil;    
     }
     //User Interface changes.
     [self.view addSubview:self.applicationBackground];
@@ -449,20 +431,14 @@ CGRect imageFrame;
     [self.view addSubview:self.menuViewHolder];
     [self.view addSubview:self.aboutButton];
     [self.view addSubview:self.bannerView];
-
-    
-#warning add more views
-    
-    
-    
-    
-    
 }
 
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    NSLog(@"View Did Load");
     camera = [[CameraPicker alloc]init];
     
     self.panGestureRecognizer =[[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(viewPanOn:)];
@@ -493,14 +469,12 @@ CGRect imageFrame;
     st.delegate =self;
     _manager = [Manager sharedInstance];
     if(self.imageToDisplay){
-        NSLog(@" assigning  ");
         self.photoContainerImgView.image = self.imageToDisplay;
-
     }
     _manager.defaultImage = self.photoContainerImgView.image;
      self.navigationController.navigationBarHidden = YES;
     _manager.currentNavigationController = self.navigationController;
-    [self manageOrientation];
+  
     
 }
 
@@ -575,7 +549,6 @@ CGRect imageFrame;
 
     }
     else{
-        NSLog(@"FIlters pack %d",self.filterPack.filtersImages.count);
         
        return  self.filterPack.filtersImages.count;
     }
@@ -680,6 +653,9 @@ CGRect imageFrame;
 
 
 - (IBAction)shareAction:(id)sender {
+    #warning add NSOPerationQueue.
+    
+//  NSOperationQueue * queue * [NSOperationQueue main]
     UIImage * resultImage = [self createScreenshot];
     [manager showSharingCenterForPhoto:resultImage andPopover:sharingCenterPopoverController inView:self.view andNavigationController:self.navigationController fromBarButton:self.framesButon];
 
@@ -773,6 +749,8 @@ CGRect imageFrame;
     float maxSize = 640.0;
     
     aspect = ho/wo;
+    //make only square images
+    
     if(ho>wo){ // portrait
         hnew =maxSize;
         wnew= maxSize * wo/ho;
@@ -781,6 +759,8 @@ CGRect imageFrame;
         wnew =maxSize;
         hnew= maxSize * ho/wo;
     }
+    #warning messing with createScreenshot
+    
     
     float wScaleAspect = wnew/wo;
     float hScaleAspect = hnew/ho;
@@ -883,7 +863,7 @@ CGRect imageFrame;
     resultImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     
-    NSData * pngData = UIImagePNGRepresentation(resultImage);
+    NSData * pngData;// = UIImagePNGRepresentation(resultImage);
     pngData = UIImageJPEGRepresentation(resultImage, 0.7);
     resultImage = [UIImage imageWithData:pngData];
 
@@ -892,10 +872,8 @@ CGRect imageFrame;
 //        imageData = UIImagePNGReprensentation(selectedImage);
 //    else
 //        imageData = UIImageJPEGReprensentation(selectedImage);
-    
-    NSUInteger fileLength = [pngData length];
-    NSLog(@"file length : [%u]", fileLength);
-    
+//    NSUInteger fileLength = [pngData length];
+
     
     
     return resultImage;

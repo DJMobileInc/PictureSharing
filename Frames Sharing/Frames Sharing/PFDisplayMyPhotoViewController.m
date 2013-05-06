@@ -70,8 +70,6 @@ UIPopoverController * sharingPopover;
     manager = [Manager sharedInstance];
     self.description.delegate = self;
     [self changePrivacy:!self.photo.isPublic];
-
-    NSLog(@" Photo %d",self.photo.isPublic);
 }
 
 - (void)didReceiveMemoryWarning
@@ -119,7 +117,7 @@ UIPopoverController * sharingPopover;
 
 -(void)done{
     [self.description resignFirstResponder];
-      self.navigationItem.rightBarButtonItem =nil;
+     self.navigationItem.rightBarButtonItem =nil;
 }
 
 
@@ -130,7 +128,7 @@ UIPopoverController * sharingPopover;
 }
 -(void)textViewDidEndEditing:(UITextView *)textView{
     [textView resignFirstResponder];
-     self.navigationItem.rightBarButtonItem =nil;
+    self.navigationItem.rightBarButtonItem =nil;
     self.photo.description = self.description.text;
     [manager updateObject:self.photo];
 }

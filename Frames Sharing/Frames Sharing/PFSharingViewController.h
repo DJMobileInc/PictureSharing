@@ -18,5 +18,4 @@
 - (IBAction)shareVCSegue:(UIButton *)sender;
 - (IBAction)albumsVCSegue:(UIButton *)sender;
 - (IBAction)showProfile;
-
 @end

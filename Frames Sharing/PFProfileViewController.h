@@ -20,4 +20,7 @@
 @property (strong, nonatomic) IBOutlet UIButton *profilePictureButton;
 - (IBAction)profilePictureButtonClicked:(id)sender;
 
+@property (strong, nonatomic) IBOutlet UIImageView *profileImageView;
+
+
 @end

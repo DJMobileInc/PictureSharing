@@ -23,12 +23,14 @@
 Manager * manager;
 AlbumListData * albumsList;
 UIActionSheet * loginActionSheet;
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     manager = [Manager sharedInstance];
     self.user = manager.user;
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(albumsRetrieved:) name:albumsRetrievedNotification object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(albumsRetrieved:) name:albumCreatedNotification object:nil];
     [self getAlbums:nil];
   
     albumsList = [[AlbumListData alloc]init];
@@ -80,15 +82,14 @@ UIActionSheet * loginActionSheet;
     if(buttonIndex == 1) {
         self.albumName = [alertView textFieldAtIndex:0].text;
         
-        NSLog(@"album name is %@ %d",self.albumName,self.albumName.length );
+       
         
         if(self.albumName.length>0){
             if(manager.user){
                 [manager createNewAlbumOfName:self.albumName forUser:[manager getGUID:manager.user] privacy:YES];
             }
             else{
-                //[manager displayMessage:@"You need to be logged in to create new album on the cloud."];
-                loginActionSheet = [[UIActionSheet alloc]initWithTitle:@"You need to login to continue. Would you like to login now?" delegate:self cancelButtonTitle:@"No" destructiveButtonTitle:nil otherButtonTitles:@"Yes", nil];
+             loginActionSheet = [[UIActionSheet alloc]initWithTitle:@"You need to login to continue. Would you like to login now?" delegate:self cancelButtonTitle:@"No" destructiveButtonTitle:nil otherButtonTitles:@"Yes", nil];
             }
 
         }
@@ -115,11 +116,15 @@ UIActionSheet * loginActionSheet;
 
 
 //delegate methods
--(void)createdAlbum:(Album *)album{
-//    NSLog(@"Album Created: %@", album);
+-(void)createdAlbum:(NSNotification*)notification{
+    if(notification.object){
+        Album * album = notification.object;
+    
+    
     [self.objects addObject:album];
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:self.objects.count - 1 inSection:0];
     [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+}
 }
 
 

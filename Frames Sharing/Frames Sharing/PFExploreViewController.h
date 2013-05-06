@@ -8,7 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "Manager.h"
+#import "User.h"
 
 @interface PFExploreViewController : UIViewController
+
+@property (nonatomic,strong)User * user;
+@property (nonatomic, assign) BOOL favoritesMode;
 
 @end

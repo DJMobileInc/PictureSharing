@@ -7,18 +7,20 @@ SET AllowNewCollections         true
 SET AllowNewObjectTypes         true
 SET AllowNewMembers             true
 SET AndroidPushAuthToken        YOUR_ANDROID_AUTH_TOKEN_GOES_HERE
-SET ApplePushKeystorePassword   YOUR_KEYSTORE_PASSWORD_GOES_HERE
+SET ApplePushKeystorePassword   Stany174
 SET ApplePushUsingProduction    false
 SET LogLevel                    INFO
-SET PushIsInactive              true
+SET PushIsInactive              false
 SET ETaggingEnabled             true
+
 # Remove the following CORS setting if you don't wish to be able to use the data browser from the FatFractal Console
 SET CORS https://system.fatfractal.com
 
 #
 # Object Types
 #
-CREATE OBJECTTYPE FFUser (userName STRING, firstName STRING, lastName STRING, email STRING, active BOOLEAN, authDomain STRING, groups GRABBAG /FFUserGroup, notif_ids GRABBAG /FFNotificationID)
+
+CREATE OBJECTTYPE FFUser (userName STRING, firstName STRING, lastName STRING, email STRING, active BOOLEAN, authDomain STRING, groups GRABBAG /FFUserGroup, notif_ids GRABBAG /FFNotificationID, aboutDescription STRING,  profilePicture BYTEARRAY, smallProfilePicture BYTEARRAY, favoritePictures STRING[])
 CREATE ALIAS ON OBJECTTYPE FFUser GRABBAG BackReferences.FFUserGroup.users AS memberOfGroups
 CREATE OBJECTTYPE FFUserGroup (groupName STRING, users GRABBAG /FFUser)
 CREATE OBJECTTYPE FFNotificationID (idType STRING, idValue STRING)
@@ -37,3 +39,6 @@ CREATE COLLECTION /FFNotificationID OBJECTTYPE FFNotificationID
 #
 # Extension Resources
 #
+CREATE EXTENSION /pushExtension AS javascript:require('scripts/push').sendNotification();
+
+

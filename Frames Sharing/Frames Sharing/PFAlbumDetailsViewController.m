@@ -24,6 +24,7 @@
 AlbumDetailsData * albumDetails;
 Manager * manager;
 NSMutableArray * photoArray;
+UIActionSheet * deleteAction;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -32,6 +33,10 @@ NSMutableArray * photoArray;
         // Custom initialization
     }
     return self;
+}
+
+- (IBAction)showPhotoEditor:(id)sender {
+     [manager showPhotoEditorForNavigationController:self.navigationController editImage:nil];
 }
 
 - (void)viewDidLoad
@@ -68,8 +73,6 @@ NSMutableArray * photoArray;
             self.privacySegmentedControl.selectedSegmentIndex= 0;
             
         }
-      
-        
     }
     else{
         self.trashButton.hidden = YES;
@@ -82,7 +85,22 @@ NSMutableArray * photoArray;
 
 
 - (IBAction)removeAlbum:(id)sender {
-    [manager delete:self.album];
+    
+  
+    deleteAction = [[UIActionSheet alloc]initWithTitle:@"Do you really want to delete this album?" delegate:self cancelButtonTitle:@"No" destructiveButtonTitle:@"Yes!" otherButtonTitles: nil];
+    [deleteAction showFromRect:self.view.frame inView:self.view animated:YES];
+}
+
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if(buttonIndex==0)//
+    {
+        [manager delete:self.album];
+        [self.navigationController popViewControllerAnimated:YES];
+ 
+    }
+    else{
+        
+    }
 }
 
 

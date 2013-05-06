@@ -86,7 +86,7 @@ filter{
     [self performSelectorOnMainThread:@selector(applyModifiedImage:) withObject:scaledImage waitUntilDone:NO];
     }
     else{
-        NSLog(@"Filter Doesn't exist...");
+       
         [self performSelectorOnMainThread:@selector(applyModifiedImage:) withObject:manager.defaultImage waitUntilDone:NO];
     }
 }

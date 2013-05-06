@@ -16,22 +16,37 @@ Manager * manager;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
-    
     NSString *baseUrl = @"http://djmobileinc.fatfractal.com/pictureframes";
     self.ff = [[FatFractal alloc] initWithBaseUrl:baseUrl];
-    //self.ff.debug = YES;
     
     manager.ff = self.ff;
    [[FatFractal main] registerClass:[User class] forClazz:@"FFUser"];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackOpaque animated:NO];
     UIImage *navBar = [UIImage imageNamed:@"AppNavBackground.png"];
+
     [[UINavigationBar appearance] setBackgroundImage:navBar forBarMetrics:UIBarMetricsDefault];
 
-    
-    
+    [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
     
     return YES;
+}
+
+- (void)application:(UIApplication *)app didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)devToken {
+    [self.ff registerNotificationID:[devToken description]];
+    NSLog(@"Register for notification got called");
+    
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+    // handle notification as you wish
+    FFUser * user; 
+    NSLog(@"Did receive remote notification");
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"pushNotification" object:nil userInfo:userInfo];
+    
+}
+
+-(void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error{
+    NSLog(@"Error while registering for notifications: %@",[error debugDescription]);
 }
 
 

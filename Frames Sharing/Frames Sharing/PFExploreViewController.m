@@ -22,10 +22,14 @@
 
 @implementation PFExploreViewController
 Manager * manager;
-NSMutableArray * photoArray;
+NSMutableArray * currentPhotoArray;
+NSMutableArray * allPhotosArray;
 UIPopoverController * profilePopover;
 #pragma mark iPad Methods
 MBProgressHUD *hud;
+NSOperationQueue *_queue;
+NSMutableDictionary *  currentOperations;
+NSMutableDictionary *  currentPhotos;
 
 
 #pragma mark end of iPad
@@ -33,31 +37,60 @@ MBProgressHUD *hud;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
 	// Do any additional setup after loading the view.
     manager = [Manager sharedInstance];
-   
-    hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    hud.labelText = @"Loading";
+    _queue = [NSOperationQueue new];
+    currentOperations =[[NSMutableDictionary alloc]initWithCapacity:0];
+    currentPhotos=[[NSMutableDictionary alloc]initWithCapacity:0];
     
+       
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(searchCompletedWithResults:) name:photosRetrievedFromSearchNotification object:nil];
     
-    if(!photoArray){
-        photoArray = [[NSMutableArray alloc]initWithCapacity:0];
+    if(!currentPhotoArray){
+        currentPhotoArray = [[NSMutableArray alloc]initWithCapacity:0];
     }
     else{
-        [photoArray removeAllObjects];
+        [currentPhotoArray removeAllObjects];
     }
+
+    if(!allPhotosArray){
+        allPhotosArray = [[NSMutableArray alloc]initWithCapacity:0];
+    }
+    else{
+        [allPhotosArray removeAllObjects];
+    }
+
     
     if(self.navigationController){
         manager.currentNavigationController = self.navigationController;
-        
     }
-    [manager getNewestPhotos];
     
+    
+    if(!self.favoritesMode){
+       [manager getNewestPhotos];
+        hud = [MBProgressHUD showHUDAddedTo:self.collectionView animated:YES];
+        hud.labelText = @"Loading";
+       
+    }
+    else{
+        self.title = @"My Favorite Photos";
+        self.user = manager.user;
+         self.searchBar.hidden = YES;
+        //[self.collectionView reloadData];
+    
+
+    }
 }
+
+
+
+
 
 -(void)viewWillDisappear:(BOOL)animated{
     [[NSNotificationCenter defaultCenter]removeObserver:self name:photosRetrievedFromSearchNotification object:nil];
+    [_queue cancelAllOperations];
+    [super viewWillDisappear:animated];
 }
 
 
@@ -84,13 +117,15 @@ MBProgressHUD *hud;
             p =[st instantiateViewControllerWithIdentifier:@"PFProfileViewController"];
             p.user = manager.user;
             
+            if([profilePopover isPopoverVisible]){
+                [profilePopover dismissPopoverAnimated:YES];
+            }
+            
             if(!profilePopover)
             {
                 profilePopover = [[UIPopoverController alloc]initWithContentViewController:p];
             }
-            if([profilePopover isPopoverVisible]){
-                [profilePopover dismissPopoverAnimated:YES];
-            }
+            
             else{
                 [profilePopover presentPopoverFromRect:self.view.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
             }
@@ -107,7 +142,7 @@ MBProgressHUD *hud;
     }
     else
     {
-        [manager displayActionSheetWithMessage:@"You need to be logged in to continue." forView:self.view navigationController:self.navigationController storyboard:self.storyboard andViewController:self];
+        [manager displayActionSheetWithMessage:@"You need to be logged in to continue." forView:self.view navigationController:self.navigationController andViewController:self];
     }
 }
 
@@ -115,110 +150,240 @@ MBProgressHUD *hud;
 
 #pragma mark - UICollectionViewDelegate
 
--(void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
-    //TODO deselect item
-}
-
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
     PFDisplayPhotoViewController * pdp;
-    Photo * p = [photoArray objectAtIndex:indexPath.row];
-   // if(manager.user == [manager getOwnerOfPhoto:p] )
+    Photo * p;
+    if(self.favoritesMode)
+    {
+       NSString * guid =  [self.user.favoritePictures objectAtIndex:indexPath.row];
+        p = [currentPhotos objectForKey:guid];
+        
+    }
+    else{
+         p = [currentPhotoArray objectAtIndex:indexPath.row];
+
+    }
+     
     pdp= [self.storyboard instantiateViewControllerWithIdentifier:@"PFDisplayPhotoViewController"];
-   
     pdp.photo = p;
-    
     
     [self.navigationController pushViewController:pdp animated:YES];
  
     [pdp changeDescription:p.description];
     [pdp changeImage:[UIImage imageWithData:p.imageData]];
-    [pdp changeRatings:p.ratings.count];
-    
-    NSLog(@" Cell Selected ");
     
 }
-//
-//#pragma mark – UICollectionViewDelegateFlowLayout
-//
-//-(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-//    
-//    CGSize retVal = CGSizeMake(105, 105);
-//    return  retVal;
-//}
-// 
-//- (UIEdgeInsets)collectionView:
-//(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
-//    return UIEdgeInsetsMake(2, 2, 2, 2);
-//}
 
 #pragma mark - UICollectionView Datasource
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
  
-    return [photoArray count];
+    if(self.favoritesMode){
+        return self.user.favoritePictures.count;
+    }
+    
+    return [currentPhotoArray count];
 }
 
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
     return 1;
 }
 
-- (UICollectionViewCell *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    PFExploreCell *cell = [cv dequeueReusableCellWithReuseIdentifier:@"ExploreCell" forIndexPath:indexPath];
-    Photo * photo =       [photoArray objectAtIndex:indexPath.row];
-    [self updateCell:cell withObject:photo andIndexPath:indexPath];
 
+
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+    PFExploreCell*cell =  (PFExploreCell*) [cv dequeueReusableCellWithReuseIdentifier:@"ExploreCell" forIndexPath:indexPath];
+    
+    NSString * guid = [self updateCollectionViewForIndexPath:indexPath andCell:cell];
+    if(!guid) return cell;
+    
+    if([currentPhotos objectForKey:guid]){
+    
+        cell.imageView.image =[UIImage imageWithData:[[currentPhotos objectForKey:guid]thumbnailImageData]];
+    }
+    else{
+        cell.imageView.image = [UIImage imageNamed:@"images.jpg"];
+    }
+    
     return cell;
 }
 
-
--(void)updateCell:(PFExploreCell *)cell withObject:(id)object andIndexPath:(NSIndexPath*)indexPath{
+- (void)collectionView:(UICollectionView *)collectionView didEndDisplayingCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath{
+    //get photo guid.
+   NSString * guid;
     
-
-    if([[(Photo *)object thumbnailImageData]length]>0 && [[(Photo *)object imageData]length]>0){
-        NSLog(@"No need to update.");
-         cell.imageView.image = [UIImage imageWithData:[(Photo *)object  thumbnailImageData]];
+    
+    
+    if(currentOperations.count>0){
         
+        if(self.favoritesMode){
+            guid = [self.user.favoritePictures objectAtIndex:indexPath.row];
+        
+        }
+        else{
+                
+            Photo * photo =  [currentPhotoArray objectAtIndex:indexPath.row];
+            if(![photo guid])
+            {
+            // it doesn't have a guid. Let's load one.
+                guid=[manager getGUID:photo];
+            }
+            else{
+                guid =photo.guid;
+            }
+        }
+        NSOperation * operation = [currentOperations objectForKey:guid];
+        if(operation){
+            [operation cancel];
+            [currentOperations removeObjectForKey:guid];
+            
+        }
+        else{
+
+        }
+    }
+}
+
+
+
+-(NSString *)updateFavoriteCollectionViewForIndexPath:(NSIndexPath*)indexPath andCell:(PFExploreCell *)cell{
+    NSString  * guid =  [self.user.favoritePictures objectAtIndex:indexPath.row];
+    if([currentPhotos objectForKey:guid]){
+        [MBProgressHUD hideAllHUDsForView:cell.imageView animated:NO];
     }
     else{
-  
-        [MBProgressHUD showHUDAddedTo:cell animated:YES];
-        [manager.ff loadBlobsForObj:(Photo *)object onComplete:^
-         (NSError *theErr, id theObj, NSHTTPURLResponse *theResponse){
-            [MBProgressHUD hideHUDForView:cell animated:YES];
-             
-             if(theErr)
-             {
-                 NSLog(@" Error for blob  %@ ",[theErr debugDescription]);
-             }
-             
-             Photo * photo = theObj;
-             if(photoArray && photo!=nil){
-                 if(indexPath.row<photoArray.count){
-                     
-                     [photoArray replaceObjectAtIndex:indexPath.row withObject:photo];
-                     
-                     cell.imageView.image = [UIImage imageWithData:photo.thumbnailImageData];
-                     
-                     NSLog(@"Cell Updated ");
-                 }
-             }
-         }];
+        NSBlockOperation * loadImage = [[NSBlockOperation alloc]init];
+        __weak NSBlockOperation * weak = loadImage;
+        [MBProgressHUD showHUDAddedTo:cell.imageView animated:YES];
+        
+        [loadImage addExecutionBlock:^{
+            if(!weak.isCancelled)
+            {
+                manager.ff.autoLoadBlobs = YES;
+                NSError * error = nil;
+                Photo * photo = [manager.ff getObjFromUri:[NSString stringWithFormat:@"/ff/resources/Photo/(guid eq'%@')",guid] error:&error];
+                if(!photo.guid){
+                    photo.guid = guid;
+                }
+                if(photo){
+                    [currentPhotos setObject:photo forKey:guid];
+                
+                }
+                //we don't want to load blobs automatically.
+                manager.ff.autoLoadBlobs = NO;
+                
+                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                    PFExploreCell * cell = (PFExploreCell *) [self.collectionView cellForItemAtIndexPath:indexPath];
+                    cell.imageView.image =[UIImage imageWithData:photo.thumbnailImageData];
+                    [currentOperations removeObjectForKey:guid];
+                    [MBProgressHUD hideAllHUDsForView:cell.imageView animated:NO];
+                }];                
+            }
+        }];
     }
+
+    return guid;
+}
+
+
+
+-(NSString *)updateCollectionViewForIndexPath:(NSIndexPath*)indexPath andCell:(PFExploreCell *)cell{
+
+    NSString * guid;
+    if(self.favoritesMode)
+    {
+        guid = [self.user.favoritePictures objectAtIndex:indexPath.row];
+    }
+    else{
+        Photo * photo =  [currentPhotoArray objectAtIndex:indexPath.row];
+        if(![photo guid])
+        {
+            // it doesn't have a guid. Let's load one.
+            guid = [manager getGUID:photo];
+        }
+        else{
+            guid = [photo guid];
+        }
+
+    
+    }
+
+    
+    if([currentPhotos objectForKey:guid]){
+
+        [MBProgressHUD hideAllHUDsForView:cell.imageView animated:NO];
+    }
+    else{
+      
+    NSBlockOperation * loadImage = [[NSBlockOperation alloc]init];
+    __weak NSBlockOperation * weak = loadImage;
+    [MBProgressHUD showHUDAddedTo:cell.imageView animated:YES];
+
+        [loadImage addExecutionBlock:^{
+            if(!weak.isCancelled)
+            {
+               
+                manager.ff.autoLoadBlobs = YES;
+                NSError * error = nil;
+                Photo * photo = [manager.ff getObjFromUri:[NSString stringWithFormat:@"/ff/resources/Photo/(guid eq'%@')",guid] error:&error];
+                if(!photo.guid){
+                    photo.guid = guid;
+                }
+                if(photo){
+                    [currentPhotos setObject:photo forKey:guid];
+                    [MBProgressHUD hideAllHUDsForView:cell.imageView animated:NO];
+                    
+                }
+                else{
+                    //NSLog(@" there was an error");
+                }
+                //we don't want to load blobs automatically.
+                manager.ff.autoLoadBlobs = NO;
+                
+                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                    PFExploreCell * cell = (PFExploreCell *) [self.collectionView cellForItemAtIndexPath:indexPath];
+                    cell.imageView.image =[UIImage imageWithData:photo.thumbnailImageData];
+                    [currentOperations removeObjectForKey:guid];
+                    [MBProgressHUD hideAllHUDsForView:cell.imageView animated:NO];
+                }];
+            }
+            else{
+                NSLog(@"Operation is cancelled");
+                [MBProgressHUD hideAllHUDsForView:cell.imageView animated:NO];
+            
+            }
+        }];
+        
+        if(loadImage)
+        {
+            [_queue addOperation:loadImage];
+           // NSLog(@" _queue %@",_queue);
+            
+            [currentOperations setObject:loadImage forKey:guid];
+            
+        }
+    }
+    return guid;
    }
 
 #pragma mark Search Bar
 
 - (IBAction)refreshButtonClicked:(id)sender
 {
-      [self searchBarSearchButtonClicked:self.searchBar];
-
+    [self searchBarSearchButtonClicked:self.searchBar];
 }
 
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
-    [photoArray removeAllObjects];
+    [currentOperations removeAllObjects];
+    [currentPhotoArray removeAllObjects];
+    [allPhotosArray removeAllObjects];
+    
     [self.collectionView reloadData];
+    
     if(self.searchBar.text.length==0)
     {
         [manager getNewestPhotos];
@@ -233,18 +398,68 @@ MBProgressHUD *hud;
 
 -(void)searchCompletedWithResults:(NSNotification *)notification{
     NSArray * array = notification.object;
-    photoArray = (NSMutableArray *) array;
+    
+    NSLog(@"All Photos array: %d",allPhotosArray.count);
+    allPhotosArray = (NSMutableArray *) array;
+    [currentPhotoArray removeAllObjects];
+    int c = allPhotosArray.count - currentPhotoArray.count;
+    if(c>16)
+    {
+        c = 16;
+    }
+    
+    for (int i = currentPhotoArray.count;i<allPhotosArray.count;i++ )
+    {
+        [currentPhotoArray addObject:[allPhotosArray objectAtIndex:i]];
+        c--;
+        if(c==0){break;}
+    }
+
     [self.collectionView reloadData];
-    NSLog(@"Search completed with results");
-    if(photoArray.count == 0)
+    //NSLog(@"Search completed with results");
+    if(allPhotosArray.count == 0)
     {
          self.searchStatus.text = @" No results found. Try different query. ";
     }
     else{
          self.searchStatus.text = @"";
     }
+    
      [hud hide:YES];
 }
+
+
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    if ((scrollView.contentOffset.y + scrollView.frame.size.height) >= scrollView.contentSize.height)
+    {
+        int c = allPhotosArray.count - currentPhotoArray.count;
+        if (c == 0 ) return;
+        
+        if(c>16)
+        {
+            c = 16;
+        }
+    
+        
+        for (int i = currentPhotoArray.count;i<allPhotosArray.count;i++ )
+        {
+            [currentPhotoArray addObject:[allPhotosArray objectAtIndex:i]];
+            c--;
+            if(c==0){break;}
+        }
+        
+            [self.collectionView reloadData];
+        
+        //testing
+        NSLog(@"End ");
+       // [_queue cancelAllOperations];
+    }
+}
+
+
+
 
 - (IBAction)getAll:(id)sender {
       [manager getNewestPhotos];
@@ -254,7 +469,8 @@ MBProgressHUD *hud;
 
 
 - (void)searchBar:(UISearchBar *)searchBar selectedScopeButtonIndexDidChange:(NSInteger)selectedScope{
-    [photoArray removeAllObjects];
+    [allPhotosArray removeAllObjects];
+    [currentPhotoArray removeAllObjects];
     if(searchBar.selectedScopeButtonIndex == 0)
     {
        [manager getNewestPhotos];
@@ -267,13 +483,13 @@ MBProgressHUD *hud;
 
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    
     if ([segue.identifier isEqualToString:@"menu"]) {
         [segue.destinationViewController performSelector:@selector(setCurrentNavigationController:)
                                               withObject:self.navigationController];
-        NSLog(@"Segue menu");
+    
     }
 }
-
 
 
 

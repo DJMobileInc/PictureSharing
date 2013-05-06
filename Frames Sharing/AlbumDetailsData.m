@@ -17,7 +17,7 @@
 
 -(void)updateCell:(PFExploreCell *)cell withObject:(id)object andIndexPath:(NSIndexPath*)indexPath{
     
-    if([[(Photo *)object thumbnailImageData]length]>0 && [[(Photo *)object imageData]length]>0){
+    if([[(Photo *)object thumbnailImageData]length]>0){
     
         cell.imageView.image = [UIImage imageWithData:[(Photo *)object  thumbnailImageData]];
         
@@ -71,23 +71,26 @@
     }
         [pdp changeImage:[UIImage imageWithData:p.imageData]];
      pdp.photo = p;
-    [pdp changeRatings:p.ratings.count];
+
      
     
 }
 #pragma mark – UICollectionViewDelegateFlowLayout
 
-//-(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-//    
-//    CGSize retVal = CGSizeMake(95, 95);
-//    // retVal.height += 35;
-//    // retVal.width += 35;
-//    return  retVal;
-//}
-//- (UIEdgeInsets)collectionView:
-//(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
-//    return UIEdgeInsetsMake(1, 1, 1, 1);
-//}
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout  *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    // Adjust cell size for orientation
+    if (UIDeviceOrientationIsLandscape([[UIApplication sharedApplication] statusBarOrientation])) {
+        return CGSizeMake(230.f, 230.f);
+    }
+    if(UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPad){
+        float w =  0.95 * collectionView.frame.size.width /2.0;
+        return CGSizeMake(w, w);
+    }
+    
+    return CGSizeMake(280.f, 280.f);
+}
+
 #pragma mark - UICollectionView Datasource
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
@@ -101,10 +104,8 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     PFExploreCell *cell = [cv dequeueReusableCellWithReuseIdentifier:@"ExploreCell" forIndexPath:indexPath];
-   // cell.backgroundColor = [UIColor greenColor];
     cell.backgroundColor = [UIColor blackColor];
     Photo * photo = [self.photoArray objectAtIndex:indexPath.row];
-    //cell.imageView.image =photo.thumbnailImageData;
     [self updateCell:cell withObject:photo andIndexPath:indexPath];
     
     

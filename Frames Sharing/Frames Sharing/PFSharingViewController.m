@@ -13,6 +13,8 @@
 #import "PFExploreViewController.h"
 #import "PFAlbumsViewController.h"
 #import "PFiPadAlbumsViewController.h"
+#import "PFNotificationController.h"
+
 
 @interface PFSharingViewController () <UITextFieldDelegate>
 
@@ -20,6 +22,8 @@
 
 @implementation PFSharingViewController
 UIPopoverController * profilePopover;
+UIPopoverController * notificationsPopover;
+
     Manager * manager;
 
 - (void)viewDidLoad
@@ -34,7 +38,7 @@ UIPopoverController * profilePopover;
     
     }
     self.navigationController.navigationBarHidden = NO;
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pushNotificationReceived:) name:@"pushNotification" object:nil];
     [super viewDidLoad];
 }
 
@@ -46,6 +50,9 @@ UIPopoverController * profilePopover;
     [self configureView];
 }
 
+-(void)pushNotificationReceived:(NSNotification *)push{
+    NSLog(@"Received ! ");
+}
 
 -(void)configureView{
 //    if(manager.user){
@@ -71,8 +78,6 @@ UIPopoverController * profilePopover;
             
             p.user = manager.user;
             
-            
-            
             if(!profilePopover)
             {
                 profilePopover = [[UIPopoverController alloc]initWithContentViewController:p];
@@ -83,7 +88,7 @@ UIPopoverController * profilePopover;
             else{
                 [profilePopover presentPopoverFromRect:self.view.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
             }
-        [manager dismissPopover: self];
+       // [manager dismissPopover: self];
         
         }
         else{
@@ -91,16 +96,19 @@ UIPopoverController * profilePopover;
             p =[st instantiateViewControllerWithIdentifier:@"PFProfileViewController"];
             p.user = manager.user;
             
-            NSLog(@"User is %@ ",p.user);
-            
-            [self.navigationController pushViewController:p animated:YES];
+            //NSLog(@"User is %@ ",p.user);
+          
+  
+        //    [self.navigationController pushViewController:p animated:YES];
             
         }
     }
     else
     {   
-        [manager displayActionSheetWithMessage:@"You need to be logged in to continue." forView:self.view navigationController:self.currentNavigationController storyboard:self.storyboard andViewController:self];
+        [manager displayActionSheetWithMessage:@"You need to be logged in to continue." forView:self.view navigationController:self.currentNavigationController andViewController:self];
     }
+    
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -122,31 +130,75 @@ UIPopoverController * profilePopover;
 }
 
 - (IBAction)exploreVCSegue:(UIButton *)sender {
-//    if(manager.user){
-        UIStoryboard *st;
-        PFExploreViewController * explorer;
-        
-        if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad){
-            if(![self.currentNavigationController.topViewController isKindOfClass:[PFExploreViewController  class ]])
-            {
-                st = [UIStoryboard storyboardWithName:@"iPadStoryboard" bundle:nil];
-                explorer =[st instantiateViewControllerWithIdentifier:@"PFExploreViewController"];
-                [self.currentNavigationController pushViewController:explorer animated:YES];
-            
-            }
-            
-        }
-        else{
-            st = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
-            explorer= [st instantiateViewControllerWithIdentifier:@"PFExploreViewController"];
-            [self.navigationController pushViewController:explorer animated:YES];
-
-        }
-//    }
-//    else{
-//       [manager displayActionSheetWithMessage:@"You need to be logged in to continue." forView:self.view navigationController:self.currentNavigationController storyboard:self.storyboard andViewController:self];
-//    }
+    [self explorePhotos:NO];
 }
+
+
+- (IBAction)exploreFavorites:(id)sender {
+    if(manager.user){
+        [self explorePhotos:YES];
+    }
+    else{
+        [manager displayActionSheetWithMessage:@"You need to be logged in to continue." forView:self.view navigationController:self.currentNavigationController andViewController:self];  
+    
+    }
+}
+
+- (IBAction)showNotifications:(id)sender {
+    UIStoryboard *st;
+    PFNotificationController * explorer;
+    if(manager.user){
+    
+    st = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
+    explorer =[st instantiateViewControllerWithIdentifier:@"PFNotificationsController"];
+    explorer.user = manager.user;
+    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad){
+        if(!notificationsPopover)
+        {
+            notificationsPopover = [[UIPopoverController alloc]initWithContentViewController:explorer];
+        }
+        if(notificationsPopover.isPopoverVisible){
+            [notificationsPopover dismissPopoverAnimated:YES];
+        }
+        [notificationsPopover presentPopoverFromRect:[(UIButton *)sender frame] inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+        
+    }
+    else{
+           [self.currentNavigationController pushViewController:explorer animated:YES];
+    }
+    }
+    else{
+        [manager displayActionSheetWithMessage:@"You need to be logged in to continue." forView:self.view navigationController:self.currentNavigationController andViewController:self];
+
+    }
+}
+
+-(void)explorePhotos:(BOOL)favorite{
+    UIStoryboard *st;
+    PFExploreViewController * explorer;
+
+    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad){
+      if(![self.currentNavigationController.topViewController isKindOfClass:[PFExploreViewController  class ]])
+      {
+        st = [UIStoryboard storyboardWithName:@"iPadStoryboard" bundle:nil];
+        explorer =[st instantiateViewControllerWithIdentifier:@"PFExploreViewController"];
+        explorer.favoritesMode = favorite;
+          if(favorite){
+              
+          }
+          [self.currentNavigationController pushViewController:explorer animated:YES];
+          
+     }
+    }
+    else{
+        st = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
+        explorer= [st instantiateViewControllerWithIdentifier:@"PFExploreViewController"];
+        explorer.favoritesMode = favorite;
+        [self.navigationController pushViewController:explorer animated:YES];
+    }
+}
+
+
 - (IBAction)shareVCSegue:(UIButton *)sender {
     //[self performSegueWithIdentifier:@"share" sender:self];
 }
@@ -184,7 +236,7 @@ UIPopoverController * profilePopover;
     }
     else{
    
-        [manager displayActionSheetWithMessage:@"You need to be logged in to continue." forView:self.view navigationController:self.currentNavigationController storyboard:self.storyboard andViewController:self];
+        [manager displayActionSheetWithMessage:@"You need to be logged in to continue." forView:self.view navigationController:self.currentNavigationController andViewController:self];
     }
 }
 
@@ -228,12 +280,19 @@ UIPopoverController * profilePopover;
     UIInterfaceOrientation orientation = (UIInterfaceOrientation) [[UIDevice currentDevice] orientation];
     
     if (orientation==UIInterfaceOrientationPortrait) {
-        // do some sh!t
+       
         return YES;
     }
     
     return NO;
 }
+
+
+- (IBAction)pushIt:(id)sender {
+    
+}
+
+
 
 
 

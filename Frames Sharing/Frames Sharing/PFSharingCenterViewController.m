@@ -12,11 +12,12 @@
 #import "PFPickAlbumViewController.h"
 
 @interface PFSharingCenterViewController ()
-
+@property (nonatomic,strong) UIPopoverController * pickAlbums;
 @end
 Manager * manager;
 SocialHelper * helper;
-UIPopoverController * pickAlbums;
+
+
 
 @implementation PFSharingCenterViewController
 - (IBAction)shareWithTwitter:(id)sender {
@@ -33,14 +34,16 @@ UIPopoverController * pickAlbums;
         pf.imageToShare = self.imageToShare;
         
         if(UI_USER_INTERFACE_IDIOM()== UIUserInterfaceIdiomPad){
-            if(!pickAlbums){
-                pickAlbums = [[UIPopoverController alloc]initWithContentViewController:pf];
+            if(!_pickAlbums){
+                _pickAlbums = [[UIPopoverController alloc]initWithContentViewController:pf];
                            }
-            if(pickAlbums.isPopoverVisible){
-                [pickAlbums dismissPopoverAnimated:YES];
+           /*
+            if(_pickAlbums.isPopoverVisible){
+                [_pickAlbums dismissPopoverAnimated:YES];
             }
+            */
             else{
-                [pickAlbums presentPopoverFromRect:self.view.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+                [_pickAlbums presentPopoverFromRect:self.view.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
 
             }
             
@@ -52,7 +55,7 @@ UIPopoverController * pickAlbums;
     }
     else{
 
-        [manager displayActionSheetWithMessage:@"" forView:self.view navigationController:self.navigationController storyboard:self.storyboard andViewController:self];
+        [manager displayActionSheetWithMessage:@"" forView:self.view navigationController:self.navigationController andViewController:self];
     
     }
 }

@@ -14,7 +14,9 @@
 #import "PFSharingCenterViewController.h"
 #import "LoginRegisterViewController.h"
 #import "ViewController.h"
-
+#import "SharedStore.h"
+#import "Content.h"
+#import "ContentPack.h"
 
 @implementation UIImage (Extras)
 + (void)saveImage:(UIImage *)image withName:(NSString *)name {
@@ -30,7 +32,7 @@
     NSString *fullPath = [NSTemporaryDirectory() stringByAppendingPathComponent:name];
     
     UIImage *img = [UIImage imageWithContentsOfFile:fullPath];
-        NSLog(@" Img %@",img);
+       // NSLog(@" Img %@",img);
     return img;
 }
 
@@ -125,9 +127,10 @@
 @synthesize ff = _ff;
 @synthesize popover;
 
+
 #pragma mark constants
 NSString *baseUrl = @"http://djmobileinc.fatfractal.com/pictureframes";
-NSString * const userRetrievedNotification = @"kUserRetrievedNotification";
+//NSString * const userRetrievedNotification = @"kUserRetrievedNotification";
 NSString * const albumsRetrievedNotification = @"kAlbumsRetrievedNotification";
 NSString * const albumCreatedNotification = @"kAlbumsCreatedNotification";
 NSString * const photosRetrievedNotification = @"kPhotosRetrievedNotification";
@@ -147,9 +150,7 @@ UIActionSheet *  loginActionSheet;
     }
 }
 
--(void)dismissPopover:(id)vc{
 
-}
 
 
 + (Manager *)sharedInstance
@@ -171,7 +172,9 @@ UIActionSheet *  loginActionSheet;
         if(!_ff){
             self.ff = [[FatFractal alloc] initWithBaseUrl:baseUrl];
             self.ff.autoLoadBlobs = NO;
-             [[FatFractal main] registerClass:[User class] forClazz:@"FFUser"];
+            self.ff.debug = YES;
+            
+            [[FatFractal main] registerClass:[User class] forClazz:@"FFUser"];
            // [self deleteAll];
             
         }
@@ -200,20 +203,69 @@ UIActionSheet *  loginActionSheet;
     for(id p in a){
         [self.ff deleteObj:p];
     }
+}
 
+-(void)testRatings{
+    Photo * p =      [self.ff getObjFromUri:@"/ff/resources/Photo/-y0-R7L8FEeoVsNjcjA0k6"];
+    if(p){
+        NSLog(@"Photo exists.");
+        [p.ratings addObject:@"some stuff"];
+        NSLog(@"added ");
+        [p.ratings addObject:self.user];
+        NSLog(@"added ");
+        
+    }
+    [self.ff updateObj:p];
     
 }
+
+-(void)create100{
+    SharedStore * store = [SharedStore sharedStore];
+    NSMutableArray * items;
+    if(store.allItems.count ==0){
+        //get all items
+        items = [store getAllItems];
+    }
+    else{
+        items = store.allItems;
+    }
+    
+    NSLog(@" Items %@",items);
+    
+  
+    
+    
+    
+    for(ContentPack *contentPack in items)
+    {
+         NSLog(@"Count of the  %d ",contentPack.freeContent.images.count);
+        
+        for(int i=0; i<contentPack.freeContent.images.count;i++){
+         // UIImage * img =[UIImage imageNamed: [contentPack.freeContent.images objectAtIndex:i]];
+            UIImage * img = [contentPack.freeContent.images objectAtIndex:i];
+            NSLog(@"Img is %@",img);
+            NSArray *a =@[@"zebra",@"horse",@"walen",@"panda"];
+            NSString * description = [a objectAtIndex: arc4random()%a.count ];
+            
+            [self createNewPhotoWithDescription:description forAlbum:@"Y2K_iYcuEg8A_yuXnPny65" withData:UIImageJPEGRepresentation(img, 0.7) user:self.user];
+       
+        
+        }
+    }
+
+}
+
 
 #pragma mark login sheet message
 UIViewController * currentViewController;
 
 UIView * currentView;
--(void)displayActionSheetWithMessage:(NSString *)message forView:(UIView *)view navigationController:(UINavigationController *)nav storyboard:(UIStoryboard *)storyboard andViewController:(id)viewController{
+-(void)displayActionSheetWithMessage:(NSString *)message forView:(UIView *)view navigationController:(UINavigationController *)nav andViewController:(id)viewController{
     currentViewController = viewController;
-  
-    self.currentNavigationController = nav;
-    
-      NSLog(@" %@ %@ ",self.currentNavigationController, nav);
+    if(nav){
+        self.currentNavigationController = nav;
+    }
+      NSLog(@" current navigation controller %@  and nav %@ ",self.currentNavigationController, nav);
     
     currentView = view;
     loginActionSheet = [[UIActionSheet alloc]initWithTitle:@"You need to login to continue. Would you like to login now?" delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:@"Yes", @"No",nil];
@@ -221,9 +273,6 @@ UIView * currentView;
     NSLog(@"View for action sheet %@ ",view);
     [loginActionSheet showInView:view];
 }
-/*
-showLoginScreenForViewController:(UIViewController *)vc andNavigationController: (id)navigationController fromRectView:(UIView *)view
-*/
 
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
     if(buttonIndex==0)
@@ -259,16 +308,18 @@ showLoginScreenForViewController:(UIViewController *)vc andNavigationController:
     [self.ff loginWithUserName:userName andPassword:password onComplete: ^(NSError * error, id theObj, NSHTTPURLResponse * theResponse)
      {
          if(error){
-             [self displayMessage:[error localizedDescription]];
+             [self displayMessage:@"We couldn't log in you at this time. Please try again."];
          }
          else{
              [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
              self.user =  theObj;
-            [self displayMessage:@"Succesfully Logged In"];
+             [self displayMessage:@"Succesfully Logged In"];
              [[NSNotificationCenter defaultCenter]postNotificationName:loginSucceededNotification object:theObj];
+             //[self testRatings];
              if([popover isPopoverVisible]){
                  [popover dismissPopoverAnimated:YES];
              }
+            // [self create100];
          }
 
          
@@ -329,8 +380,6 @@ showLoginScreenForViewController:(UIViewController *)vc andNavigationController:
     [self.ff getArrayFromUri:[NSString stringWithFormat:@"/ff/resources/Photo/(albumId eq '%@')",albumId] onComplete:
      ^(NSError * theErr, id theObj, NSHTTPURLResponse * theResponse)
      {
-        
-         NSLog(@"Get Photos for Album retrieved");
          if(theErr){
              [self displayMessage:[theErr localizedDescription]];
          }
@@ -369,33 +418,7 @@ showLoginScreenForViewController:(UIViewController *)vc andNavigationController:
 
 #pragma mark photo
 
--(void)getOwnerOfPhoto:(Photo *) photo asynchronusly:(BOOL)yes{
-    //find album
-    NSString * queryString  = [NSString stringWithFormat:@"/ff/resources/Album/(guid eq '%@')",photo.albumId];
-    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
-    [self.ff getObjFromUri:queryString onComplete:
-     ^(NSError * theErr, id theObj, NSHTTPURLResponse * theResponse)
-     {
-      [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-         if(theErr){
-             //[self displayMessage:[theErr localizedDescription]];
-         }
-         else{
-             //retrieved array of albums.
-             Album * album = theObj;
-             NSString * userGuid = album.userId;
-             NSString * queryString  = [NSString stringWithFormat:@"/ff/resources/FFUser/%@",userGuid];
-            //getting user
-             [self.ff getObjFromUri:queryString onComplete:
-              ^(NSError * theErr, id theObj, NSHTTPURLResponse * theResponse)
-              {
-                  [[NSNotificationCenter defaultCenter] postNotificationName:userRetrievedNotification
-                    object:theObj userInfo:nil];
-              
-              }];
-         }
-     }];
-}
+
 
 -(void)updateObject:(id)object{
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
@@ -416,24 +439,20 @@ showLoginScreenForViewController:(UIViewController *)vc andNavigationController:
 }
 
 
--(void)ratePhoto:(Photo *)photo{
-    [self updateObject:photo];
-}
-
-
 //Create and upload new photo
--(void)createNewPhotoWithDescription:(NSString *)description forUser:(NSString *)userId forAlbum:(NSString *)albumId withData:(NSData *)_imageData user :(User *)user{
+-(void)createNewPhotoWithDescription:(NSString *)description forAlbum:(NSString *)albumId withData:(NSData *)_imageData user :(User *)user{
 
     Photo * photo = [[Photo alloc]init];
     UIImage * ui = [UIImage imageWithData:_imageData];
-    ui = [ui imageByScalingProportionallyToSize:CGSizeMake(800, 1024)];
+   // ui = [ui imageByScalingProportionallyToSize:CGSizeMake(700, 700)];
     UIImage * thumbnail = [ui imageByScalingProportionallyToSize:CGSizeMake(300, 300)];
     
-    NSData *thumbnailImageData = UIImagePNGRepresentation(thumbnail); // 0.7 is JPG quality
-    NSData *imageData = UIImagePNGRepresentation(ui); // 0.7 is JPG quality
+    NSData *thumbnailImageData = UIImageJPEGRepresentation(thumbnail,0.7); // 0.7 is JPG quality
     
+    NSLog(@" thumbnail length %d %d", thumbnailImageData.length, _imageData.length);
+
     photo.thumbnailImageData = thumbnailImageData;
-    photo.imageData= imageData;
+    photo.imageData= _imageData;
     photo.date = [NSDate new];
     photo.description= description;
     photo.albumId = albumId;
@@ -448,10 +467,8 @@ showLoginScreenForViewController:(UIViewController *)vc andNavigationController:
      {
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
          if(theErr==nil){
-             //Now we can update the file associated with it.
-            //self.delegate pho
+             
              [[NSNotificationCenter defaultCenter]postNotificationName:photoCreatedNotification object:nil];
-                    
          }
          else{
              [self displayMessage:@"Error. File Couldn't be uploaded"];
@@ -483,6 +500,12 @@ showLoginScreenForViewController:(UIViewController *)vc andNavigationController:
 
 }
 
+-(void)getFavoritePhotosForUser:(User *)user{
+    
+
+}
+
+
 -(void)getNewestPhotos{
     
    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
@@ -497,7 +520,7 @@ showLoginScreenForViewController:(UIViewController *)vc andNavigationController:
          else{
              //retrieved array of photos in album.
              NSArray * photosArray = theObj;
-             NSLog(@"Photos Array %@",photosArray);
+             //NSLog(@"Photos Array %@",photosArray);
              
              [[NSNotificationCenter defaultCenter]postNotificationName:photosRetrievedFromSearchNotification object:photosArray];
          }
@@ -550,10 +573,14 @@ showLoginScreenForViewController:(UIViewController *)vc andNavigationController:
         UIStoryboard *iPadStoryboard = [UIStoryboard storyboardWithName:@"MainStoryboard_iPad" bundle:nil];
         vc =[iPadStoryboard instantiateInitialViewController];
     }
+   /*
     if(image){
         [(ViewController *)vc setImageToDisplay:image];
         
     }
+  */
+    self.defaultImage = image;
+    
     vc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
     
     if([vc isKindOfClass:[UINavigationController class]])
@@ -571,9 +598,15 @@ showLoginScreenForViewController:(UIViewController *)vc andNavigationController:
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"iPadStoryboard" bundle:nil];
         
         LoginRegisterViewController * lr = [storyboard  instantiateViewControllerWithIdentifier:@"LoginPopover"];
+        if(!popover){
+            popover = [[UIPopoverController alloc]initWithContentViewController:lr];
+        }
+        else{
+            [popover dismissPopoverAnimated:YES];
+            popover = [[UIPopoverController alloc]initWithContentViewController:lr];
+        }
 
-        popover = [[UIPopoverController alloc]initWithContentViewController:lr];
-        
+
         [popover presentPopoverFromRect:CGRectMake(view.center.x, view.frame.size.height,10, 10) inView:vc.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
         
     }
@@ -587,6 +620,51 @@ showLoginScreenForViewController:(UIViewController *)vc andNavigationController:
     }
 }
 
+-(void)showProfileForView:(UIView *)view andViewController:(id)vc fromNav:(BOOL)nav{
+    if(self.user){
+        PFProfileViewController * p;
+        UIStoryboard * st;
+        
+        
+        
+        if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad){
+            st = [UIStoryboard storyboardWithName:@"iPadStoryboard" bundle:nil];
+            p =[st instantiateViewControllerWithIdentifier:@"PFProfileViewController"];
+            p.user = self.user;
+
+            
+            if(nav){
+                [[vc navigationController]pushViewController:p animated:YES];
+            }
+            else{
+                if([self.profilePopover isPopoverVisible]){
+                    [self.profilePopover dismissPopoverAnimated:YES];
+                }
+           
+                if(!self.profilePopover)
+                {
+                    self.profilePopover = [[UIPopoverController alloc]initWithContentViewController:p];
+                }
+                else{
+                    [self.profilePopover  presentPopoverFromRect:CGRectMake(view.center.x, view.frame.size.height,10, 10)  inView:view permittedArrowDirections:UIPopoverArrowDirectionDown animated:YES];
+                }
+            }
+        }
+        else{
+            st = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
+            p =[st instantiateViewControllerWithIdentifier:@"PFProfileViewController"];
+            p.user =self.user;
+            [self.currentNavigationController pushViewController:p animated:YES];
+            
+        }
+    }
+    else
+    {
+        [self displayActionSheetWithMessage:@"You need to be logged in to continue." forView:view navigationController:self.currentNavigationController andViewController:vc];
+    }
+}
+
+
 -(void)showSharingCenterForPhoto:(UIImage *)resultImage andPopover:(UIPopoverController*)sharingCenterPopoverController inView:(UIView *)view andNavigationController: (id)navigationController fromBarButton:(UIButton *)barButton{
     PFSharingCenterViewController *vc;
    
@@ -596,6 +674,7 @@ showLoginScreenForViewController:(UIViewController *)vc andNavigationController:
         UIStoryboard *iPhoneStoryboard = [UIStoryboard storyboardWithName:@"iPadStoryboard" bundle:nil];
         vc = [iPhoneStoryboard instantiateViewControllerWithIdentifier:@"sharingCenterViewController"];
         vc.imageToShare = resultImage;
+      
         //present it in popover
         popover = sharingCenterPopoverController;
         if(!popover)

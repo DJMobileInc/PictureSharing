@@ -20,7 +20,7 @@
 
 @end;
 @interface Manager : NSObject <UIActionSheetDelegate> 
-extern  NSString * const userRetrievedNotification;
+//extern  NSString * const userRetrievedNotification;
 extern  NSString * const albumsRetrievedNotification;
 extern  NSString * const photosRetrievedNotification;
 extern  NSString * const loginSucceededNotification;
@@ -40,15 +40,14 @@ extern  NSString * const appURLString;
 -(void)createNewAlbumOfName:(NSString *)name forUser:(NSString *)userId privacy:(BOOL)visible;
 -(void)getPhotosForAlbum:(NSString *)albumId;
 
--(void)ratePhoto:(Photo *)photo;
--(void)createNewPhotoWithDescription:(NSString *)name forUser:(NSString *)userId forAlbum:(NSString *)albumId withData:(NSData *)imageData user :(User *)user;
+-(void)createNewPhotoWithDescription:(NSString *)name forAlbum:(NSString *)albumId withData:(NSData *)imageData user :(User *)user;
 -(void)getAlbumsForUser:(NSString *)userId;
 -(void)displayMessage:(NSString *)message;
 -(void)getNewestPhotos;
 -(void)getHighestRatedPhotos;
 -(void)getPhotosWithSearchQuery:(NSString *)searchQuery;
 -(void)updateObject:(id)object;
--(void)getOwnerOfPhoto:(Photo *) photo asynchronusly:(BOOL)yes;
+-(void)showProfileForView:(UIView *)view andViewController:(id)vc fromNav:(BOOL)nav;
 
 
 -(void)showLoginScreenForViewController:(UIViewController *)vc andNavigationController: (id)navigationController fromRectView:(UIView *)view;
@@ -57,8 +56,9 @@ extern  NSString * const appURLString;
 -(void)showSharingCenterForPhoto:(UIImage *)resultImage andPopover:(UIPopoverController*)sharingCenterPopoverController inView:(UIView *)view andNavigationController: (id)navigationController fromBarButton:(UIButton *)button;
 
 -(void)showPhotoEditorForNavigationController:(id)navigationController editImage:(UIImage *)image;
--(void)displayActionSheetWithMessage:(NSString *)message forView:(UIView *)view navigationController:(UINavigationController *)nav storyboard:(UIStoryboard *)storyboard andViewController:(id)viewController;
-
+-(void)displayActionSheetWithMessage:(NSString *)message forView:(UIView *)view navigationController:(UINavigationController *)nav  andViewController:(id)viewController;
+/*it will retrieve the list of the photos that was like by user*/
+-(void)getFavoritePhotosForUser:(User *)user;
 
 + (Manager *)sharedInstance;
 -(void)testIt;
@@ -71,8 +71,9 @@ extern  NSString * const appURLString;
 @property(strong,nonatomic) User *  user;
 @property (strong,nonatomic)UINavigationController * currentNavigationController;
 @property (strong, nonatomic)  UIPopoverController * popover;
+@property (strong, nonatomic)  UIPopoverController * profilePopover;
 -(void)dismissPopovers;
--(void)dismissPopover:(id)vc;
+
 
 
 @end

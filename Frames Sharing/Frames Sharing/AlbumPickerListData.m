@@ -17,10 +17,12 @@
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"AlbumCell"];
 
     }
-    //cell.accessoryType= UITableViewCellAccessoryCheckmark;
+    
     Album * album = (Album *)self.objects[indexPath.row];
-  //  NSLog(@"album %@", [manager getGUID:album]);
+    cell.imageView.image = [UIImage imageNamed:@"albumSmallIcon"];
     cell.textLabel.text =album.name;
+    NSLog(@" %@ ",album.name);
+    
     return cell;
 }
 
