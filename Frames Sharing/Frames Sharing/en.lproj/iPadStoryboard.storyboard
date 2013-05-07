@@ -656,7 +656,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="exploreFavorites:" destination="aJh-EP-unI" eventType="touchUpInside" id="GFz-ty-afX"/>
+                                    <action selector="exploreFavorites:" destination="aJh-EP-unI" eventType="touchUpInside" id="rZX-7t-1iF"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="HrM-98-gGA">
@@ -671,7 +671,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="albumsVCSegue:" destination="aJh-EP-unI" eventType="touchUpInside" id="tnA-Y8-YI0"/>
+                                    <action selector="showNotifications:" destination="aJh-EP-unI" eventType="touchUpInside" id="Dpe-qk-2Ci"/>
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="My Favorites" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="len-oo-aEF">
@@ -1143,7 +1143,6 @@ If you have any questions about our policy or the security of Screen Capture app
             <relationships>
                 <relationship kind="action" name="deletePhoto:"/>
                 <relationship kind="action" name="segmentTappedOn:"/>
-                <relationship kind="action" name="showActionMenuForPhoto:"/>
                 <relationship kind="action" name="showPhotoEditor:"/>
                 <relationship kind="outlet" name="buttonsView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="description" candidateClass="UITextView"/>
@@ -1155,9 +1154,7 @@ If you have any questions about our policy or the security of Screen Capture app
         <class className="PFDisplayPhotoViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PFDisplayPhotoViewController.h"/>
             <relationships>
-                <relationship kind="action" name="authorButtonPressed:"/>
                 <relationship kind="action" name="flagPhoto:"/>
-                <relationship kind="action" name="showUsersThatLike:"/>
                 <relationship kind="action" name="voteForPhoto:"/>
                 <relationship kind="outlet" name="authorButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="bottomToolbar" candidateClass="UIToolbar"/>
@@ -1177,9 +1174,6 @@ If you have any questions about our policy or the security of Screen Capture app
         <class className="PFExploreViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PFExploreViewController.h"/>
             <relationships>
-                <relationship kind="action" name="getAll:"/>
-                <relationship kind="action" name="loginOrSignUp:" candidateClass="UIBarButtonItem"/>
-                <relationship kind="action" name="refreshButtonClicked:"/>
                 <relationship kind="outlet" name="collectionView" candidateClass="UICollectionView"/>
                 <relationship kind="outlet" name="searchBar" candidateClass="UISearchBar"/>
                 <relationship kind="outlet" name="searchStatus" candidateClass="UILabel"/>
@@ -1228,7 +1222,6 @@ If you have any questions about our policy or the security of Screen Capture app
             <relationships>
                 <relationship kind="action" name="makeNewAlbum:" candidateClass="UIBarButtonItem"/>
                 <relationship kind="action" name="refreshAlbums:"/>
-                <relationship kind="action" name="showMenu:"/>
                 <relationship kind="outlet" name="collectionView" candidateClass="UICollectionView"/>
                 <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
             </relationships>
@@ -1241,9 +1234,6 @@ If you have any questions about our policy or the security of Screen Capture app
         </class>
         <class className="UICollectionViewFlowLayout" superclassName="UICollectionViewLayout">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewFlowLayout.h"/>
-        </class>
-        <class className="UICollectionViewLayout" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewLayout.h"/>
         </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

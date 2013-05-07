@@ -1416,9 +1416,6 @@ If you have any questions about our policy or the security of our applications, 
         <class className="PFAlbumDetailsViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PFAlbumDetailsViewController.h"/>
             <relationships>
-                <relationship kind="action" name="privacyChanged:"/>
-                <relationship kind="action" name="removeAlbum:"/>
-                <relationship kind="action" name="showPhotoEditor:"/>
                 <relationship kind="outlet" name="collectionView" candidateClass="UICollectionView"/>
                 <relationship kind="outlet" name="privacySegmentedControl" candidateClass="UISegmentedControl"/>
                 <relationship kind="outlet" name="toolbar" candidateClass="UIToolbar"/>
@@ -1505,9 +1502,7 @@ If you have any questions about our policy or the security of our applications, 
             <relationships>
                 <relationship kind="action" name="albumsVCSegue:" candidateClass="UIButton"/>
                 <relationship kind="action" name="createVCSegue:" candidateClass="UIButton"/>
-                <relationship kind="action" name="exploreFavorites:"/>
                 <relationship kind="action" name="exploreVCSegue:" candidateClass="UIButton"/>
-                <relationship kind="action" name="pushIt:"/>
                 <relationship kind="action" name="shareVCSegue:" candidateClass="UIButton"/>
                 <relationship kind="action" name="showProfile"/>
             </relationships>
@@ -1529,9 +1524,6 @@ If you have any questions about our policy or the security of our applications, 
         </class>
         <class className="UICollectionViewFlowLayout" superclassName="UICollectionViewLayout">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewFlowLayout.h"/>
-        </class>
-        <class className="UICollectionViewLayout" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewLayout.h"/>
         </class>
         <class className="UserCell" superclassName="UITableViewCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/UserCell.h"/>

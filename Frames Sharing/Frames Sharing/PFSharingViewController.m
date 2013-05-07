@@ -145,6 +145,7 @@ UIPopoverController * notificationsPopover;
 }
 
 - (IBAction)showNotifications:(id)sender {
+    NSLog(@"Show Notifications");
     UIStoryboard *st;
     PFNotificationController * explorer;
     if(manager.user){
@@ -153,9 +154,12 @@ UIPopoverController * notificationsPopover;
     explorer =[st instantiateViewControllerWithIdentifier:@"PFNotificationsController"];
     explorer.user = manager.user;
     if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad){
+    
+        UINavigationController * nav = [[UINavigationController alloc]initWithRootViewController:explorer];
+        
         if(!notificationsPopover)
         {
-            notificationsPopover = [[UIPopoverController alloc]initWithContentViewController:explorer];
+            notificationsPopover = [[UIPopoverController alloc]initWithContentViewController:nav];
         }
         if(notificationsPopover.isPopoverVisible){
             [notificationsPopover dismissPopoverAnimated:YES];

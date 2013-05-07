@@ -631,22 +631,26 @@ UIView * currentView;
             st = [UIStoryboard storyboardWithName:@"iPadStoryboard" bundle:nil];
             p =[st instantiateViewControllerWithIdentifier:@"PFProfileViewController"];
             p.user = self.user;
-
+            NSLog(@"here?");
             
             if(nav){
                 [[vc navigationController]pushViewController:p animated:YES];
+                 NSLog(@"here?5");
             }
             else{
+                 NSLog(@"here?2");
+                
                 if([self.profilePopover isPopoverVisible]){
                     [self.profilePopover dismissPopoverAnimated:YES];
                 }
-           
+                       NSLog(@"here?3");
                 if(!self.profilePopover)
                 {
                     self.profilePopover = [[UIPopoverController alloc]initWithContentViewController:p];
                 }
                 else{
                     [self.profilePopover  presentPopoverFromRect:CGRectMake(view.center.x, view.frame.size.height,10, 10)  inView:view permittedArrowDirections:UIPopoverArrowDirectionDown animated:YES];
+                    NSLog(@"Present popover ");
                 }
             }
         }
