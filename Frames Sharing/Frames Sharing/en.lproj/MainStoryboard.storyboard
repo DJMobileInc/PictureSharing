@@ -1330,8 +1330,8 @@ If you have any questions about our policy or the security of our applications, 
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 </textView>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="02/12/2012" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="QXk-9w-zAG">
-                                                    <rect key="frame" x="144" y="2" width="86" height="21"/>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="02/12/2012" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="QXk-9w-zAG">
+                                                    <rect key="frame" x="70" y="2" width="217" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -1363,7 +1363,7 @@ If you have any questions about our policy or the security of our applications, 
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="g0r-fI-vwz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1321" y="1023"/>
+            <point key="canvasLocation" x="1295" y="1023"/>
         </scene>
     </scenes>
     <resources>
@@ -1434,6 +1434,7 @@ If you have any questions about our policy or the security of our applications, 
             <relationships>
                 <relationship kind="action" name="segmentTappedOn:"/>
                 <relationship kind="action" name="showPhotoEditor:"/>
+                <relationship kind="outlet" name="bottomToolbar" candidateClass="UIToolbar"/>
                 <relationship kind="outlet" name="buttonsView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="description" candidateClass="UITextView"/>
                 <relationship kind="outlet" name="imageView" candidateClass="UIImageView"/>
@@ -1478,6 +1479,8 @@ If you have any questions about our policy or the security of our applications, 
         <class className="PFPickAlbumViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PFPickAlbumViewController.h"/>
             <relationships>
+                <relationship kind="action" name="makeNewAlbum:" candidateClass="UIBarButtonItem"/>
+                <relationship kind="action" name="selectAlbum:"/>
                 <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
             </relationships>
         </class>

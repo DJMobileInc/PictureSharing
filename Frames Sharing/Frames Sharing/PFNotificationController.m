@@ -10,6 +10,8 @@
 #import "Manager.h"
 #import "UserCell.h"
 #import "NotificationCell.h"
+#import "PFDisplayPhotoViewController.h"
+
 
 @interface PFNotificationController ()
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
@@ -20,6 +22,8 @@
 NSOperationQueue * queue;
 Manager * manager;
 NSMutableDictionary * userDictionary;
+NSMutableDictionary * userOperations;
+NSMutableArray * userNotifications;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -36,6 +40,7 @@ NSMutableDictionary * userDictionary;
 
 -(void)viewWillDisappear:(BOOL)animated{
     [queue cancelAllOperations];
+    manager.ff.autoLoadBlobs = NO;
 }
 
 - (void)viewDidLoad
@@ -43,6 +48,16 @@ NSMutableDictionary * userDictionary;
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     userDictionary= [[NSMutableDictionary alloc]initWithCapacity:0];
+    userNotifications = [[NSMutableArray alloc]initWithCapacity:0];
+    
+    if(self.user.notifications){
+        for(int i = self.user.notifications.count-1; i>=0; i--)
+        {
+            [userNotifications addObject: [self.user.notifications objectAtIndex:i ]];
+            
+        }
+    }
+    
     queue = [[NSOperationQueue alloc]init];
   
     [self.tableView reloadData];
@@ -68,7 +83,11 @@ NSMutableDictionary * userDictionary;
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    return self.user.notifications.count;
+    return userNotifications.count;
+}
+
+-(void)tableView:(UITableView *)tableView didEndDisplayingCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
+    
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -80,10 +99,10 @@ NSMutableDictionary * userDictionary;
         User * user = (User *)[userDictionary objectForKey:g];
         // load picture
         cell.profileImageView.image = [UIImage imageWithData:[(User *)[userDictionary objectForKey:g]smallProfilePicture]];
-        if([NSString stringWithFormat:@"%@",[[user.notifications objectAtIndex:indexPath.row]date]]){
-        cell.dateLabel.text = [NSString stringWithFormat:@"%@",[[user.notifications objectAtIndex:indexPath.row]date]];
+        if([NSString stringWithFormat:@"%@",[[userNotifications objectAtIndex:indexPath.row]date]]){
+        cell.dateLabel.text = [NSString stringWithFormat:@"%@",[[userNotifications objectAtIndex:indexPath.row]date]];
         }
-            cell.message.text = [NSString stringWithFormat:@"%@",[[user.notifications objectAtIndex:indexPath.row]message]];
+            cell.message.text = [NSString stringWithFormat:@"%@",[[userNotifications objectAtIndex:indexPath.row]message]];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     
@@ -95,8 +114,12 @@ NSMutableDictionary * userDictionary;
     NSBlockOperation * operation = [[NSBlockOperation alloc]init];
     NSBlockOperation * weakOperation = operation;
     
-    Notification * notification =self.user.notifications[indexPath.row];
+    Notification * notification =userNotifications[indexPath.row];
     NSString * guid = notification.from;
+    if(!guid)
+    {
+        return @"";
+    }
     
     if(![userDictionary objectForKey:guid]){
         
@@ -106,7 +129,7 @@ NSMutableDictionary * userDictionary;
                 manager.ff.autoLoadBlobs = YES;
                 NSError * error;
                 User * newUser = [manager.ff getObjFromUri:[NSString stringWithFormat: @"/ff/resources/FFUser/(guid eq'%@')",guid] error:&error];
-                manager.ff.autoLoadBlobs = NO;
+               
                 NSMutableDictionary * dict = [userDictionary mutableCopy];
                 if(newUser)
                 {
@@ -117,8 +140,7 @@ NSMutableDictionary * userDictionary;
                     //reload cell?
                     userDictionary = dict;
                     [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-                    NSLog(@"Reload");
-                    
+                                       
                 }];
             }
         }];
@@ -131,42 +153,32 @@ NSMutableDictionary * userDictionary;
 
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSString * guid =[self.user.notifications[indexPath.row]from];
-    NSLog(@"User Dictionary %@ guid %@ ",userDictionary,guid);
-    User * user = [userDictionary objectForKey:guid];
+  
+    NSString * photoGuid =[userNotifications[indexPath.row]photoGuid];
     
-    
-    if(user){
+    NSLog(@"Start");
+    [manager.ff getObjFromUri:[NSString stringWithFormat:@"/ff/resources/Photo/(guid eq'%@')",photoGuid]  onComplete:^
+                 (NSError *theErr, id theObj, NSHTTPURLResponse *theResponse){
+                     if(!theErr)
+                     {
+                         PFDisplayPhotoViewController * pdp= [self.storyboard instantiateViewControllerWithIdentifier:@"PFDisplayPhotoViewController"];
+                         Photo * p =  (Photo *)theObj;
+                         pdp.photo =p;
+                         [manager.currentNavigationController pushViewController:pdp animated:YES];
+                         
+                         [pdp changeDescription:p.description];
+                         [pdp changeImage:[UIImage imageWithData:p.imageData]];
 
-        NSLog(@"User does exists ");
-        [manager showProfileForView:self.view andViewController:self fromNav:YES];
-    }
-    else{
-        NSLog(@"User doesn't exists");
-    }
+                     }
+                     else{
+                    
+                     }
+                     
+                 }] ;
+  
+    
+   
 
-/*
-    PFDisplayPhotoViewController * pdp;
-    Photo * p;
-    if(self.favoritesMode)
-    {
-        NSString * guid =  [self.user.favoritePictures objectAtIndex:indexPath.row];
-        p = [currentPhotos objectForKey:guid];
-        
-    }
-    else{
-        p = [currentPhotoArray objectAtIndex:indexPath.row];
-        
-    }
-    
-    pdp= [self.storyboard instantiateViewControllerWithIdentifier:@"PFDisplayPhotoViewController"];
-    pdp.photo = p;
-    
-    [self.navigationController pushViewController:pdp animated:YES];
-    
-    [pdp changeDescription:p.description];
-    [pdp changeImage:[UIImage imageWithData:p.imageData]];
-*/
 }
 
 

@@ -172,7 +172,7 @@ UIActionSheet *  loginActionSheet;
         if(!_ff){
             self.ff = [[FatFractal alloc] initWithBaseUrl:baseUrl];
             self.ff.autoLoadBlobs = NO;
-            self.ff.debug = YES;
+            //self.ff.debug = YES;
             
             [[FatFractal main] registerClass:[User class] forClazz:@"FFUser"];
            // [self deleteAll];
@@ -509,7 +509,7 @@ UIView * currentView;
 -(void)getNewestPhotos{
     
    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
-    NSString * searchQuery = [NSString stringWithFormat:@"/ff/resources/Photo/(isPublic eq 1 and flag eq 0)"];
+    NSString * searchQuery = [NSString stringWithFormat:@"/ff/resources/Photo/(isPublic eq 1 and flag eq 0)?&count=500&start=0"];
     [self.ff getArrayFromUri:searchQuery onComplete:
      ^(NSError * theErr, id theObj, NSHTTPURLResponse * theResponse)
      {
@@ -631,26 +631,26 @@ UIView * currentView;
             st = [UIStoryboard storyboardWithName:@"iPadStoryboard" bundle:nil];
             p =[st instantiateViewControllerWithIdentifier:@"PFProfileViewController"];
             p.user = self.user;
-            NSLog(@"here?");
+       
             
             if(nav){
                 [[vc navigationController]pushViewController:p animated:YES];
-                 NSLog(@"here?5");
+    
             }
             else{
-                 NSLog(@"here?2");
+            
                 
                 if([self.profilePopover isPopoverVisible]){
                     [self.profilePopover dismissPopoverAnimated:YES];
                 }
-                       NSLog(@"here?3");
+       
                 if(!self.profilePopover)
                 {
                     self.profilePopover = [[UIPopoverController alloc]initWithContentViewController:p];
                 }
                 else{
                     [self.profilePopover  presentPopoverFromRect:CGRectMake(view.center.x, view.frame.size.height,10, 10)  inView:view permittedArrowDirections:UIPopoverArrowDirectionDown animated:YES];
-                    NSLog(@"Present popover ");
+         
                 }
             }
         }

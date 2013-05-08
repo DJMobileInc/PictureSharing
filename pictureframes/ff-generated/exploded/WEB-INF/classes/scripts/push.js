@@ -1,15 +1,20 @@
 var ff = require('ffef/FatFractal');
 function sendNotification()
 {
-   data = ff.getExtensionRequestData();
+   notification = ff.getExtensionRequestData();
+   console.log(notification);
+   content = notification.httpContent;
+   console.log(content);
+   
+    message = notification.httpContent.message;
+   receiver = notification.httpContent.to;
+   
    //get guid of sender
    //sender = data.httpParamaters.sender;
    //receiver = data.httpParamaters.receiver;
-//        console.log(" Data "+data);
-    
-    
-   var msg = "Hi!";
-   ff.sendPushNotifications(["7TuJG1fpPUbIFyxBHQiRy7"], msg);
+   //console.log(" Data "+data);
+
+   ff.sendPushNotifications([receiver], message);
 }
 
 

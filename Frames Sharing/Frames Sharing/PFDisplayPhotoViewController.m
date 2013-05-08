@@ -54,7 +54,6 @@ UIBarButtonItem * newBarButtonItem;
     self.user = self.photo.owner;
     [self changeRatings:self.photo.ratings.count];
     [self.authorButton setTitle:self.user.userName forState: UIControlStateNormal];
-    
     [self.authorButton addTarget:self action:@selector(authorButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     
     
@@ -179,10 +178,7 @@ UIBarButtonItem * newBarButtonItem;
    
    newBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:s style:UIBarButtonItemStyleBordered target:self action:@selector(showUsersThatLike:)];
     
-    
-    
-    
-//[self.bottomToolbar.items containsObject:self.ratingsBarButtonItem];
+
     NSMutableArray * a =[NSMutableArray arrayWithArray:self.bottomToolbar.items];
     if(newBarButtonItem){
         [a replaceObjectAtIndex:2 withObject:newBarButtonItem];

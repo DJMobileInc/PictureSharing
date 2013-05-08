@@ -91,6 +91,8 @@ NSMutableDictionary *  currentPhotos;
     [super viewWillDisappear:animated];
     [[NSNotificationCenter defaultCenter]removeObserver:self name:photosRetrievedFromSearchNotification object:nil];
     [_queue cancelAllOperations];
+    manager.ff.autoLoadBlobs = NO;
+    
 }
 
 
@@ -165,7 +167,7 @@ NSMutableDictionary *  currentPhotos;
      
     pdp= [self.storyboard instantiateViewControllerWithIdentifier:@"PFDisplayPhotoViewController"];
     pdp.photo = p;
-    NSLog(@"%@",p);
+    //NSLog(@"%@",p);
     [self.navigationController pushViewController:pdp animated:YES];
  
     [pdp changeDescription:p.description];
@@ -338,8 +340,6 @@ NSMutableDictionary *  currentPhotos;
                 else{
                     //NSLog(@" there was an error");
                 }
-                //we want to load blobs automatically.
-                manager.ff.autoLoadBlobs = YES;
                 
                 [[NSOperationQueue mainQueue] addOperationWithBlock:^{
                     PFExploreCell * cell = (PFExploreCell *) [self.collectionView cellForItemAtIndexPath:indexPath];
