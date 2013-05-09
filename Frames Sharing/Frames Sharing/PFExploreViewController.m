@@ -332,6 +332,20 @@ NSMutableDictionary *  currentPhotos;
                 if(!photo.guid){
                     photo.guid = guid;
                 }
+               
+                
+                UIImage * image = [UIImage imageWithData:photo.thumbnailImageData];
+                if(!CGSizeEqualToSize(image.size, cell.imageView.frame.size)){
+                    UIGraphicsBeginImageContextWithOptions(cell.imageView.frame.size, NO, 0.0);
+                    [image drawInRect:CGRectMake(0, 0, cell.frame.size.width, cell.frame.size.height)];
+                    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+                    UIGraphicsEndImageContext();
+                    NSData * newImageData=UIImageJPEGRepresentation(newImage, 0.7);
+                    photo.thumbnailImageData = newImageData;
+                    NSLog(@"Resizing Photo ");
+                }
+              
+                
                 if(photo){
                     [currentPhotos setObject:photo forKey:guid];
                     [MBProgressHUD hideAllHUDsForView:cell.imageView animated:NO];

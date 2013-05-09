@@ -37,7 +37,7 @@
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="images.jpg" id="Yfb-M9-qCm">
                                                     <rect key="frame" x="4" y="5" width="231" height="231"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 </imageView>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -405,7 +405,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Obd-Qt-yyf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2875" y="1162"/>
+            <point key="canvasLocation" x="2747" y="1166"/>
         </scene>
         <!--Display Photo View Controller-->
         <scene sceneID="ip3-cD-73Y">
@@ -1137,7 +1137,6 @@ If you have any questions about our policy or the security of Screen Capture app
             <relationships>
                 <relationship kind="action" name="deletePhoto:"/>
                 <relationship kind="action" name="segmentTappedOn:"/>
-                <relationship kind="action" name="showActionMenuForPhoto:"/>
                 <relationship kind="action" name="showPhotoEditor:"/>
                 <relationship kind="outlet" name="bottomToolbar" candidateClass="UIToolbar"/>
                 <relationship kind="outlet" name="buttonsView" candidateClass="UIView"/>

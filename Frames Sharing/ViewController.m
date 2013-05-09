@@ -844,6 +844,11 @@ CGRect imageFrame;
     }
     
     
+    
+    //cropFrame
+    //AVMakeRectWithAspectRatioInsideRect(CGSizeMake(wt, ht),
+    
+    
     CGRect newFrame = CGRectZero;
     newFrame.size = newSize;
     
@@ -867,12 +872,6 @@ CGRect imageFrame;
     pngData = UIImageJPEGRepresentation(resultImage, 0.7);
     resultImage = [UIImage imageWithData:pngData];
 
-//    NSData *imageData;
-//    if ( /* PNG IMAGE */ )
-//        imageData = UIImagePNGReprensentation(selectedImage);
-//    else
-//        imageData = UIImageJPEGReprensentation(selectedImage);
-//    NSUInteger fileLength = [pngData length];
 
     
     
