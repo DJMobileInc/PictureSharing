@@ -46,7 +46,7 @@ NSMutableDictionary * userDictionary;
     NSLog(@" Photo. %@ %d",self.photo,self.photo.ratings.count);
     [self.tableView reloadData];
     if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad){
-        self.contentSizeForViewInPopover =  CGSizeMake(320, 420);
+        self.preferredContentSize =  CGSizeMake(320, 420);
     }
     
 }

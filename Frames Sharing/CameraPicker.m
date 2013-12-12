@@ -59,7 +59,7 @@ UIPopoverController * cameraPopoverController;
     // Hides the controls for moving & scaling pictures, or for
     // trimming movies. To instead show the controls, use YES.
     cameraUI.allowsEditing = YES;
-    cameraUI.delegate = controller;
+    cameraUI.delegate = (id<UINavigationControllerDelegate, UIImagePickerControllerDelegate>) controller;
     
     if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad){
         cameraPopoverController = _cameraPopoverController;

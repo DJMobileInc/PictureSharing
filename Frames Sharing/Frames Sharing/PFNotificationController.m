@@ -62,7 +62,7 @@ NSMutableArray * userNotifications;
   
     [self.tableView reloadData];
     if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad){
-        self.contentSizeForViewInPopover =  CGSizeMake(320, 420);
+        self.preferredContentSize =  CGSizeMake(320, 420);
     }
     
 }
@@ -96,7 +96,7 @@ NSMutableArray * userNotifications;
     NSString * g =[self getPhotoForPath:indexPath];
     if([userDictionary objectForKey:g])
     {
-        User * user = (User *)[userDictionary objectForKey:g];
+        //User * user = (User *)[userDictionary objectForKey:g];
         // load picture
         cell.profileImageView.image = [UIImage imageWithData:[(User *)[userDictionary objectForKey:g]smallProfilePicture]];
         if([NSString stringWithFormat:@"%@",[[userNotifications objectAtIndex:indexPath.row]date]]){

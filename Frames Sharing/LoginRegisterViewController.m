@@ -138,7 +138,7 @@
         //Checking for valid email
         //Check if the first field is an email:
         //trying to log in:
-         [manager loggingInWithName:_usernameLoginTextField.text andPassword:_passwordLoginTextField.text];
+      [manager loggingInWithName:_usernameLoginTextField.text andPassword:_passwordLoginTextField.text];
         [self hideKeyboard];
     }
     else{

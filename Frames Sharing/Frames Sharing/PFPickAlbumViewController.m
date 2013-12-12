@@ -11,7 +11,7 @@
 #import "AlbumPickerListData.h"
 #import "Album.h"
 
-@interface PFPickAlbumViewController () <UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate>
+@interface PFPickAlbumViewController () < UITableViewDelegate, UIAlertViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 //@property (strong, nonatomic)NSMutableArray *objects;

@@ -1935,6 +1935,11 @@
 				CLASSPREFIX = PFSharing;
 				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = "Blue Plover Productions";
+				TargetAttributes = {
+					DBA2CE5716E4FC6100479C8A = {
+						DevelopmentTeam = BZUY5AR8YB;
+					};
+				};
 			};
 			buildConfigurationList = DBA2CE5316E4FC6100479C8A /* Build configuration list for PBXProject "Frames Sharing" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -2829,7 +2834,7 @@
 		DBA2CE7C16E4FC6100479C8A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: daniel poncyliusz (FKQ5BNEGA7)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2839,9 +2844,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Frames Sharing/Frames Sharing-Prefix.pch";
 				INFOPLIST_FILE = "Frames Sharing/Frames Sharing-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "0285BF27-D407-44B5-9193-DA0273230A79";
+				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
@@ -2851,8 +2856,8 @@
 		DBA2CE7D16E4FC6100479C8A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../../FatFractal\"",
@@ -2861,7 +2866,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Frames Sharing/Frames Sharing-Prefix.pch";
 				INFOPLIST_FILE = "Frames Sharing/Frames Sharing-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";

@@ -21,7 +21,7 @@ Manager * manager;
     
     manager.ff = self.ff;
    [[FatFractal main] registerClass:[User class] forClazz:@"FFUser"];
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackOpaque animated:NO];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent  animated:NO];
     UIImage *navBar = [UIImage imageNamed:@"AppNavBackground.png"];
 
     [[UINavigationBar appearance] setBackgroundImage:navBar forBarMetrics:UIBarMetricsDefault];
@@ -39,7 +39,7 @@ Manager * manager;
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
     // handle notification as you wish
-    FFUser * user; 
+    //FFUser * user;
     NSLog(@"Did receive remote notification");
     [[NSNotificationCenter defaultCenter] postNotificationName:@"pushNotification" object:nil userInfo:userInfo];
     

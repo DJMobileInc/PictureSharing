@@ -308,28 +308,42 @@ UIView * currentView;
     [self.ff loginWithUserName:userName andPassword:password onComplete: ^(NSError * error, id theObj, NSHTTPURLResponse * theResponse)
      {
          if(error){
+
              [self displayMessage:@"We couldn't log in you at this time. Please try again."];
+
+
+             if(theResponse.statusCode == 400){
+                 NSLog(@"Error 1 %@",error.debugDescription);
+                 error = nil;
+                 FFUser *newUser = [[FFUser alloc] initWithFF:self.ff];
+                 newUser.userName = userName;
+                 [self.ff registerUser:newUser password:password error:&error];
+                 if(error){
+                     NSLog(@"Error %@",error.debugDescription);
+                 }
+             
+             }
+
          }
          else{
              [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
              self.user =  theObj;
              [self displayMessage:@"Succesfully Logged In"];
              [[NSNotificationCenter defaultCenter]postNotificationName:loginSucceededNotification object:theObj];
-             //[self testRatings];
+    
              if([popover isPopoverVisible]){
                  [popover dismissPopoverAnimated:YES];
              }
-            // [self create100];
          }
-
-         
     }];
 }
 
 -(void)signUpWithName:(NSString *)userName andPassword: (NSString *)password{
     //for now using the auto registration
-    
     [self loggingInWithName:userName andPassword:password];
+    
+    
+    
     
 }
 

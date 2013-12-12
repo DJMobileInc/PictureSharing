@@ -34,7 +34,7 @@ BOOL tryLoading =NO;
      camera = [[CameraPicker alloc]init];
     [self loadPhoto];
        if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad){
-        self.contentSizeForViewInPopover =  CGSizeMake(350, 404);
+        self.preferredContentSize =  CGSizeMake(350, 404);
     }
 
 }
@@ -78,8 +78,10 @@ BOOL tryLoading =NO;
     }
     else{
         self.userName.text = self.user.userName;
+        self.userDescription.text =self.user.description;
+        
         self.albumsButton.hidden =NO;
-
+        
         if(self.user == manager.user){
                         
             [self.loginButton setTitle:@"Logout" forState:UIControlStateNormal];
