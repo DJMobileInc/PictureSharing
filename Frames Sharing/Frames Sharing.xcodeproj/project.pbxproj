@@ -51,6 +51,8 @@
 		82050C55172748BB00925839 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 82050C53172748BB00925839 /* MBProgressHUD.m */; };
 		82050C5717277D8300925839 /* albumSmallIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 82050C5617277D8300925839 /* albumSmallIcon.png */; };
 		82050C5817277D8300925839 /* albumSmallIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 82050C5617277D8300925839 /* albumSmallIcon.png */; };
+		82300D0E17B577F600B2819D /* R1PhotoEffectsSDK in Resources */ = {isa = PBXBuildFile; fileRef = 82300D0D17B577F600B2819D /* R1PhotoEffectsSDK */; };
+		82300D1217B5795800B2819D /* R1PhotoEffectsSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 82300D1117B5795800B2819D /* R1PhotoEffectsSDK.a */; };
 		8239752416F0210B008E1605 /* Manager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7EF07316EFA94500A364D7 /* Manager.m */; };
 		8239753D16F291E6008E1605 /* PFAlbumDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8239753C16F291E5008E1605 /* PFAlbumDetailsViewController.m */; };
 		8239754016F33B3D008E1605 /* PFDisplayMyPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8239753F16F33B3C008E1605 /* PFDisplayMyPhotoViewController.m */; };
@@ -776,6 +778,9 @@
 		82050C52172748BB00925839 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		82050C53172748BB00925839 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		82050C5617277D8300925839 /* albumSmallIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = albumSmallIcon.png; sourceTree = "<group>"; };
+		82300D0D17B577F600B2819D /* R1PhotoEffectsSDK */ = {isa = PBXFileReference; lastKnownFileType = folder; path = R1PhotoEffectsSDK; sourceTree = "<group>"; };
+		82300D0F17B578C000B2819D /* R1PhotoEffectsResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = R1PhotoEffectsResources.bundle; path = ../../../../Downloads/R1PhotoEffectsSDK/R1PhotoEffectsResources.bundle; sourceTree = "<group>"; };
+		82300D1117B5795800B2819D /* R1PhotoEffectsSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = R1PhotoEffectsSDK.a; path = ../../../../Downloads/R1PhotoEffectsSDK/R1PhotoEffectsSDK.a; sourceTree = "<group>"; };
 		8239753B16F291E5008E1605 /* PFAlbumDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFAlbumDetailsViewController.h; sourceTree = "<group>"; };
 		8239753C16F291E5008E1605 /* PFAlbumDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFAlbumDetailsViewController.m; sourceTree = "<group>"; };
 		8239753E16F33B3C008E1605 /* PFDisplayMyPhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFDisplayMyPhotoViewController.h; sourceTree = "<group>"; };
@@ -1191,6 +1196,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				82300D1217B5795800B2819D /* R1PhotoEffectsSDK.a in Frameworks */,
 				82BC84C816ED79FA000AC3E1 /* FFEF.framework in Frameworks */,
 				DBA2CE5C16E4FC6100479C8A /* UIKit.framework in Frameworks */,
 				DBA2CE5E16E4FC6100479C8A /* Foundation.framework in Frameworks */,
@@ -1789,6 +1795,9 @@
 		DBA2CE4F16E4FC6100479C8A = {
 			isa = PBXGroup;
 			children = (
+				82300D1117B5795800B2819D /* R1PhotoEffectsSDK.a */,
+				82300D0F17B578C000B2819D /* R1PhotoEffectsResources.bundle */,
+				82300D0D17B577F600B2819D /* R1PhotoEffectsSDK */,
 				4F4A01FC1721DACF00E91615 /* RotatingNavigationControllerViewController.h */,
 				4F4A01FD1721DACF00E91615 /* RotatingNavigationControllerViewController.m */,
 				4F1A4B5C172CBB2A00A4E510 /* buttonLike.png */,
@@ -2585,6 +2594,7 @@
 				4F3765C617300CAA00F6FDF8 /* buttonNews.png in Resources */,
 				4F3765C817300D5000F6FDF8 /* buttonFavorite.png in Resources */,
 				4F03663A1730386300CF2A99 /* newRibbon.png in Resources */,
+				82300D0E17B577F600B2819D /* R1PhotoEffectsSDK in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2840,6 +2850,11 @@
 				GCC_PREFIX_HEADER = "Frames Sharing/Frames Sharing-Prefix.pch";
 				INFOPLIST_FILE = "Frames Sharing/Frames Sharing-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../../../Downloads/R1PhotoEffectsSDK\"",
+				);
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "0285BF27-D407-44B5-9193-DA0273230A79";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
@@ -2862,6 +2877,11 @@
 				GCC_PREFIX_HEADER = "Frames Sharing/Frames Sharing-Prefix.pch";
 				INFOPLIST_FILE = "Frames Sharing/Frames Sharing-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../../../Downloads/R1PhotoEffectsSDK\"",
+				);
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
