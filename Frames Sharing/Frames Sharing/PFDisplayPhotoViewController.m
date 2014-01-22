@@ -63,6 +63,7 @@ UIBarButtonItem * newBarButtonItem;
          self.profilePicture.image = [UIImage imageWithData:[(User *)theObj profilePicture]];
          
      }];
+    
     //if the image data is null, load it and place the image in the imageView
     if(!self.photo.imageData || !self.photo.thumbnailImageData) {
         [MBProgressHUD showHUDAddedTo:self.imageView animated:YES];
@@ -84,6 +85,10 @@ UIBarButtonItem * newBarButtonItem;
 }
 
 
+-(void)viewDidAppear:(BOOL)animated{
+    NSLog(@"View Did Appear");
+    [self changeImage:[UIImage imageWithData:self.photo.imageData]];
+}
 
 - (void)didReceiveMemoryWarning
 {

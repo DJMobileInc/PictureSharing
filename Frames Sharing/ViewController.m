@@ -58,11 +58,10 @@
 @property (strong,nonatomic) UIPanGestureRecognizer *panGestureRecognizer;
 @property (strong,nonatomic) UIPinchGestureRecognizer * pinchGestureRecognizer;
 @property (strong, nonatomic) UITapGestureRecognizer * tapGesture;
-
-
 @property (strong, nonatomic) IBOutlet UIView * framesButtonsContainerView;
-
 @property (strong, nonatomic) IBOutlet UIButton *aboutButton;
+
+@property CGRect buttonsFrame;
 
 - (IBAction)hideFramesFor:(id)sender;
 - (IBAction)framesButtonAction:(id)sender;
@@ -308,7 +307,9 @@ CGRect imageFrame;
             {
                 self.photoContainerImgView.image = manager.modifiedImage;
             }
-    imageFrame = self.photoContainerImgView.frame;
+           
+            self.framesButtonsContainerView.frame = _buttonsFrame;
+              self.photoContainerImgView.frame = imageFrame ;
 }
 }
 -(void)viewDidDisappear:(BOOL)animated{
@@ -319,6 +320,7 @@ CGRect imageFrame;
    
     
 }
+
 
 
 -(ContentPack *)searchForContentPack:(NSString *)contentPackName{
@@ -437,8 +439,7 @@ CGRect imageFrame;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    NSLog(@"View Did Load");
+    imageFrame = self.photoContainerImgView.frame;
     camera = [[CameraPicker alloc]init];
     
     self.panGestureRecognizer =[[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(viewPanOn:)];
@@ -474,6 +475,8 @@ CGRect imageFrame;
     _manager.defaultImage = self.photoContainerImgView.image;
      self.navigationController.navigationBarHidden = YES;
     _manager.currentNavigationController = self.navigationController;
+    
+    _buttonsFrame = self.framesButtonsContainerView.frame;
   
     
 }

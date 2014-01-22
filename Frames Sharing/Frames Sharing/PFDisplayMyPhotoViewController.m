@@ -77,6 +77,8 @@ UIBarButtonItem * newBarButtonItem;
     self.description.delegate = self;
     [self changePrivacy:!self.photo.isPublic];
     [self changeRatings:self.photo.ratings.count];
+    
+    self.imageView.image =[UIImage imageWithData:self.photo.imageData];
 
 }
 
@@ -196,11 +198,12 @@ UIBarButtonItem * newBarButtonItem;
     
     
     NSMutableArray * a =[NSMutableArray arrayWithArray:self.bottomToolbar.items];
+    if(a){
     if(newBarButtonItem){
         [a replaceObjectAtIndex:0 withObject:newBarButtonItem];
     }
     [self.bottomToolbar setItems:a animated:YES];
-    NSLog(@" ");
+    }
     
 }
 

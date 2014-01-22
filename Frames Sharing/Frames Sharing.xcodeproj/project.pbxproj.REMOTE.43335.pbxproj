@@ -9,9 +9,6 @@
 /* Begin PBXBuildFile section */
 		4F03663A1730386300CF2A99 /* newRibbon.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F0366391730386300CF2A99 /* newRibbon.png */; };
 		4F1A4B5917288C3D00A4E510 /* UserListData.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1A4B5817288C3D00A4E510 /* UserListData.m */; };
-		4F1A4B5E172CBB2A00A4E510 /* buttonLike.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F1A4B5C172CBB2A00A4E510 /* buttonLike.png */; };
-		4F1A4B5F172CBB2A00A4E510 /* buttonReport.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F1A4B5D172CBB2A00A4E510 /* buttonReport.png */; };
-		4F1A4B61172CBDB800A4E510 /* buttonProfile.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F1A4B60172CBDB800A4E510 /* buttonProfile.png */; };
 		4F1A4B67172CCCBB00A4E510 /* PFUsersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1A4B66172CCCBB00A4E510 /* PFUsersViewController.m */; };
 		4F1F7C5F1704EBDB0083968B /* LoginRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1F7C5E1704EBDB0083968B /* LoginRegisterViewController.m */; };
 		4F1F7C601704EBDB0083968B /* LoginRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1F7C5E1704EBDB0083968B /* LoginRegisterViewController.m */; };
@@ -1737,7 +1734,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				82300D1217B5795800B2819D /* R1PhotoEffectsSDK.a in Frameworks */,
 				82BC84C816ED79FA000AC3E1 /* FFEF.framework in Frameworks */,
 				DBA2CE5C16E4FC6100479C8A /* UIKit.framework in Frameworks */,
 				DBA2CE5E16E4FC6100479C8A /* Foundation.framework in Frameworks */,
@@ -2728,9 +2724,6 @@
 		DBA2CE4F16E4FC6100479C8A = {
 			isa = PBXGroup;
 			children = (
-				82300D1117B5795800B2819D /* R1PhotoEffectsSDK.a */,
-				82300D0F17B578C000B2819D /* R1PhotoEffectsResources.bundle */,
-				82300D0D17B577F600B2819D /* R1PhotoEffectsSDK */,
 				4F4A01FC1721DACF00E91615 /* RotatingNavigationControllerViewController.h */,
 				4F4A01FD1721DACF00E91615 /* RotatingNavigationControllerViewController.m */,
 				82932227171A4530009D7231 /* TODO */,

@@ -94,12 +94,8 @@ UIPopoverController * notificationsPopover;
         else{
             st = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
             p =[st instantiateViewControllerWithIdentifier:@"PFProfileViewController"];
-            p.user = manager.user;
-            
-            //NSLog(@"User is %@ ",p.user);
-          
-  
-        //    [self.navigationController pushViewController:p animated:YES];
+            p.user = manager.user;  
+           [self.navigationController pushViewController:p animated:YES];
             
         }
     }

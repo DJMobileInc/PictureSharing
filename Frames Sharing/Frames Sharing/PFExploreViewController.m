@@ -99,6 +99,9 @@ NSMutableDictionary *  currentPhotos;
 
 -(void)viewDidAppear:(BOOL)animated{
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(searchCompletedWithResults:) name:photosRetrievedFromSearchNotification object:nil];
+    
+
+    
 }
 
 - (IBAction)loginOrSignUp:(UIBarButtonItem *)sender {
@@ -174,6 +177,7 @@ NSMutableDictionary *  currentPhotos;
     [pdp changeImage:[UIImage imageWithData:p.imageData]];
     
 }
+
 
 #pragma mark - UICollectionView Datasource
 
@@ -307,8 +311,6 @@ NSMutableDictionary *  currentPhotos;
         else{
             guid = [photo guid];
         }
-
-    
     }
 
     

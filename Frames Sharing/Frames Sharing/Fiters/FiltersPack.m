@@ -13,7 +13,7 @@
 -(id)init{
     self = [super init];
     if(self){
-        _filters = [NSArray arrayWithObjects: 
+        _filters = [[NSArray arrayWithObjects:
                     @"CINone",
                     @"CIBloom",
                     @"CICircleSplashDistortion",
@@ -31,8 +31,8 @@
                     @"CISepiaTone",
                     @"CIPerspectiveTile",
 
-                    nil];
-        _filtersNames = [NSArray arrayWithObjects:
+                    nil]mutableCopy];
+        _filtersNames = [[NSArray arrayWithObjects:
                          @"Default",
                          @"Bloom",
                           @"Circle Splash",
@@ -49,9 +49,9 @@
                          @"Pixels",
                          @"Sepia",
                          @"Tiles",
-                         nil];
+                         nil]mutableCopy];
 
-        _filtersImages = [NSArray arrayWithObjects:
+        _filtersImages = [[NSArray arrayWithObjects:
                           @"flowers.jpg",
                           @"Bloom",
                           @"CircleSplash",
@@ -68,7 +68,7 @@
                           @"pixelate",
                           @"sepia",
                           @"Tile",
-                         nil];
+                         nil]mutableCopy];
     }
 
     return self;

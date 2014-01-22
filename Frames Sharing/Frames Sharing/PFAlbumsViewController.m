@@ -10,7 +10,7 @@
 #import "Album.h"
 #import "AlbumListData.h"
 #import "PFAlbumDetailsViewController.h"
-@interface PFAlbumsViewController () <UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate>
+@interface PFAlbumsViewController () <UITableViewDelegate, UIAlertViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic)NSMutableArray *objects;
 @property (strong, nonatomic)NSString *albumName;

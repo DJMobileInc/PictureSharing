@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="11G63" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="zqQ-bl-oTR">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="zqQ-bl-oTR">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -9,28 +9,28 @@
             <objects>
                 <viewController id="z4z-b6-FQB" customClass="ViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="KM5-EP-Fxv">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" image="ApplicationFrame.png" id="eYb-ul-ytB" userLabel="ApplicationFrame.png">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="524"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="588"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="AppBackground.png" id="Ek4-XW-jCD" userLabel="AppBackground.png">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="524"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="588"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="flowers.jpg" id="Y0Z-aT-hg2" userLabel="PhotoContainer">
-                                <rect key="frame" x="0.0" y="142" width="320" height="320"/>
+                                <rect key="frame" x="0.0" y="206" width="320" height="320"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="christmas frame 4 ipad.png" id="5md-iJ-9Xq" userLabel="FrameContainer">
-                                <rect key="frame" x="0.0" y="142" width="320" height="320"/>
+                                <rect key="frame" x="0.0" y="206" width="320" height="320"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </imageView>
                             <view contentMode="scaleToFill" id="USJ-NT-78w" userLabel="EffectsView">
-                                <rect key="frame" x="0.0" y="315" width="320" height="102"/>
+                                <rect key="frame" x="0.0" y="379" width="320" height="102"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" image="BlackBar.png" id="yy3-7y-AgY">
@@ -91,9 +91,6 @@
                                             <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
-                                        <state key="highlighted">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
                                         <connections>
                                             <action selector="hideEffects:" destination="z4z-b6-FQB" eventType="touchUpInside" id="ula-2M-MI2"/>
                                         </connections>
@@ -102,7 +99,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" id="ytN-rc-EBX" userLabel="FramesView">
-                                <rect key="frame" x="0.0" y="156" width="320" height="100"/>
+                                <rect key="frame" x="0.0" y="220" width="320" height="100"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="BlackBar.png" id="9iK-xZ-E3i">
@@ -116,9 +113,6 @@
                                         <state key="normal" title="X" backgroundImage="YellowButton.png">
                                             <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <state key="highlighted">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
                                             <action selector="hideFramesFor:" destination="z4z-b6-FQB" eventType="touchUpInside" id="Rog-Xn-H9w"/>
@@ -135,7 +129,7 @@
                                         </collectionViewFlowLayout>
                                         <cells>
                                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="frameCellId" id="KXY-XY-U8Z" customClass="FrameCell">
-                                                <rect key="frame" x="0.0" y="1" width="60" height="60"/>
+                                                <rect key="frame" x="0.0" y="2" width="60" height="60"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                                     <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
@@ -175,9 +169,6 @@
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
-                                        <state key="highlighted">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -194,9 +185,6 @@
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
-                                        <state key="highlighted">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
                                         <connections>
                                             <action selector="showFramesFor:" destination="z4z-b6-FQB" eventType="touchUpInside" id="x6Q-bc-1pZ"/>
                                         </connections>
@@ -208,9 +196,6 @@
                                         <state key="normal" title="Assorted" backgroundImage="YellowButton.png">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <state key="highlighted">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
                                             <action selector="showFramesFor:" destination="z4z-b6-FQB" eventType="touchUpInside" id="ezc-Vs-f5U"/>
@@ -224,9 +209,6 @@
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
-                                        <state key="highlighted">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
                                         <connections>
                                             <action selector="showFramesFor:" destination="z4z-b6-FQB" eventType="touchUpInside" id="w8V-3q-eXT"/>
                                         </connections>
@@ -238,9 +220,6 @@
                                         <state key="normal" title="Love" backgroundImage="YellowButton.png">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <state key="highlighted">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
                                             <action selector="showFramesFor:" destination="z4z-b6-FQB" eventType="touchUpInside" id="PxD-i5-RyU"/>
@@ -254,9 +233,6 @@
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
-                                        <state key="highlighted">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
                                         <connections>
                                             <action selector="showFramesFor:" destination="z4z-b6-FQB" eventType="touchUpInside" id="2KD-Hf-KSZ"/>
                                         </connections>
@@ -269,9 +245,6 @@
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
-                                        <state key="highlighted">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
                                         <connections>
                                             <action selector="showFramesFor:" destination="z4z-b6-FQB" eventType="touchUpInside" id="8ju-OX-cCV"/>
                                         </connections>
@@ -280,7 +253,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" id="vcA-C1-hoW">
-                                <rect key="frame" x="0.0" y="464" width="320" height="40"/>
+                                <rect key="frame" x="0.0" y="528" width="320" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="jij-Mn-wYG">
@@ -387,7 +360,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="egS-Gj-Lhh">
-                                <rect key="frame" x="235" y="93" width="80" height="30"/>
+                                <rect key="frame" x="152" y="55" width="80" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="12"/>
                                 <state key="normal" title="About" backgroundImage="buttonExtraBack.png">
@@ -404,7 +377,7 @@
                                 </connections>
                             </button>
                             <adBannerView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="YN8-tv-faK">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="55"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <connections>
                                     <outlet property="delegate" destination="z4z-b6-FQB" id="86n-vd-SRy"/>
@@ -416,7 +389,6 @@
                     <navigationItem key="navigationItem" id="QUJ-sP-gwv"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="applicationFrame" destination="eYb-ul-ytB" id="MZM-Eb-UkG"/>
                         <outlet property="bannerView" destination="YN8-tv-faK" id="JRD-Ci-9ai"/>
@@ -424,6 +396,7 @@
                         <outlet property="effectsView" destination="USJ-NT-78w" id="Gx7-45-6z5"/>
                         <outlet property="frameContainerImageView" destination="5md-iJ-9Xq" id="rWa-4U-ceo"/>
                         <outlet property="framesButon" destination="lrR-Do-bYs" id="oXC-Dq-qzh"/>
+                        <outlet property="framesButtonsContainerView" destination="77g-BP-w6b" id="sme-hX-beW"/>
                         <outlet property="framesCollectionView" destination="n6c-Cj-cIL" id="zT4-LO-fNZ"/>
                         <outlet property="framesTitleButton" destination="Zb8-kD-Zl0" id="YmR-XM-pBo"/>
                         <outlet property="framesView" destination="ytN-rc-EBX" id="xjB-fJ-o7D"/>
@@ -439,72 +412,63 @@
             <objects>
                 <viewController title="Store" id="EFh-8t-K1L" customClass="InternalStoreViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Puc-Dn-y8C">
-                        <rect key="frame" x="0.0" y="64" width="320" height="460"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="524"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="smallBackground.png" id="9k0-Lz-yQI">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="524"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Tap on the items above to browse the premium content. Tap on the button below to restore your puchased items!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Yyz-Xe-KRt">
-                                <rect key="frame" x="6" y="325" width="309" height="53"/>
+                                <rect key="frame" x="6" y="389" width="309" height="53"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="sfZ-cL-qcL">
-                                <rect key="frame" x="6" y="375" width="124" height="40"/>
+                                <rect key="frame" x="6" y="439" width="124" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Restore" backgroundImage="buttonBack.png">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="restorePurchases:" destination="EFh-8t-K1L" eventType="touchUpInside" id="qoU-4p-22k"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="yEP-Tk-jeR">
-                                <rect key="frame" x="176" y="375" width="124" height="40"/>
+                                <rect key="frame" x="176" y="439" width="124" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Dismiss" backgroundImage="buttonBack.png">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="dismissController:" destination="EFh-8t-K1L" eventType="touchUpInside" id="xY4-zh-wFX"/>
                                 </connections>
                             </button>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="adv-e7-S5g">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="323"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="adv-e7-S5g">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="368"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="kCellId" textLabel="bIs-ES-ZAN" style="IBUITableViewCellStyleDefault" id="oNA-Tc-fzc">
-                                        <rect key="frame" x="0.0" y="46" width="320" height="46"/>
+                                        <rect key="frame" x="0.0" y="55" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="10" y="1" width="280" height="43"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="oNA-Tc-fzc" id="XKw-N5-0li">
+                                            <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Christmas Pack" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="bIs-ES-ZAN">
-                                                    <rect key="frame" x="10" y="0.0" width="260" height="43"/>
+                                                    <rect key="frame" x="15" y="0.0" width="270" height="43"/>
                                                     <fontDescription key="fontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="20"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </label>
                                             </subviews>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        </view>
+                                        </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -530,9 +494,8 @@
                 <navigationController autoresizesArchivedViewToFullSize="NO" title="Store" definesPresentationContext="YES" id="RZj-Zu-o0x" customClass="RotatingNavigationControllerViewController" sceneMemberID="viewController">
                     <value key="contentSizeForViewInPopover" type="size" width="320" height="480"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="blackOpaque" prompted="NO"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="blackOpaque" id="QQ0-RJ-lBA">
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="QQ0-RJ-lBA">
                         <rect key="frame" x="0.0" y="-44" width="0.0" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -549,15 +512,15 @@
             <objects>
                 <viewController storyboardIdentifier="storeItemsViewControllerStoryboardId" autoresizesArchivedViewToFullSize="NO" id="Buf-Oe-Uh0" customClass="StoreItemsViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="IZR-S6-bcO">
-                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="500"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="smallBackground.png" id="Xg3-wV-Y2F">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="500"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" id="xrA-Y0-mVR">
-                                <rect key="frame" x="0.0" y="5" width="320" height="329"/>
+                                <rect key="frame" x="0.0" y="5" width="320" height="357"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="3" minimumInteritemSpacing="3" id="i2Q-N8-WNZ">
@@ -601,7 +564,7 @@
                                 </connections>
                             </collectionView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="tzD-mc-Ctk">
-                                <rect key="frame" x="5" y="357" width="309" height="53"/>
+                                <rect key="frame" x="5" y="397" width="309" height="53"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <string key="text">Tap to preview, press buy to purchase. You are buying all items that you can see on the screen, and will be asked for confirmation after tapping on Buy button. </string>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -609,15 +572,11 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="xPY-iA-szx">
-                                <rect key="frame" x="97" y="413" width="124" height="40"/>
+                                <rect key="frame" x="97" y="453" width="124" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Buy" backgroundImage="buttonBack.png">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="buyItems:" destination="Buf-Oe-Uh0" eventType="touchUpInside" id="PAp-cu-wCW"/>
@@ -640,11 +599,11 @@
             <objects>
                 <viewController storyboardIdentifier="StoreItemPreviewId" autoresizesArchivedViewToFullSize="NO" id="JOU-UJ-6lA" customClass="StoreItemDetailViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kz1-f7-Mng">
-                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="ash.png" id="onk-b0-FZM">
-                                <rect key="frame" x="8" y="6" width="304" height="536"/>
+                                <rect key="frame" x="8" y="6" width="304" height="556"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                         </subviews>
@@ -652,14 +611,13 @@
                     </view>
                     <value key="contentSizeForViewInPopover" type="size" width="500" height="400"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="imageView" destination="onk-b0-FZM" id="kVf-e2-qU2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TbA-je-tx5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3042" y="-1399"/>
+            <point key="canvasLocation" x="-3138" y="-1443"/>
         </scene>
         <!--Rotating Navigation Controller View Controller - Store-->
         <scene sceneID="mI2-KM-Ut8">
@@ -667,9 +625,8 @@
                 <navigationController autoresizesArchivedViewToFullSize="NO" title="Store" definesPresentationContext="YES" id="zqQ-bl-oTR" customClass="RotatingNavigationControllerViewController" sceneMemberID="viewController">
                     <value key="contentSizeForViewInPopover" type="size" width="320" height="480"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="blackOpaque" prompted="NO"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="blackOpaque" id="mDz-oD-4EI">
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="mDz-oD-4EI">
                         <rect key="frame" x="0.0" y="-44" width="0.0" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -686,11 +643,11 @@
             <objects>
                 <viewController id="EKi-kx-Gcc" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ef0-Pf-Ajy">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="smallBackground.png" id="BQ4-lJ-yzV">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="578"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="642"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="djMobileLogo.png" id="DAW-02-Rad">
