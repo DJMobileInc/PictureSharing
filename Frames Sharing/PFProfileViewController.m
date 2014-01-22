@@ -57,10 +57,7 @@ BOOL tryLoading =NO;
              self.profileImageView.image = img;
          }
      }];
- 
 }
-
-
 
 -(void)viewWillAppear:(BOOL)animated{
     if(!tryLoading)
@@ -78,8 +75,7 @@ BOOL tryLoading =NO;
     }
     else{
         self.userName.text = self.user.userName;
-        self.userDescription.text =self.user.description;
-        
+        self.userDescription.text =self.user.aboutDescription;
         self.albumsButton.hidden =NO;
         
         if(self.user == manager.user){
