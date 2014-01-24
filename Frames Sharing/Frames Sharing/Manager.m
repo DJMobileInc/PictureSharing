@@ -172,10 +172,10 @@ UIActionSheet *  loginActionSheet;
         if(!_ff){
             self.ff = [[FatFractal alloc] initWithBaseUrl:baseUrl];
             self.ff.autoLoadBlobs = NO;
-            self.ff.debug = YES;
+            self.ff.debug = NO;
             [self.ff loginWithUserName:@"janek2004" andPassword:@"Stany174"];
             [[FatFractal main] registerClass:[User class] forClazz:@"FFUser"];
-           // [self deleteAll];
+
             
         }
         [self.ff registerClass:[User class] forClazz:@"FFUser"];

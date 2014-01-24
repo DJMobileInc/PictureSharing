@@ -198,13 +198,12 @@ CGRect imageFrame;
     [self hideAll];
     [UIView animateWithDuration:1 animations:^{
         if([self deviceIsAnIPad]){
-        float y = self.menuViewHolder.frame.origin.y - self.framesView.frame.size.height;
-            
-        self.effectsView.frame = CGRectMake(0, y, self.view.frame.size.width, self.effectsView.frame.size.height);
+            float y = self.menuViewHolder.frame.origin.y - self.framesView.frame.size.height;
+            self.effectsView.frame = CGRectMake(0, y, self.view.frame.size.width, self.effectsView.frame.size.height);
         }
         else{
             float y = self.view.bounds.size.height - self.effectsView.frame.size.height -30.0 ;
-         self.effectsView.frame = CGRectMake(self.effectsView.frame.origin.x, y, self.effectsView.frame.size.width, self.effectsView.frame.size.height);   
+            self.effectsView.frame = CGRectMake(self.effectsView.frame.origin.x, y, self.effectsView.frame.size.width, self.effectsView.frame.size.height);
         
         }
     }
@@ -282,7 +281,9 @@ CGRect imageFrame;
     recognizer.scale = 1;
 }
 
-
+-(void)viewDidAppear:(BOOL)animated{
+    [self manageOrientation];
+}
 
 -(void)viewWillAppear:(BOOL)animated{
     
@@ -308,8 +309,10 @@ CGRect imageFrame;
                 self.photoContainerImgView.image = manager.modifiedImage;
             }
            
-            self.framesButtonsContainerView.frame = _buttonsFrame;
+          //  self.framesButtonsContainerView.frame = _buttonsFrame;
               self.photoContainerImgView.frame = imageFrame ;
+            
+            
 }
 }
 -(void)viewDidDisappear:(BOOL)animated{
@@ -338,33 +341,41 @@ CGRect imageFrame;
 }
 
 
+- (CGSize)getRotatedViewSize
+{
+    BOOL isPortrait = UIInterfaceOrientationIsPortrait(self.interfaceOrientation);
+    
+    float max = MAX(self.view.bounds.size.width, self.view.bounds.size.height);
+    float min = MIN(self.view.bounds.size.width, self.view.bounds.size.height);
+    
+    return (isPortrait ?
+            CGSizeMake(min, max) :
+            CGSizeMake(max, min));
+}
+
 
 -(void)manageOrientation{
     float pfx = 86;
     float pfy = 146;
-    
- 
-    
     float pfw = 595;
-    pfw  = 650;
-
     float pfh = 706;
-    pfh = 650;
-    pfx  = self.view.center.x - pfw/2.0;
-
+    
     float lfx = 155;
     float lfy = 47;
-    
     float lfw = 706;
-    lfw = 650;
     float lfh = 587;
+
+    CGSize size =[self getRotatedViewSize];
+    float width = size.width;
+    float height = size.height;
+    
+    pfw  = 650;
+    pfh = 650;
+    pfx  = width/2.0 - pfw/2.0;
+    lfw = 650;
     lfh = 650;
     
-    lfx  = self.view.center.x - lfw/2.0;
-    
-    float width = self.view.frame.size.width;
-    float height = self.view.frame.size.height;
-    
+    lfx  = width/2.0 - lfw/2.0;
     
     CGRect pFrame =  CGRectMake(pfx, pfy, pfw, pfh);
     CGRect lFrame =  CGRectMake(lfx, lfy, lfw, lfh);
@@ -382,18 +393,23 @@ CGRect imageFrame;
     if([self deviceIsAnIPad]){
         if(UIInterfaceOrientationIsLandscape(self.interfaceOrientation))
         {
+            NSLog(@"Landsape ");
             [UIView animateWithDuration:0.1 animations:^{
                 self.applicationFrame.image = [UIImage imageNamed:@"ApplicationFrame"];
-                vup.frame = CGRectMake(0,0,width, lfy);
-                vleft.frame = CGRectMake(0,0,lfx, height);
-                vright.frame = CGRectMake(lfx + lfw,0,width - (lfx +lfw), height);
-                vbottom.frame = CGRectMake(0,lfy+lfh,width,height-(lfy+lfh));
+                vup.frame =     CGRectMake(0,0,width, lfy);
+                vleft.frame =   CGRectMake(0,0,lfx, height);
+                vright.frame =  CGRectMake(lfx + lfw,0, width - (lfx +lfw), height);
+                vbottom.frame = CGRectMake(0,lfy+lfh, width, height-(lfy+lfh));
+
                 self.frameContainerImageView.frame =lFrame;
                          
             } completion:^(BOOL finished){
 
-                self.photoContainerImgView.center = self.view.center;
-  
+                CGRect rect = self.photoContainerImgView.bounds;
+                rect.origin.x =  width/2.0;
+                rect.origin.y =  height /2.0;
+                self.frameContainerImageView.frame =lFrame;
+                self.photoContainerImgView.bounds =rect;
             
             }];
             
@@ -409,6 +425,8 @@ CGRect imageFrame;
                 
                 self.frameContainerImageView.frame =pFrame;
                 self.photoContainerImgView.center = self.frameContainerImageView.center;
+                
+                
                 
             } completion:^(BOOL finished){}];
         }
@@ -428,6 +446,7 @@ CGRect imageFrame;
     [self.view addSubview:self.frameContainerImageView];
     [self.view addSubview:self.framesView];
     [self.view addSubview:self.effectsView];
+    
     
     [self.view addSubview:self.framesButtonsContainerView];
     [self.view addSubview:self.menuViewHolder];
@@ -476,9 +495,7 @@ CGRect imageFrame;
      self.navigationController.navigationBarHidden = YES;
     _manager.currentNavigationController = self.navigationController;
     
-    _buttonsFrame = self.framesButtonsContainerView.frame;
-  
-    
+    [self.effectsCollectionView reloadData];
 }
 
 -(void)purchaseCompleted{
@@ -517,6 +534,7 @@ CGRect imageFrame;
 
      
 -(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration{
+    
       
 }
 
@@ -546,14 +564,17 @@ CGRect imageFrame;
             return self.currentContentPack.freeContent.thumbnails.count;
         }
     else{
+
         return self.currentContentPack.premiumContent.thumbnails.count;
-        }
+        
+    }
         return 0;
 
     }
     else{
+        NSLog(@"Count: %d", self.filterPack.filtersImages.count );
         
-       return  self.filterPack.filtersImages.count;
+        return  self.filterPack.filtersImages.count;
     }
 }
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
@@ -657,8 +678,7 @@ CGRect imageFrame;
 
 - (IBAction)shareAction:(id)sender {
     #warning add NSOPerationQueue.
-    
-//  NSOperationQueue * queue * [NSOperationQueue main]
+
     UIImage * resultImage = [self createScreenshot];
     [manager showSharingCenterForPhoto:resultImage andPopover:sharingCenterPopoverController inView:self.view andNavigationController:self.navigationController fromBarButton:self.framesButon];
 

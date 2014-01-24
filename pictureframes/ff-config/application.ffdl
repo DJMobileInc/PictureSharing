@@ -7,10 +7,10 @@ SET AllowNewCollections         true
 SET AllowNewObjectTypes         true
 SET AllowNewMembers             true
 SET AndroidPushAuthToken        YOUR_ANDROID_AUTH_TOKEN_GOES_HERE
-SET ApplePushKeystorePassword   YOUR_KEYSTORE_PASSWORD_GOES_HERE
+SET ApplePushKeystorePassword   Stany174
 SET ApplePushUsingProduction    true
 SET LogLevel                    INFO
-SET PushIsInactive              true
+SET PushIsInactive              false
 SET ETaggingEnabled             true
 SET PasswordValidation 		false
 
