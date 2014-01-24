@@ -57,7 +57,7 @@
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" id="7z6-m1-MOs">
                                         <rect key="frame" x="6" y="38" width="1007" height="118"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Tov-LL-brx">
                                             <size key="itemSize" width="115" height="115"/>
                                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -309,23 +309,6 @@
                                             </segue>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="QXd-Of-kER">
-                                        <rect key="frame" x="483" y="3" width="86" height="38"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
-                                        <state key="normal" title="Frame" backgroundImage="buttonBack.png">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <state key="disabled" backgroundImage="buttonPushed.png"/>
-                                        <state key="selected" backgroundImage="buttonExtraBack.png"/>
-                                        <state key="highlighted" backgroundImage="buttonPushed.png">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="framesButtonAction:" destination="2" eventType="touchUpInside" id="dP7-UD-4LC"/>
-                                        </connections>
-                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="W89-p6-eRu">
                                         <rect key="frame" x="578" y="3" width="86" height="38"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
@@ -420,7 +403,6 @@
                         <outlet property="effectsCollectionView" destination="7z6-m1-MOs" id="AcL-a3-FIE"/>
                         <outlet property="effectsView" destination="Qwz-j8-fKj" id="8RX-Ry-wGh"/>
                         <outlet property="frameContainerImageView" destination="ZCd-Q9-V6O" id="xW8-55-2lk"/>
-                        <outlet property="framesButon" destination="QXd-Of-kER" id="ZV2-L1-twh"/>
                         <outlet property="framesButtonsContainerView" destination="S1S-XB-SkT" id="tgG-Id-i7H"/>
                         <outlet property="framesCollectionView" destination="ojj-rh-LGX" id="zxg-tE-T4V"/>
                         <outlet property="framesTitleButton" destination="QZM-sJ-HJi" id="ezz-z8-ecn"/>

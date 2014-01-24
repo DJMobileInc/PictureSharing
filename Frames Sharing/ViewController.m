@@ -61,6 +61,9 @@
 @property (strong, nonatomic) IBOutlet UIView * framesButtonsContainerView;
 @property (strong, nonatomic) IBOutlet UIButton *aboutButton;
 
+@property  BOOL firstRun;
+
+
 @property CGRect buttonsFrame;
 
 - (IBAction)hideFramesFor:(id)sender;
@@ -68,7 +71,6 @@
 - (IBAction)photoAction:(id)sender;
 - (IBAction)hideEffects:(id)sender;
 - (IBAction)showMenu:(id)sender;
-
 
 @end
 
@@ -460,7 +462,7 @@ CGRect imageFrame;
     [super viewDidLoad];
     imageFrame = self.photoContainerImgView.frame;
     camera = [[CameraPicker alloc]init];
-    
+    self.firstRun =YES;
     self.panGestureRecognizer =[[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(viewPanOn:)];
     self.pinchGestureRecognizer =[[UIPinchGestureRecognizer alloc]initWithTarget:self action:@selector(viewPinchOn:)];
     
@@ -687,10 +689,7 @@ CGRect imageFrame;
 
 
 #pragma mark banner
--(NSUInteger)supportedInterfaceOrientations
-{
-    return UIInterfaceOrientationMaskPortrait|UIInterfaceOrientationMaskPortraitUpsideDown;
-}
+
 
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -704,7 +703,7 @@ CGRect imageFrame;
     UIInterfaceOrientation orientation = (UIInterfaceOrientation) [[UIDevice currentDevice] orientation];
     
     if (orientation==UIInterfaceOrientationPortrait) {
-        // do some sh!t
+       
         return YES;
     }
     

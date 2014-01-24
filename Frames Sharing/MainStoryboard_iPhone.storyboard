@@ -307,23 +307,6 @@
                                             <action selector="framesButtonAction:" destination="z4z-b6-FQB" eventType="touchUpInside" id="oCc-go-8lw"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="ADG-8g-6qV">
-                                        <rect key="frame" x="187" y="6" width="65" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                                        <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="10"/>
-                                        <state key="normal" title="Share" backgroundImage="buttonBack.png">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <state key="disabled" backgroundImage="buttonPushed.png"/>
-                                        <state key="selected" backgroundImage="buttonPushed.png"/>
-                                        <state key="highlighted" backgroundImage="buttonPushed.png">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="shareAction:" destination="z4z-b6-FQB" eventType="touchUpInside" id="tMa-k2-JOc"/>
-                                        </connections>
-                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="mzf-7m-LlP">
                                         <rect key="frame" x="141" y="4" width="37" height="32"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
