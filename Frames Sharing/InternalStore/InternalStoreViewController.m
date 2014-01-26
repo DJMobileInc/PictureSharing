@@ -13,9 +13,20 @@
 #import "Content.h"
 #define kSectionBackgrounds 0
 #define kSectionDecorations 1
+@interface InternalStoreViewController()
+{
 
+    IBOutlet UITableView *tableView;
 SharedStore * store;
 NSMutableArray * items;
+}
+
+
+
+@end
+
+
+
 @implementation InternalStoreViewController
 -(NSUInteger)supportedInterfaceOrientations
 {
@@ -51,7 +62,10 @@ NSMutableArray * items;
     if(!items){
         items = [store updateItems];
     }
+    tableView.backgroundColor = [UIColor clearColor];
+    
     NSLog(@"Items %@",items);
+    
 }
 
 - (void)didReceiveMemoryWarning
