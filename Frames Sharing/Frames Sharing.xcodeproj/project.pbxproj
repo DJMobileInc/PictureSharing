@@ -57,6 +57,8 @@
 		8239752416F0210B008E1605 /* Manager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7EF07316EFA94500A364D7 /* Manager.m */; };
 		8239753D16F291E6008E1605 /* PFAlbumDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8239753C16F291E5008E1605 /* PFAlbumDetailsViewController.m */; };
 		8239754016F33B3D008E1605 /* PFDisplayMyPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8239753F16F33B3C008E1605 /* PFDisplayMyPhotoViewController.m */; };
+		82454F8E1895FD0000B856A5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 82454F8D1895FD0000B856A5 /* Images.xcassets */; };
+		82454F90189622FD00B856A5 /* FFEF.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82454F8F189622FD00B856A5 /* FFEF.framework */; };
 		827849B117373B5C00568059 /* PFNotificationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 827849B017373B5C00568059 /* PFNotificationController.m */; };
 		827849B417373BA300568059 /* NotificationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 827849B317373BA300568059 /* NotificationCell.m */; };
 		828C48BA170A56C100F110F7 /* EffectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 828C48B7170A56C100F110F7 /* EffectCell.m */; };
@@ -155,7 +157,6 @@
 		828C4CCA170D1AD400F110F7 /* AlbumPickerListData.m in Sources */ = {isa = PBXBuildFile; fileRef = 828C4CC9170D1AD400F110F7 /* AlbumPickerListData.m */; };
 		828C4CCD170D223500F110F7 /* PFSharingCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 828C4CCC170D223500F110F7 /* PFSharingCenterViewController.m */; };
 		82932228171A4531009D7231 /* TODO in Resources */ = {isa = PBXBuildFile; fileRef = 82932227171A4530009D7231 /* TODO */; };
-		82BC84C816ED79FA000AC3E1 /* FFEF.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82BC84C716ED79FA000AC3E1 /* FFEF.framework */; };
 		82C608CF188F518700456864 /* fur2.png in Resources */ = {isa = PBXBuildFile; fileRef = 82C607BA188F518600456864 /* fur2.png */; };
 		82C608D0188F518700456864 /* lampard3.png in Resources */ = {isa = PBXBuildFile; fileRef = 82C607BB188F518600456864 /* lampard3.png */; };
 		82C608D1188F518700456864 /* lampard4.png in Resources */ = {isa = PBXBuildFile; fileRef = 82C607BC188F518600456864 /* lampard4.png */; };
@@ -500,6 +501,8 @@
 		8239753C16F291E5008E1605 /* PFAlbumDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFAlbumDetailsViewController.m; sourceTree = "<group>"; };
 		8239753E16F33B3C008E1605 /* PFDisplayMyPhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFDisplayMyPhotoViewController.h; sourceTree = "<group>"; };
 		8239753F16F33B3C008E1605 /* PFDisplayMyPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFDisplayMyPhotoViewController.m; sourceTree = "<group>"; };
+		82454F8D1895FD0000B856A5 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = "Frames Sharing/Images.xcassets"; sourceTree = "<group>"; };
+		82454F8F189622FD00B856A5 /* FFEF.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FFEF.framework; sourceTree = "<group>"; };
 		827849AF17373B5C00568059 /* PFNotificationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFNotificationController.h; sourceTree = "<group>"; };
 		827849B017373B5C00568059 /* PFNotificationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFNotificationController.m; sourceTree = "<group>"; };
 		827849B217373BA300568059 /* NotificationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationCell.h; sourceTree = "<group>"; };
@@ -576,7 +579,6 @@
 		828C4CCB170D223500F110F7 /* PFSharingCenterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFSharingCenterViewController.h; sourceTree = "<group>"; };
 		828C4CCC170D223500F110F7 /* PFSharingCenterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFSharingCenterViewController.m; sourceTree = "<group>"; };
 		82932227171A4530009D7231 /* TODO */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TODO; sourceTree = "<group>"; };
-		82BC84C716ED79FA000AC3E1 /* FFEF.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FFEF.framework; path = ../../FatFractal/FFEF.framework; sourceTree = "<group>"; };
 		82C607BA188F518600456864 /* fur2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fur2.png; sourceTree = "<group>"; };
 		82C607BB188F518600456864 /* lampard3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lampard3.png; sourceTree = "<group>"; };
 		82C607BC188F518600456864 /* lampard4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lampard4.png; sourceTree = "<group>"; };
@@ -894,7 +896,6 @@
 			files = (
 				82C60A59188F83A700456864 /* AdSupport.framework in Frameworks */,
 				82C60A57188F823D00456864 /* libsqlite3.0.dylib in Frameworks */,
-				82BC84C816ED79FA000AC3E1 /* FFEF.framework in Frameworks */,
 				DBA2CE5C16E4FC6100479C8A /* UIKit.framework in Frameworks */,
 				DBA2CE5E16E4FC6100479C8A /* Foundation.framework in Frameworks */,
 				DBA2CE6016E4FC6100479C8A /* CoreGraphics.framework in Frameworks */,
@@ -904,6 +905,7 @@
 				828C4CB7170A5BD000F110F7 /* QuartzCore.framework in Frameworks */,
 				828C4CB8170A5BD600F110F7 /* MobileCoreServices.framework in Frameworks */,
 				828C4CB9170A5BDA00F110F7 /* iAd.framework in Frameworks */,
+				82454F90189622FD00B856A5 /* FFEF.framework in Frameworks */,
 				828C4CBA170A5BDD00F110F7 /* MessageUI.framework in Frameworks */,
 				828C4CBB170A5C0F00F110F7 /* Security.framework in Frameworks */,
 			);
@@ -1599,6 +1601,7 @@
 		DBA2CE4F16E4FC6100479C8A = {
 			isa = PBXGroup;
 			children = (
+				82454F8D1895FD0000B856A5 /* Images.xcassets */,
 				4F4A01FC1721DACF00E91615 /* RotatingNavigationControllerViewController.h */,
 				4F4A01FD1721DACF00E91615 /* RotatingNavigationControllerViewController.m */,
 				82C609CF188F534100456864 /* circular.png */,
@@ -1625,6 +1628,7 @@
 		DBA2CE5A16E4FC6100479C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				82454F8F189622FD00B856A5 /* FFEF.framework */,
 				82C60A58188F83A700456864 /* AdSupport.framework */,
 				82C60A56188F823D00456864 /* libsqlite3.0.dylib */,
 				828C4CB2170A5B1200F110F7 /* Security.framework */,
@@ -1635,7 +1639,6 @@
 				828C4CA8170A5A7000F110F7 /* MobileCoreServices.framework */,
 				828C4CA2170A58AA00F110F7 /* iAd.framework */,
 				828C4CA0170A588200F110F7 /* MessageUI.framework */,
-				82BC84C716ED79FA000AC3E1 /* FFEF.framework */,
 				DBA2CE5B16E4FC6100479C8A /* UIKit.framework */,
 				DBA2CE5D16E4FC6100479C8A /* Foundation.framework */,
 				DBA2CE5F16E4FC6100479C8A /* CoreGraphics.framework */,
@@ -1827,6 +1830,7 @@
 				82C60902188F518700456864 /* pack5_1.png in Resources */,
 				828C48F9170A56E800F110F7 /* README.mdown in Resources */,
 				82C60922188F518700456864 /* pack4_7_thumb.png in Resources */,
+				82454F8E1895FD0000B856A5 /* Images.xcassets in Resources */,
 				828C4904170A576300F110F7 /* MainStoryboard_iPhone.storyboard in Resources */,
 				82C6091B188F518700456864 /* bluesilver_thumb.png in Resources */,
 				828C4906170A576300F110F7 /* MainStoryboard_iPad.storyboard in Resources */,
@@ -2357,11 +2361,14 @@
 		DBA2CE7C16E4FC6100479C8A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/../../FatFractal\"",
+					"\\\"$(SRCROOT)/../../FatFractal\\\"",
+					"/Users/sadmin/Desktop/NewRepositories/PictureSharing/Frames\\ Sharing",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Frames Sharing/Frames Sharing-Prefix.pch";
@@ -2378,11 +2385,14 @@
 		DBA2CE7D16E4FC6100479C8A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/../../FatFractal\"",
+					"\\\"$(SRCROOT)/../../FatFractal\\\"",
+					"/Users/sadmin/Desktop/NewRepositories/PictureSharing/Frames\\ Sharing",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Frames Sharing/Frames Sharing-Prefix.pch";
