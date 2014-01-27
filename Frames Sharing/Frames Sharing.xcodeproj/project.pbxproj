@@ -411,45 +411,6 @@
 		82C609CE188F532600456864 /* maximum.png in Resources */ = {isa = PBXBuildFile; fileRef = 82C609CD188F532600456864 /* maximum.png */; };
 		82C609D0188F534100456864 /* circular.png in Resources */ = {isa = PBXBuildFile; fileRef = 82C609CF188F534100456864 /* circular.png */; };
 		82C609D2188F534E00456864 /* CircleSplash.png in Resources */ = {isa = PBXBuildFile; fileRef = 82C609D1188F534E00456864 /* CircleSplash.png */; };
-		82C60A2E188F80F100456864 /* JSONConsts.m in Sources */ = {isa = PBXBuildFile; fileRef = 82C609D6188F80F000456864 /* JSONConsts.m */; };
-		82C60A2F188F80F100456864 /* KeyValDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 82C609D8188F80F000456864 /* KeyValDatabase.m */; };
-		82C60A30188F80F100456864 /* KeyValueStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 82C609DA188F80F000456864 /* KeyValueStorage.m */; };
-		82C60A31188F80F100456864 /* NonConsumableStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 82C609DC188F80F000456864 /* NonConsumableStorage.m */; };
-		82C60A32188F80F100456864 /* ObscuredNSUserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 82C609DE188F80F000456864 /* ObscuredNSUserDefaults.m */; };
-		82C60A33188F80F100456864 /* StorageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 82C609E0188F80F000456864 /* StorageManager.m */; };
-		82C60A34188F80F100456864 /* StoreEncryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 82C609E2188F80F000456864 /* StoreEncryptor.m */; };
-		82C60A35188F80F100456864 /* StorefrontInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 82C609E4188F80F000456864 /* StorefrontInfo.m */; };
-		82C60A36188F80F100456864 /* StoreInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 82C609E6188F80F000456864 /* StoreInfo.m */; };
-		82C60A37188F80F100456864 /* VirtualCurrencyStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 82C609E8188F80F000456864 /* VirtualCurrencyStorage.m */; };
-		82C60A38188F80F100456864 /* VirtualGoodStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 82C609EA188F80F000456864 /* VirtualGoodStorage.m */; };
-		82C60A39188F80F100456864 /* VirtualItemStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 82C609EC188F80F000456864 /* VirtualItemStorage.m */; };
-		82C60A3A188F80F100456864 /* AppStoreItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 82C609EF188F80F000456864 /* AppStoreItem.m */; };
-		82C60A3B188F80F100456864 /* NonConsumableItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 82C609F1188F80F000456864 /* NonConsumableItem.m */; };
-		82C60A3C188F80F100456864 /* PurchasableVirtualItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 82C609F3188F80F000456864 /* PurchasableVirtualItem.m */; };
-		82C60A3D188F80F100456864 /* VirtualCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 82C609F5188F80F000456864 /* VirtualCategory.m */; };
-		82C60A3E188F80F100456864 /* VirtualCurrency.m in Sources */ = {isa = PBXBuildFile; fileRef = 82C609F8188F80F000456864 /* VirtualCurrency.m */; };
-		82C60A3F188F80F100456864 /* VirtualCurrencyPack.m in Sources */ = {isa = PBXBuildFile; fileRef = 82C609FA188F80F000456864 /* VirtualCurrencyPack.m */; };
-		82C60A40188F80F100456864 /* EquippableVG.m in Sources */ = {isa = PBXBuildFile; fileRef = 82C609FD188F80F000456864 /* EquippableVG.m */; };
-		82C60A41188F80F100456864 /* LifetimeVG.m in Sources */ = {isa = PBXBuildFile; fileRef = 82C609FF188F80F000456864 /* LifetimeVG.m */; };
-		82C60A42188F80F100456864 /* SingleUsePackVG.m in Sources */ = {isa = PBXBuildFile; fileRef = 82C60A01188F80F000456864 /* SingleUsePackVG.m */; };
-		82C60A43188F80F100456864 /* SingleUseVG.m in Sources */ = {isa = PBXBuildFile; fileRef = 82C60A03188F80F000456864 /* SingleUseVG.m */; };
-		82C60A44188F80F100456864 /* UpgradeVG.m in Sources */ = {isa = PBXBuildFile; fileRef = 82C60A05188F80F000456864 /* UpgradeVG.m */; };
-		82C60A45188F80F100456864 /* VirtualGood.m in Sources */ = {isa = PBXBuildFile; fileRef = 82C60A07188F80F000456864 /* VirtualGood.m */; };
-		82C60A46188F80F100456864 /* VirtualItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 82C60A09188F80F100456864 /* VirtualItem.m */; };
-		82C60A47188F80F100456864 /* EventHandling.m in Sources */ = {isa = PBXBuildFile; fileRef = 82C60A0B188F80F100456864 /* EventHandling.m */; };
-		82C60A48188F80F100456864 /* InsufficientFundsException.m in Sources */ = {isa = PBXBuildFile; fileRef = 82C60A0E188F80F100456864 /* InsufficientFundsException.m */; };
-		82C60A49188F80F100456864 /* NotEnoughGoodsException.m in Sources */ = {isa = PBXBuildFile; fileRef = 82C60A10188F80F100456864 /* NotEnoughGoodsException.m */; };
-		82C60A4A188F80F100456864 /* VirtualItemNotFoundException.m in Sources */ = {isa = PBXBuildFile; fileRef = 82C60A12188F80F100456864 /* VirtualItemNotFoundException.m */; };
-		82C60A4B188F80F100456864 /* FBEncryptorAES.m in Sources */ = {isa = PBXBuildFile; fileRef = 82C60A15188F80F100456864 /* FBEncryptorAES.m */; };
-		82C60A4D188F80F100456864 /* OpenUDID.m in Sources */ = {isa = PBXBuildFile; fileRef = 82C60A1B188F80F100456864 /* OpenUDID.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		82C60A4E188F80F100456864 /* PurchaseType.m in Sources */ = {isa = PBXBuildFile; fileRef = 82C60A1E188F80F100456864 /* PurchaseType.m */; };
-		82C60A4F188F80F100456864 /* PurchaseWithMarket.m in Sources */ = {isa = PBXBuildFile; fileRef = 82C60A20188F80F100456864 /* PurchaseWithMarket.m */; };
-		82C60A50188F80F100456864 /* PurchaseWithVirtualItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 82C60A22188F80F100456864 /* PurchaseWithVirtualItem.m */; };
-		82C60A51188F80F100456864 /* SoomlaVerification.m in Sources */ = {isa = PBXBuildFile; fileRef = 82C60A25188F80F100456864 /* SoomlaVerification.m */; };
-		82C60A52188F80F100456864 /* StoreConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 82C60A27188F80F100456864 /* StoreConfig.m */; };
-		82C60A53188F80F100456864 /* StoreController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82C60A29188F80F100456864 /* StoreController.m */; };
-		82C60A54188F80F100456864 /* StoreInventory.m in Sources */ = {isa = PBXBuildFile; fileRef = 82C60A2B188F80F100456864 /* StoreInventory.m */; };
-		82C60A55188F80F100456864 /* StoreUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 82C60A2D188F80F100456864 /* StoreUtils.m */; };
 		82C60A57188F823D00456864 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 82C60A56188F823D00456864 /* libsqlite3.0.dylib */; };
 		82C60A59188F83A700456864 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82C60A58188F83A700456864 /* AdSupport.framework */; };
 		82C70276172D610500223FBF /* UserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 82C70275172D610500223FBF /* UserCell.m */; };
@@ -871,86 +832,6 @@
 		82C609CD188F532600456864 /* maximum.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = maximum.png; sourceTree = "<group>"; };
 		82C609CF188F534100456864 /* circular.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = circular.png; sourceTree = "<group>"; };
 		82C609D1188F534E00456864 /* CircleSplash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CircleSplash.png; sourceTree = "<group>"; };
-		82C609D5188F80F000456864 /* JSONConsts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONConsts.h; sourceTree = "<group>"; };
-		82C609D6188F80F000456864 /* JSONConsts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONConsts.m; sourceTree = "<group>"; };
-		82C609D7188F80F000456864 /* KeyValDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyValDatabase.h; sourceTree = "<group>"; };
-		82C609D8188F80F000456864 /* KeyValDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyValDatabase.m; sourceTree = "<group>"; };
-		82C609D9188F80F000456864 /* KeyValueStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyValueStorage.h; sourceTree = "<group>"; };
-		82C609DA188F80F000456864 /* KeyValueStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyValueStorage.m; sourceTree = "<group>"; };
-		82C609DB188F80F000456864 /* NonConsumableStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NonConsumableStorage.h; sourceTree = "<group>"; };
-		82C609DC188F80F000456864 /* NonConsumableStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NonConsumableStorage.m; sourceTree = "<group>"; };
-		82C609DD188F80F000456864 /* ObscuredNSUserDefaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObscuredNSUserDefaults.h; sourceTree = "<group>"; };
-		82C609DE188F80F000456864 /* ObscuredNSUserDefaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObscuredNSUserDefaults.m; sourceTree = "<group>"; };
-		82C609DF188F80F000456864 /* StorageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StorageManager.h; sourceTree = "<group>"; };
-		82C609E0188F80F000456864 /* StorageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StorageManager.m; sourceTree = "<group>"; };
-		82C609E1188F80F000456864 /* StoreEncryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreEncryptor.h; sourceTree = "<group>"; };
-		82C609E2188F80F000456864 /* StoreEncryptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreEncryptor.m; sourceTree = "<group>"; };
-		82C609E3188F80F000456864 /* StorefrontInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StorefrontInfo.h; sourceTree = "<group>"; };
-		82C609E4188F80F000456864 /* StorefrontInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StorefrontInfo.m; sourceTree = "<group>"; };
-		82C609E5188F80F000456864 /* StoreInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreInfo.h; sourceTree = "<group>"; };
-		82C609E6188F80F000456864 /* StoreInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreInfo.m; sourceTree = "<group>"; };
-		82C609E7188F80F000456864 /* VirtualCurrencyStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VirtualCurrencyStorage.h; sourceTree = "<group>"; };
-		82C609E8188F80F000456864 /* VirtualCurrencyStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VirtualCurrencyStorage.m; sourceTree = "<group>"; };
-		82C609E9188F80F000456864 /* VirtualGoodStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VirtualGoodStorage.h; sourceTree = "<group>"; };
-		82C609EA188F80F000456864 /* VirtualGoodStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VirtualGoodStorage.m; sourceTree = "<group>"; };
-		82C609EB188F80F000456864 /* VirtualItemStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VirtualItemStorage.h; sourceTree = "<group>"; };
-		82C609EC188F80F000456864 /* VirtualItemStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VirtualItemStorage.m; sourceTree = "<group>"; };
-		82C609EE188F80F000456864 /* AppStoreItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppStoreItem.h; sourceTree = "<group>"; };
-		82C609EF188F80F000456864 /* AppStoreItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppStoreItem.m; sourceTree = "<group>"; };
-		82C609F0188F80F000456864 /* NonConsumableItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NonConsumableItem.h; sourceTree = "<group>"; };
-		82C609F1188F80F000456864 /* NonConsumableItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NonConsumableItem.m; sourceTree = "<group>"; };
-		82C609F2188F80F000456864 /* PurchasableVirtualItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PurchasableVirtualItem.h; sourceTree = "<group>"; };
-		82C609F3188F80F000456864 /* PurchasableVirtualItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PurchasableVirtualItem.m; sourceTree = "<group>"; };
-		82C609F4188F80F000456864 /* VirtualCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VirtualCategory.h; sourceTree = "<group>"; };
-		82C609F5188F80F000456864 /* VirtualCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VirtualCategory.m; sourceTree = "<group>"; };
-		82C609F7188F80F000456864 /* VirtualCurrency.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VirtualCurrency.h; sourceTree = "<group>"; };
-		82C609F8188F80F000456864 /* VirtualCurrency.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VirtualCurrency.m; sourceTree = "<group>"; };
-		82C609F9188F80F000456864 /* VirtualCurrencyPack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VirtualCurrencyPack.h; sourceTree = "<group>"; };
-		82C609FA188F80F000456864 /* VirtualCurrencyPack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VirtualCurrencyPack.m; sourceTree = "<group>"; };
-		82C609FC188F80F000456864 /* EquippableVG.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EquippableVG.h; sourceTree = "<group>"; };
-		82C609FD188F80F000456864 /* EquippableVG.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EquippableVG.m; sourceTree = "<group>"; };
-		82C609FE188F80F000456864 /* LifetimeVG.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LifetimeVG.h; sourceTree = "<group>"; };
-		82C609FF188F80F000456864 /* LifetimeVG.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LifetimeVG.m; sourceTree = "<group>"; };
-		82C60A00188F80F000456864 /* SingleUsePackVG.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingleUsePackVG.h; sourceTree = "<group>"; };
-		82C60A01188F80F000456864 /* SingleUsePackVG.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingleUsePackVG.m; sourceTree = "<group>"; };
-		82C60A02188F80F000456864 /* SingleUseVG.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingleUseVG.h; sourceTree = "<group>"; };
-		82C60A03188F80F000456864 /* SingleUseVG.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingleUseVG.m; sourceTree = "<group>"; };
-		82C60A04188F80F000456864 /* UpgradeVG.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpgradeVG.h; sourceTree = "<group>"; };
-		82C60A05188F80F000456864 /* UpgradeVG.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpgradeVG.m; sourceTree = "<group>"; };
-		82C60A06188F80F000456864 /* VirtualGood.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VirtualGood.h; sourceTree = "<group>"; };
-		82C60A07188F80F000456864 /* VirtualGood.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VirtualGood.m; sourceTree = "<group>"; };
-		82C60A08188F80F100456864 /* VirtualItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VirtualItem.h; sourceTree = "<group>"; };
-		82C60A09188F80F100456864 /* VirtualItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VirtualItem.m; sourceTree = "<group>"; };
-		82C60A0A188F80F100456864 /* EventHandling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventHandling.h; sourceTree = "<group>"; };
-		82C60A0B188F80F100456864 /* EventHandling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventHandling.m; sourceTree = "<group>"; };
-		82C60A0D188F80F100456864 /* InsufficientFundsException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InsufficientFundsException.h; sourceTree = "<group>"; };
-		82C60A0E188F80F100456864 /* InsufficientFundsException.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InsufficientFundsException.m; sourceTree = "<group>"; };
-		82C60A0F188F80F100456864 /* NotEnoughGoodsException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotEnoughGoodsException.h; sourceTree = "<group>"; };
-		82C60A10188F80F100456864 /* NotEnoughGoodsException.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotEnoughGoodsException.m; sourceTree = "<group>"; };
-		82C60A11188F80F100456864 /* VirtualItemNotFoundException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VirtualItemNotFoundException.h; sourceTree = "<group>"; };
-		82C60A12188F80F100456864 /* VirtualItemNotFoundException.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VirtualItemNotFoundException.m; sourceTree = "<group>"; };
-		82C60A14188F80F100456864 /* FBEncryptorAES.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBEncryptorAES.h; sourceTree = "<group>"; };
-		82C60A15188F80F100456864 /* FBEncryptorAES.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBEncryptorAES.m; sourceTree = "<group>"; };
-		82C60A18188F80F100456864 /* IStoreAssets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IStoreAssets.h; sourceTree = "<group>"; };
-		82C60A1A188F80F100456864 /* OpenUDID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenUDID.h; sourceTree = "<group>"; };
-		82C60A1B188F80F100456864 /* OpenUDID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenUDID.m; sourceTree = "<group>"; };
-		82C60A1D188F80F100456864 /* PurchaseType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PurchaseType.h; sourceTree = "<group>"; };
-		82C60A1E188F80F100456864 /* PurchaseType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PurchaseType.m; sourceTree = "<group>"; };
-		82C60A1F188F80F100456864 /* PurchaseWithMarket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PurchaseWithMarket.h; sourceTree = "<group>"; };
-		82C60A20188F80F100456864 /* PurchaseWithMarket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PurchaseWithMarket.m; sourceTree = "<group>"; };
-		82C60A21188F80F100456864 /* PurchaseWithVirtualItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PurchaseWithVirtualItem.h; sourceTree = "<group>"; };
-		82C60A22188F80F100456864 /* PurchaseWithVirtualItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PurchaseWithVirtualItem.m; sourceTree = "<group>"; };
-		82C60A23188F80F100456864 /* SoomlaiOSStore-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SoomlaiOSStore-Prefix.pch"; sourceTree = "<group>"; };
-		82C60A24188F80F100456864 /* SoomlaVerification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoomlaVerification.h; sourceTree = "<group>"; };
-		82C60A25188F80F100456864 /* SoomlaVerification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoomlaVerification.m; sourceTree = "<group>"; };
-		82C60A26188F80F100456864 /* StoreConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreConfig.h; sourceTree = "<group>"; };
-		82C60A27188F80F100456864 /* StoreConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreConfig.m; sourceTree = "<group>"; };
-		82C60A28188F80F100456864 /* StoreController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreController.h; sourceTree = "<group>"; };
-		82C60A29188F80F100456864 /* StoreController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreController.m; sourceTree = "<group>"; };
-		82C60A2A188F80F100456864 /* StoreInventory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreInventory.h; sourceTree = "<group>"; };
-		82C60A2B188F80F100456864 /* StoreInventory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreInventory.m; sourceTree = "<group>"; };
-		82C60A2C188F80F100456864 /* StoreUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreUtils.h; sourceTree = "<group>"; };
-		82C60A2D188F80F100456864 /* StoreUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreUtils.m; sourceTree = "<group>"; };
 		82C60A56188F823D00456864 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 		82C60A58188F83A700456864 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		82C70274172D610500223FBF /* UserCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCell.h; sourceTree = "<group>"; };
@@ -1695,157 +1576,6 @@
 			path = AllGraphics/WoodThumbNails;
 			sourceTree = SOURCE_ROOT;
 		};
-		82C609D3188F80F000456864 /* SoomlaiOSStore */ = {
-			isa = PBXGroup;
-			children = (
-				82C609D4188F80F000456864 /* data */,
-				82C609ED188F80F000456864 /* domain */,
-				82C60A0A188F80F100456864 /* EventHandling.h */,
-				82C60A0B188F80F100456864 /* EventHandling.m */,
-				82C60A0C188F80F100456864 /* exceptions */,
-				82C60A13188F80F100456864 /* FBEncryptor */,
-				82C60A18188F80F100456864 /* IStoreAssets.h */,
-				82C60A19188F80F100456864 /* OpenUDID */,
-				82C60A1C188F80F100456864 /* PurchaseTypes */,
-				82C60A23188F80F100456864 /* SoomlaiOSStore-Prefix.pch */,
-				82C60A24188F80F100456864 /* SoomlaVerification.h */,
-				82C60A25188F80F100456864 /* SoomlaVerification.m */,
-				82C60A26188F80F100456864 /* StoreConfig.h */,
-				82C60A27188F80F100456864 /* StoreConfig.m */,
-				82C60A28188F80F100456864 /* StoreController.h */,
-				82C60A29188F80F100456864 /* StoreController.m */,
-				82C60A2A188F80F100456864 /* StoreInventory.h */,
-				82C60A2B188F80F100456864 /* StoreInventory.m */,
-				82C60A2C188F80F100456864 /* StoreUtils.h */,
-				82C60A2D188F80F100456864 /* StoreUtils.m */,
-			);
-			path = SoomlaiOSStore;
-			sourceTree = "<group>";
-		};
-		82C609D4188F80F000456864 /* data */ = {
-			isa = PBXGroup;
-			children = (
-				82C609D5188F80F000456864 /* JSONConsts.h */,
-				82C609D6188F80F000456864 /* JSONConsts.m */,
-				82C609D7188F80F000456864 /* KeyValDatabase.h */,
-				82C609D8188F80F000456864 /* KeyValDatabase.m */,
-				82C609D9188F80F000456864 /* KeyValueStorage.h */,
-				82C609DA188F80F000456864 /* KeyValueStorage.m */,
-				82C609DB188F80F000456864 /* NonConsumableStorage.h */,
-				82C609DC188F80F000456864 /* NonConsumableStorage.m */,
-				82C609DD188F80F000456864 /* ObscuredNSUserDefaults.h */,
-				82C609DE188F80F000456864 /* ObscuredNSUserDefaults.m */,
-				82C609DF188F80F000456864 /* StorageManager.h */,
-				82C609E0188F80F000456864 /* StorageManager.m */,
-				82C609E1188F80F000456864 /* StoreEncryptor.h */,
-				82C609E2188F80F000456864 /* StoreEncryptor.m */,
-				82C609E3188F80F000456864 /* StorefrontInfo.h */,
-				82C609E4188F80F000456864 /* StorefrontInfo.m */,
-				82C609E5188F80F000456864 /* StoreInfo.h */,
-				82C609E6188F80F000456864 /* StoreInfo.m */,
-				82C609E7188F80F000456864 /* VirtualCurrencyStorage.h */,
-				82C609E8188F80F000456864 /* VirtualCurrencyStorage.m */,
-				82C609E9188F80F000456864 /* VirtualGoodStorage.h */,
-				82C609EA188F80F000456864 /* VirtualGoodStorage.m */,
-				82C609EB188F80F000456864 /* VirtualItemStorage.h */,
-				82C609EC188F80F000456864 /* VirtualItemStorage.m */,
-			);
-			path = data;
-			sourceTree = "<group>";
-		};
-		82C609ED188F80F000456864 /* domain */ = {
-			isa = PBXGroup;
-			children = (
-				82C609EE188F80F000456864 /* AppStoreItem.h */,
-				82C609EF188F80F000456864 /* AppStoreItem.m */,
-				82C609F0188F80F000456864 /* NonConsumableItem.h */,
-				82C609F1188F80F000456864 /* NonConsumableItem.m */,
-				82C609F2188F80F000456864 /* PurchasableVirtualItem.h */,
-				82C609F3188F80F000456864 /* PurchasableVirtualItem.m */,
-				82C609F4188F80F000456864 /* VirtualCategory.h */,
-				82C609F5188F80F000456864 /* VirtualCategory.m */,
-				82C609F6188F80F000456864 /* virtualCurrencies */,
-				82C609FB188F80F000456864 /* virtualGoods */,
-				82C60A08188F80F100456864 /* VirtualItem.h */,
-				82C60A09188F80F100456864 /* VirtualItem.m */,
-			);
-			path = domain;
-			sourceTree = "<group>";
-		};
-		82C609F6188F80F000456864 /* virtualCurrencies */ = {
-			isa = PBXGroup;
-			children = (
-				82C609F7188F80F000456864 /* VirtualCurrency.h */,
-				82C609F8188F80F000456864 /* VirtualCurrency.m */,
-				82C609F9188F80F000456864 /* VirtualCurrencyPack.h */,
-				82C609FA188F80F000456864 /* VirtualCurrencyPack.m */,
-			);
-			path = virtualCurrencies;
-			sourceTree = "<group>";
-		};
-		82C609FB188F80F000456864 /* virtualGoods */ = {
-			isa = PBXGroup;
-			children = (
-				82C609FC188F80F000456864 /* EquippableVG.h */,
-				82C609FD188F80F000456864 /* EquippableVG.m */,
-				82C609FE188F80F000456864 /* LifetimeVG.h */,
-				82C609FF188F80F000456864 /* LifetimeVG.m */,
-				82C60A00188F80F000456864 /* SingleUsePackVG.h */,
-				82C60A01188F80F000456864 /* SingleUsePackVG.m */,
-				82C60A02188F80F000456864 /* SingleUseVG.h */,
-				82C60A03188F80F000456864 /* SingleUseVG.m */,
-				82C60A04188F80F000456864 /* UpgradeVG.h */,
-				82C60A05188F80F000456864 /* UpgradeVG.m */,
-				82C60A06188F80F000456864 /* VirtualGood.h */,
-				82C60A07188F80F000456864 /* VirtualGood.m */,
-			);
-			path = virtualGoods;
-			sourceTree = "<group>";
-		};
-		82C60A0C188F80F100456864 /* exceptions */ = {
-			isa = PBXGroup;
-			children = (
-				82C60A0D188F80F100456864 /* InsufficientFundsException.h */,
-				82C60A0E188F80F100456864 /* InsufficientFundsException.m */,
-				82C60A0F188F80F100456864 /* NotEnoughGoodsException.h */,
-				82C60A10188F80F100456864 /* NotEnoughGoodsException.m */,
-				82C60A11188F80F100456864 /* VirtualItemNotFoundException.h */,
-				82C60A12188F80F100456864 /* VirtualItemNotFoundException.m */,
-			);
-			path = exceptions;
-			sourceTree = "<group>";
-		};
-		82C60A13188F80F100456864 /* FBEncryptor */ = {
-			isa = PBXGroup;
-			children = (
-				82C60A14188F80F100456864 /* FBEncryptorAES.h */,
-				82C60A15188F80F100456864 /* FBEncryptorAES.m */,
-			);
-			path = FBEncryptor;
-			sourceTree = "<group>";
-		};
-		82C60A19188F80F100456864 /* OpenUDID */ = {
-			isa = PBXGroup;
-			children = (
-				82C60A1A188F80F100456864 /* OpenUDID.h */,
-				82C60A1B188F80F100456864 /* OpenUDID.m */,
-			);
-			path = OpenUDID;
-			sourceTree = "<group>";
-		};
-		82C60A1C188F80F100456864 /* PurchaseTypes */ = {
-			isa = PBXGroup;
-			children = (
-				82C60A1D188F80F100456864 /* PurchaseType.h */,
-				82C60A1E188F80F100456864 /* PurchaseType.m */,
-				82C60A1F188F80F100456864 /* PurchaseWithMarket.h */,
-				82C60A20188F80F100456864 /* PurchaseWithMarket.m */,
-				82C60A21188F80F100456864 /* PurchaseWithVirtualItem.h */,
-				82C60A22188F80F100456864 /* PurchaseWithVirtualItem.m */,
-			);
-			path = PurchaseTypes;
-			sourceTree = "<group>";
-		};
 		82DAC40516ED77960071B485 /* Frames Sharing Test */ = {
 			isa = PBXGroup;
 			children = (
@@ -1871,7 +1601,6 @@
 			children = (
 				4F4A01FC1721DACF00E91615 /* RotatingNavigationControllerViewController.h */,
 				4F4A01FD1721DACF00E91615 /* RotatingNavigationControllerViewController.m */,
-				82C609D3188F80F000456864 /* SoomlaiOSStore */,
 				82C609CF188F534100456864 /* circular.png */,
 				82932227171A4530009D7231 /* TODO */,
 				828C4901170A573700F110F7 /* Photo Editor */,
@@ -2438,92 +2167,53 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				82C60A45188F80F100456864 /* VirtualGood.m in Sources */,
-				82C60A47188F80F100456864 /* EventHandling.m in Sources */,
 				DBA2CE6816E4FC6100479C8A /* main.m in Sources */,
-				82C60A3E188F80F100456864 /* VirtualCurrency.m in Sources */,
 				DBA2CE6C16E4FC6100479C8A /* PFSharingAppDelegate.m in Sources */,
 				DBA2CE7816E4FC6100479C8A /* PFSharingViewController.m in Sources */,
 				DBA2CE8316E519CA00479C8A /* PFAlbumsViewController.m in Sources */,
 				DBA2CE8616E519E700479C8A /* PFExploreViewController.m in Sources */,
-				82C60A2E188F80F100456864 /* JSONConsts.m in Sources */,
-				82C60A31188F80F100456864 /* NonConsumableStorage.m in Sources */,
 				DB21A8FE16E51B4100EFDCBE /* PFExploreCell.m in Sources */,
 				82DAC3F716ED74E00071B485 /* Album.m in Sources */,
 				82DAC3FA16ED75290071B485 /* Photo.m in Sources */,
-				82C60A37188F80F100456864 /* VirtualCurrencyStorage.m in Sources */,
-				82C60A49188F80F100456864 /* NotEnoughGoodsException.m in Sources */,
 				4F7EF06F16EFA6C600A364D7 /* User.m in Sources */,
 				4F7EF07416EFA94500A364D7 /* Manager.m in Sources */,
-				82C60A40188F80F100456864 /* EquippableVG.m in Sources */,
-				82C60A54188F80F100456864 /* StoreInventory.m in Sources */,
-				82C60A42188F80F100456864 /* SingleUsePackVG.m in Sources */,
 				8239753D16F291E6008E1605 /* PFAlbumDetailsViewController.m in Sources */,
 				8239754016F33B3D008E1605 /* PFDisplayMyPhotoViewController.m in Sources */,
 				4FAB7E9116F8B72500920E34 /* PFDisplayPhotoViewController.m in Sources */,
-				82C60A33188F80F100456864 /* StorageManager.m in Sources */,
-				82C60A3D188F80F100456864 /* VirtualCategory.m in Sources */,
 				4F6DEC3E16FCF6140074A455 /* PFProfileViewController.m in Sources */,
 				4F6DEC411700F8120074A455 /* AlbumListData.m in Sources */,
 				4F6DEC441700F8D60074A455 /* PFiPadAlbumsViewController.m in Sources */,
 				4F6DEC471700FB9D0074A455 /* AlbumDetailsData.m in Sources */,
-				82C60A46188F80F100456864 /* VirtualItem.m in Sources */,
-				82C60A4D188F80F100456864 /* OpenUDID.m in Sources */,
 				4F1F7C5F1704EBDB0083968B /* LoginRegisterViewController.m in Sources */,
-				82C60A43188F80F100456864 /* SingleUseVG.m in Sources */,
 				828C48BA170A56C100F110F7 /* EffectCell.m in Sources */,
 				828C48BC170A56C100F110F7 /* FrameCell.m in Sources */,
-				82C60A3A188F80F100456864 /* AppStoreItem.m in Sources */,
 				828C48C1170A56CC00F110F7 /* FiltersPack.m in Sources */,
-				82C60A38188F80F100456864 /* VirtualGoodStorage.m in Sources */,
 				828C48D0170A56D800F110F7 /* Content.m in Sources */,
 				828C48D2170A56D800F110F7 /* ContentPack.m in Sources */,
-				82C60A50188F80F100456864 /* PurchaseWithVirtualItem.m in Sources */,
-				82C60A2F188F80F100456864 /* KeyValDatabase.m in Sources */,
 				828C48D4170A56D800F110F7 /* InternalStoreViewController.m in Sources */,
 				828C48D6170A56D800F110F7 /* SharedStore.m in Sources */,
 				828C48D8170A56D800F110F7 /* StoreItemDetailViewController.m in Sources */,
 				828C48DA170A56D800F110F7 /* StoreItemsViewController.m in Sources */,
 				828C48ED170A56E800F110F7 /* NSData+MKBase64.m in Sources */,
-				82C60A39188F80F100456864 /* VirtualItemStorage.m in Sources */,
-				82C60A4F188F80F100456864 /* PurchaseWithMarket.m in Sources */,
 				828C48EF170A56E800F110F7 /* SFHFKeychainUtils.m in Sources */,
-				82C60A51188F80F100456864 /* SoomlaVerification.m in Sources */,
-				82C60A4B188F80F100456864 /* FBEncryptorAES.m in Sources */,
 				828C48F1170A56E800F110F7 /* MKSKProduct.m in Sources */,
-				82C60A55188F80F100456864 /* StoreUtils.m in Sources */,
 				828C48F3170A56E800F110F7 /* MKSKSubscriptionProduct.m in Sources */,
 				828C48F7170A56E800F110F7 /* MKStoreManager.m in Sources */,
-				82C60A41188F80F100456864 /* LifetimeVG.m in Sources */,
 				828C48FB170A56E800F110F7 /* VerificationController.m in Sources */,
 				828C48FF170A56F500F110F7 /* SocialHelper.m in Sources */,
-				82C60A3C188F80F100456864 /* PurchasableVirtualItem.m in Sources */,
-				82C60A48188F80F100456864 /* InsufficientFundsException.m in Sources */,
-				82C60A30188F80F100456864 /* KeyValueStorage.m in Sources */,
 				828C490A170A577700F110F7 /* ViewController.m in Sources */,
 				828C4CA6170A58C500F110F7 /* FilterEffects.m in Sources */,
 				4F3C7264170CD4E600B2BB79 /* CameraPicker.m in Sources */,
-				82C60A44188F80F100456864 /* UpgradeVG.m in Sources */,
 				828C4CC6170D19EC00F110F7 /* PFPickAlbumViewController.m in Sources */,
 				828C4CCA170D1AD400F110F7 /* AlbumPickerListData.m in Sources */,
 				828C4CCD170D223500F110F7 /* PFSharingCenterViewController.m in Sources */,
-				82C60A35188F80F100456864 /* StorefrontInfo.m in Sources */,
-				82C60A53188F80F100456864 /* StoreController.m in Sources */,
-				82C60A3F188F80F100456864 /* VirtualCurrencyPack.m in Sources */,
-				82C60A4A188F80F100456864 /* VirtualItemNotFoundException.m in Sources */,
 				4F4A01FE1721DACF00E91615 /* RotatingNavigationControllerViewController.m in Sources */,
-				82C60A3B188F80F100456864 /* NonConsumableItem.m in Sources */,
 				82050C54172748BB00925839 /* MBProgressHUD.m in Sources */,
 				4F1A4B5917288C3D00A4E510 /* UserListData.m in Sources */,
 				4F1A4B67172CCCBB00A4E510 /* PFUsersViewController.m in Sources */,
-				82C60A32188F80F100456864 /* ObscuredNSUserDefaults.m in Sources */,
-				82C60A36188F80F100456864 /* StoreInfo.m in Sources */,
-				82C60A34188F80F100456864 /* StoreEncryptor.m in Sources */,
 				82C70276172D610500223FBF /* UserCell.m in Sources */,
 				4F9A6693173458FC0089AD18 /* Notification.m in Sources */,
-				82C60A4E188F80F100456864 /* PurchaseType.m in Sources */,
 				827849B117373B5C00568059 /* PFNotificationController.m in Sources */,
-				82C60A52188F80F100456864 /* StoreConfig.m in Sources */,
 				827849B417373BA300568059 /* NotificationCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2650,7 +2340,8 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -2687,8 +2378,8 @@
 		DBA2CE7D16E4FC6100479C8A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../../FatFractal\"",
