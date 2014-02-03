@@ -199,6 +199,7 @@
     [UIView setAnimationDuration:1];
     [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft forView:self.view cache:NO];
     [self.view addSubview: registrationView];
+    self.registrationView.frame= self.view.bounds;
     [UIView commitAnimations];
     [self hideKeyboard];    
 }

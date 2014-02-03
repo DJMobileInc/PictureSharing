@@ -565,13 +565,9 @@ CGRect imageFrame;
         {
             return self.currentContentPack.freeContent.thumbnails.count;
         }
-    else{
-
-        return self.currentContentPack.premiumContent.thumbnails.count;
-        
-    }
-        return 0;
-
+        else{
+            return self.currentContentPack.premiumContent.thumbnails.count;
+        }
     }
     else{
         NSLog(@"Count: %d", self.filterPack.filtersImages.count );
@@ -601,6 +597,9 @@ CGRect imageFrame;
     else{
         EffectCell * cell =   [collectionView dequeueReusableCellWithReuseIdentifier:kEffectCellId forIndexPath:indexPath];
         cell.photo.image = [UIImage imageNamed:[self.filterPack.filtersImages objectAtIndex:indexPath.row]];
+        if(!cell.photo.image){
+            NSLog(@" %@ ",[self.filterPack.filtersImages objectAtIndex:indexPath.row]);
+        }
         cell.effectLabel.text = [self.filterPack.filtersNames objectAtIndex:indexPath.row];
 
         return cell;

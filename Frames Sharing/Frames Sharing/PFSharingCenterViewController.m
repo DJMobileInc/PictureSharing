@@ -37,11 +37,10 @@ SocialHelper * helper;
             if(!_pickAlbums){
                 _pickAlbums = [[UIPopoverController alloc]initWithContentViewController:pf];
                            }
-           /*
+           
             if(_pickAlbums.isPopoverVisible){
                 [_pickAlbums dismissPopoverAnimated:YES];
             }
-            */
             else{
                 [_pickAlbums presentPopoverFromRect:self.view.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
 

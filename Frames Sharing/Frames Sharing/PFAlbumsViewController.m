@@ -24,6 +24,8 @@ Manager * manager;
 AlbumListData * albumsList;
 UIActionSheet * loginActionSheet;
 
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -41,6 +43,8 @@ UIActionSheet * loginActionSheet;
     self.tableView.delegate = albumsList;
 }
 
+
+
 -(IBAction)getAlbums:(id)sender
 {
     if(self.user){
@@ -55,6 +59,8 @@ UIActionSheet * loginActionSheet;
 -(void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
     [[NSNotificationCenter defaultCenter]removeObserver:self];
+    self.tableView.delegate = nil;
+    
     
 }
 

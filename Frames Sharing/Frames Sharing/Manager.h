@@ -49,7 +49,6 @@ extern  NSString * const appURLString;
 -(void)updateObject:(id)object;
 -(void)showProfileForView:(UIView *)view andViewController:(id)vc fromNav:(BOOL)nav;
 
-
 -(void)showLoginScreenForViewController:(UIViewController *)vc andNavigationController: (id)navigationController fromRectView:(UIView *)view;
 
 
@@ -59,15 +58,15 @@ extern  NSString * const appURLString;
 -(void)displayActionSheetWithMessage:(NSString *)message forView:(UIView *)view navigationController:(UINavigationController *)nav  andViewController:(id)viewController;
 /*it will retrieve the list of the photos that was like by user*/
 -(void)getFavoritePhotosForUser:(User *)user;
-
 + (Manager *)sharedInstance;
+
 -(void)testIt;
 -(NSString *)getGUID:(id)object;
 
 @property (nonatomic, strong) UIImage * defaultImage;
 @property (nonatomic, strong) UIImage * defaultFrame;
 @property (nonatomic,strong)  UIImage * modifiedImage;
-@property (strong, nonatomic) FatFractal *ff;
+@property (strong, nonatomic,readonly) FatFractal *ff;
 @property(strong,nonatomic) User *  user;
 @property (strong,nonatomic)UINavigationController * currentNavigationController;
 @property (strong, nonatomic)  UIPopoverController * popover;

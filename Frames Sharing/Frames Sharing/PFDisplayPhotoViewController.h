@@ -16,7 +16,6 @@
 
 @property (strong,nonatomic) Photo * photo;
 @property (strong, nonatomic) IBOutlet UIButton *voteButton;
-@property (strong,nonatomic) User * user;
 @property (strong, nonatomic) IBOutlet UIImageView *profilePicture;
 
 -(void)changeDescription:(NSString *)desc;

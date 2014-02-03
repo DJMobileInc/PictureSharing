@@ -185,6 +185,7 @@
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <state key="selected" backgroundImage="YellowButton.png"/>
                                         <connections>
                                             <action selector="showFramesFor:" destination="z4z-b6-FQB" eventType="touchUpInside" id="x6Q-bc-1pZ"/>
                                         </connections>
@@ -197,6 +198,7 @@
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <state key="selected" backgroundImage="YellowButton.png"/>
                                         <connections>
                                             <action selector="showFramesFor:" destination="z4z-b6-FQB" eventType="touchUpInside" id="ezc-Vs-f5U"/>
                                         </connections>
@@ -209,6 +211,7 @@
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <state key="selected" backgroundImage="YellowButton.png"/>
                                         <connections>
                                             <action selector="showFramesFor:" destination="z4z-b6-FQB" eventType="touchUpInside" id="w8V-3q-eXT"/>
                                         </connections>
@@ -221,6 +224,7 @@
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <state key="selected" backgroundImage="YellowButton.png"/>
                                         <connections>
                                             <action selector="showFramesFor:" destination="z4z-b6-FQB" eventType="touchUpInside" id="PxD-i5-RyU"/>
                                         </connections>
@@ -233,6 +237,7 @@
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <state key="selected" backgroundImage="YellowButton.png"/>
                                         <connections>
                                             <action selector="showFramesFor:" destination="z4z-b6-FQB" eventType="touchUpInside" id="2KD-Hf-KSZ"/>
                                         </connections>
@@ -245,6 +250,7 @@
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <state key="selected" backgroundImage="YellowButton.png"/>
                                         <connections>
                                             <action selector="showFramesFor:" destination="z4z-b6-FQB" eventType="touchUpInside" id="8ju-OX-cCV"/>
                                         </connections>
@@ -308,7 +314,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="mzf-7m-LlP">
-                                        <rect key="frame" x="141" y="4" width="37" height="32"/>
+                                        <rect key="frame" x="141" y="-5" width="47" height="41"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                         <state key="normal" backgroundImage="cameraIcon.png">
@@ -322,37 +328,36 @@
                                             <action selector="photoAction:" destination="z4z-b6-FQB" eventType="touchUpInside" id="dxe-5U-3Jx"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="9LV-Li-YVd">
+                                        <rect key="frame" x="196" y="5" width="59" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="12"/>
+                                        <state key="normal" title="Menu" backgroundImage="buttonExtraBack.png">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="disabled" backgroundImage="buttonPushed.png"/>
+                                        <state key="selected" backgroundImage="buttonExtraBack.png"/>
+                                        <state key="highlighted" backgroundImage="buttonPushed.png">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="showMenu:" destination="z4z-b6-FQB" eventType="touchUpInside" id="AME-dM-eXX"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="9LV-Li-YVd">
-                                <rect key="frame" x="235" y="55" width="80" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="egS-Gj-Lhh">
+                                <rect key="frame" x="284" y="58" width="22" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="12"/>
-                                <state key="normal" title="Menu" backgroundImage="buttonExtraBack.png">
+                                <color key="tintColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                                <state key="disabled" backgroundImage="buttonPushed.png"/>
-                                <state key="selected" backgroundImage="buttonExtraBack.png"/>
-                                <state key="highlighted" backgroundImage="buttonPushed.png">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="showMenu:" destination="z4z-b6-FQB" eventType="touchUpInside" id="AME-dM-eXX"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="egS-Gj-Lhh">
-                                <rect key="frame" x="152" y="55" width="80" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="12"/>
-                                <state key="normal" title="About" backgroundImage="buttonExtraBack.png">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="disabled" backgroundImage="buttonPushed.png"/>
-                                <state key="selected" backgroundImage="buttonExtraBack.png"/>
-                                <state key="highlighted" backgroundImage="buttonPushed.png">
+                                <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -373,6 +378,8 @@
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <connections>
+                        <outlet property="aboutButton" destination="egS-Gj-Lhh" id="OB2-tm-zCA"/>
+                        <outlet property="applicationBackground" destination="Ek4-XW-jCD" id="Koe-nJ-EI0"/>
                         <outlet property="applicationFrame" destination="eYb-ul-ytB" id="MZM-Eb-UkG"/>
                         <outlet property="bannerView" destination="YN8-tv-faK" id="JRD-Ci-9ai"/>
                         <outlet property="effectsCollectionView" destination="loB-ey-TJG" id="qLO-cE-O1V"/>
@@ -383,6 +390,7 @@
                         <outlet property="framesCollectionView" destination="n6c-Cj-cIL" id="zT4-LO-fNZ"/>
                         <outlet property="framesTitleButton" destination="Zb8-kD-Zl0" id="YmR-XM-pBo"/>
                         <outlet property="framesView" destination="ytN-rc-EBX" id="xjB-fJ-o7D"/>
+                        <outlet property="menuViewHolder" destination="vcA-C1-hoW" id="Akf-i8-Udt"/>
                         <outlet property="photoContainerImgView" destination="Y0Z-aT-hg2" id="xrw-Y0-sXo"/>
                     </connections>
                 </viewController>

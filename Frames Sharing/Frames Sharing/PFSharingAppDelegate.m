@@ -16,11 +16,9 @@ Manager * manager;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    NSString *baseUrl = @"http://djmobileinc.fatfractal.com/pictureframes";
-    self.ff = [[FatFractal alloc] initWithBaseUrl:baseUrl];
-    
-    manager.ff = self.ff;
-   [[FatFractal main] registerClass:[User class] forClazz:@"FFUser"];
+    manager =   [Manager sharedInstance];
+    self.ff = manager.ff;
+
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent  animated:NO];
     UIImage *navBar = [UIImage imageNamed:@"AppNavBackground.png"];
 

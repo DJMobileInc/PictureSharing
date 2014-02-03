@@ -170,9 +170,8 @@ NSMutableDictionary *  currentPhotos;
      
     pdp= [self.storyboard instantiateViewControllerWithIdentifier:@"PFDisplayPhotoViewController"];
     pdp.photo = p;
-    //NSLog(@"%@",p);
     [self.navigationController pushViewController:pdp animated:YES];
- 
+
     [pdp changeDescription:p.description];
     [pdp changeImage:[UIImage imageWithData:p.imageData]];
     

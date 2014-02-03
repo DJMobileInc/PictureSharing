@@ -16,6 +16,7 @@
 @property (strong, nonatomic) IBOutlet UIButton *authorButton;
 - (IBAction)flagPhoto:(id)sender;
 @property (strong, nonatomic) IBOutlet UIToolbar *bottomToolbar;
+@property (strong,nonatomic) User * user;
 
 @end
 
@@ -53,16 +54,29 @@ UIBarButtonItem * newBarButtonItem;
        
     self.user = self.photo.owner;
     [self changeRatings:self.photo.ratings.count];
+    [self changeDescription:self.photo.description];
+    
     [self.authorButton setTitle:self.user.userName forState: UIControlStateNormal];
     [self.authorButton addTarget:self action:@selector(authorButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     
-    
-    
-    [manager.ff loadBlobsForObj:self.user  onComplete:^
+    [manager.ff loadBlobsForObj:self.user onComplete:^
      (NSError *theErr, id theObj, NSHTTPURLResponse *theResponse){
-         self.profilePicture.image = [UIImage imageWithData:[(User *)theObj profilePicture]];
+     
+         if(theErr)
+         {
+             NSLog(@" Error for blob  %@ ",[theErr debugDescription]);
+         }
          
+         User * user = (User *) theObj;
+
+         self.user = user;
+         UIImage * img = [UIImage imageWithData: user.profilePicture];
+         if(img){
+             self.profilePicture.image = img;
+         }
      }];
+
+    
     
     //if the image data is null, load it and place the image in the imageView
     if(!self.photo.imageData || !self.photo.thumbnailImageData) {
@@ -214,9 +228,12 @@ UIBarButtonItem * newBarButtonItem;
         }
         else{
             if(manager.user){
-               [self.photo.ratings addObject:guid];
-               //send notification
                 
+                NSMutableArray *ratings = [self.photo.ratings mutableCopy];
+               [ratings addObject:guid];
+               //send notification
+                self.photo.ratings = ratings;
+
                 [self sendNotificationFrom:guid forToGuid:self.photo.owner forPhoto:photoGuid];
                 NSMutableArray * fav =[NSMutableArray arrayWithArray: manager.user.favoritePictures];
                 if(!fav)
