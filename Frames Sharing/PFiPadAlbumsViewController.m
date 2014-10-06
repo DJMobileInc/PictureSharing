@@ -12,7 +12,13 @@
 #import "Manager.h"
 #import "User.h"
 
-@interface PFiPadAlbumsViewController()
+@interface PFiPadAlbumsViewController(){
+    __weak UIPopoverController * myPopover;
+    AlbumListData * albumsList;
+    AlbumDetailsData * albumDetails;
+    Manager * manager;
+
+}
 @property (strong, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong,nonatomic) NSString * albumName;
@@ -22,7 +28,6 @@
 @end
 
 @implementation PFiPadAlbumsViewController
-AlbumListData * albumsList;
 - (IBAction)refreshAlbums:(id)sender {
  
     if(manager.user){
@@ -38,12 +43,17 @@ AlbumListData * albumsList;
     
     }
 }
-AlbumDetailsData * albumDetails;
-Manager * manager;
+
 
 
 - (IBAction)showMenu:(id)sender {
+    if (myPopover)
+        [myPopover dismissPopoverAnimated:YES];
+    else
+        [self performSegueWithIdentifier:@"showPopover" sender:sender];
+
 }
+
 
 
 
@@ -86,7 +96,6 @@ Manager * manager;
     self.collectionView.delegate = albumDetails;
     self.tableView.dataSource =  albumsList;
     
-    albumsList = [[AlbumListData alloc]init];
     albumsList.storyboard  = self.storyboard;
     albumsList.navigationController = self.navigationController;
     albumDetails.navigationController=self.navigationController;
@@ -150,10 +159,14 @@ Manager * manager;
 
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    if ([segue.identifier isEqualToString:@"menu"]) {
+
+    
+    if ([segue.identifier isEqualToString:@"showPopover"]) {
+        myPopover = [(UIStoryboardPopoverSegue *)segue popoverController];
+        
+        
         [segue.destinationViewController performSelector:@selector(setCurrentNavigationController:)
                                               withObject:self.navigationController];
-        NSLog(@"Segue menu");
     }
 }
 

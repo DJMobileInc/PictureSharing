@@ -56,22 +56,18 @@
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
  
-   // [self.manager getOwnerOfPhoto:<#(Photo *)#> asynchronusly:<#(BOOL)#>]
-    
-    
     
     PFDisplayMyPhotoViewController * pdp = [self.storyboard instantiateViewControllerWithIdentifier:@"PFDisplayMyPhotoViewController"];
     Photo * p = [self.photoArray objectAtIndex:indexPath.row];
     pdp.photo = p;
-    [self.navigationController pushViewController:pdp animated:YES];
-    [pdp changeDescription:p.description];
+ 
     if(!p.imageData)
     {
         NSLog(@"No image data!!! ");
     }
         [pdp changeImage:[UIImage imageWithData:p.imageData]];
    
-
+   [self.navigationController pushViewController:pdp animated:YES];
      
     
 }

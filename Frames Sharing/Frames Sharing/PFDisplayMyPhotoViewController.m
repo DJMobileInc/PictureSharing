@@ -77,6 +77,7 @@ UIBarButtonItem * newBarButtonItem;
     self.description.delegate = self;
     [self changePrivacy:!self.photo.isPublic];
     [self changeRatings:self.photo.ratings.count];
+    [self changeDescription:self.photo.description];
     
     self.imageView.image =[UIImage imageWithData:self.photo.imageData];
 

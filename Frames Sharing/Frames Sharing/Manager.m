@@ -150,7 +150,10 @@ UIActionSheet *  loginActionSheet;
     }
 }
 
-
+-(void)setFf:(FatFractal *)ff{
+    _ff = ff;
+    NSLog(@"Setting FF");
+}
 
 
 + (Manager *)sharedInstance
@@ -170,15 +173,14 @@ UIActionSheet *  loginActionSheet;
     if(self = [super init])
     {
         if(!_ff){
-            self.ff = [[FatFractal alloc] initWithBaseUrl:baseUrl];
+            self.ff = [[FatFractal alloc] initWithBaseUrl:@"http://djmobileinc.fatfractal.com/pictureframes"];
             self.ff.autoLoadBlobs = NO;
-            self.ff.debug = NO;
+            self.ff.debug = YES;
+            [self.ff registerClass:[User class] forClazz:@"FFUser"];
             [self.ff loginWithUserName:@"janek2004" andPassword:@"Stany174"];
-            [[FatFractal main] registerClass:[User class] forClazz:@"FFUser"];
-
-            
+          
         }
-        [self.ff registerClass:[User class] forClazz:@"FFUser"];
+
     }
     return self;
 }

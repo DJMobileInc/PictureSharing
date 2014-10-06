@@ -138,12 +138,21 @@ BOOL tryLoading =NO;
         [manager dismissPopovers];
         [self.navigationController popToRootViewControllerAnimated:YES];
         [manager.currentNavigationController  popToRootViewControllerAnimated:YES];
+
     }
     else{
         [manager dismissPopovers];
         [manager.currentNavigationController  popToRootViewControllerAnimated:YES];
     }
+//    
+//    if(UI_USER_INTERFACE_IDIOM()== UIUserInterfaceIdiomPhone){
+//         UIStoryboard *iPadStoryboard = [UIStoryboard storyboardWithName:@"iPadStoryboard" bundle:nil];
+//        //iPadStoryboard.
+//    }
+ 
+    [self dismissViewControllerAnimated:YES completion:nil];
     [manager displayMessage:@"Successfully logged out."];
+    
     
     
 }
@@ -216,8 +225,7 @@ BOOL tryLoading =NO;
     [picker dismissViewControllerAnimated:YES completion:nil];
     [cameraPopoverController dismissPopoverAnimated:YES];
 
-    //resize in queue
-    #warning  resize in queue
+
     
     self.profileImageView.image = imageToUse;
     

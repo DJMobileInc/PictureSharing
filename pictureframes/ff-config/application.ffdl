@@ -25,7 +25,8 @@ CREATE ALIAS ON OBJECTTYPE FFUser GRABBAG BackReferences.FFUserGroup.users AS me
 CREATE OBJECTTYPE FFUserGroup (groupName STRING, users GRABBAG /FFUser)
 CREATE OBJECTTYPE FFNotificationID (idType STRING, idValue STRING)
 
-#
+#CREATE OBJECTTYPE Photo (owner FFUser)
+
 # Collection Resources
 #
 CREATE COLLECTION /FFUser OBJECTTYPE FFUser

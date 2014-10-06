@@ -202,7 +202,7 @@
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
-                                        <state key="selected" image="YellowButtonPin.png"/>
+                                        <state key="selected" image="YellowButtonPin.png" backgroundImage="YellowButton.png"/>
                                         <state key="highlighted" image="YellowButtonPin.png"/>
                                         <connections>
                                             <action selector="showFramesFor:" destination="2" eventType="touchUpInside" id="IVF-W8-X7i"/>
@@ -216,7 +216,7 @@
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
-                                        <state key="selected" image="YellowButton.png"/>
+                                        <state key="selected" image="YellowButton.png" backgroundImage="YellowButton.png"/>
                                         <state key="highlighted" image="YellowButton.png"/>
                                         <connections>
                                             <action selector="showFramesFor:" destination="2" eventType="touchUpInside" id="EjU-eQ-X6Z"/>
@@ -230,7 +230,7 @@
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
-                                        <state key="selected" image="YellowButton.png"/>
+                                        <state key="selected" image="YellowButton.png" backgroundImage="YellowButton.png"/>
                                         <state key="highlighted" image="YellowButton.png"/>
                                         <connections>
                                             <action selector="showFramesFor:" destination="2" eventType="touchUpInside" id="jvM-B1-UiE"/>
@@ -244,7 +244,7 @@
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
-                                        <state key="selected" image="YellowButton.png"/>
+                                        <state key="selected" image="YellowButton.png" backgroundImage="YellowButton.png"/>
                                         <state key="highlighted" image="YellowButton.png"/>
                                         <connections>
                                             <action selector="showFramesFor:" destination="2" eventType="touchUpInside" id="jtH-YG-GJi"/>
@@ -258,7 +258,7 @@
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
-                                        <state key="selected" image="YellowButton.png"/>
+                                        <state key="selected" image="YellowButton.png" backgroundImage="YellowButton.png"/>
                                         <state key="highlighted" image="YellowButton.png"/>
                                         <connections>
                                             <action selector="showFramesFor:" destination="2" eventType="touchUpInside" id="f9k-v7-uUW"/>
@@ -272,7 +272,7 @@
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
-                                        <state key="selected" image="YellowButton.png"/>
+                                        <state key="selected" image="YellowButton.png" backgroundImage="YellowButton.png"/>
                                         <state key="highlighted" image="YellowButton.png"/>
                                         <connections>
                                             <action selector="showFramesFor:" destination="2" eventType="touchUpInside" id="QYS-fj-CiO"/>
@@ -358,7 +358,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Vx5-Bl-hVS">
-                                        <rect key="frame" x="332" y="2" width="42" height="42"/>
+                                        <rect key="frame" x="327" y="-11" width="54" height="54"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                         <state key="normal" backgroundImage="cameraIcon.png">
@@ -373,7 +373,7 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                             </view>
                             <adBannerView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="AVI-qx-m3v">
                                 <rect key="frame" x="0.0" y="0.0" width="1024" height="48"/>
@@ -382,17 +382,16 @@
                                     <outlet property="delegate" destination="2" id="Ohl-Mq-PSc"/>
                                 </connections>
                             </adBannerView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="kc5-a2-P6i">
-                                <rect key="frame" x="892" y="68" width="98" height="40"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="kc5-a2-P6i">
+                                <rect key="frame" x="971" y="75" width="22" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
-                                <state key="normal" title="About" backgroundImage="buttonExtraBack.png">
+                                <color key="tintColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                                <state key="disabled" backgroundImage="buttonPushed.png"/>
-                                <state key="selected" backgroundImage="buttonExtraBack.png"/>
-                                <state key="highlighted" backgroundImage="buttonPushed.png">
+                                <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -447,8 +446,8 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="vu9-fU-cXP">
-                                <rect key="frame" x="98" y="400" width="124" height="40"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
+                                <rect key="frame" x="98" y="402" width="124" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <state key="normal" title="Restore" backgroundImage="buttonBack.png">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
