@@ -60,6 +60,8 @@ UIActionSheet * loginActionSheet;
 
 -(void)albumsRetrieved:(NSNotification *)notification{
     albumsList.objects = notification.object;
+    
+    NSLog(@"Notification Data: %@",notification.object);
     [self.tableView reloadData];
     
     

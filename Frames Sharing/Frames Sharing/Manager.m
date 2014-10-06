@@ -364,7 +364,7 @@ UIView * currentView;
 -(void)createNewAlbumOfName:(NSString *)name forUser:(NSString *)userId privacy:(BOOL)privacy{
    
        Album * album = [[Album alloc]init];
-      // album.privacy = privacy;
+       //album.privacy = privacy;
        album.userId = userId;
        album.name=name;
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
@@ -401,6 +401,8 @@ UIView * currentView;
              //retrieved array of photos in album.
              [[NSNotificationCenter defaultCenter] postNotificationName:photosRetrievedNotification
                                                                  object:theObj userInfo:nil];
+         
+         
          }
         // [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
      }];
@@ -463,7 +465,7 @@ UIView * currentView;
     
     NSData *thumbnailImageData = UIImageJPEGRepresentation(thumbnail,0.7); // 0.7 is JPG quality
     
-    NSLog(@" thumbnail length %d %d", thumbnailImageData.length, _imageData.length);
+  //  NSLog(@" thumbnail length %d %d", thumbnailImageData.length, _imageData.length);
 
     photo.thumbnailImageData = thumbnailImageData;
     photo.imageData= _imageData;

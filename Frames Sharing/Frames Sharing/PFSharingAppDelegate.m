@@ -26,7 +26,10 @@ Manager * manager;
 
     [[UINavigationBar appearance] setBackgroundImage:navBar forBarMetrics:UIBarMetricsDefault];
 
-    [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
+    //[UIApplication sharedApplication]registerForRemoteNotificationTypes:<#(UIRemoteNotificationType)#>
+    [[UIApplication sharedApplication] registerForRemoteNotifications];
+    
+//  [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
     
     return YES;
 }
