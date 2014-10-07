@@ -65,7 +65,13 @@ UIActionSheet * loginActionSheet;
 }
 
 -(void)albumsRetrieved:(NSNotification *)notification{
-    albumsList.objects = notification.object;
+    if([notification.object isKindOfClass:[NSArray class]]){
+        albumsList.objects = notification.object;
+    
+    }
+    else{
+        albumsList.objects = [@[notification.object]mutableCopy];
+    }
     
     NSLog(@"Notification Data: %@",notification.object);
     [self.tableView reloadData];

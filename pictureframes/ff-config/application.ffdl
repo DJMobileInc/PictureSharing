@@ -12,7 +12,7 @@ SET ApplePushUsingProduction    true
 SET LogLevel                    INFO
 SET PushIsInactive              false
 SET ETaggingEnabled             true
-SET PasswordValidation 		false
+SET PasswordValidation 			false
 
 # Remove the following CORS setting if you don't wish to be able to use the data browser from the FatFractal Console
 SET CORS https://system.fatfractal.com

@@ -10,7 +10,7 @@
 @class User;
 
 @interface Photo : NSObject
-@property(strong,nonatomic) NSString * description;
+@property(strong,nonatomic) NSString * photo_description;
 @property(strong,nonatomic) User * owner;
 
 @property(strong,nonatomic) NSString * title;

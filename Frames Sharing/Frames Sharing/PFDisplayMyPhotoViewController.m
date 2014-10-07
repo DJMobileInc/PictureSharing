@@ -136,7 +136,7 @@ UIBarButtonItem * newBarButtonItem;
 -(void)textViewDidEndEditing:(UITextView *)textView{
     [textView resignFirstResponder];
     self.navigationItem.rightBarButtonItem =nil;
-    self.photo.description = self.description.text;
+    self.photo.photo_description = self.description.text;
     [manager updateObject:self.photo];
 }
 

@@ -472,7 +472,7 @@ UIView * currentView;
     photo.thumbnailImageData = thumbnailImageData;
     photo.imageData= _imageData;
     photo.date = [NSDate new];
-    photo.description= description;
+    photo.photo_description= description;
     photo.albumId = albumId;
     photo.owner =self.user;
     photo.isPublic = 0;
