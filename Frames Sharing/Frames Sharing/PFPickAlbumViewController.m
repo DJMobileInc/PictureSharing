@@ -103,29 +103,26 @@ UIAlertView * photoDescriptionAlert;
             NSIndexPath * path = [self.tableView indexPathForSelectedRow];
             if(path){
                    NSLog(@" 4 ");
-                int index =path.row;
+                NSInteger index =path.row;
                 if(index >=0){
                     Album * album = [albumsList.objects objectAtIndex:index];
                     NSLog(@"ALbum  %@ %@",album, [manager getGUID:album]);
                     [manager createNewPhotoWithDescription:[alertView textFieldAtIndex:0].text forAlbum:[manager getGUID:album] withData:UIImageJPEGRepresentation(self.imageToShare, 0.7) user:(self.user)];
-                    
                 }
             }
- 
-        
         }
     }
     else{
     if(buttonIndex == 1) {
         self.albumName = [alertView textFieldAtIndex:0].text;
         
-        NSLog(@"album name is %@ %d",self.albumName,self.albumName.length );
+        NSLog(@"album name is %@ %lu",self.albumName,(unsigned long)self.albumName.length );
         
         if(self.albumName.length>0){
             [self createAlbum:self.albumName];
         }
         else{
-            NSLog(@"Length is wrong ??? album name is %@ %d",self.albumName,self.albumName.length );
+            NSLog(@"Length is wrong ??? album name is %@ %lu",self.albumName,(unsigned long)self.albumName.length );
             
             [manager displayMessage:@"Don't forget about album's title."];
         }
